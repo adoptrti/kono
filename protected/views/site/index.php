@@ -1,20 +1,32 @@
-<?php
-/* @var $this SiteController */
+<script type="text/javascript" src="/node_modules/geolocator/dist/geolocator.min.js"></script>
+<script type="text/javascript">
 
-$this->pageTitle=Yii::app()->name;
-?>
+    geolocator.config({
+        language: "en",
+        google: {
+            version: "3",
+            key: "<?= Yii::app()->params['google-api-key']?>"
+        }
+    });
 
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
+    window.onload = function () {
+        var options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumWait: 10000,     // max wait time for desired accuracy
+            maximumAge: 0,          // disable cache
+            desiredAccuracy: 30,    // meters
+            fallbackToIP: true,     // fallback to IP if Geolocation fails or rejected
+            addressLookup: true,    // requires Google API key if true
+            timezone: true,         // requires Google API key if true
+            map: "map-canvas",      // interactive map element id (or options object)
+            staticMap: true         // map image URL (boolean or options object)
+        };
+        geolocator.locate(options, function (err, location) {
+            if (err) return console.log(err);
+            console.log(location);
+        });
+    };
 
-<p>Congratulations! You have successfully created your Yii application.</p>
-
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
-</ul>
-
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+</script>
+<div id="map-canvas" style="width:600px;height:400px"></div>
