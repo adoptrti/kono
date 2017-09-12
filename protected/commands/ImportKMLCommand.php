@@ -1,16 +1,23 @@
 <?php
-$dom = new DOMDocument ();
-$file = realpath ( '../../docs/tn-maps/TAMILNADU-AC.kml' );
-if ($dom->load ( $file ) == false)
-    die ( "could not load file :$file" );
-echo "Loaded file $file\n";
-$xpath = new DOMXpath ( $dom );
-
-$ele = $dom->getElementsByTagName ( 'Placemark' );
-
-foreach ( $ele as $place )
+class ImportKMLCommand extends CConsoleCommand
 {
-    parseplace ( $place );
+
+    public function actionIndex()
+    {
+        $dom = new DOMDocument ();
+        $file = realpath ( '../../docs/tn-maps/TAMILNADU-AC.kml' );
+        if ($dom->load ( $file ) == false)
+            die ( "could not load file :$file" );
+        echo "Loaded file $file\n";
+        $xpath = new DOMXpath ( $dom );
+        
+        $ele = $dom->getElementsByTagName ( 'Placemark' );
+        
+        foreach ( $ele as $place )
+        {
+            parseplace ( $place );
+        }
+    }
 }
 
 function parseplace($place)
@@ -33,12 +40,11 @@ function parseplace($place)
      * insertRow($ExtendedData,$coords);
      * }
      */
-    insertRow($ExtendedData,$coords);
+    insertRow ( $ExtendedData, $coords );
 }
 
 function insertRow($ExtendedData, $coords)
 {
-    
 }
 
 function parseExtendedData($node)
@@ -49,7 +55,7 @@ function parseExtendedData($node)
     {
         $rt [$ele->getAttribute ( 'name' )] = $ele->nodeValue;
     }
-
+    
     return $rt;
 }
 
@@ -59,12 +65,13 @@ function parseCoords($node)
     if ($eles->length == 0)
         die ( "Not found coords\n" );
     $ele = $eles->item ( 0 );
-    $c2 = array_map ( function ($item)
-    {
-        $a = explode ( ',', $item );
-        if (count ( $a ) == 3)
-            return $a;
-    }, explode ( ' ', $ele->nodeValue ) );
+    $c2 = array_map ( 
+            function ($item)
+            {
+                $a = explode ( ',', $item );
+                if (count ( $a ) == 3)
+                    return $a;
+            }, explode ( ' ', $ele->nodeValue ) );
     
     return $c2;
 }
