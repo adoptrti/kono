@@ -30,7 +30,7 @@ foreach ( $ass2 as $ass )
     else 
     {
         $con2 = Results2014::model ()->findByAttributes ( [
-                'CONSTITUENCY' => $ass->PC_NAME
+                'constituency' => $ass->PC_NAME
         ] );
         
         if($con2)
@@ -57,8 +57,8 @@ if(!empty($data['ward']))
 
 if(!empty($data['assembly']))
     $this->renderPartial('_assembly',['data' => $data['assembly'],'poly' => $data['amly_poly']]);
-/*    
+
 if(!empty($data['mp']))
-    $this->renderPartial('_ward',['data' => $data['mp']]);
-*/
+    $this->renderPartial('_lowerhouse',['data' => $data['mp'],'poly' => $data['mp_poly']]);
+
 ?>
