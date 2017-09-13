@@ -1,0 +1,11 @@
+{
+  "name": "Konoweb",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "geolocator": "^2.1.1"
+  },
+  "devDependencies": {},
+  "author": "Vikas Yadav",
+  "license": "ISC"
+}
