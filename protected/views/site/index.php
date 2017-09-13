@@ -10,6 +10,8 @@ $src = [
 ];
 $ass2 = AssemblyPolygon::model ()->findAll ( $src );
 
+$data = [];
+
 foreach ( $ass2 as $ass )
 {
     $this->widget ( 'zii.widgets.CDetailView', [ 
@@ -21,7 +23,9 @@ foreach ( $ass2 as $ass )
         $con2 = MunicipalResults::model ()->findByAttributes ( [
                 'wardno' => $ass->acno
         ] );
-                
+        
+        if($con2)
+            $data['ward'] = $con2;
     }
     else 
     {
@@ -29,31 +33,27 @@ foreach ( $ass2 as $ass )
                 'CONSTITUENCY' => $ass->PC_NAME
         ] );
         
+        if($con2)
+            $data['mp'] = $con2;
+        
+        
         $con3 = TamilNaduResults2016::model ()->findByAttributes ( [
                 'acno' => $ass->acno
         ] );
-                
-        $this->widget ( 'zii.widgets.CDetailView', array (
-                'data' => $con3
-        ) );
+        if($con3)
+            $data['assembly'] = $con3;
         
     }
-    
-    $this->widget ( 'zii.widgets.CDetailView', array (
-            'data' => $con2
-    ) );
-    
+        
 }
 
+if(!empty($data['ward']))
+    $this->renderPartial('_ward',['data' => $data['ward']]);
 /*
- * $con1 = Constituency::model()->findByAttributes(['eci_ref' =>
- * $ass->PC_NAME]);
- *
- * $this->widget('zii.widgets.CDetailView', array(
- * 'data'=>$con1,
- * ));
- */
-
-
-
+if(!empty($data['assembly']))
+    $this->renderPartial('_ward',['data' => $data['assembly']]);
+    
+if(!empty($data['mp']))
+    $this->renderPartial('_ward',['data' => $data['mp']]);
+*/
 ?>
