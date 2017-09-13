@@ -34,14 +34,19 @@ foreach ( $ass2 as $ass )
         ] );
         
         if($con2)
+        {
             $data['mp'] = $con2;
-        
+            $data['mp_poly'] = $ass;
+        }                    
         
         $con3 = TamilNaduResults2016::model ()->findByAttributes ( [
                 'acno' => $ass->acno
         ] );
         if($con3)
+        {
             $data['assembly'] = $con3;
+            $data['amly_poly'] = $ass;
+        }
         
     }
         
@@ -49,10 +54,10 @@ foreach ( $ass2 as $ass )
 
 if(!empty($data['ward']))
     $this->renderPartial('_ward',['data' => $data['ward']]);
-/*
+
 if(!empty($data['assembly']))
-    $this->renderPartial('_ward',['data' => $data['assembly']]);
-    
+    $this->renderPartial('_assembly',['data' => $data['assembly'],'poly' => $data['amly_poly']]);
+/*    
 if(!empty($data['mp']))
     $this->renderPartial('_ward',['data' => $data['mp']]);
 */
