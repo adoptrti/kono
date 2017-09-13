@@ -1,21 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "acpoly".
+ * This is the model class for table "tnresults2016".
  *
- * The followings are the available columns in table 'acpoly':
+ * The followings are the available columns in table 'tnresults2016':
+ * @property string $acname
  * @property integer $acno
- * @property string $poly
+ * @property string $name
+ * @property string $party
  */
-class AssemblyPolygon extends CActiveRecord
+class TamilNaduResults2016 extends CActiveRecord
 {
-    var $ctr1;
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'acpoly';
+		return 'tnresults2016';
 	}
 
 	/**
@@ -26,11 +27,13 @@ class AssemblyPolygon extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('acno, poly', 'required'),
 			array('acno', 'numerical', 'integerOnly'=>true),
+			array('acname', 'length', 'max'=>22),
+			array('name', 'length', 'max'=>27),
+			array('party', 'length', 'max'=>6),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('acno, poly', 'safe', 'on'=>'search'),
+			array('acname, acno, name, party', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,8 +54,10 @@ class AssemblyPolygon extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'acno' => 'Assembly Number',
-			'poly' => 'Polygon',
+			'acname' => 'Acname',
+			'acno' => 'Acno',
+			'name' => 'Name',
+			'party' => 'Party',
 		);
 	}
 
@@ -74,8 +79,10 @@ class AssemblyPolygon extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->compare('acname',$this->acname,true);
 		$criteria->compare('acno',$this->acno);
-		$criteria->compare('poly',$this->poly,true);
+		$criteria->compare('name',$this->name,true);
+		$criteria->compare('party',$this->party,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -86,7 +93,7 @@ class AssemblyPolygon extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return AssemblyPolygon the static model class
+	 * @return TamilNaduResults2016 the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

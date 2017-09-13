@@ -1,21 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "acpoly".
+ * This is the model class for table "municipalresults".
  *
- * The followings are the available columns in table 'acpoly':
- * @property integer $acno
- * @property string $poly
+ * The followings are the available columns in table 'municipalresults':
+ * @property string $city
+ * @property integer $wardno
+ * @property string $name
+ * @property string $party
+ * @property string $phone
+ * @property string $address
  */
-class AssemblyPolygon extends CActiveRecord
+class MunicipalResults extends CActiveRecord
 {
-    var $ctr1;
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'acpoly';
+		return 'municipalresults';
 	}
 
 	/**
@@ -26,11 +29,15 @@ class AssemblyPolygon extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('acno, poly', 'required'),
-			array('acno', 'numerical', 'integerOnly'=>true),
+			array('wardno', 'numerical', 'integerOnly'=>true),
+			array('city', 'length', 'max'=>10),
+			array('name', 'length', 'max'=>31),
+			array('party', 'length', 'max'=>6),
+			array('phone', 'length', 'max'=>12),
+			array('address', 'length', 'max'=>80),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('acno, poly', 'safe', 'on'=>'search'),
+			array('city, wardno, name, party, phone, address', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,8 +58,12 @@ class AssemblyPolygon extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'acno' => 'Assembly Number',
-			'poly' => 'Polygon',
+			'city' => 'City',
+			'wardno' => 'Wardno',
+			'name' => 'Name',
+			'party' => 'Party',
+			'phone' => 'Phone',
+			'address' => 'Address',
 		);
 	}
 
@@ -74,8 +85,12 @@ class AssemblyPolygon extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('acno',$this->acno);
-		$criteria->compare('poly',$this->poly,true);
+		$criteria->compare('city',$this->city,true);
+		$criteria->compare('wardno',$this->wardno);
+		$criteria->compare('name',$this->name,true);
+		$criteria->compare('party',$this->party,true);
+		$criteria->compare('phone',$this->phone,true);
+		$criteria->compare('address',$this->address,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -86,7 +101,7 @@ class AssemblyPolygon extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return AssemblyPolygon the static model class
+	 * @return MunicipalResults the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
