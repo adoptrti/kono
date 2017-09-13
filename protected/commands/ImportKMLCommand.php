@@ -6,6 +6,9 @@ class ImportKMLCommand extends CConsoleCommand
 
     public function actionIndex($file)
     {
+        /*print_r($_GET);
+        print_r($_SERVER);
+        die;*/
         $dom = new DOMDocument ();
         $file = realpath ( $file );
         if ($dom->load ( $file ) == false)

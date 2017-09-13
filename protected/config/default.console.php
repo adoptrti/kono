@@ -6,13 +6,7 @@ return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Console Application',
 
-	// autoloading model and component classes
-    'import'=>array(
-            'application.models.*',
-            'application.components.*',
-    ),
-    
-    // preloading 'log' component
+	// preloading 'log' component
 	'preload'=>array('log'),
 
 	// application components

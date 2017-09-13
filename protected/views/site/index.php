@@ -1,10 +1,11 @@
 <?php
 //@see https://dev.mysql.com/doc/refman/5.7/en/populating-spatial-columns.html
 //@see https://stackoverflow.com/questions/15662910/search-a-table-for-point-in-polygon-using-mysql
-$ass = AssemblyPolygon::model()->find([
+$src = [
         'condition' => new CDbExpression("ST_Contains(poly, GeomFromText(:point))"),
-        'params' => [':point' => 'POINT(' . $data[1]->latitude . ' ' . $data[1]->longitude . ')'],
-]);
+        'params' => [':point' => 'POINT(' . $data[1]->longitude . ' ' . $data[1]->latitude . ')'],
+];
+$ass = AssemblyPolygon::model()->find($src);
 
 $this->widget('zii.widgets.CDetailView', array(
         'data'=>$ass,
