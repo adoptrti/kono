@@ -69,7 +69,7 @@ class SiteController extends Controller
              */
             $data = [json_decode($_POST['address']),json_decode($_POST['coords'])];
             
-            $this->render ( 'index' ,['data' => $data]);
+            $this->render ( 'index' ,['data0' => $data]);
         }
     }
 

@@ -4,7 +4,7 @@
 ?>
 
 <div class="view">
-    <h2><?=$poly->AC_NAME?> State Assembly - #<?=$data->acno?></h2>
+    <h2><?=$poly->AC_NAME?> Assembly Constituency - #<?=$data->acno?></h2>
 
     <?php
     $this->widget ( 'zii.widgets.CDetailView', 
