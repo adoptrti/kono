@@ -4,12 +4,30 @@
  * This is the model class for table "acpoly".
  *
  * The followings are the available columns in table 'acpoly':
+ * @property integer $id_poly
+ * @property string $polytype
  * @property integer $acno
+ * @property integer $id_parl_consti
+ * @property string $zone
+ * @property integer $wardno
+ * @property string $AC_NAME
  * @property string $poly
+ * @property integer $ST_CODE
+ * @property string $ST_NAME
+ * @property integer $DT_CODE
+ * @property string $DIST_NAME
+ * @property integer $PC_NO
+ * @property string $pc_name
+ * @property string $pc_name_clean
+ * @property integer $PC_ID
+ * @property double $Shape_Leng
+ * @property double $Shape_Area
+ * @property double $MaxSimpTol
+ * @property double $MinSimpTol
  */
 class AssemblyPolygon extends CActiveRecord
 {
-    var $ctr1;
+    var $ctr1;    
 	/**
 	 * @return string the associated database table name
 	 */

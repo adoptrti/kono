@@ -1,79 +1,49 @@
-<?php
-// @see https://dev.mysql.com/doc/refman/5.7/en/populating-spatial-columns.html
-// @see
-// https://stackoverflow.com/questions/15662910/search-a-table-for-point-in-polygon-using-mysql
-
-
-$src = [ 
-        'condition' => new CDbExpression ( "ST_Contains(poly, GeomFromText(:point))" ),
-        'params' => [ 
-                ':point' => 'POINT(' . $data0 [1]->longitude . ' ' . $data0 [1]->latitude . ')' 
-        ] 
-];
-$ass2 = AssemblyPolygon::model ()->findAll ( $src );
-
-$data = [ ];
-
-foreach ( $ass2 as $ass )
-{
-    /*$this->widget ( 'zii.widgets.CDetailView', [ 
-            'data' => $ass 
-    ] );*/
+<style>
+        .tools a {
+            color: white;
+        }
+        
+        .googlecontainer {
+            height: 100vh;
+            max-height: 600px;
+            xwidth: 95%;
+            margin: auto;
+        }
+        
+        #pac-input {
+            width: 250px;
+            height: 40px;
+            xmargin-top: 10px;
+            border: 1px solid;
+            xpadding-left: 10px;
+        }
+        
+        #googlemaps {
+            width: 100%;
+            height: 500px;
+        }
+        
+        @media all and (max-width: 767px) {
+            br {
+                display: block;
+            }
+        }
+    </style>
     
-    if ($ass->polytype == 'WARD')
-    {
-        $con2 = MunicipalResults::model ()->findByAttributes ( [ 
-                'wardno' => $ass->acno 
-        ] );
+<script src="//maps.googleapis.com/maps/api/js?key=<?= Yii::app()->params['google-api-key']?>&libraries=places"></script>
+    
+<input id="pac-input" class="controls" type="text" placeholder="Type city, zip or address here..">
+<div id="googlemaps"></div>
+<script language='Javascript' type="text/javascript" src="/js/gmaprunner.js"></script>
+<?php 
+$json = json_encode($data0);
+Yii::app()->clientScript->registerScript('dd1', <<<DD1
         
-        if ($con2)
-            $data ['ward'] = $con2;
-    }
-    else
-    {
-        $con2 = Results2014::model ()->findByAttributes ( [ 
-                'constituency' => $ass->PC_NAME 
-        ] );
-        
-        if ($con2)
-        {
-            $data ['mp'] = $con2;
-            $data ['mp_poly'] = $ass;
-        }
-        
-        $con3 = TamilNaduResults2016::model ()->findByAttributes ( [ 
-                'acno' => $ass->acno 
-        ] );
-        if ($con3)
-        {
-            $data ['assembly'] = $con3;
-            $data ['amly_poly'] = $ass;
-        }
-    }
-}
+    $.post( "/site/placeinfo?t=json",{data:'$json'}, function( data ) {
+		$( "#result" ).html( data );
+	});
 
-$this->renderPartial ( '_address', [ 
-        'address' => $data0,
-        'mp_poly' => $data ['mp_poly'],
-        'amly_poly' => $data ['amly_poly'],
-        'data' => $data ['ward']
-] );
-
-if (! empty ( $data ['ward'] ))
-    $this->renderPartial ( '_ward', [ 
-            'data' => $data ['ward'] 
-    ] );
-
-if (! empty ( $data ['assembly'] ))
-    $this->renderPartial ( '_assembly', [ 
-            'data' => $data ['assembly'],
-            'poly' => $data ['amly_poly'] 
-    ] );
-
-if (! empty ( $data ['mp'] ))
-    $this->renderPartial ( '_lowerhouse', [ 
-            'data' => $data ['mp'],
-            'poly' => $data ['mp_poly'] 
-    ] );
-
+DD1
+,CClientScript::POS_READY);
 ?>
+<div id="result"></div>

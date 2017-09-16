@@ -22,6 +22,19 @@ class SiteController extends Controller
                 ) 
         );
     }
+    
+    function actionPlaceinfo($t)
+    {
+        if($t=='json')
+        {
+            $data = json_decode($_POST['data']);
+            $lat = $data[1]->latitude;
+            $long = $data[1]->longitude;
+        }
+        
+        $this->layout = false;
+        $this->render ( 'placeinfo' ,['lat' => $lat,'long' => $long,'data0' => $data]);
+    }
 
     /**
      * This is the default 'index' action that is invoked
@@ -68,7 +81,6 @@ class SiteController extends Controller
                 )
              */
             $data = [json_decode($_POST['address']),json_decode($_POST['coords'])];
-            
             $this->render ( 'index' ,['data0' => $data]);
         }
     }
