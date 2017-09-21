@@ -12,7 +12,7 @@
                     'data' => $data,
                     'attributes' => array (
                             array ( // related city displayed as a link
-                                    'label' => 'Elected Member of Parliament',
+                                    'label' => __('Lok Sabha MP'),
                                     'name' => 'name' 
                             ),
                             'party',
@@ -59,7 +59,7 @@
                                         foreach($tels as $tel)
                                         {
                                             $mats = [];
-                                            echo "<br/>TEL: $tel<br/>";
+                                            //echo "<br/>TEL: $tel<br/>";
                                             if(preg_match('/\((?<std>0\d+)?\)[^\d]*(?<phone>\d+)/',$tel,$mats))
                                             {
                                                 $rt[] = CHtml::link($tel,'tel:+91' . intval(trim($mats['std'])) . trim($mats['phone']) );

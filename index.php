@@ -1,5 +1,13 @@
 <?php
 
+function __($string, $params = array(), $category = "")
+{
+    if(class_exists('Yii'))
+        return Yii::t($category, $string, $params);
+        return $string;
+}
+
+
 // change the following paths if necessary
 $yii=dirname(__FILE__).'/../yii/framework/yii.php';
 $config=dirname(__FILE__).'/protected/config/main.php';
