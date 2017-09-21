@@ -36,7 +36,7 @@
 <div id="googlemaps"></div>
 <script language='Javascript' type="text/javascript" src="/js/gmaprunner.js"></script>
 <?php 
-$json = json_encode($data0);
+$json = str_replace("'","",json_encode($data0));
 Yii::app()->clientScript->registerScript('dd1', <<<DD1
         
     $.post( "/site/placeinfo?t=json",{data:'$json'}, function( data ) {
