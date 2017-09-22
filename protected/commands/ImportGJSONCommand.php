@@ -14,9 +14,11 @@ class ImportGJSONCommand extends CConsoleCommand
         echo "Loaded file $file\n";
         $data = json_decode(file_get_contents($file));
         
+        $pctr= 1;
+        
         foreach ( $data->features as $place )
         {
-            parseplace ( $place );
+            parseplace ( $place,$pctr++);
         }
         
         $rs = AssemblyPolygon::model()->findAll([
@@ -31,14 +33,14 @@ class ImportGJSONCommand extends CConsoleCommand
     }
 }
 
-function parseplace($place)
+function parseplace($place,$pctr)
 {
     $ExtendedData = parseExtendedData ( $place );
     $coords = parseManyCoords( $place );
-    insertRow ( $ExtendedData, $coords );
+    insertRow ( $ExtendedData, $coords ,$pctr);
 }
 
-function insertRow($ExtendedData, $many_coords)
+function insertRow($ExtendedData, $many_coords,$pctr)
 {
     $poly = new AssemblyPolygon();
     
@@ -58,15 +60,17 @@ function insertRow($ExtendedData, $many_coords)
     
     print_r($ExtendedData);
     
-    setprops($poly, $ExtendedData,'acno', '2011WardNumbers');
-    setprops($poly, $ExtendedData,'zone', 'Zone');
+    setprops($poly, $ExtendedData,'acno', 'Ward_No');
+    setprops($poly, $ExtendedData,'zone', 'Zone_No');
+    setprops($poly, $ExtendedData,'Shape_Area', 'AREA');
+    setprops($poly, $ExtendedData,'Shape_Leng', 'PERIMETER');
     
     $poly->poly = new CDbExpression("ST_PolygonFromText('POLYGON(" . implode(',',$polystring) . ")')");
     //very important
     $poly->polytype = 'WARD';
-    $poly->DIST_NAME = 'Coimbatore';
-    $poly->DT_CODE = 12;
-    $poly->ST_CODE = 33;
+    $poly->DIST_NAME = 'Chennai';
+    $poly->DT_CODE = 603;
+    $poly->ST_CODE = 33; //diff from id_state
     $poly->ST_NAME = 'TAMIL NADU';
     
     if(empty($poly->acno))
@@ -76,8 +80,32 @@ function insertRow($ExtendedData, $many_coords)
     }
     
     if(!$poly->save())
+    {
         print_r($poly->errors);
-    echo $poly->acno . "\n";
+        die('died saving ward:' . $poly->wardno);
+    }
+    
+    addWard($poly->DIST_NAME,$poly->acno,$poly->DT_CODE,$poly->ST_CODE);
+    
+    echo $poly->acno . " (# $pctr) \n\n";
+}
+
+function addWard($city,$wardno,$dt_code,$st_code)
+{
+    $MR = MunicipalResults::model()->findByAttributes(['city' => $city,'wardno' => $wardno]);
+    if(!$MR)
+    {
+        $MR = new MunicipalResults();
+        $MR->wardno = $wardno;
+        $MR->city = $city;
+        $MR->DT_CODE = $dt_code;
+        $MR->ST_CODE = $st_code;
+        if(!$MR->save())
+        {
+            print_r($MR->errors);
+            die('died saving ' . $wardno);
+        }
+    }
 }
 
 function setprops($poly, $ExtendedData, $setter, $field)

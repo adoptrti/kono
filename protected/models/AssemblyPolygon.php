@@ -28,6 +28,7 @@
 class AssemblyPolygon extends CActiveRecord
 {
     var $ctr1;    
+    var $ctr2;    
 	/**
 	 * @return string the associated database table name
 	 */
