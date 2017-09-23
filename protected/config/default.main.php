@@ -82,5 +82,6 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 	    'google-api-key' => '-add-key-here-',
+        'google-tracking-id' => '-add-key-here-',
 	),
 );

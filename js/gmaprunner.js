@@ -32,11 +32,6 @@ var map, latLng, marker, infoWindow, ad, geocoder = new google.maps.Geocoder();
             window.location.hash = '#' + pos.lat() + "," + pos.lng();
             html += '<b>Postal Address:</b> ' + address;
             html += '<br><small>' + '<i class="ti ti-location-pin"></i> Latitude: ' + pos.lat().toString().substr(0, 10) + ' &nbsp; Longitude: ' + pos.lng().toString().substr(0, 10) + '</small><br>';
-            //html += '</small><br /><iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fdigital.inspiration&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=false&amp;height=21&amp;appId=609713525766533" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px; width:120px" allowTransparency="true"></iframe>';
-            html += '<a target="_blank" href="mailto:?body=' + encodeURIComponent(address) + " " + encodeURIComponent(window.location.href) + '&subject=My%20Location%20' + encodeURIComponent(address) +
-                '"> <i class="ti ti-email"></i> Email #location</a>';
-            html += '<span style="float:right"><a target="_blank" href="https://twitter.com/intent/tweet?related=labnol&via=labnol&url=' + encodeURIComponent(window.location.href) + '&text=I%20am%20at%20' + encodeURIComponent(address) +
-                '"> <i class="ti ti-twitter"></i> Tweet #location</a></span>';
             map.panTo(pos);
             infoWindow.setContent("<div id='iw' style='max-width:250px;color:#000'>" + html + "</div>");
             infoWindow.open(map, marker);
@@ -224,7 +219,7 @@ var map, latLng, marker, infoWindow, ad, geocoder = new google.maps.Geocoder();
             marker.addListener('click', toggleBounce);
 
             infoWindow = new google.maps.InfoWindow({
-                content: '<div id="iw" style="max-width:300px;font-size:1.1em;color:#333">Drag the red marker anywhere on the map to know the approximate postal address of that location.<br>For help, please <a href="https://twitter.com/labnol" target="_blank">tweet</a> <i class="ti ti-twitter"></i> or <a href="mailto:amit@labnol.org?Subject=MapsAddress" taret="_blank">email us</a>.</div>'
+                content: '<div id="iw" style="max-width:300px;font-size:1.1em;color:#333">Drag the red marker anywhere on the map to know the approximate postal address of that location.<br>For help, please <a href="https://twitter.com/adoptrti" target="_blank">tweet</a> <i class="ti ti-twitter"></i> or <a href="mailto:kono@adoptrti.org?Subject=MapsAddress" taret="_blank">email us</a>.</div>'
             });
 
 
