@@ -39,7 +39,7 @@
 $json = str_replace("'","",json_encode($data0));
 Yii::app()->clientScript->registerScript('dd1', <<<DD1
         
-    $.post( "/site/placeinfo?t=json",{data:'$json'}, function( data ) {
+    $.get( "/site/placeinfo",{t: 'json2',data:'$json'}, function( data ) {
 		$( "#result" ).html( data );
 	});
 

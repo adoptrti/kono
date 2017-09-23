@@ -4,10 +4,18 @@
  * This is the model class for table "tnresults2016".
  *
  * The followings are the available columns in table 'tnresults2016':
+ * @property integer $id_election
+ * @property integer $id_state
+ * @property integer $id_consti
  * @property string $acname
  * @property integer $acno
  * @property string $name
+ * @property string $gender
  * @property string $party
+ * @property string $address
+ * @property string $phones
+ * @property string $emails
+ * @property integer $ST_CODE
  */
 class TamilNaduResults2016 extends CActiveRecord
 {
@@ -24,17 +32,17 @@ class TamilNaduResults2016 extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-			array('acno', 'numerical', 'integerOnly'=>true),
-			array('acname', 'length', 'max'=>22),
-			array('name', 'length', 'max'=>27),
-			array('party', 'length', 'max'=>6),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('acname, acno, name, party', 'safe', 'on'=>'search'),
-		);
+	    // NOTE: you should only define rules for those attributes that
+	    // will receive user inputs.
+	    return array(
+	            array('id_election,acno,id_state,name', 'required'),
+	            array('id_election, id_state, id_consti, acno, ST_CODE', 'numerical', 'integerOnly'=>true),
+	            array('acname, name, party, address, phones, emails', 'length', 'max'=>255),
+	            array('gender', 'length', 'max'=>6),
+	            // The following rule is used by search().
+	            // @todo Please remove those attributes that should not be searched.
+	            array('id_result, id_election, id_state, id_consti, acname, acno, name, gender, party, address, phones, emails, ST_CODE', 'safe', 'on'=>'search'),
+	    );
 	}
 
 	/**

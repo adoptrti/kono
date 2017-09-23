@@ -93,7 +93,7 @@ var map, latLng, marker, infoWindow, ad, geocoder = new google.maps.Geocoder();
                 if (responses && responses.length > 0) {
                 	var rr = formatGeocodeResults(responses,pos.lat(),pos.lng());                    
 
-                	$.post( "/site/placeinfo?t=json",{data: JSON.stringify([rr.address,rr.coords])}, function( data ) {
+                	$.get( "/site/placeinfo",{t:'json',data: JSON.stringify([rr.address,rr.coords])}, function( data ) {
                 		$( "#result" ).html( data );
                 	});
                 	showInfoWindow(responses[0].formatted_address);

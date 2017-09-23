@@ -1,22 +1,25 @@
 <?php
+/* @var $data array */
+
 // @see https://dev.mysql.com/doc/refman/5.7/en/populating-spatial-columns.html
 // @see
 // https://stackoverflow.com/questions/15662910/search-a-table-for-point-in-polygon-using-mysql
 
-
 $src = [ 
-        'condition' => new CDbExpression ( "ST_Contains(poly, GeomFromText(:point))" ),
+        'condition' => (new CDbExpression ( "ST_Contains(poly, GeomFromText(:point))")) . ' and states.name=:statename',
+        'with' => ['states'],
         'params' => [ 
-                ':point' => 'POINT(' . $long . ' ' . $lat . ')' 
+            ':statename' => $data0[0]->state,
+            ':point' => 'POINT(' . $long . ' ' . $lat . ')' 
         ] 
 ];
+
 $ass2 = AssemblyPolygon::model ()->findAll ( $src );
 
 $data = [ ];
 
 foreach ( $ass2 as $ass )
-{
-    
+{    
     if ($ass->polytype == 'WARD')
     {
         $con2 = MunicipalResults::model ()->findByAttributes ( [ 
@@ -37,10 +40,12 @@ foreach ( $ass2 as $ass )
             $data ['mp'] = $con2;
             $data ['mp_poly'] = $ass;
         }
+        $att44 = [
+                'acno' => $ass->acno ,
+                'id_state' => $ass->id_state,
+        ];        
         
-        $con3 = TamilNaduResults2016::model ()->findByAttributes ( [ 
-                'acno' => $ass->acno 
-        ] );
+        $con3 = TamilNaduResults2016::model ()->findByAttributes ( $att44 );
         if ($con3)
         {
             $data ['assembly'] = $con3;
@@ -72,5 +77,5 @@ if (! empty ( $data ['mp'] ))
             'data' => $data ['mp'],
             'poly' => $data ['mp_poly'] 
     ] );
-
+echo '<pre>' . print_r($data0,true) . print_r($att44) . '</pre>';
 ?>

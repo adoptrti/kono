@@ -25,9 +25,10 @@ class SiteController extends Controller
     
     function actionPlaceinfo($t)
     {
+        $this->disableWebLog();
         if($t=='json')
         {
-            $data = json_decode($_POST['data']);
+            $data = json_decode($_REQUEST['data']);
             $lat = $data[1]->latitude;
             $long = $data[1]->longitude;
         }
@@ -161,5 +162,11 @@ class SiteController extends Controller
     {
         Yii::app ()->user->logout ();
         $this->redirect ( Yii::app ()->homeUrl );
+    }
+    
+    public function actionUpdate()
+    {
+        $cmd = new UpdateCommand(1,2);
+        $cmd->actionIndex();
     }
 }
