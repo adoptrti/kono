@@ -47,8 +47,8 @@ Yii::app()->clientScript->registerCoreScript('bootstrap');
 			                'label' => "<i class='fa fa-github'></i>",
 			                'url' => 'https://github.com/thevikas/kono'
 			        ],
-			        array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+			        //array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+				    //array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
 	</div><!-- mainmenu -->
@@ -65,7 +65,7 @@ Yii::app()->clientScript->registerCoreScript('bootstrap');
 	<div id="footer">
 		Copyright &copy; <?php echo date('Y'); ?> by Vikas Yadav.<br/>
 		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
+		<?=CHtml::link('Disclaimer',['site/page','view' => 'disclaimer']) ?>
 	</div><!-- footer -->
 
 </div><!-- page -->
