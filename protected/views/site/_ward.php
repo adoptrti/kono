@@ -4,7 +4,7 @@
 ?>
 
 <div class="view">
-<h2>Municipal Ward #<?=$data->wardno?></h2>
+<h2 class="acname"><?=strtolower($data0[0]->city)?> Municipal Ward - #<?=$data->wardno?></h2>
 
     <?php 
     $this->widget ( 'zii.widgets.CDetailView', 
@@ -26,6 +26,31 @@
                             'party',
                             'phone',
                             'address',
+                            [
+                                    'type' => 'raw',
+                                    'name' => 'phone',
+                                    'header' => 'Phone',
+                                    'value' => function($data)
+                                    {
+                                        $rt=[];
+                                        $tels = explode(',',$data->phone);
+                                        foreach($tels as $tel)
+                                        {
+                                            $mats = [];
+                                            $mats2 = [];
+                                            
+                                            if(preg_match('/\((?<std>0\d+)?\)[^\d]*(?<phone>\d+)/',$tel,$mats))
+                                            {
+                                                $rt[] = CHtml::link($tel,'tel:+91' . intval(trim($mats['std'])) . trim($mats['phone']) );
+                                            }
+                                            else if(preg_match('/(?<phone>\d{5}\s?\d{5})/',$tel,$mats2))
+                                            {
+                                                $rt[] = CHtml::link($tel,'tel:+91' . trim(str_replace(' ','',$mats2['phone'])) );
+                                            }
+                                            return implode(', ',$rt);
+                                        }
+                            }
+                            ]
                             
             ) ) );
     

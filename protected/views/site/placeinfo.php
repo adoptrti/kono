@@ -23,7 +23,8 @@ foreach ( $ass2 as $ass )
     if ($ass->polytype == 'WARD')
     {
         $con2 = MunicipalResults::model ()->findByAttributes ( [ 
-                'wardno' => $ass->acno 
+                'wardno' => $ass->acno,
+                'city' => $ass->DIST_NAME,
         ] );
         
         if ($con2)
@@ -63,7 +64,8 @@ $this->renderPartial ( '_address', [
 
 if (! empty ( $data ['ward'] ))
     $this->renderPartial ( '_ward', [ 
-            'data' => $data ['ward'] 
+            'data' => $data ['ward'],
+            'data0' => $data0,
     ] );
 
 if (! empty ( $data ['assembly'] ))
@@ -77,5 +79,5 @@ if (! empty ( $data ['mp'] ))
             'data' => $data ['mp'],
             'poly' => $data ['mp_poly'] 
     ] );
-echo '<pre>' . print_r($data0,true) . print_r($att44) . '</pre>';
+#echo '<pre>' . print_r($data0,true) . print_r($att44) . '</pre>';
 ?>

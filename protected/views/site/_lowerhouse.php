@@ -4,7 +4,7 @@
 ?>
 
 <div class="view">
-    <h2><?=$poly->pc_name_clean?> Lok Sabha Constituency</h2>
+    <h2 class="acname"><?=strtolower($poly->pc_name_clean)?> Lok Sabha Constituency</h2>
 
     <?php
     $this->widget ( 'zii.widgets.CDetailView', 
