@@ -45,7 +45,7 @@ Yii::app()->clientScript->registerCoreScript('bootstrap');
 			        [
 			                'encodeLabel' =>false,
 			                'label' => "<i class='fa fa-github'></i>",
-			                'url' => 'https://github.com/thevikas/kono'
+			                'url' => 'https://github.com/adoptrti/kono'
 			        ],
 			        //array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				    //array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
