@@ -26,7 +26,7 @@ More than developing the software, we need to collect and cleanup data that we h
 
 ## Updates
 
-* **24-Sep-2017** - Sikkim Assembly Members with only Names and **Pictures** added
+* **24-Sep-2017** - Sikkim (Names only) and Kerala (without address) assembly members with **Pictures** added
 * **23-Sep-2017** - Karnataka Assembly Members with Address, Phone and Emails added
 * **16-Sep-2017** - All Delhi Assembly members added.
 * **13-Sep-2017** - Launched with all contact details and their respective geography of Loksabha MPs, Tamil Nadu Assembly members and Coimbatore Councillors.
