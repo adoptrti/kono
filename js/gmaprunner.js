@@ -177,6 +177,7 @@ var map, latLng, marker, infoWindow, ad, geocoder = new google.maps.Geocoder();
                     map.setZoom(17); // Why 17? Because it looks good.
                 }
                 marker.setPosition(place.geometry.location);
+                geocode(place.geometry.location);
                 marker.setVisible(true);
 
                 var address = '';
@@ -227,6 +228,7 @@ var map, latLng, marker, infoWindow, ad, geocoder = new google.maps.Geocoder();
                 geocode(latLng);
             } else {
                 infoWindow.open(map, marker);
+                geocode(latLng);
             }
 
             google.maps.event.addListener(marker, 'dragstart', function(e) {
