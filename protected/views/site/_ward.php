@@ -3,7 +3,7 @@
 /* @var $data Array */
 ?>
 
-<div class="view">
+<div class="view ward">
 <h2 class="acname"><?=strtolower($data0[0]->city)?> Municipal Ward - #<?=$data->wardno?></h2>
 
     <?php 

@@ -20,7 +20,8 @@
  * @property integer $psloc
  * @property integer $eci_dist_count
  * @property integer $eci_amly_count
- *
+ * @property string $slug
+ * 
  * The followings are the available model relations:
  * @property AllAcData[] $allAcDatas
  * @property AllPcData[] $allPcDatas
@@ -52,7 +53,7 @@ class States extends CActiveRecord
 		return array(
 			array('name, ias_short_code, session_from, session_to, lok_parl_seats, amly_seats, raj_parl_seats, updated, iso3166, psloc, eci_dist_count, eci_amly_count', 'required'),
 			array('ST_CODE, id_census, lok_parl_seats, amly_seats, raj_parl_seats, psloc, eci_dist_count, eci_amly_count', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>50),
+			array('name,slug', 'length', 'max'=>50),
 			array('ias_short_code', 'length', 'max'=>2),
 			array('eci_ref, iso3166', 'length', 'max'=>3),
 			// The following rule is used by search().

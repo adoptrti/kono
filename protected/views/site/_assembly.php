@@ -3,10 +3,15 @@
 /* @var $data Array */
 ?>
 
-<div class="view">
+<div class="view amly">
+<?php 
+    if(!empty($data->picture))
+        echo CHtml::image('/images/pics/' . $data->picture,$data->name,['class' => 'picture amly']);
+    ?>
     <h2 class="acname"><?=strtolower($poly->AC_NAME)?> Assembly Constituency - #<?=$data->acno?></h2>
 
     <?php
+    
     $this->widget ( 'zii.widgets.CDetailView', 
             array (
                     'data' => $data,

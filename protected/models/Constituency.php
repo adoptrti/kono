@@ -25,6 +25,7 @@
  * @property double $gps_long
  * @property double $gps_lat
  * @property double $gps_ele
+ * @property string $slug
  *
  * The followings are the available model relations:
  * @property Boothresult[] $boothresults
@@ -61,7 +62,7 @@ class Constituency extends CActiveRecord
 			array('name, number, castvotes, contestents, ctype, candilisthtml, updated', 'required'),
 			array('id_parl_consti, id_dist_place2, eci_ref, number, id_state, voters, pollingstns, castvotes, contestents, id_parent, id_state2', 'numerical', 'integerOnly'=>true),
 			array('turnout, gps_long, gps_lat, gps_ele', 'numerical'),
-			array('name', 'length', 'max'=>50),
+			array('name,slug', 'length', 'max'=>50),
 			array('resv', 'length', 'max'=>2),
 			array('ctype', 'length', 'max'=>4),
 			// The following rule is used by search().

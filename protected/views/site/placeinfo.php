@@ -32,6 +32,7 @@ foreach ( $ass2 as $ass )
     }
     else
     {
+        $data ['amly_poly'] = $ass;
         $con2 = LokSabha2014::model ()->findByAttributes ( [ 
                 'pc_name_clean' => $ass->pc_name_clean 
         ] );
@@ -50,7 +51,6 @@ foreach ( $ass2 as $ass )
         if ($con3)
         {
             $data ['assembly'] = $con3;
-            $data ['amly_poly'] = $ass;
         }
     }
 }

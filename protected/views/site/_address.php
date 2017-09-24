@@ -3,7 +3,7 @@
 /* @var $data Array */
 ?>
 
-<div class="view">
+<div class="view addr">
     <h2><?=$address[0]->city?>, <?=$address[0]->state?></h2>
 
     <?php

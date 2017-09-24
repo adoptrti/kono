@@ -232,3 +232,14 @@ h2.acname
 {
 	text-transform: capitalize;
 }
+
+img.picture
+{
+	float: right;
+	width: 125px;
+}
+
+div.view.amly table.detail-view
+{
+	width: 50%;
+}

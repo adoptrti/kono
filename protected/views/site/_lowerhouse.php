@@ -3,7 +3,7 @@
 /* @var $data Array */
 ?>
 
-<div class="view">
+<div class="view lsmp">
     <h2 class="acname"><?=strtolower($poly->pc_name_clean)?> Lok Sabha Constituency</h2>
 
     <?php
