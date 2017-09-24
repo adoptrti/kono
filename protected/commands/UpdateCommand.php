@@ -121,6 +121,17 @@ class UpdateCommand extends CConsoleCommand
     }
     
     /**
+     * 201909242238:Kovai:thevikas
+     * Himachal
+     * URL: http://hpvidhansabha.nic.in/Member/AllMembers?page=2
+     */
+    public function actionKonoHimachal()
+    {
+        require_once __DIR__ . '/update/updateActionHimachal.php';
+        updateActionHimachal();
+    }
+    
+    /**
      * Not directly from website. Needs cleaning.
      */
     public function actionKarnataka()
