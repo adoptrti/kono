@@ -126,6 +126,17 @@ class SiteController extends Controller
                 'model' => $model 
         ) );
     }
+    
+    /**
+     * Displays the data report
+     */
+    public function actionReport()
+    {
+        $this->render ( 'report', array (
+                'muni' => AssemblyPolygon::repMunicipals(),
+                'amly' => AssemblyPolygon::repACs(),
+        ) );
+    }
 
     /**
      * Displays the login page

@@ -12,37 +12,25 @@ class ReportCommand extends CConsoleCommand
     
     public function repMunicipals()
     {
-        
-        $rs = AssemblyPolygon::model()->findAll([
-                'group' => 'DIST_NAME',
-                'select' => 'DIST_NAME,count(*) as ctr1,(select count(name) from municipalresults where city=DIST_NAME) as ctr2',
-                'condition' => 'polytype=?',
-                'params' => ['WARD'],
-        ]);
+        $rows = AssemblyPolygon::repMunicipals();
         
         echo sprintf("%25s | %s | %s\n",'Municipal','Polygons','Councillors');
         echo sprintf("%25s | %s | %s\n",'---------',str_repeat('-',8),'-----------');
-        foreach($rs as $r)
+        foreach($rows as $row)
         {
-            echo sprintf("%25s | %8d | %d\n",$r->DIST_NAME,$r->ctr1,$r->ctr2);
+            echo sprintf("%25s | %8d | %d\n",$row[0],$row[1],$row[2]);
         }
     }
     
     public function repACs()
     {
-        
-        $rs = AssemblyPolygon::model()->findAll([
-                'group' => 'ST_NAME,ST_CODE',
-                'select' => 'ST_NAME,count(*) as ctr1,(select count(name) from tnresults2016 r2 where r2.ST_CODE=t.ST_CODE) as ctr2',
-                'condition' => 'polytype=?',
-                'params' => ['AC'],
-        ]);
+        $rows = AssemblyPolygon::repACs();
         
         echo sprintf("%25s | %s | %s\n",'State Assembly','Polygons','MLAs');
         echo sprintf("%25s | %s | %s\n",'---------',str_repeat('-',8),'---');
-        foreach($rs as $r)
+        foreach($rows as $row)
         {
-            echo sprintf("%25s | %8d | %3d\n",$r->ST_NAME,$r->ctr1, $r->ctr2);
+            echo sprintf("%25s | %8d | %3d\n",$row[0],$row[1], $row[2]);
         }
     }
 }

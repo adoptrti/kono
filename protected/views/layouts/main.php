@@ -41,6 +41,7 @@ Yii::app()->clientScript->registerCoreScript('bootstrap');
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
+		        array('label'=>'Data Report', 'url'=>array('/site/report')),
 				array('label'=>'Contact', 'url'=>array('/site/contact')),
 			        [
 			                'encodeLabel' =>false,
