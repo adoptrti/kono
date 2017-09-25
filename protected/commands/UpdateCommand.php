@@ -132,6 +132,17 @@ class UpdateCommand extends CConsoleCommand
     }
     
     /**
+     * 2019092516:29:Kovai:thevikas
+     * Chhattisgarh
+     * URL: http://cgvidhansabha.gov.in/english_new/mla_current.htm
+     */
+    public function actionKonoChhattisgarh()
+    {
+        require_once __DIR__ . '/update/updateActionChhattisgarh.php';
+        updateActionChhattisgarh();
+    }
+    
+    /**
      * Not directly from website. Needs cleaning.
      */
     public function actionKarnataka()

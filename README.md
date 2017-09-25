@@ -27,6 +27,7 @@ More than developing the software, we need to collect and cleanup data that we h
 
 ## Updates
 
+* **25-Sep-2017** - Chhattisgarh (without emails) assembly members added
 * **24-Sep-2017** - Himachal Pradesh, Sikkim (Names only) and Kerala (without address) assembly members with **Pictures** added (v 0.2)
 * **23-Sep-2017** - Karnataka Assembly Members with Address, Phone and Emails added
 * **16-Sep-2017** - All Delhi Assembly members added.
