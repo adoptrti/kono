@@ -37,21 +37,38 @@ Yii::app()->clientScript->registerCoreScript('bootstrap');
 	</div><!-- header -->
 
 	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
-			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-		        array('label'=>'Data Report', 'url'=>array('/site/report')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
-			        [
-			                'encodeLabel' =>false,
-			                'label' => "<i class='fa fa-github'></i>",
-			                'url' => 'https://github.com/adoptrti/kono'
-			        ],
-			        //array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				    array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-			),
-		)); ?>
+		<?php
+		if(Yii::app()->user->isGuest)
+		{
+			$this->widget('zii.widgets.CMenu',array(
+				'items'=>array(
+					array('label'=>__('Home'), 'url'=>array('/site/index')),
+					array('label'=>__('About'), 'url'=>array('/site/page', 'view'=>'about')),
+			        array('label'=>__('Data Report'), 'url'=>array('/site/report')),
+					array('label'=>__('Contact'), 'url'=>array('/site/contact')),
+				        [
+				                'encodeLabel' =>false,
+				                'label' => "<i class='fa fa-github'></i>",
+				                'url' => 'https://github.com/adoptrti/kono'
+				        ],
+				),
+			));
+		}
+		else
+		{
+			$this->widget('zii.widgets.CMenu',array(
+				'items'=>array(
+					array('label'=>__('Home'), 'url'=>array('/site/index')),
+					array('label'=>__('Committee'), 'url'=>array('/committee')),
+					array('label'=>__('Committee Members'), 'url'=>array('/committeeMember')),
+					array('label'=>__('Assembly Results'), 'url'=>array('/assemblyresults')),
+					array('label'=>__('Elections'), 'url'=>array('/election')),
+					//array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+					array('label'=>__('Logout ({uname})',['{uname}' => Yii::app()->user->name]), 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				),
+			));
+		}
+		?>
 	</div><!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
@@ -64,9 +81,9 @@ Yii::app()->clientScript->registerCoreScript('bootstrap');
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by Vikas Yadav.<br/>
-		All Rights Reserved.<br/>
-		<?=CHtml::link('Disclaimer',['site/page','view' => 'disclaimer']) ?>
+		<?=__('Copyright &copy; {year} by Vikas Yadav.',['{year}' => date('Y')])?><br/>
+		<?=__('All Rights Reserved.')?><br/>
+		<?=CHtml::link(__('Disclaimer'),['site/page','view' => 'disclaimer']) ?>
 	</div><!-- footer -->
 
 </div><!-- page -->
