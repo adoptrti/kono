@@ -58,12 +58,12 @@ class MunicipalResults extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'city' => 'City',
-			'wardno' => 'Wardno',
-			'name' => 'Name',
-			'party' => 'Party',
-			'phone' => 'Phone',
-			'address' => 'Address',
+			'city' => __('City'),
+			'wardno' => __('Wardno'),
+			'name' => __('Name'),
+			'party' => __('Party'),
+			'phone' => __('Phone'),
+			'address' => __('Address'),
 		);
 	}
 

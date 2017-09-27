@@ -54,6 +54,7 @@ class TamilNaduResults2016 extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'committees' => array(self::MANY_MANY, 'Committee', 'comm_member(id_result,id_comm)'),
 		);
 	}
 
@@ -63,10 +64,10 @@ class TamilNaduResults2016 extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'acname' => 'Acname',
-			'acno' => 'Acno',
-			'name' => 'Name',
-			'party' => 'Party',
+			'acname' => __('Acname'),
+			'acno' => __('Acno'),
+			'name' => __('Name'),
+			'party' => __('Party'),
 		);
 	}
 

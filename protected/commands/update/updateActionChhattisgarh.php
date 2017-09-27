@@ -5,19 +5,36 @@ function updateActionChhattisgarhCommittee()
     $lc = 0;
     while(!feof($f))
     {
-        $str = fgets($f);
-        if(!$lc++)
+        $row = fgetcsv($f);
+        if(!$lc++ || count($row)<5)
             continue;
 
-        echo "$str";
-        $row = preg_split('/,/', $str, NULL, PREG_SPLIT_NO_EMPTY);
         $fc = 0;
-        foreach($row as $item)
+        $comm = new Committee();
+
+        list($comm->ctype,$comm->id_state,$comm->id_election,$comm->name) = $row;
+        if(!$comm->save())
         {
-            
-            $fc++;
+            print_r($comm->errors);
+            die('count not save comm:' . $comm->name);
         }
-        die;
+        $results = CHtml::listData($comm->election->assemblymembers,'acno','id_result');
+        echo $comm->name . "\n";
+        for($i=4; $i<count($row); $i++)
+        {
+            if(empty($row[$i]) || strlen(trim($row[$i]))<1)
+                continue;
+
+            echo "acno:[" . $row[$i] . "]\n";
+            $cm = new CommitteeMember();
+            $cm->id_comm = $comm->id_comm;
+            $cm->id_result = $results[$row[$i]];
+            if(!$cm->save())
+            {
+                print_r($cm->errors);
+                die('count not save comm:' . $comm->name);
+            }
+        }
     }
     fclose($f);
 }

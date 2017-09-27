@@ -18,7 +18,8 @@ $this->menu=array(
 
 <h1>View Committee #<?php echo $model->id_comm; ?></h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
+<?php
+$this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id_state',
@@ -28,4 +29,12 @@ $this->menu=array(
 		'id_comm',
 		'id_election',
 	),
-)); ?>
+));
+
+echo'<ol>';
+
+foreach($model->members as $mem)
+	echo CHtml::tag('li',[],CHtml::link($mem->name,['/assemblyresults/view','id' => $mem->id_result]));
+
+echo'</ol>';
+?>

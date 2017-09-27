@@ -54,12 +54,12 @@ class AssemblyPolygon extends CActiveRecord
         return array (
                 array (
                         'acno, poly',
-                        'required' 
+                        'required'
                 ),
                 array (
                         'acno',
                         'numerical',
-                        'integerOnly' => true 
+                        'integerOnly' => true
                 ),
                 // The following rule is used by search().
                 // @todo Please remove those attributes that should not be
@@ -67,8 +67,8 @@ class AssemblyPolygon extends CActiveRecord
                 array (
                         'acno, poly',
                         'safe',
-                        'on' => 'search' 
-                ) 
+                        'on' => 'search'
+                )
         );
     }
 
@@ -84,8 +84,8 @@ class AssemblyPolygon extends CActiveRecord
                 'states' => array (
                         self::BELONGS_TO,
                         'States',
-                        'id_state' 
-                ) 
+                        'id_state'
+                )
         );
     }
 
@@ -96,8 +96,8 @@ class AssemblyPolygon extends CActiveRecord
     public function attributeLabels()
     {
         return array (
-                'acno' => 'Assembly Number',
-                'poly' => 'Polygon' 
+                'acno' => __('Assembly Number'),
+                'poly' => __('Polygon'),
         );
     }
 
@@ -119,12 +119,12 @@ class AssemblyPolygon extends CActiveRecord
         // @todo Please modify the following code to remove attributes that
         // should not be searched.
         $criteria = new CDbCriteria ();
-        
+
         $criteria->compare ( 'acno', $this->acno );
         $criteria->compare ( 'poly', $this->poly, true );
-        
+
         return new CActiveDataProvider ( $this, array (
-                'criteria' => $criteria 
+                'criteria' => $criteria
         ) );
     }
 
@@ -132,7 +132,7 @@ class AssemblyPolygon extends CActiveRecord
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your
      * CActiveRecord descendants!
-     * 
+     *
      * @param string $className
      *            active record class name.
      * @return AssemblyPolygon the static model class
@@ -144,22 +144,22 @@ class AssemblyPolygon extends CActiveRecord
 
     static function repMunicipals()
     {
-        $rs = self::model ()->findAll ( 
-                [ 
+        $rs = self::model ()->findAll (
+                [
                         'group' => 'DIST_NAME',
                         'select' => 'DIST_NAME,count(*) as ctr1,(select count(name) from municipalresults where city=DIST_NAME) as ctr2',
                         'condition' => 'polytype=?',
-                        'params' => [ 
-                                'WARD' 
-                        ] 
+                        'params' => [
+                                'WARD'
+                        ]
                 ] );
-        
+
         foreach ( $rs as $r )
         {
-            $row [] = [ 
+            $row [] = [
                     $r->DIST_NAME,
                     $r->ctr1,
-                    $r->ctr2 
+                    $r->ctr2
             ];
         }
         return $row;
@@ -167,8 +167,8 @@ class AssemblyPolygon extends CActiveRecord
 
     static function repACs()
     {
-        $rs = AssemblyPolygon::model ()->findAll ( 
-                [ 
+        $rs = AssemblyPolygon::model ()->findAll (
+                [
                         'group' => 'id_state,ST_NAME,ST_CODE',
                         'select' => "ST_NAME,count(*) as ctr1,
                             (select count(name) from tnresults2016 r2 where r2.ST_CODE=t.ST_CODE) as ctr2,
@@ -177,14 +177,14 @@ class AssemblyPolygon extends CActiveRecord
                             (select count(address) from tnresults2016 r5 where address<>'' and r5.id_state=t.id_state) as ctr5,
                             (select count(picture) from tnresults2016 r6 where picture<>'' and r6.id_state=t.id_state) as ctr6",
                         'condition' => 'polytype=?',
-                        'params' => [ 
-                                'AC' 
-                        ] 
+                        'params' => [
+                                'AC'
+                        ]
                 ] );
-        
+
         foreach ( $rs as $r )
         {
-            $row [] = [ 
+            $row [] = [
                     $r->ST_NAME,
                     $r->ctr1,
                     $r->ctr2,

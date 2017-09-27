@@ -61,15 +61,15 @@ class Results2014 extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'SLNo' => 'Slno',
-			'STATENAME' => 'Statename',
-			'CONSTITUENCY' => 'Constituency',
-			'WINNERNAME' => 'Winnername',
-			'CATEGORY' => 'Category',
-			'SOCIALCATEGORY' => 'Socialcategory',
-			'PARTY' => 'Party',
-			'PARTYSYMBOL' => 'Partysymbol',
-			'MARGIN' => 'Margin',
+			'SLNo' => __('Slno'),
+			'STATENAME' => __('Statename'),
+			'CONSTITUENCY' => __('Constituency'),
+			'WINNERNAME' => __('Winnername'),
+			'CATEGORY' => __('Category'),
+			'SOCIALCATEGORY' => __('Socialcategory'),
+			'PARTY' => __('Party'),
+			'PARTYSYMBOL' => __('Partysymbol'),
+			'MARGIN' => __('Margin'),
 		);
 	}
 

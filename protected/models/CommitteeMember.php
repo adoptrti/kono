@@ -30,7 +30,7 @@ class CommitteeMember extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_comm, id_result, chairman', 'required'),
+			array('id_comm, id_result', 'required'),
 			array('id_comm, id_result, chairman', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -57,9 +57,9 @@ class CommitteeMember extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_comm' => 'Id Comm',
-			'id_result' => 'Id Result',
-			'chairman' => 'Chairman',
+			'id_comm' => __('Id Comm'),
+			'id_result' => __('Id Result'),
+			'chairman' => __('Chairman'),
 		);
 	}
 

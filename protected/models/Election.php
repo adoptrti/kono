@@ -54,7 +54,8 @@ class Election extends CActiveRecord
 		return array(
 			'boothresults' => array(self::HAS_MANY, 'Boothresult', 'id_election'),
 			'electionPersonParties' => array(self::HAS_MANY, 'ElectionPersonParty', 'id_election'),
-			'idState' => array(self::BELONGS_TO, 'States', 'id_state'),
+			'assemblymembers' => array(self::HAS_MANY, 'TamilNaduResults2016', 'id_election'),
+			'state' => array(self::BELONGS_TO, 'States', 'id_state'),
 			'results2009s' => array(self::HAS_MANY, 'Results2009', 'id_election'),
 			'sabhas' => array(self::HAS_MANY, 'Sabha', 'id_election'),
 		);
@@ -66,11 +67,11 @@ class Election extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_election' => 'Election ID',
-			'id_state' => 'State',
-			'edate' => 'Result Date',
-			'year' => 'Year',
-			'type' => 'Election Type',
+			'id_election' => __('Election ID'),
+			'id_state' => __('State'),
+			'edate' => __('Result Date'),
+			'year' => __('Year'),
+			'type' => __('Election Type'),
 		);
 	}
 

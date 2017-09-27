@@ -21,7 +21,7 @@
  * @property integer $eci_dist_count
  * @property integer $eci_amly_count
  * @property string $slug
- * 
+ *
  * The followings are the available model relations:
  * @property AllAcData[] $allAcDatas
  * @property AllPcData[] $allPcDatas
@@ -88,22 +88,22 @@ class States extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_state' => 'Id State',
-			'ST_CODE' => 'St Code',
-			'name' => 'Name',
-			'ias_short_code' => 'Ias Short Code',
-			'id_census' => 'Id Census',
-			'eci_ref' => 'state number as per ECI',
-			'session_from' => 'Session From',
-			'session_to' => 'Session To',
-			'lok_parl_seats' => 'Lok Parl Seats',
-			'amly_seats' => 'Amly Seats',
-			'raj_parl_seats' => 'Raj Parl Seats',
-			'updated' => 'Updated',
-			'iso3166' => 'Iso3166',
-			'psloc' => 'is polling station info available',
-			'eci_dist_count' => 'no of dist as per ECI',
-			'eci_amly_count' => 'Eci Amly Count',
+			'id_state' => __('Id State'),
+			'ST_CODE' => __('St Code'),
+			'name' => __('Name'),
+			'ias_short_code' => __('Ias Short Code'),
+			'id_census' => __('Id Census'),
+			'eci_ref' => __('State number as per ECI'),
+			'session_from' => __('Session From'),
+			'session_to' => __('Session To'),
+			'lok_parl_seats' => __('Lok Parl Seats'),
+			'amly_seats' => __('Amly Seats'),
+			'raj_parl_seats' => __('Raj Parl Seats'),
+			'updated' => __('Updated'),
+			'iso3166' => __('Iso3166'),
+			'psloc' => __('is polling station info available'),
+			'eci_dist_count' => __('no of dist as per ECI'),
+			'eci_amly_count' => __('Eci Amly Count'),
 		);
 	}
 

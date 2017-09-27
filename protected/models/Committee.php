@@ -35,7 +35,7 @@ class Committee extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_state, id_consti, ctype, name, id_election', 'required'),
+			array('id_state, ctype, name, id_election', 'required'),
 			array('id_state, id_consti, id_election', 'numerical', 'integerOnly'=>true),
 			array('ctype', 'length', 'max'=>4),
 			array('name', 'length', 'max'=>255),
@@ -53,10 +53,11 @@ class Committee extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'members' => array(self::HAS_MANY, 'CommMember', 'id_comm'),
+			'cmembers' => array(self::HAS_MANY, 'CommMember', 'id_comm'),
+			'members' => array(self::MANY_MANY, 'TamilNaduResults2016', 'comm_member(id_comm,id_result)'),
 			'state' => array(self::BELONGS_TO, 'States', 'id_state'),
 			'Constituency' => array(self::BELONGS_TO, 'Constituency', 'id_consti'),
-			'election' => array(self::BELONGS_TO, 'Elections', 'id_election'),
+			'election' => array(self::BELONGS_TO, 'Election', 'id_election'),
 		);
 	}
 
@@ -66,12 +67,12 @@ class Committee extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_state' => 'Id State',
-			'id_consti' => 'Id Consti',
-			'ctype' => 'Ctype',
-			'name' => 'Name',
-			'id_comm' => 'Id Comm',
-			'id_election' => 'Id Election',
+			'id_state' => __('Id State'),
+			'id_consti' => __('Id Consti'),
+			'ctype' => __('Committee Type'),
+			'name' => __('Name'),
+			'id_comm' => __('Id Comm'),
+			'id_election' => __('Id Election'),
 		);
 	}
 
