@@ -53,10 +53,10 @@ class Committee extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'commMembers' => array(self::HAS_MANY, 'CommMember', 'id_comm'),
-			'idState' => array(self::BELONGS_TO, 'States', 'id_state'),
-			'idConsti' => array(self::BELONGS_TO, 'Constituency', 'id_consti'),
-			'idElection' => array(self::BELONGS_TO, 'Elections', 'id_election'),
+			'members' => array(self::HAS_MANY, 'CommMember', 'id_comm'),
+			'state' => array(self::BELONGS_TO, 'States', 'id_state'),
+			'Constituency' => array(self::BELONGS_TO, 'Constituency', 'id_consti'),
+			'election' => array(self::BELONGS_TO, 'Elections', 'id_election'),
 		);
 	}
 

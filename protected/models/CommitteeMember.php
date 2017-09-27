@@ -46,8 +46,8 @@ class CommitteeMember extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idResult' => array(self::BELONGS_TO, 'Tnresults2016', 'id_result'),
-			'idComm' => array(self::BELONGS_TO, 'Committee', 'id_comm'),
+			'electedmember' => array(self::BELONGS_TO, 'Tnresults2016', 'id_result'),
+			'committee' => array(self::BELONGS_TO, 'Committee', 'id_comm'),
 		);
 	}
 

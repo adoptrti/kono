@@ -17,11 +17,15 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{
-		$users=array(
-			// username => password
-			'demo'=>'demo',
-			'admin'=>'admin',
-		);
+		$users= [];
+		$r = fopen(__DIR__ . "/../config/access.txt","r");
+		while(!feof($r))
+		{
+				$d = fgetcsv($r);
+				$users[$d[0]] = $d[1];
+		}
+		fclose($r);
+
 		if(!isset($users[$this->username]))
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
 		elseif($users[$this->username]!==$this->password)
