@@ -25,6 +25,54 @@ It is supposed to bring your government to you.
 
 More than developing the software, we need to collect and cleanup data that we have to link geographically. Some data is already neatly available. More has to be cleaned. Most of it has to asked for.
 
+#### Snapshot
+1. Your are standing in
+1. Village Name
+1. District Name
+1. Nearest City, km
+1. Nearest Post Office
+1. Nearest Bus Terminal
+1. Nearest Railway Station
+1. Nearest Pharmacy
+1. Population Density
+
+#### Administrative Officers and Address, Phone
+1. Block Development Officer
+1. Chief Development Officer
+1. Booth Level Officer
+1. Dist Commissioner Officer
+1. Dist Count
+
+
+#### Political
+1. Elected village level officer, Year Elected, Due
+1. MLA, Party, Year Elected, Due,
+1. Lok Sabha MP, Party, Year Elected, Due
+1. Rajya Sabha MP, Party, Year Elected, Due
+
+#### Health
+1. Health Center
+1. Dist Civil Hospital
+1. Emergency Address, Phone
+
+
+#### Transport:
+1. State Highway
+1. National Highway
+1. Bus Stop
+1. Bus Terminal
+1. Railway Station
+1. Airport
+
+#### Education:
+1. Primary School
+1. Higher/Secondary School
+1. Govt College
+
+#### Landuse:
+1. Agriculture:
+1. Markets:
+
 ## Updates
 
 * **25-Sep-2017** - Chhattisgarh (without emails) assembly members added

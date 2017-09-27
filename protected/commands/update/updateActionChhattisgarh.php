@@ -1,28 +1,50 @@
 <?php
+function updateActionChhattisgarhCommittee()
+{
+    $f = fopen(__DIR__ . '/../../../docs/chattisgarh/committee2017.csv','r');
+    $lc = 0;
+    while(!feof($f))
+    {
+        $str = fgets($f);
+        if(!$lc++)
+            continue;
+
+        echo "$str";
+        $row = preg_split('/,/', $str, NULL, PREG_SPLIT_NO_EMPTY);
+        $fc = 0;
+        foreach($row as $item)
+        {
+            
+            $fc++;
+        }
+        die;
+    }
+    fclose($f);
+}
 
 function updateActionChhattisgarh()
 {
     $id_election = 26;
     $id_state = 4;
     $ST_CODE = 22;
-    
+
     $stateobj = States::model ()->findByPk ( $id_state );
     $eleobj = Election::model ()->findByPk ( $id_election );
-    
+
     libxml_use_internal_errors ( true );
-    
-    $urls = [ 
-            'http://cgvidhansabha.gov.in/english_new/mla_current.htm' 
+
+    $urls = [
+            'http://cgvidhansabha.gov.in/english_new/mla_current.htm'
     ];
     foreach ( $urls as $url )
     {
         echo "\n\nURL: $url\n";
         $doc = new DOMDocument ();
         $doc->loadHTML ( file_get_contents ( $url ) );
-        
+
         //since its the only table
         $TRs = $doc->getElementsByTagName ( 'tr' );
-        
+
         if ($TRs->length == 0)
             die ( 'Assembly parsing failed. TRs not found' );
         $rctr = 0;
@@ -31,7 +53,7 @@ function updateActionChhattisgarh()
             // ignore the first one
             if ($rctr ++ == 0)
                 continue;
-            
+
             $tds = $tr->getElementsByTagName ( 'td' );
             $col = 0;
             $phones = null;
@@ -50,11 +72,11 @@ function updateActionChhattisgarh()
                                 break;
                             }
                             $acno = $mats ['acno'];
-                            $acobj = Constituency::model ()->findByAttributes ( 
-                                    [ 
+                            $acobj = Constituency::model ()->findByAttributes (
+                                    [
                                             'id_state' => $id_state,
                                             'ctype' => 'AMLY',
-                                            'eci_ref' => intval($acno) 
+                                            'eci_ref' => intval($acno)
                                     ] );
                             if (! $acobj)
                                 die('>> Could not find assembly ' . $acno . "\n");
@@ -88,7 +110,7 @@ function updateActionChhattisgarh()
                             unset($raw2[count($raw2)-1]);
                             $address = implode(",",$raw2);
                         }
-                        else 
+                        else
                         {
                             $phones = null;
                             //print_r($raw2);
@@ -116,16 +138,16 @@ function updateActionChhattisgarh()
                         break;
                 } // switch
             } // foreach TDs
-                        
-            $MLA = TamilNaduResults2016::model ()->findByAttributes ( 
-                    [ 
+
+            $MLA = TamilNaduResults2016::model ()->findByAttributes (
+                    [
                             'ST_CODE' => $ST_CODE,
                             'id_election' => $id_election,
-                            'acno' => intval($acno) 
+                            'acno' => intval($acno)
                     ] );
             if (! $MLA)
                 $MLA = new TamilNaduResults2016 ();
-            
+
             $MLA->id_election = $id_election;
             $MLA->acname = $acobj->name;
             $MLA->acno = $acno;
@@ -138,7 +160,7 @@ function updateActionChhattisgarh()
             $MLA->id_consti = $acobj->id_consti;
             $MLA->id_state = $acobj->id_state;
             $MLA->ST_CODE = $ST_CODE;
-            
+
             if (! $MLA->save ())
             {
                 print_r ( $MLA->errors );

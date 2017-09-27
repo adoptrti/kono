@@ -1,13 +1,13 @@
 <?php
 /**
  * Does updates to database from fixed web urls
- * 
+ *
  * @author vikas
  *
  */
 class UpdateCommand extends CConsoleCommand
 {
-    
+
     public function actionSlug()
     {
         $rs = Constituency::model ()->findAll ();
@@ -19,29 +19,29 @@ class UpdateCommand extends CConsoleCommand
                 print_r ( $mats );
                 die ( 'found invalid char for ' . $r->id_consti . '-' . $r->name );
             }
-            $slug1 = strtolower ( 
-                    str_replace ( 
-                            [ 
+            $slug1 = strtolower (
+                    str_replace (
+                            [
                                     ',',
                                     '.',
                                     ' ',
                                     '(',
                                     ')',
-                                    '&' 
+                                    '&'
                             ], '-', trim ( $r->name ) ) );
-            
+
             $slug1 = preg_replace ( '/-+/', '-', $slug1 );
             $slug1 = preg_replace ( '/-$/', '', $slug1 );
             $slug1 = preg_replace ( '/^-/', '', $slug1 );
-            
+
             $r->slug = $slug1;
-            
+
             echo sprintf ( "%50s\t%50s\n", $r->name, $r->slug );
-            $r->update ( [ 
-                    'slug' 
+            $r->update ( [
+                    'slug'
             ] );
         }
-        
+
         $rs = States::model ()->findAll ();
         foreach ( $rs as $r )
         {
@@ -51,26 +51,26 @@ class UpdateCommand extends CConsoleCommand
                 print_r ( $mats );
                 die ( 'found invalid char for ' . $r->id_consti . '-' . $r->name );
             }
-            $slug1 = strtolower ( 
-                    str_replace ( 
-                            [ 
+            $slug1 = strtolower (
+                    str_replace (
+                            [
                                     ',',
                                     '.',
                                     ' ',
                                     '(',
                                     ')',
-                                    '&' 
+                                    '&'
                             ], '-', trim ( $r->name ) ) );
-            
+
             $slug1 = preg_replace ( '/-+/', '-', $slug1 );
             $slug1 = preg_replace ( '/-$/', '', $slug1 );
             $slug1 = preg_replace ( '/^-/', '', $slug1 );
-            
+
             $r->slug = $slug1;
-            
+
             echo sprintf ( "%50s\t%50s\n", $r->name, $r->slug );
-            $r->update ( [ 
-                    'slug' 
+            $r->update ( [
+                    'slug'
             ] );
         }
     }
@@ -107,9 +107,9 @@ class UpdateCommand extends CConsoleCommand
     public function updateKonoDelhi()
     {
         require_once __DIR__ . '/update/updateActionDelhi.php';
-        updateActionDelhi();        
+        updateActionDelhi();
     }
-    
+
     /**
      * Kerala
      * URL: http://www.niyamasabha.org/codes/members.htm
@@ -119,7 +119,7 @@ class UpdateCommand extends CConsoleCommand
         require_once __DIR__ . '/update/updateActionKerala.php';
         updateActionKerala();
     }
-    
+
     /**
      * 201909242238:Kovai:thevikas
      * Himachal
@@ -130,7 +130,7 @@ class UpdateCommand extends CConsoleCommand
         require_once __DIR__ . '/update/updateActionHimachal.php';
         updateActionHimachal();
     }
-    
+
     /**
      * 2019092516:29:Kovai:thevikas
      * Chhattisgarh
@@ -141,7 +141,13 @@ class UpdateCommand extends CConsoleCommand
         require_once __DIR__ . '/update/updateActionChhattisgarh.php';
         updateActionChhattisgarh();
     }
-    
+
+    public function actionKonoChhattisgarhCommittee()
+    {
+        require_once __DIR__ . '/update/updateActionChhattisgarh.php';
+        updateActionChhattisgarhCommittee();
+    }
+
     /**
      * Not directly from website. Needs cleaning.
      */
@@ -150,18 +156,18 @@ class UpdateCommand extends CConsoleCommand
         require_once __DIR__ . '/update/updateActionKarnataka.php';
         updateActionKarnataka();
     }
-    
+
 }
 
 function reducer($carry, $item)
 {
     if (empty ( trim ( $item ) ))
         return $carry;
-    
+
     $carry [] = str_replace ( ' ', '', trim ( $item ) );
     return $carry;
 }
-    
+
 function cleanspace($txt,$keep = true)
 {
     return preg_replace('/\s+/',$keep ? ' ' : '', trim($txt));
