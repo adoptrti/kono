@@ -7,35 +7,40 @@
  */
 class UpdateCommand extends CConsoleCommand
 {
+    function makeslug($str)
+    {
+        $mats = [ ];
+        if (preg_match ( '/(?<bad>[^\'\s-\.\w,\(\)&]+)/', $str, $mats ))
+        {
+            print_r ( $mats );
+            die ( 'found invalid char for in:' . $str );
+        }
+
+        $str = str_replace("'", '',$str);
+
+        $slug1 = strtolower (
+                str_replace (
+                        [
+                                ',',
+                                '.',
+                                ' ',
+                                '(',
+                                ')',
+                                '&'
+                        ], '-', trim ( $str ) ) );
+
+        $slug1 = preg_replace ( '/-+/', '-', $slug1 );
+        $slug1 = preg_replace ( '/-$/', '', $slug1 );
+        $slug1 = preg_replace ( '/^-/', '', $slug1 );
+        return $slug1;
+    }
 
     public function actionSlug()
     {
         $rs = Constituency::model ()->findAll ();
         foreach ( $rs as $r )
         {
-            $mats = [ ];
-            if (preg_match ( '/(?<bad>[^\s-\.\w,\(\)&]+)/', $r->name, $mats ))
-            {
-                print_r ( $mats );
-                die ( 'found invalid char for ' . $r->id_consti . '-' . $r->name );
-            }
-            $slug1 = strtolower (
-                    str_replace (
-                            [
-                                    ',',
-                                    '.',
-                                    ' ',
-                                    '(',
-                                    ')',
-                                    '&'
-                            ], '-', trim ( $r->name ) ) );
-
-            $slug1 = preg_replace ( '/-+/', '-', $slug1 );
-            $slug1 = preg_replace ( '/-$/', '', $slug1 );
-            $slug1 = preg_replace ( '/^-/', '', $slug1 );
-
-            $r->slug = $slug1;
-
+            $r->slug = $this->makeslug($r->name);
             echo sprintf ( "%50s\t%50s\n", $r->name, $r->slug );
             $r->update ( [
                     'slug'
@@ -45,29 +50,17 @@ class UpdateCommand extends CConsoleCommand
         $rs = States::model ()->findAll ();
         foreach ( $rs as $r )
         {
-            $mats = [ ];
-            if (preg_match ( '/(?<bad>[^\s-\.\w,\(\)&]+)/', $r->name, $mats ))
-            {
-                print_r ( $mats );
-                die ( 'found invalid char for ' . $r->id_consti . '-' . $r->name );
-            }
-            $slug1 = strtolower (
-                    str_replace (
-                            [
-                                    ',',
-                                    '.',
-                                    ' ',
-                                    '(',
-                                    ')',
-                                    '&'
-                            ], '-', trim ( $r->name ) ) );
-
-            $slug1 = preg_replace ( '/-+/', '-', $slug1 );
-            $slug1 = preg_replace ( '/-$/', '', $slug1 );
-            $slug1 = preg_replace ( '/^-/', '', $slug1 );
-
-            $r->slug = $slug1;
-
+            $r->slug = $this->makeslug($r->name);
+            echo sprintf ( "%50s\t%50s\n", $r->name, $r->slug );
+            $r->update ( [
+                    'slug'
+            ] );
+        }
+        #201709272330:Kovai:thevikas
+        $rs = Committee::model ()->findAll ();
+        foreach ( $rs as $r )
+        {
+            $r->slug = $this->makeslug($r->name);
             echo sprintf ( "%50s\t%50s\n", $r->name, $r->slug );
             $r->update ( [
                     'slug'

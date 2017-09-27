@@ -44,6 +44,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'slug'); ?>
+		<?php echo $form->textField($model,'slug',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'slug'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'id_election'); ?>
 		<?php echo $form->textField($model,'id_election'); ?>
 		<?php echo $form->error($model,'id_election'); ?>

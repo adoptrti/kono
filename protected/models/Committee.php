@@ -8,6 +8,7 @@
  * @property integer $id_consti
  * @property string $ctype
  * @property string $name
+ * @property string $slug
  * @property integer $id_comm
  * @property integer $id_election
  *
@@ -38,7 +39,7 @@ class Committee extends CActiveRecord
 			array('id_state, ctype, name, id_election', 'required'),
 			array('id_state, id_consti, id_election', 'numerical', 'integerOnly'=>true),
 			array('ctype', 'length', 'max'=>4),
-			array('name', 'length', 'max'=>255),
+			array('name,slug', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id_state, id_consti, ctype, name, id_comm, id_election', 'safe', 'on'=>'search'),
