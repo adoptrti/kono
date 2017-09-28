@@ -1,4 +1,4 @@
-<h1 style="display: block;width: 100%">Fetching your location...</h1>
+<h1 style="display: block;width: 100%"><?=__('Fetching your location...')?></h1>
 <script type="text/javascript" src="/node_modules/geolocator/dist/geolocator.min.js"></script>
 <script type="text/javascript">
 

@@ -8,29 +8,56 @@
 
     <?php
     
-    $address[0]->latitude = $address[1]->latitude;
-    $address[0]->longitude= $address[1]->longitude;
-    $address[0]->district = $amly_poly->DIST_NAME;
-    //'amly_poly' => $data ['amly_poly'],
+    $address [0]->latitude = $address [1]->latitude;
+    $address [0]->longitude = $address [1]->longitude;
+    $address [0]->district = $amly_poly->DIST_NAME;
+    // 'amly_poly' => $data ['amly_poly'],
     
-    //$address[0]->altitude= $address[1]->altitude;
+    // $address[0]->altitude= $address[1]->altitude;
     
     $this->widget ( 'zii.widgets.CDetailView', 
-            [
-                    'data' => $address[0],
+            [ 
+                    'data' => $address [0],
                     'attributes' => [ 
-                            'town',
-                            'city',
-                            'postalCode',
-                            'district',
-                            'state',
-                            'country',
-                            'latitude',
-                            'longitude',
-                            'altitude'
-                    ]
-            ]
-        ) ;
+                            [ 
+                                    'name' => 'town',
+                                    'label' => __ ( 'Town' ) 
+                            ],
+                            
+                            [ 
+                                    'label' => __ ( 'City' ),
+                                    'name' => 'city' 
+                            ],
+                            [ 
+                                    'label' => __ ( 'PIN Code' ),
+                                    'name' => 'postalCode' 
+                            ],
+                            [ 
+                                    'label' => __ ( 'District' ),
+                                    'name' => 'district' 
+                            ],
+                            [ 
+                                    'label' => __ ( 'State' ),
+                                    'name' => 'state' 
+                            ],
+                            [ 
+                                    'label' => __ ( 'Country' ),
+                                    'name' => 'country' 
+                            ],
+                            [ 
+                                    'label' => __ ( 'Latitude' ),
+                                    'name' => 'latitude' 
+                            ],
+                            [ 
+                                    'label' => __ ( 'Longitude' ),
+                                    'name' => 'longitude' 
+                            ],
+                            [ 
+                                    'label' => __ ( 'Altitude' ),
+                                    'name' => 'altitude' 
+                            ] 
+                    ] 
+            ] );
     
     ?>
 

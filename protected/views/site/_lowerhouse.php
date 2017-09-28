@@ -4,7 +4,7 @@
 ?>
 
 <div class="view lsmp">
-    <h2 class="acname"><?=strtolower($poly->pc_name_clean)?> Lok Sabha Constituency</h2>
+    <h2 class="acname"><?=__('{pcname} Lok Sabha Constituency',['{pcname}' => strtolower($poly->pc_name_clean)])?></h2>
 
     <?php
     $this->widget ( 'zii.widgets.CDetailView', 
@@ -19,6 +19,7 @@
                             [
                                 'type' => 'raw',
                                 'name' => 'emails', 
+                                    'label' => __('Email Address'),
                                 'value' => function($data)
                                     {
                                         $rt = [];
@@ -34,7 +35,7 @@
                             [
                                     'type' => 'raw',
                                     'name' => 'p_address1',
-                                    'header' => 'Address',
+                                    'label' => __('Permanent Address'),
                                     'value' => function($data)
                                     {                                        
                                         return CHtml::tag('address',[],$data->p_address1 . ' ' . $data->p_address2);
@@ -43,7 +44,7 @@
                             [
                                     'type' => 'raw',
                                     'name' => 'delhi_address1',
-                                    'header' => 'Address',
+                                    'label' => __('Delhi Address'),
                                     'value' => function($data)
                                     {
                                         return CHtml::tag('address',[],$data->delhi_address1. ' ' . $data->delhi_address2);
@@ -52,7 +53,7 @@
                             [
                                     'type' => 'raw',
                                     'name' => 'phones',
-                                    'header' => 'Address',
+                                    'label' => __('Phone'),
                                     'value' => function($data)
                                     {
                                         $tels = explode(',',$data->phones);

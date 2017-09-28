@@ -1,9 +1,9 @@
 <?php
 /* @var $this SiteController */
 
-$this->pageTitle=Yii::app()->name . ' - About';
+$this->pageTitle=Yii::app()->name . ' - ' . __('About');
 $this->breadcrumbs=array(
-	'About',
+        __('About'),
 );
 
 $text = file_get_contents(Yii::app()->basePath . '/../README.md');

@@ -3,13 +3,13 @@
 /* @var $model ContactForm */
 /* @var $form CActiveForm */
 
-$this->pageTitle=Yii::app()->name . ' - Contact Us';
+$this->pageTitle=Yii::app()->name . ' - ' . __('Contact Us');
 $this->breadcrumbs=array(
-	'Contact',
+	__('Contact'),
 );
 ?>
 
-<h1>Contact Us</h1>
+<h1><?=__('Contact Us')?></h1>
 
 <?php if(Yii::app()->user->hasFlash('contact')): ?>
 
@@ -20,7 +20,7 @@ $this->breadcrumbs=array(
 <?php else: ?>
 
 <p>
-If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
+<?=__('If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.')?>
 </p>
 
 <div class="form">
@@ -33,7 +33,7 @@ If you have business inquiries or other questions, please fill out the following
 	),
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note"><?=__('Fields with {star} are required.',['{star}' => '<span class="required">*</span>'])?></p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -68,14 +68,14 @@ If you have business inquiries or other questions, please fill out the following
 		<?php $this->widget('CCaptcha'); ?>
 		<?php echo $form->textField($model,'verifyCode'); ?>
 		</div>
-		<div class="hint">Please enter the letters as they are shown in the image above.
-		<br/>Letters are not case-sensitive.</div>
+		<div class="hint"><?=__('Please enter the letters as they are shown in the image above.')?>
+		<br/><?=__('Letters are not case-sensitive.')?></div>
 		<?php echo $form->error($model,'verifyCode'); ?>
 	</div>
 	<?php endif; ?>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Submit'); ?>
+		<?php echo CHtml::submitButton(__('Submit')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -2,13 +2,13 @@
 /* @var $this SiteController */
 /* @var $model ContactForm */
 /* @var $form CActiveForm */
-$this->pageTitle = Yii::app ()->name . ' - Contact Us';
+$this->pageTitle = Yii::app ()->name . ' - ' . __('Data Report');
 $this->breadcrumbs = array (
-        'Contact' 
+        __('Data Report') 
 );
 ?>
 
-<h1>Data Report</h1>
+<h1><?=__('Data Report')?></h1>
 
 <?php
 
@@ -31,21 +31,21 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                 'dataProvider' => $dataProvider,
                 'columns' => [ 
                         [ 
-                                'header' => 'City',
+                                'header' => __('City'),
                                 'value' => function ($data)
                                 {
                                     return $data [0];
                                 } 
                         ],
                         [ 
-                                'header' => 'Polygons',
+                                'header' => __('Polygons'),
                                 'value' => function ($data)
                                 {
                                     return $data [1];
                                 } 
                         ],
                         [ 
-                                'header' => 'Councillors',
+                                'header' => __('Councillors'),
                                 'value' => function ($data)
                                 {
                                     return $data [2];
@@ -73,7 +73,7 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                 'dataProvider' => $dataProvider,
                 'columns' => [ 
                         [ 
-                                'header' => 'State',
+                                'header' => __('State'),
                                 'type' => 'raw',                                 
                                 'value' => function ($data)
                                 {
@@ -81,42 +81,42 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                                 } 
                         ],
                         [ 
-                                'header' => 'Polygons',
+                                'header' => __('Polygons'),
                                 'value' => function ($data)
                                 {
                                     return $data [1];
                                 } 
                         ],
                         [ 
-                                'header' => 'MLAs',
+                                'header' => __('MLAs'),
                                 'value' => function ($data)
                                 {
                                     return $data [2];
                                 } 
                         ],
                         [
-                                'header' => 'Phones',
+                                'header' => __('Phones'),
                                 'value' => function ($data)
                                 {
                                     return $data [3];
                         }
                         ],
                         [
-                                'header' => 'Emails',
+                                'header' => __('Emails'),
                                 'value' => function ($data)
                                 {
                                     return $data [4];
                         }
                         ],
                         [
-                                'header' => 'Address',
+                                'header' => __('Address'),
                                 'value' => function ($data)
                                 {
                                     return $data [5];
                         }
                         ],
                         [
-                                'header' => 'Picture',
+                                'header' => __('Picture'),
                                 'value' => function ($data)
                                 {
                                     return $data [6];

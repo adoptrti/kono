@@ -30,9 +30,9 @@
         }
     </style>
     
-<script src="//maps.googleapis.com/maps/api/js?key=<?= Yii::app()->params['google-api-key']?>&libraries=places"></script>
+<script src="//maps.googleapis.com/maps/api/js?key=<?= Yii::app()->params['google-api-key']?>&libraries=places&language=<?=Yii::app()->language?>"></script>
     
-<input id="pac-input" class="controls" type="text" placeholder="Type city, zip or address here..">
+<input id="pac-input" class="controls" type="text" placeholder="<?=__('Type city, zip or address here..')?>">
 <div id="googlemaps"></div>
 <script language='Javascript' type="text/javascript" src="/js/gmaprunner.js"></script>
 <?php 

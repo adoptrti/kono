@@ -8,7 +8,7 @@
     if(!empty($data->picture))
         echo CHtml::image('/images/pics/' . $data->picture,$data->name,['class' => 'picture amly']);
     ?>
-    <h2 class="acname"><?=strtolower($poly->AC_NAME)?> Assembly Constituency - #<?=$data->acno?></h2>
+    <h2 class="acname"><?=__('{acname} Assembly Constituency - #{acno}',['{acname}' => strtolower($poly->AC_NAME),'{acno}' => $data->acno])?></h2>
 
     <?php
 
@@ -39,7 +39,7 @@
                             [
                                     'type' => 'raw',
                                     'name' => 'phones',
-                                    'header' => __('Address'),
+                                    'label' => __('Address'),
                                     'value' => function($data)
                                     {
                                         $rt=[];
@@ -63,7 +63,7 @@
                         ],
                         [
                                 'type' => 'raw',
-                                'header' => __('Committees'),
+                                'label' => __('Committees'),
                                 'value' => function($data)
                                 {
                                     $html = [];

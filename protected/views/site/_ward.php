@@ -4,7 +4,7 @@
 ?>
 
 <div class="view ward">
-<h2 class="acname"><?=strtolower($data0[0]->city)?> Municipal Ward - #<?=$data->wardno?></h2>
+<h2 class="acname"><?=__('{wardname} Municipal Ward - #{wardno}',['{wardname}' => strtolower($data0[0]->city),'{wardno}' => $data->wardno])?></h2>
 
     <?php 
     $this->widget ( 'zii.widgets.CDetailView', 
@@ -12,7 +12,7 @@
                     'data' => $data,
                     'attributes'=>array(
                             array(               // related city displayed as a link
-                                    'label'=> 'Zone',
+                                    'label'=> __('Zone'),
                                     'value' => function($data) {
                                         $ward = AssemblyPolygon::model()->findByAttributes(['acno' => $data->wardno,'DT_CODE' => $data->DT_CODE,'ST_CODE' => $data->ST_CODE]);
                                         if($ward)
@@ -20,7 +20,7 @@
                                     }
                             ),
                             array(               // related city displayed as a link
-                                    'label'=> 'Elected Councillor Name',
+                                    'label'=> __('Elected Councillor Name'),
                                     'name' => 'name',
                             ),
                             'party',
@@ -29,7 +29,7 @@
                             [
                                     'type' => 'raw',
                                     'name' => 'phone',
-                                    'header' => 'Phone',
+                                    'label' => __('Phone'),
                                     'value' => function($data)
                                     {
                                         $rt=[];

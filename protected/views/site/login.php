@@ -3,15 +3,15 @@
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
 
-$this->pageTitle=Yii::app()->name . ' - Login';
+$this->pageTitle=Yii::app()->name . ' - ' . __('Login');
 $this->breadcrumbs=array(
-	'Login',
+	__('Login'),
 );
 ?>
 
-<h1>Login</h1>
+<h1><?=__('Login')?></h1>
 
-<p>Please fill out the following form with your login credentials:</p>
+<p><?=__('Please fill out the following form with your login credentials:')?></p>
 
 <div class="form">
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -22,7 +22,7 @@ $this->breadcrumbs=array(
 	),
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note"><?=__('Fields with {star} are required.',['{star}' => '<span class="required">*</span>'])?></p>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'username'); ?>
@@ -43,7 +43,7 @@ $this->breadcrumbs=array(
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Login'); ?>
+		<?php echo CHtml::submitButton(__('Login')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
