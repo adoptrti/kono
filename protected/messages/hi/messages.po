@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kono\n"
-"POT-Creation-Date: 2017-09-28 22:01+0530\n"
-"PO-Revision-Date: 2017-09-28 22:01+0530\n"
+"POT-Creation-Date: 2017-09-28 22:41+0530\n"
+"PO-Revision-Date: 2017-09-28 22:46+0530\n"
 "Last-Translator: Vikas Yadav <mevikas@gmail.com>\n"
 "Language-Team: Vikas\n"
 "Language: hi\n"
@@ -40,8 +40,9 @@ msgstr "आईडी कॉन्स्टी"
 msgid "Committee Type"
 msgstr "समिति प्रकार"
 
-#: models/Committee.php:74 models/Constituency.php:107 models/LokSabha2014.php:97
-#: models/MunicipalResults.php:63 models/State.php:93 models/TamilNaduResults2016.php:69
+#: models/Committee.php:74 models/Constituency.php:107 models/ContactForm.php:50
+#: models/LokSabha2014.php:97 models/MunicipalResults.php:63 models/State.php:93
+#: models/TamilNaduResults2016.php:69
 msgid "Name"
 msgstr "नाम"
 
@@ -133,9 +134,21 @@ msgstr "जीपीएस लाट"
 msgid "Gps Ele"
 msgstr "जीपीएस एलई"
 
-#: models/ContactForm.php:39
+#: models/ContactForm.php:49
 msgid "Verification Code"
 msgstr "सत्यापन कोड"
+
+#: models/ContactForm.php:51 views/site/_lowerhouse.php:22
+msgid "Email Address"
+msgstr "ईमेल पता"
+
+#: models/ContactForm.php:52
+msgid "Subject"
+msgstr ""
+
+#: models/ContactForm.php:53
+msgid "Body"
+msgstr ""
 
 #: models/Election.php:70
 msgid "Election ID"
@@ -323,52 +336,52 @@ msgstr "Acname"
 msgid "Acno"
 msgstr "खाता संख्या"
 
-#: views/layouts/main.php:45 views/layouts/main.php:61
+#: views/layouts/main.php:69 views/layouts/main.php:107
 msgid "Home"
 msgstr "घर"
 
-#: views/layouts/main.php:46 views/site/pages/about.php:4 views/site/pages/about.php:6
+#: views/layouts/main.php:75 views/site/pages/about.php:4 views/site/pages/about.php:6
 msgid "About"
 msgstr "के बारे में"
 
-#: views/layouts/main.php:47 views/site/report.php:5 views/site/report.php:7
+#: views/layouts/main.php:82 views/site/report.php:5 views/site/report.php:7
 #: views/site/report.php:11
 msgid "Data Report"
 msgstr "डेटा रिपोर्ट"
 
-#: views/layouts/main.php:48 views/site/contact.php:8
+#: views/layouts/main.php:88 views/site/contact.php:8
 msgid "Contact"
 msgstr "संपर्क"
 
-#: views/layouts/main.php:62
+#: views/layouts/main.php:113
 msgid "Committee"
 msgstr "समिति"
 
-#: views/layouts/main.php:63
+#: views/layouts/main.php:119
 msgid "Committee Members"
 msgstr "समिति के सदस्य"
 
-#: views/layouts/main.php:64
+#: views/layouts/main.php:125
 msgid "Assembly Results"
 msgstr "विधानसभा परिणाम"
 
-#: views/layouts/main.php:65
+#: views/layouts/main.php:131
 msgid "Elections"
 msgstr "चुनाव"
 
-#: views/layouts/main.php:67
+#: views/layouts/main.php:140
 msgid "Logout ({uname})"
 msgstr "लॉगआउट ({uname})"
 
-#: views/layouts/main.php:84
+#: views/layouts/main.php:170
 msgid "Copyright &copy; {year} by Vikas Yadav."
 msgstr "कॉपीराइट और प्रतिलिपि; विकास यादव द्वारा {year}"
 
-#: views/layouts/main.php:85
+#: views/layouts/main.php:171
 msgid "All Rights Reserved."
 msgstr "सर्वाधिकार सुरक्षित।"
 
-#: views/layouts/main.php:86
+#: views/layouts/main.php:172
 msgid "Disclaimer"
 msgstr " अस्वीकरण"
 
@@ -422,10 +435,6 @@ msgstr "{pcname} लोकसभा निर्वाचन क्षेत्�
 msgid "Lok Sabha MP"
 msgstr "लोकसभा सांसद"
 
-#: views/site/_lowerhouse.php:22
-msgid "Email Address"
-msgstr "ईमेल पता"
-
 #: views/site/_lowerhouse.php:38
 msgid "Permanent Address"
 msgstr "स्थायी पता"
@@ -456,7 +465,9 @@ msgstr "हमसे संपर्क करें"
 msgid ""
 "If you have business inquiries or other questions, please fill out the following form to "
 "contact us. Thank you."
-msgstr "यदि आपके पास व्यावसायिक पूछताछ या अन्य प्रश्न हैं, तो कृपया हमसे संपर्क करने के लिए निम्न फ़ॉर्म भरें। धन्यवाद।"
+msgstr ""
+"यदि आपके पास व्यावसायिक पूछताछ या अन्य प्रश्न हैं, तो कृपया हमसे संपर्क करने के लिए निम्न फ़ॉर्म भरें। "
+"धन्यवाद।"
 
 #: views/site/contact.php:36 views/site/login.php:25
 msgid "Fields with {star} are required."
@@ -506,4 +517,3 @@ msgstr "विधायक"
 #: views/site/report.php:119
 msgid "Picture"
 msgstr "तस्वीर"
-

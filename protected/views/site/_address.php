@@ -38,7 +38,16 @@
                             ],
                             [ 
                                     'label' => __ ( 'State' ),
-                                    'name' => 'state' 
+                                    'name' => 'state',
+                                    'type' => 'raw',
+                                    'value' => function($data)
+                                    {
+                                        $st = State::model()->findByAttributes(['name' => $data->state]);
+                                        if($st)
+                                            return CHtml::link($st->name,['state/view','id' => $st->id_state]);
+                                        else 
+                                            return $data->state;
+                                    }
                             ],
                             [ 
                                     'label' => __ ( 'Country' ),
