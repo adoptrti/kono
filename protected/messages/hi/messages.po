@@ -1,0 +1,509 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Kono\n"
+"POT-Creation-Date: 2017-09-28 22:01+0530\n"
+"PO-Revision-Date: 2017-09-28 22:01+0530\n"
+"Last-Translator: Vikas Yadav <mevikas@gmail.com>\n"
+"Language-Team: Vikas\n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: /Volumes/Untitled/projects/konoweb/protected\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: views\n"
+"X-Poedit-SearchPath-1: models\n"
+"X-Poedit-SearchPath-2: components\n"
+"X-Poedit-SearchPath-3: controllers\n"
+
+#: models/AssemblyPolygon.php:99
+msgid "Assembly Number"
+msgstr "विधानसभा संख्या"
+
+#: models/AssemblyPolygon.php:100
+msgid "Polygon"
+msgstr "बहुभुज"
+
+#: models/Committee.php:71 models/Constituency.php:110 models/State.php:91
+msgid "Id State"
+msgstr "आईडी स्टेट"
+
+#: models/Committee.php:72 models/Constituency.php:103
+msgid "Id Consti"
+msgstr "आईडी कॉन्स्टी"
+
+#: models/Committee.php:73
+msgid "Committee Type"
+msgstr "समिति प्रकार"
+
+#: models/Committee.php:74 models/Constituency.php:107 models/LokSabha2014.php:97
+#: models/MunicipalResults.php:63 models/State.php:93 models/TamilNaduResults2016.php:69
+msgid "Name"
+msgstr "नाम"
+
+#: models/Committee.php:75 models/CommitteeMember.php:60
+msgid "Id Comm"
+msgstr "आईडी कमांड"
+
+#: models/Committee.php:76
+msgid "Id Election"
+msgstr "आईडी चुनाव"
+
+#: models/CommitteeMember.php:61
+msgid "Id Result"
+msgstr "आईडी का परिणाम"
+
+#: models/CommitteeMember.php:62
+msgid "Chairman"
+msgstr "अध्यक्ष "
+
+#: models/Constituency.php:104
+msgid "Id Parl Consti"
+msgstr "आईडी पर्ल कॉन्स्टी"
+
+#: models/Constituency.php:105
+msgid "Id Dist Place2"
+msgstr "आईडी जिला प्लेस 2"
+
+#: models/Constituency.php:106
+msgid "Eci Ref"
+msgstr "ईसीआई रिफ"
+
+#: models/Constituency.php:108
+msgid "Resv"
+msgstr "RESV"
+
+#: models/Constituency.php:109
+msgid "Number"
+msgstr "संख्या"
+
+#: models/Constituency.php:111
+msgid "Voters"
+msgstr "मतदाता"
+
+#: models/Constituency.php:112
+msgid "Pollingstns"
+msgstr "Pollingstns"
+
+#: models/Constituency.php:113
+msgid "Turnout"
+msgstr "उपस्थित होना"
+
+#: models/Constituency.php:114
+msgid "Castvotes"
+msgstr "Castvotes"
+
+#: models/Constituency.php:115
+msgid "Contestents"
+msgstr "Contestents"
+
+#: models/Constituency.php:116
+msgid "Contituency Type"
+msgstr "निर्वाचन क्षेत्र का प्रकार"
+
+#: models/Constituency.php:117
+msgid "Id Parent"
+msgstr "आई आईडी जनक"
+
+#: models/Constituency.php:118
+msgid "Candilisthtml"
+msgstr "Candilisthtml"
+
+#: models/Constituency.php:119 models/State.php:102
+msgid "Updated"
+msgstr "अपडेट हो गया"
+
+#: models/Constituency.php:120
+msgid "Id State2"
+msgstr "आईडी स्टेट 2"
+
+#: models/Constituency.php:121
+msgid "Gps Long"
+msgstr "जीपीएस लांग"
+
+#: models/Constituency.php:122
+msgid "Gps Lat"
+msgstr "जीपीएस लाट"
+
+#: models/Constituency.php:123
+msgid "Gps Ele"
+msgstr "जीपीएस एलई"
+
+#: models/ContactForm.php:39
+msgid "Verification Code"
+msgstr "सत्यापन कोड"
+
+#: models/Election.php:70
+msgid "Election ID"
+msgstr "चुनाव आईडी"
+
+#: models/Election.php:71 models/LokSabha2014.php:95 views/site/_address.php:40
+#: views/site/report.php:76
+msgid "State"
+msgstr "स"
+
+#: models/Election.php:72
+msgid "Result Date"
+msgstr "परिणाम दिनांक"
+
+#: models/Election.php:73
+msgid "Year"
+msgstr "वर्ष"
+
+#: models/Election.php:74
+msgid "Election Type"
+msgstr "चुनाव प्रकार"
+
+#: models/LokSabha2014.php:90
+msgid "Id Mp"
+msgstr "आईडी एमपी"
+
+#: models/LokSabha2014.php:91 views/site/report.php:98
+msgid "Phones"
+msgstr "फ़ोन"
+
+#: models/LokSabha2014.php:92 views/site/report.php:105
+msgid "Emails"
+msgstr "ईमेल"
+
+#: models/LokSabha2014.php:93
+msgid "Pc Name"
+msgstr "पॉट प्रोपर्टी CNAMडेटा"
+
+#: models/LokSabha2014.php:94
+msgid "Pc Name Clean"
+msgstr "पीसी का नाम साफ"
+
+#: models/LokSabha2014.php:96
+msgid "Sno"
+msgstr "क्रमांक"
+
+#: models/LokSabha2014.php:98
+msgid "P Address1"
+msgstr "P-एड्रेस"
+
+#: models/LokSabha2014.php:99
+msgid "P Address2"
+msgstr "P-एड्रेस"
+
+#: models/LokSabha2014.php:100
+msgid "Col9"
+msgstr "कर्नल)"
+
+#: models/LokSabha2014.php:101
+msgid "Delhi Address1"
+msgstr "दिल्ली का पता 1"
+
+#: models/LokSabha2014.php:102
+msgid "Col11"
+msgstr "कर्नल)"
+
+#: models/LokSabha2014.php:103 models/MunicipalResults.php:64 models/Results2014.php:70
+#: models/TamilNaduResults2016.php:70
+msgid "Party"
+msgstr "पार्टी करें"
+
+#: models/LokSabha2014.php:104
+msgid "Col15"
+msgstr "कर्नल)"
+
+#: models/LokSabha2014.php:105
+msgid "Delhi Address2"
+msgstr "दिल्ली का पता 2"
+
+#: models/MunicipalResults.php:61 views/site/_address.php:28 views/site/report.php:34
+msgid "City"
+msgstr "शहर"
+
+#: models/MunicipalResults.php:62
+msgid "Wardno"
+msgstr "वार्ड नं.2,"
+
+#: models/MunicipalResults.php:65 views/site/_lowerhouse.php:56 views/site/_ward.php:32
+msgid "Phone"
+msgstr "फ़ोन"
+
+#: models/MunicipalResults.php:66 views/site/_assembly.php:42 views/site/report.php:112
+msgid "Address"
+msgstr "पता"
+
+#: models/Results2014.php:64
+msgid "Slno"
+msgstr "Sl No"
+
+#: models/Results2014.php:65
+msgid "Statename"
+msgstr "(2) राज्य का नाम"
+
+#: models/Results2014.php:66
+msgid "Constituency"
+msgstr "निर्वाचन क्षेत्र"
+
+#: models/Results2014.php:67
+msgid "Winnername"
+msgstr "Winnername"
+
+#: models/Results2014.php:68
+msgid "Category"
+msgstr "वर्ग"
+
+#: models/Results2014.php:69
+msgid "Socialcategory"
+msgstr "Socialcategory"
+
+#: models/Results2014.php:71
+msgid "Partysymbol"
+msgstr "Partysymbol"
+
+#: models/Results2014.php:72
+msgid "Margin"
+msgstr "सीमा"
+
+#: models/State.php:92
+msgid "St Code"
+msgstr "सेंट कोड"
+
+#: models/State.php:94
+msgid "Ias Short Code"
+msgstr "आईएएस शॉर्ट कोड"
+
+#: models/State.php:95
+msgid "Id Census"
+msgstr "आईडी की जनगणना"
+
+#: models/State.php:96
+msgid "State number as per ECI"
+msgstr "ईसीआई के अनुसार राज्य संख्या"
+
+#: models/State.php:97
+msgid "Session From"
+msgstr "सत्र से"
+
+#: models/State.php:98
+msgid "Session To"
+msgstr "सत्र के लिए"
+
+#: models/State.php:99
+msgid "Lok Parl Seats"
+msgstr "लोक पार्ल सीट्स"
+
+#: models/State.php:100
+msgid "Amly Seats"
+msgstr "एमी सीट्स"
+
+#: models/State.php:101
+msgid "Raj Parl Seats"
+msgstr "राज पार्ल सीट्स"
+
+#: models/State.php:103
+msgid "Iso3166"
+msgstr "आईएसओ 9001:2015"
+
+#: models/State.php:104
+msgid "is polling station info available"
+msgstr "मतदान केंद्र की जानकारी उपलब्ध है"
+
+#: models/State.php:105
+msgid "no of dist as per ECI"
+msgstr "ईसीआई के अनुसार जिले का कोई नहीं"
+
+#: models/State.php:106
+msgid "Eci Amly Count"
+msgstr "एसी एमी गणना"
+
+#: models/TamilNaduResults2016.php:67
+msgid "Acname"
+msgstr "Acname"
+
+#: models/TamilNaduResults2016.php:68
+msgid "Acno"
+msgstr "खाता संख्या"
+
+#: views/layouts/main.php:45 views/layouts/main.php:61
+msgid "Home"
+msgstr "घर"
+
+#: views/layouts/main.php:46 views/site/pages/about.php:4 views/site/pages/about.php:6
+msgid "About"
+msgstr "के बारे में"
+
+#: views/layouts/main.php:47 views/site/report.php:5 views/site/report.php:7
+#: views/site/report.php:11
+msgid "Data Report"
+msgstr "डेटा रिपोर्ट"
+
+#: views/layouts/main.php:48 views/site/contact.php:8
+msgid "Contact"
+msgstr "संपर्क"
+
+#: views/layouts/main.php:62
+msgid "Committee"
+msgstr "समिति"
+
+#: views/layouts/main.php:63
+msgid "Committee Members"
+msgstr "समिति के सदस्य"
+
+#: views/layouts/main.php:64
+msgid "Assembly Results"
+msgstr "विधानसभा परिणाम"
+
+#: views/layouts/main.php:65
+msgid "Elections"
+msgstr "चुनाव"
+
+#: views/layouts/main.php:67
+msgid "Logout ({uname})"
+msgstr "लॉगआउट ({uname})"
+
+#: views/layouts/main.php:84
+msgid "Copyright &copy; {year} by Vikas Yadav."
+msgstr "कॉपीराइट और प्रतिलिपि; विकास यादव द्वारा {year}"
+
+#: views/layouts/main.php:85
+msgid "All Rights Reserved."
+msgstr "सर्वाधिकार सुरक्षित।"
+
+#: views/layouts/main.php:86
+msgid "Disclaimer"
+msgstr " अस्वीकरण"
+
+#: views/site/_address.php:24
+msgid "Town"
+msgstr "कस्बा"
+
+#: views/site/_address.php:32
+#, fuzzy
+#| msgid "St Code"
+msgid "PIN Code"
+msgstr "सेंट कोड"
+
+#: views/site/_address.php:36
+msgid "District"
+msgstr " ज़िला"
+
+#: views/site/_address.php:44
+msgid "Country"
+msgstr "देश"
+
+#: views/site/_address.php:48
+msgid "Latitude"
+msgstr "अक्षांश"
+
+#: views/site/_address.php:52
+msgid "Longitude"
+msgstr "रेखांश"
+
+#: views/site/_address.php:56
+msgid "Altitude"
+msgstr "ऊंचाई"
+
+#: views/site/_assembly.php:11
+msgid "{acname} Assembly Constituency - #{acno}"
+msgstr "{acname} विधानसभा निर्वाचन क्षेत्र - #{acno}"
+
+#: views/site/_assembly.php:20
+msgid "Elected MLA Name"
+msgstr "निर्वाचित विधायक का नाम"
+
+#: views/site/_assembly.php:66
+msgid "Committees"
+msgstr "समितियां"
+
+#: views/site/_lowerhouse.php:7
+msgid "{pcname} Lok Sabha Constituency"
+msgstr "{pcname} लोकसभा निर्वाचन क्षेत्र"
+
+#: views/site/_lowerhouse.php:15
+msgid "Lok Sabha MP"
+msgstr "लोकसभा सांसद"
+
+#: views/site/_lowerhouse.php:22
+msgid "Email Address"
+msgstr "ईमेल पता"
+
+#: views/site/_lowerhouse.php:38
+msgid "Permanent Address"
+msgstr "स्थायी पता"
+
+#: views/site/_lowerhouse.php:47
+msgid "Delhi Address"
+msgstr "दिल्ली का पता"
+
+#: views/site/_ward.php:7
+msgid "{wardname} Municipal Ward - #{wardno}"
+msgstr "{wardname} नगरपालिका वार्ड - #{wardno}"
+
+#: views/site/_ward.php:15
+msgid "Zone"
+msgstr "अंचल"
+
+#: views/site/_ward.php:23
+#, fuzzy
+#| msgid "Elected MLA Name"
+msgid "Elected Councillor Name"
+msgstr "निर्वाचित विधायक का नाम"
+
+#: views/site/contact.php:6 views/site/contact.php:12
+msgid "Contact Us"
+msgstr "हमसे संपर्क करें"
+
+#: views/site/contact.php:23
+msgid ""
+"If you have business inquiries or other questions, please fill out the following form to "
+"contact us. Thank you."
+msgstr "यदि आपके पास व्यावसायिक पूछताछ या अन्य प्रश्न हैं, तो कृपया हमसे संपर्क करने के लिए निम्न फ़ॉर्म भरें। धन्यवाद।"
+
+#: views/site/contact.php:36 views/site/login.php:25
+msgid "Fields with {star} are required."
+msgstr "{star} के साथ फ़ील्ड आवश्यक हैं."
+
+#: views/site/contact.php:71
+msgid "Please enter the letters as they are shown in the image above."
+msgstr "कृपया उपरोक्त छवि में दिखाए गए पत्रों को दर्ज करें।"
+
+#: views/site/contact.php:72
+msgid "Letters are not case-sensitive."
+msgstr "वर्णाक्षरी वर्ण सवेंदनशील नहीं है।"
+
+#: views/site/contact.php:78
+msgid "Submit"
+msgstr "Submit"
+
+#: views/site/fetchlocation.php:1
+msgid "Fetching your location..."
+msgstr "अपना स्थान प्राप्त कर रहा है ..."
+
+#: views/site/index.php:35
+msgid "Type city, zip or address here.."
+msgstr "यहां शहर, ज़िप या पता टाइप करें .."
+
+#: views/site/login.php:6 views/site/login.php:8 views/site/login.php:12
+#: views/site/login.php:46
+msgid "Login"
+msgstr "लॉग इन "
+
+#: views/site/login.php:14
+msgid "Please fill out the following form with your login credentials:"
+msgstr "कृपया अपने प्रवेश प्रमाण पत्र के साथ निम्नलिखित फ़ॉर्म को भरें:"
+
+#: views/site/report.php:41 views/site/report.php:84
+msgid "Polygons"
+msgstr "बहुभुज"
+
+#: views/site/report.php:48
+msgid "Councillors"
+msgstr "परामर्शदाता"
+
+#: views/site/report.php:91
+msgid "MLAs"
+msgstr "विधायक"
+
+#: views/site/report.php:119
+msgid "Picture"
+msgstr "तस्वीर"
+
