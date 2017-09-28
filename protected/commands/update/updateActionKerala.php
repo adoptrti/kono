@@ -6,7 +6,7 @@ function updateActionKerala()
     $ST_CODE = 32; // kerala
     $id_state = 19; // kerala
     
-    $stateobj = States::model ()->findByPk ( $id_state );
+    $stateobj = State::model ()->findByPk ( $id_state );
     $eleobj = Election::model ()->findByPk ( $id_election );
     
     libxml_use_internal_errors ( true );

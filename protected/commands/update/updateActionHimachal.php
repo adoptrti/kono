@@ -6,7 +6,7 @@ function updateActionHimachal()
     $ST_CODE = 2; // himachal
     $id_state = 15; // himachal
     
-    $stateobj = States::model ()->findByPk ( $id_state );
+    $stateobj = State::model ()->findByPk ( $id_state );
     $eleobj = Election::model ()->findByPk ( $id_election );
     
     libxml_use_internal_errors ( true );

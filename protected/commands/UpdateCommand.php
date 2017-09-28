@@ -47,7 +47,7 @@ class UpdateCommand extends CConsoleCommand
             ] );
         }
 
-        $rs = States::model ()->findAll ();
+        $rs = State::model ()->findAll ();
         foreach ( $rs as $r )
         {
             $r->slug = $this->makeslug($r->name);

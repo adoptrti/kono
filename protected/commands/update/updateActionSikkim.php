@@ -6,7 +6,7 @@ function updateActionSikkim()
     $ST_CODE = 11;
     $id_state = 31;
     
-    $stateobj = States::model ()->findByPk ( $id_state );
+    $stateobj = State::model ()->findByPk ( $id_state );
     $eleobj = Election::model ()->findByPk ( $id_election );
     
     libxml_use_internal_errors ( true );

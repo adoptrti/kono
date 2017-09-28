@@ -45,7 +45,7 @@ function updateActionChhattisgarh()
     $id_state = 4;
     $ST_CODE = 22;
 
-    $stateobj = States::model ()->findByPk ( $id_state );
+    $stateobj = State::model ()->findByPk ( $id_state );
     $eleobj = Election::model ()->findByPk ( $id_election );
 
     libxml_use_internal_errors ( true );

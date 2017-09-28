@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "states".
+ * This is the model class for table "State".
  *
- * The followings are the available columns in table 'states':
+ * The followings are the available columns in table 'State':
  * @property integer $id_state
  * @property integer $ST_CODE
  * @property string $name
@@ -33,7 +33,7 @@
  * @property Sabha[] $sabhas
  * @property Ward[] $wards
  */
-class States extends CActiveRecord
+class State extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
@@ -151,7 +151,7 @@ class States extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return States the static model class
+	 * @return State the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

@@ -14,7 +14,7 @@
  *
  * The followings are the available model relations:
  * @property CommMember[] $commMembers
- * @property States $idState
+ * @property State $state
  * @property Constituency $idConsti
  * @property Elections $idElection
  */
@@ -56,7 +56,7 @@ class Committee extends CActiveRecord
 		return array(
 			'cmembers' => array(self::HAS_MANY, 'CommMember', 'id_comm'),
 			'members' => array(self::MANY_MANY, 'TamilNaduResults2016', 'comm_member(id_comm,id_result)'),
-			'state' => array(self::BELONGS_TO, 'States', 'id_state'),
+			'state' => array(self::BELONGS_TO, 'State', 'id_state'),
 			'Constituency' => array(self::BELONGS_TO, 'Constituency', 'id_consti'),
 			'election' => array(self::BELONGS_TO, 'Election', 'id_election'),
 		);

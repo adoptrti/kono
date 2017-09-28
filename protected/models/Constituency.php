@@ -30,10 +30,10 @@
  * The followings are the available model relations:
  * @property Boothresult[] $boothresults
  * @property Boothresult[] $boothresults1
- * @property States $idState
+ * @property State $state
  * @property Constituency $idParent
  * @property Constituency[] $constituencies
- * @property States $idState2
+ * @property State $state2
  * @property ElectionPersonParty[] $electionPersonParties
  * @property Pollingbooth[] $pollingbooths
  * @property Pollingbooth[] $pollingbooths1
@@ -81,10 +81,10 @@ class Constituency extends CActiveRecord
 		return array(
 			'boothresults' => array(self::HAS_MANY, 'Boothresult', 'id_amly_consti'),
 			'boothresults1' => array(self::HAS_MANY, 'Boothresult', 'id_parl_consti'),
-			'idState' => array(self::BELONGS_TO, 'States', 'id_state'),
+			'state' => array(self::BELONGS_TO, 'State', 'id_state'),
 			'idParent' => array(self::BELONGS_TO, 'Constituency', 'id_parent'),
 			'constituencies' => array(self::HAS_MANY, 'Constituency', 'id_parent'),
-			'idState2' => array(self::BELONGS_TO, 'States', 'id_state2'),
+			'state2' => array(self::BELONGS_TO, 'State', 'id_state2'),
 			'electionPersonParties' => array(self::HAS_MANY, 'ElectionPersonParty', 'id_consti'),
 			'pollingbooths' => array(self::HAS_MANY, 'Pollingbooth', 'id_parl_consti'),
 			'pollingbooths1' => array(self::HAS_MANY, 'Pollingbooth', 'id_amly_consti'),

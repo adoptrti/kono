@@ -83,7 +83,7 @@ class AssemblyPolygon extends CActiveRecord
         return array (
                 'states' => array (
                         self::BELONGS_TO,
-                        'States',
+                        'State',
                         'id_state'
                 )
         );
@@ -175,7 +175,8 @@ class AssemblyPolygon extends CActiveRecord
                             (select count(phones) from tnresults2016 r3 where phones<>'' and r3.id_state=t.id_state) as ctr3,
                             (select count(emails) from tnresults2016 r4 where emails<>'' and r4.id_state=t.id_state) as ctr4,
                             (select count(address) from tnresults2016 r5 where address<>'' and r5.id_state=t.id_state) as ctr5,
-                            (select count(picture) from tnresults2016 r6 where picture<>'' and r6.id_state=t.id_state) as ctr6",
+                            (select count(picture) from tnresults2016 r6 where picture<>'' and r6.id_state=t.id_state) as ctr6,
+                            id_state",
                         'condition' => 'polytype=?',
                         'params' => [
                                 'AC'
@@ -192,6 +193,7 @@ class AssemblyPolygon extends CActiveRecord
                     $r->ctr4,
                     $r->ctr5,
                     $r->ctr6,
+                    $r->id_state,
             ];
         }
         return $row;

@@ -73,10 +73,11 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                 'dataProvider' => $dataProvider,
                 'columns' => [ 
                         [ 
-                                'header' => 'States',
+                                'header' => 'State',
+                                'type' => 'raw',                                 
                                 'value' => function ($data)
                                 {
-                                    return $data [0];
+                                    return CHtml::link($data [0],['state/view','id' => $data[7]]);
                                 } 
                         ],
                         [ 
