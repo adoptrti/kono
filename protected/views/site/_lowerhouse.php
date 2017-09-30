@@ -1,10 +1,12 @@
 <?php
 /* @var $this SiteController */
 /* @var $data Array */
+
+$consti = Constituency::model()->findByAttributes(['name' => strtolower($poly->pc_name_clean)]);
 ?>
 
 <div class="view lsmp">
-    <h2 class="acname"><?=__('{pcname} Lok Sabha Constituency',['{pcname}' => strtolower($poly->pc_name_clean)])?></h2>
+    <h2 class="acname"><?= CHtml::link(__('{pcname} Lok Sabha Constituency',['{pcname}' => strtolower($poly->pc_name_clean)]),['state/loksabha','id' => $consti->id_consti])?></h2>
 
     <?php
     $this->widget ( 'zii.widgets.CDetailView', 

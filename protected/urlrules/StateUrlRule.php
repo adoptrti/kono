@@ -146,6 +146,41 @@ class StateUrlRule extends CBaseUrlRule
         return $this->prefix . $lang . '/' . $url_path . '/' . $qs;
     }
     
+    public function handle_state_loksabha($manager, $route, $params, $ampersand)
+    {
+        $qs = '';
+        
+        if (! isset ( $params ['lang'] ))
+        {
+            $lang = $this->lang;
+        }
+        else
+        {
+            $lang = $params ['lang'];
+            unset ( $params ['lang'] );
+        }
+        
+        if (! isset ( $params ['id'] ))
+            return false;
+        
+        $id= $params ['id'];
+        unset ( $params ['id'] );
+        
+        $obj = Constituency::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->findByPk($id);
+        
+        if (count ( $params ))
+        {
+            $qs = "?" . http_build_query ( $params );
+        }
+        
+        if (isset ( $obj ))
+            $url_path =  'loksabha/' . $obj->slug;
+        else
+            return false;
+        
+        return $this->prefix . $lang . '/' . $url_path . '/' . $qs;
+    }
+    
     public function handle_state_town($manager, $route, $params, $ampersand)
     {
         $url_path = $qs = '';
@@ -298,6 +333,9 @@ class StateUrlRule extends CBaseUrlRule
             {
                 $dtslug = $matches['dtslug'];
                 $stateslug = $matches ['stateslug'];
+                if($stateslug == 'loksabha')
+                    return false;
+                
                 $stateobj = State::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->find (
                         'slug=:cc',
                         array (
@@ -324,9 +362,7 @@ class StateUrlRule extends CBaseUrlRule
         if (preg_match ( '/^(?<lang>\w\w)\/(?<stateslug>[\w-]*)\/assembly\/(?<amlyslug>[\w-]*)\/?$/', $pathInfo, $matches ))
         {
             if (isset ( $matches ['stateslug'] ) && isset ( $matches ['amlyslug'] ))
-            {
-                print_r($matches);
-                
+            {                
                 $amlyslug = $matches['amlyslug'];
                 $stateslug = $matches ['stateslug'];
                 $obj = Constituency::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->with ( [ 
@@ -347,6 +383,36 @@ class StateUrlRule extends CBaseUrlRule
                     $_GET ['id_consti'] = $obj->id_consti;
                     $_GET ['lang'] = $matches ['lang'];
                     return $this->prefix2 . "state/assembly";
+                }
+                else
+                    return false;
+            }
+        }
+        return false;
+    }
+        
+    public function parse_loksabha($manager, $request, $pathInfo, $rawPathInfo)
+    {
+        if (preg_match ( '/^(?<lang>\w\w)\/loksabha\/(?<amlyslug>[\w-]*)\/?$/', $pathInfo, 
+                $matches ))
+        {
+            if ( isset ( $matches ['amlyslug'] ))
+            {
+                $amlyslug = $matches ['amlyslug'];
+                $obj = Constituency::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->find ( 
+                        [ 
+                                'condition' => 't.slug=:cc and ctype=:ctype',
+                                'params' => [ 
+                                        ':ctype' => 'PARL',
+                                        ':cc' => $amlyslug 
+                                ] 
+                        ] );
+                
+                if (isset ( $obj ))
+                {
+                    $_GET ['id_consti'] = $obj->id_consti;
+                    $_GET ['lang'] = $matches ['lang'];
+                    return $this->prefix2 . "state/loksabha";
                 }
                 else
                     return false;

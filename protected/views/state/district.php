@@ -51,6 +51,36 @@ $this->menu = array (
 <h1 class="acname"><?= strtolower(__('{distname} District, {state}',['{distname}' => $model->name,'{state}' => $model->state->name])) ?></h1>
 
 <?php
+$poly = AssemblyPolygon::model ()->findAll (
+        [
+                'select' => 'pcno,pc_name_clean',
+                'group' => 'pcno,pc_name_clean',
+                'condition' => 'dist_name=:dist and id_state=:state',
+                'params' => [
+                        'state' => $model->id_state,
+                        'dist' => $model->dt_name
+                ]
+        ] );
+
+echo '<h2>' . __ ( 'Lok Sabha Parliamentary Constituency' ) . '</h2>';
+
+echo '<ol>';
+foreach ( $poly as $ac )
+{
+    if(empty($ac->pc_name_clean))
+        continue;
+    
+    $attrs= ['name' => $ac->pc_name_clean,'ctype' => 'PARL','id_state' => $model->id_state];
+    $consti = Constituency::model()->findByAttributes($attrs);
+    echo CHtml::tag ( 'li', [ ],
+            CHtml::link ( $consti->name,
+                    [
+                            'state/loksabha',
+                            'id' => $consti->id_consti
+                    ] ) );
+}
+echo '</ol>';
+
 $poly = AssemblyPolygon::model ()->findAll ( 
         [ 
                 'condition' => 'dist_name=:dist and id_state=:state and polytype=:ptype',

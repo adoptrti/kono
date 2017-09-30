@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kono\n"
-"POT-Creation-Date: 2017-09-28 22:41+0530\n"
-"PO-Revision-Date: 2017-09-28 22:46+0530\n"
+"POT-Creation-Date: 2017-09-30 12:14+0530\n"
+"PO-Revision-Date: 2017-09-30 12:14+0530\n"
 "Last-Translator: Vikas Yadav <mevikas@gmail.com>\n"
 "Language-Team: Vikas\n"
 "Language: hi\n"
@@ -144,17 +144,17 @@ msgstr "ईमेल पता"
 
 #: models/ContactForm.php:52
 msgid "Subject"
-msgstr ""
+msgstr "विषय"
 
 #: models/ContactForm.php:53
 msgid "Body"
-msgstr ""
+msgstr "तन"
 
 #: models/Election.php:70
 msgid "Election ID"
 msgstr "चुनाव आईडी"
 
-#: models/Election.php:71 models/LokSabha2014.php:95 views/site/_address.php:40
+#: models/Election.php:71 models/LokSabha2014.php:95 views/site/_address.php:49
 #: views/site/report.php:76
 msgid "State"
 msgstr "स"
@@ -399,19 +399,19 @@ msgstr "सेंट कोड"
 msgid "District"
 msgstr " ज़िला"
 
-#: views/site/_address.php:44
+#: views/site/_address.php:62
 msgid "Country"
 msgstr "देश"
 
-#: views/site/_address.php:48
+#: views/site/_address.php:66
 msgid "Latitude"
 msgstr "अक्षांश"
 
-#: views/site/_address.php:52
+#: views/site/_address.php:70
 msgid "Longitude"
 msgstr "रेखांश"
 
-#: views/site/_address.php:56
+#: views/site/_address.php:74
 msgid "Altitude"
 msgstr "ऊंचाई"
 
@@ -465,9 +465,7 @@ msgstr "हमसे संपर्क करें"
 msgid ""
 "If you have business inquiries or other questions, please fill out the following form to "
 "contact us. Thank you."
-msgstr ""
-"यदि आपके पास व्यावसायिक पूछताछ या अन्य प्रश्न हैं, तो कृपया हमसे संपर्क करने के लिए निम्न फ़ॉर्म भरें। "
-"धन्यवाद।"
+msgstr "यदि आपके पास व्यावसायिक पूछताछ या अन्य प्रश्न हैं, तो कृपया हमसे संपर्क करने के लिए निम्न फ़ॉर्म भरें। धन्यवाद।"
 
 #: views/site/contact.php:36 views/site/login.php:25
 msgid "Fields with {star} are required."
@@ -517,3 +515,114 @@ msgstr "विधायक"
 #: views/site/report.php:119
 msgid "Picture"
 msgstr "तस्वीर"
+
+#: views/state/district.php:51
+msgid "{distname} District, {state}"
+msgstr "{distname} जिला, {राज्य}"
+
+#: views/state/district.php:64
+msgid "Legislative Assemblies"
+msgstr "विधान सभाएं"
+
+#: views/state/district.php:79
+#, fuzzy
+#| msgid "Town"
+msgid "Towns"
+msgstr "कस्बा"
+
+#: views/state/district.php:89
+msgid "Cantonment Board"
+msgstr "छावनी बोर्ड"
+
+#: views/state/district.php:90 views/state/district.php:91
+msgid "City Municipal Council"
+msgstr "सिटी नगर परिषद"
+
+#: views/state/district.php:92 views/state/district.php:93
+msgid "Gram Panchayat"
+msgstr "ग्राम पंचायत"
+
+#: views/state/district.php:94
+msgid "Industrial Notified Area"
+msgstr "औद्योगिक अधिसूचित क्षेत्र"
+
+#: views/state/district.php:95 views/state/district.php:96
+msgid "Industrial Township"
+msgstr "औद्योगिक टाउनशिप"
+
+#: views/state/district.php:97 views/state/district.php:98
+msgid "Municipality"
+msgstr "नगरपालिका"
+
+#: views/state/district.php:99 views/state/district.php:100
+msgid "Municipal Board"
+msgstr "नगर निगम"
+
+#: views/state/district.php:101 views/state/district.php:102
+#, fuzzy
+#| msgid "Committee"
+msgid "Municipal Committee"
+msgstr "समिति"
+
+#: views/state/district.php:103
+msgid "mci"
+msgstr "एमसीआई"
+
+#: views/state/district.php:104
+msgid "mci+og"
+msgstr "एमसीआई + ओग"
+
+#: views/state/district.php:105 views/state/district.php:106
+msgid "Municipal Council"
+msgstr "नगर पालिका परिषद"
+
+#: views/state/district.php:107 views/state/district.php:108
+msgid "Municipal Corporation"
+msgstr "नगर निगम"
+
+#: views/state/district.php:109 views/state/district.php:110
+msgid "Notified Area"
+msgstr "अधिसूचित क्षेत्र"
+
+#: views/state/district.php:111 views/state/district.php:112
+msgid "Notified Area Committee"
+msgstr "अधिसूचित क्षेत्र समिति"
+
+#: views/state/district.php:113 views/state/district.php:114
+msgid "Nagar Parishad"
+msgstr "नगर परिषद"
+
+#: views/state/district.php:115 views/state/district.php:116
+msgid "Nagar Palika Parishad"
+msgstr "नगर पालिका परिषद"
+
+#: views/state/district.php:117
+msgid "Notified Town"
+msgstr "अधिसूचित टाउन"
+
+#: views/state/district.php:118
+#, fuzzy
+#| msgid "Committee"
+msgid "Small Town Committee"
+msgstr "समिति"
+
+#: views/state/district.php:119
+#, fuzzy
+#| msgid "Committee"
+msgid "Town Committee"
+msgstr "समिति"
+
+#: views/state/district.php:120 views/state/district.php:121
+msgid "Town Municipal Council"
+msgstr "नगर नगर परिषद"
+
+#: views/state/district.php:122 views/state/district.php:123
+msgid "Town Panchayat"
+msgstr "नगर पंचायत"
+
+#: views/state/view.php:50
+#, fuzzy
+#| msgid "District"
+msgid "Districts"
+msgstr " ज़िला"
+
