@@ -33,7 +33,9 @@ class AssemblyPolygon extends CActiveRecord
     var $ctr4;
     var $ctr5;
     var $ctr6;
-
+    var $ctr7;
+    var $ctr8;
+    
     /**
      *
      * @return string the associated database table name
@@ -176,6 +178,8 @@ class AssemblyPolygon extends CActiveRecord
                             (select count(emails) from tnresults2016 r4 where emails<>'' and r4.id_state=t.id_state) as ctr4,
                             (select count(address) from tnresults2016 r5 where address<>'' and r5.id_state=t.id_state) as ctr5,
                             (select count(picture) from tnresults2016 r6 where picture<>'' and r6.id_state=t.id_state) as ctr6,
+                            (select count(distinct id_city) from municipalresults r7 join towns2011 r7t on r7t.id_place=r7.id_city and r7t.tvtype in ('mcorp','mcorp+og') where r7t.id_state=t.id_state) as ctr7,
+                            (select count(*) from towns2011 r8 where r8.tvtype in ('mcorp','mcorp+og') and r8.id_state=t.id_state) as ctr8,
                             id_state",
                         'condition' => 'polytype=?',
                         'params' => [
@@ -193,6 +197,8 @@ class AssemblyPolygon extends CActiveRecord
                     $r->ctr4,
                     $r->ctr5,
                     $r->ctr6,
+                    $r->ctr7,
+                    $r->ctr8,
                     $r->id_state,
             ];
         }

@@ -77,7 +77,7 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                                 'type' => 'raw',                                 
                                 'value' => function ($data)
                                 {
-                                    return CHtml::link($data [0],['state/view','id' => $data[7]]);
+                                    return CHtml::link($data [0],['state/view','id' => $data[count($data)-1]]);
                                 } 
                         ],
                         [ 
@@ -121,6 +121,14 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                                 {
                                     return $data [6];
                         }
+                        ],
+                        [ 
+                                'header' => __ ( 'M Corp' ),
+                                'value' => function ($data)
+                                {
+                                    if(!empty($data[8]))
+                                        return $data [7] . '/' . $data[8];
+                                } 
                         ],
                         ] 
         ] );
