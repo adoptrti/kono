@@ -40,4 +40,17 @@ $this->menu=array(
 		'slug',
 		'mcorp_count',
 	),
-)); ?>
+));
+
+$districts = Town::model()->findAll([
+        'condition' => 'dt_code>0 and sdt_code=0 and tv_code=0 and id_state=?',
+        'select' => 'distinct name,id_place',
+        'params' => [$model->id_state]
+]);
+echo '<h2>' . __('Districts') . '</h2>';
+echo '<ol>';
+foreach($districts as $district)
+{
+    echo CHtml::tag('li',[],CHtml::link($district->name,['state/district','id' => $district->id_place]));
+}
+echo '</ol>';

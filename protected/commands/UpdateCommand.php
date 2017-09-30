@@ -10,10 +10,11 @@ class UpdateCommand extends CConsoleCommand
     function makeslug($str)
     {
         $mats = [ ];
-        if (preg_match ( '/(?<bad>[^\'\s-\.\w,\(\)&]+)/', $str, $mats ))
+        if (preg_match ( '/(?<bad>[^\|\"\@\'\[\]\\\+\s-;\*\:\.\/\w,\(\)&]+)/', $str, $mats ))
         {
             print_r ( $mats );
-            die ( 'found invalid char for in:' . $str );
+            echo 'found invalid char for in:' . $str ;
+            return false;
         }
 
         $str = str_replace("'", '',$str);
@@ -21,11 +22,27 @@ class UpdateCommand extends CConsoleCommand
         $slug1 = strtolower (
                 str_replace (
                         [
+                                ';',
+                                '*',
+                                ':',
+                                '|',
+                                '"',                                
+                                '@',
+                                '[',
+                                ']',
+                                '(',
+                                ')',
+                                '\\',
+                                '/',
+                        ], '', trim ( $str ) ) );
+        
+        $slug1 = strtolower (
+                str_replace (
+                        [
+                                '+',
                                 ',',
                                 '.',
                                 ' ',
-                                '(',
-                                ')',
                                 '&'
                         ], '-', trim ( $str ) ) );
 
@@ -36,7 +53,7 @@ class UpdateCommand extends CConsoleCommand
     }
 
     public function actionSlug()
-    {
+    {/*
         $rs = Constituency::model ()->findAll ();
         foreach ( $rs as $r )
         {
@@ -65,6 +82,87 @@ class UpdateCommand extends CConsoleCommand
             $r->update ( [
                     'slug'
             ] );
+        }
+          */  
+        
+        $pc=0;
+            // 201709291310:Kovai:thevikas
+        /*while ( Place::model ()->count (  
+                ['condition' => 'slug is null and sdt_code=0 and tv_code=0 and id_place2>?','order' => 'id_place2','params' => [$pc]] 
+         ) > 0 )
+        {
+            echo "Starting $pc\n";
+            $rs = Place::model ()->findAll ( 
+                    [ 
+                            'select' => 'id_place2,name',
+                            'condition' => 'slug is null AND dt_code>0 and sdt_code=0 and tv_code=0 and id_place2>?',
+                            //'limit' => 5000,
+                            'params' => [$pc]
+                    ] );
+            if (count ( $rs ))
+            {
+                foreach ( $rs as $r )
+                {
+                    $pc = $r->id_place2;
+                    $r->slug = $this->makeslug ( $r->name );
+                    #echo sprintf ( "%5d\t%50s\t%50s\n", $r->id_place2, $r->name, $r->slug );
+                    try {
+                    $r->update ( [ 
+                            'slug' 
+                    ] );
+                    } catch(CDbException $e)
+                    {
+                        if(preg_match('/Integrity constraint violation/',$e->getMessage()));
+                        else 
+                            throw new Exception($e);
+                    }
+                }
+            }
+        }*/
+        
+        $pc=0;
+        // 201709291310:Kovai:thevikas
+        while ( Town::model ()->count (
+                ['condition' => 'slug is null and id_place>?','order' => 'id_place','params' => [$pc]]
+                ) > 0 )
+        {
+            echo "Starting $pc\n";
+            $rs = Town::model ()->findAll (
+                    [
+                            'select' => 'id_place,name,tv_code',
+                            'condition' => 'slug is null and id_place>?',
+                            'order' => 'id_place',
+                            //'limit' => 5000,
+                            'params' => [$pc]
+                    ] );
+            if (count ( $rs ))
+            {
+                foreach ( $rs as $r )
+                {
+                    $pc = $r->id_place;
+                    if($r->tv_code==0)
+                        continue;
+                    $pc = $r->id_place;
+                    $r->slug = $this->makeslug ( $r->name );
+                    if($r->slug === false)
+                        continue;
+                    
+                    echo sprintf ( "%5d\t%50s\t%50s\n", $r->id_place, $r->name, $r->slug );
+                    try {
+                        $r->update ( [
+                                'slug'
+                        ] );
+                    } catch(CDbException $e)
+                    {
+                        if(preg_match('/Integrity constraint violation/',$e->getMessage()))
+                        {
+                            echo $e->getMessage()  . "\n\n";
+                        }
+                        else
+                            throw new Exception($e);
+                    }
+                }
+            }
         }
     }
 

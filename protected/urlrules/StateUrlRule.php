@@ -65,6 +65,126 @@ class StateUrlRule extends CBaseUrlRule
         
         return $this->prefix . $lang . '/' . $state_slug . '/' . $qs;
     }
+    
+    public function handle_state_district($manager, $route, $params, $ampersand)
+    {
+        $qs = '';
+        
+        if (! isset ( $params ['lang'] ))
+        {
+            $lang = $this->lang;
+        }
+        else
+        {
+            $lang = $params ['lang'];
+            unset ( $params ['lang'] );
+        }
+        
+        if (! isset ( $params ['id'] ))
+        {
+            return $this->prefix . $lang . '/district/all';
+        }
+        else
+        {
+            $id_district= $params ['id'];
+            unset ( $params ['id'] );
+        }
+        
+        $obj = Town::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->findByPk ($id_district);
+        
+        if (count ( $params ))
+        {
+            $qs = "?" . http_build_query ( $params );
+        }
+        
+        if (isset($obj))
+            $url_path = strtolower ( $obj->state->slug ) . '/' . $obj->slug;
+        else
+            return false;
+                
+        return $this->prefix . $lang . '/' . $url_path. '/' . $qs;
+    }
+    
+    public function handle_state_assembly($manager, $route, $params, $ampersand)
+    {
+        $qs = '';
+        
+        if (! isset ( $params ['lang'] ))
+        {
+            $lang = $this->lang;
+        }
+        else
+        {
+            $lang = $params ['lang'];
+            unset ( $params ['lang'] );
+        }
+        
+        if (! isset ( $params ['acno'] ) || ! isset ( $params ['id_state'] ))
+            return false;
+        
+            $acno = $params ['acno'];
+            unset ( $params ['acno'] );
+            $id_state = $params ['id_state'];
+            unset ( $params ['id_state'] );
+            
+        $obj = Constituency::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->findByAttributes([
+                'id_state' => $id_state,
+                'eci_ref' => $acno,
+                'ctype' => 'AMLY',
+        ]);
+        
+        if (count ( $params ))
+        {
+            $qs = "?" . http_build_query ( $params );
+        }
+        
+        if (isset ( $obj ))
+            $url_path = strtolower ( $obj->state->slug ) . '/assembly/' . $obj->slug;
+        else
+            return false;
+        
+        return $this->prefix . $lang . '/' . $url_path . '/' . $qs;
+    }
+    
+    public function handle_state_town($manager, $route, $params, $ampersand)
+    {
+        $url_path = $qs = '';
+        
+        if (! isset ( $params ['lang'] ))
+        {
+            $lang = $this->lang;
+        }
+        else
+        {
+            $lang = $params ['lang'];
+            unset ( $params ['lang'] );
+        }
+        
+        if (! isset ( $params ['id_place'] ))
+            return false;
+        
+        $id_place = $params ['id_place'];
+        unset ( $params ['id_place'] );
+        
+        if (count ( $params ))
+        {
+            $qs = "?" . http_build_query ( $params );
+        }
+        
+        $obj = Town::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->findByPk($id_place);        
+        
+        if (isset ( $obj ))
+        {
+            if($obj->district)
+            {
+                $url_path = strtolower ( $obj->state->slug ) . '/' . $obj->district->slug . '/' . $obj->slug;
+            }
+        }
+        else
+            return false;
+
+        return $this->prefix . $lang . '/' . $url_path . '/' . $qs;
+    }
 
     function __construct()
     {
@@ -144,7 +264,7 @@ class StateUrlRule extends CBaseUrlRule
 
     public function parse_state($manager, $request, $pathInfo, $rawPathInfo)
     {
-        if (preg_match ( '/^(?<lang>\w\w)\/(?<stateslug>[\w-]*)/', $pathInfo, $matches ))
+        if (preg_match ( '/^(?<lang>\w\w)\/(?<stateslug>[\w-]*)\/?$/', $pathInfo, $matches ))
         {
             if (isset ( $matches ['stateslug'] ))
             {
@@ -162,6 +282,71 @@ class StateUrlRule extends CBaseUrlRule
                     $_GET ['lang'] = $matches ['lang'];
                     
                     return $this->prefix2 . "state/view";
+                }
+                else
+                    return false;
+            }
+        }
+        return false;
+    }
+    
+    public function parse_district($manager, $request, $pathInfo, $rawPathInfo)
+    {
+        if (preg_match ( '/^(?<lang>\w\w)\/(?<stateslug>[\w-]*)\/(?<dtslug>[\w-]*)\/?$/', $pathInfo, $matches ))
+        {
+            if (isset ( $matches ['stateslug'] ) && isset ( $matches ['dtslug'] ))
+            {
+                $dtslug = $matches['dtslug'];
+                $stateslug = $matches ['stateslug'];
+                $stateobj = State::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->find (
+                        'slug=:cc',
+                        array (
+                                ':cc' => $stateslug
+                        ) );
+                $dtobj = Town::model()->findByAttributes(['id_state' => $stateobj->id_state,'slug' => $dtslug,'sdt_code' => 0, 'tv_code' => 0]);
+                
+                if (isset ( $stateobj ) && isset ( $dtobj ))
+                {
+                    $_GET ['id_state'] = $stateobj->id_state;
+                    $_GET ['id'] = $dtobj->id_place;
+                    $_GET ['lang'] = $matches ['lang'];                        
+                    return $this->prefix2 . "state/district";
+                }
+                else
+                    return false;
+            }
+        }
+        return false;
+    }
+    
+    public function parse_assembly($manager, $request, $pathInfo, $rawPathInfo)
+    {
+        if (preg_match ( '/^(?<lang>\w\w)\/(?<stateslug>[\w-]*)\/assembly\/(?<amlyslug>[\w-]*)\/?$/', $pathInfo, $matches ))
+        {
+            if (isset ( $matches ['stateslug'] ) && isset ( $matches ['amlyslug'] ))
+            {
+                print_r($matches);
+                
+                $amlyslug = $matches['amlyslug'];
+                $stateslug = $matches ['stateslug'];
+                $obj = Constituency::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->with ( [ 
+                        'state' 
+                ] )->find ( 
+                        [ 
+                                'condition' => 't.slug=:cc and state.slug=:scc and ctype=:ctype',
+                                'params' => [ 
+                                        ':ctype' => 'AMLY',
+                                        ':cc' => $stateslug,
+                                        ':scc' => $amlyslug 
+                                ] 
+                        ] );
+                
+                if (isset ( $obj))
+                {
+                    $_GET ['id_state'] = $obj->id_state;
+                    $_GET ['id_consti'] = $obj->id_consti;
+                    $_GET ['lang'] = $matches ['lang'];
+                    return $this->prefix2 . "state/assembly";
                 }
                 else
                     return false;

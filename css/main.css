@@ -228,7 +228,7 @@ div.search-form
 	background: #80CFFF;
 }
 
-h2.acname
+h1.acname, h2.acname
 {
 	text-transform: capitalize;
 }

@@ -34,7 +34,16 @@
                             ],
                             [ 
                                     'label' => __ ( 'District' ),
-                                    'name' => 'district' 
+                                    'name' => 'district',
+                                    'type' => 'raw',
+                                    'value' => function($data)
+                                    {
+                                        $st = Town::model()->findByAttributes(['name' => $data->district,'dt_name' =>  $data->district,'sdt_name' =>  0,'tv_code' => 0]);
+                                        if($st)
+                                            return CHtml::link($st->name,['state/district','id' => $st->id_place]);
+                                        else
+                                            return $data->district;
+                                    }
                             ],
                             [ 
                                     'label' => __ ( 'State' ),
