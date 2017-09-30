@@ -2,47 +2,53 @@
         .tools a {
             color: white;
         }
-        
+
         .googlecontainer {
             height: 100vh;
             max-height: 600px;
             xwidth: 95%;
             margin: auto;
         }
-        
-        #pac-input {
-            width: 250px;
-            height: 40px;
-            xmargin-top: 10px;
-            border: 1px solid;
-            xpadding-left: 10px;
-        }
-        
+
         #googlemaps {
             width: 100%;
             height: 500px;
         }
-        
+
         @media all and (max-width: 767px) {
             br {
                 display: block;
             }
         }
     </style>
-    
+
 <script src="//maps.googleapis.com/maps/api/js?key=<?= Yii::app()->params['google-api-key']?>&libraries=places&language=<?=Yii::app()->language?>"></script>
-    
-<input id="pac-input" class="controls" type="text" placeholder="<?=__('Type city, zip or address here..')?>">
+<link rel="stylesheet" href="/css/listing.css" type="text/css"/>
+<link rel='stylesheet' id='bizfinder_elated_google_fonts-css'  href='http://fonts.googleapis.com/css?family=Quicksand%3A300%2C400%2C500%2C600%2C700%2C800%2C900%7COpen+Sans%3A300%2C400%2C500%2C600%2C700%2C800%2C900%7COpen+Sans%3A300%2C400%2C500%2C600%2C700%2C800%2C900&#038;subset=latin-ext&#038;ver=1.0.0' type='text/css' media='all' />
+
+<div id="askaddress">
+    <div class="box2">
+        <div class="fieldbox">
+            <input type="text" class="controls" id="addrbox" placeholder="<?= __('Go to an address') ?>">
+        </div>
+        <?php /*<div class="buttonbox">
+            <button type="submit">
+                <span class="eltd-btn-text">
+                    SEARCH
+                </span>
+            </button>
+        </div>*/ ?>
+    </div>
+</div>
+
 <div id="googlemaps"></div>
 <script language='Javascript' type="text/javascript" src="/js/gmaprunner.js"></script>
-<?php 
+<?php
 $json = str_replace("'","",json_encode($data0));
 Yii::app()->clientScript->registerScript('dd1', <<<DD1
-        
     $.get( "/site/placeinfo",{t: 'json2',data:'$json'}, function( data ) {
 		$( "#result" ).html( data );
 	});
-
 DD1
 ,CClientScript::POS_READY);
 ?>
