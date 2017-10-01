@@ -9,14 +9,17 @@ class UpdateCommand extends CConsoleCommand
 {
     function makeslug($str)
     {
+        $str = trim($str);
         $mats = [ ];
-        if (preg_match ( '/(?<bad>[^\|\"\@\'\[\]\\\+\s-;\*\:\.\/\w,\(\)&]+)/', $str, $mats ))
+        $str = preg_replace( '/[^\|\"\@\'\[\]\\\+\s-;\*\:\.\/\w,\(\)&]+/', '', $str);
+        
+        if (preg_match_all ( '/(?<bad>[^\|\"\@\'\[\]\\\+\s-;\*\:\.\/\w,\(\)&]+)/', $str, $mats ))
         {
             print_r ( $mats );
-            echo 'found invalid char for in:' . $str ;
+            echo 'found invalid char [' . $mats ['bad'] . '] for in:' . $str;
             return false;
         }
-
+        
         $str = str_replace("'", '',$str);
 
         $slug1 = strtolower (
@@ -53,14 +56,56 @@ class UpdateCommand extends CConsoleCommand
     }
 
     public function actionSlug()
-    {/*
+    {
+        
+        $rs = LokSabha2014::model ()->findAll ();
+        foreach ( $rs as $r )
+        {
+            $r->slug = $this->makeslug($r->name);
+            $r->name = ucwords(strtolower($r->name));
+            echo sprintf ( "%50s\t%50s\n", $r->name, $r->slug );
+            $r->update ( [
+                    'slug','name',
+            ] );
+        }
+        
+        $rs = MunicipalResults::model ()->findAll ();
+        foreach ( $rs as $r )
+        {
+            $r->slug = $this->makeslug($r->name);
+            $r->name = ucwords(strtolower($r->name));
+            echo sprintf ( "%50s\t%50s\n", $r->name, $r->slug );
+            $r->update ( [
+                    'slug','name',
+            ] );
+        }
+        
+        $rs = TamilNaduResults2016::model ()->findAll ();
+        foreach ( $rs as $r )
+        {
+            $r->slug = $this->makeslug($r->name);
+            $r->name = ucwords(strtolower($r->name));
+            echo sprintf ( "%50s\t%50s\n", $r->name, $r->slug );
+            try {
+            $r->update ( [
+                    'slug','name',
+            ] );
+            }
+            catch(CDbException $e)
+            {
+                if(!preg_match('/1366 Incorrect string value/',$e->getMessage()))
+                    throw new Exception($e);
+            }
+        }
+        
         $rs = Constituency::model ()->findAll ();
         foreach ( $rs as $r )
         {
             $r->slug = $this->makeslug($r->name);
+            $r->name = ucwords(strtolower($r->name));
             echo sprintf ( "%50s\t%50s\n", $r->name, $r->slug );
             $r->update ( [
-                    'slug'
+                    'slug','name',
             ] );
         }
 
@@ -68,9 +113,10 @@ class UpdateCommand extends CConsoleCommand
         foreach ( $rs as $r )
         {
             $r->slug = $this->makeslug($r->name);
+            $r->name = ucwords(strtolower($r->name));
             echo sprintf ( "%50s\t%50s\n", $r->name, $r->slug );
             $r->update ( [
-                    'slug'
+                    'slug','name',
             ] );
         }
         #201709272330:Kovai:thevikas
@@ -78,12 +124,13 @@ class UpdateCommand extends CConsoleCommand
         foreach ( $rs as $r )
         {
             $r->slug = $this->makeslug($r->name);
+            $r->name = ucwords(strtolower($r->name));
             echo sprintf ( "%50s\t%50s\n", $r->name, $r->slug );
             $r->update ( [
-                    'slug'
+                    'slug','name',
             ] );
         }
-          */  
+         
         
         $pc=0;
             // 201709291310:Kovai:thevikas
@@ -123,16 +170,16 @@ class UpdateCommand extends CConsoleCommand
         $pc=0;
         // 201709291310:Kovai:thevikas
         while ( Town::model ()->count (
-                ['condition' => 'slug is null and id_place>?','order' => 'id_place','params' => [$pc]]
+                ['condition' => 'id_place>?','order' => 'id_place','params' => [$pc]]
                 ) > 0 )
         {
             echo "Starting $pc\n";
             $rs = Town::model ()->findAll (
                     [
                             'select' => 'id_place,name,tv_code',
-                            'condition' => 'slug is null and id_place>?',
+                            'condition' => 'id_place>?',
                             'order' => 'id_place',
-                            //'limit' => 5000,
+                            'limit' => 10000,
                             'params' => [$pc]
                     ] );
             if (count ( $rs ))
@@ -144,17 +191,20 @@ class UpdateCommand extends CConsoleCommand
                         continue;
                     $pc = $r->id_place;
                     $r->slug = $this->makeslug ( $r->name );
+                    $r->name = ucwords(strtolower($r->name));
                     if($r->slug === false)
                         continue;
                     
                     echo sprintf ( "%5d\t%50s\t%50s\n", $r->id_place, $r->name, $r->slug );
                     try {
                         $r->update ( [
-                                'slug'
+                                'slug','name',
                         ] );
                     } catch(CDbException $e)
                     {
-                        if(preg_match('/Integrity constraint violation/',$e->getMessage()))
+                        
+                        if(preg_match('/1366 Incorrect string value/',$e->getMessage()) ||
+                           preg_match('/Integrity constraint violation/',$e->getMessage()))
                         {
                             echo $e->getMessage()  . "\n\n";
                         }
