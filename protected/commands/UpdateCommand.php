@@ -103,9 +103,13 @@ class UpdateCommand extends CConsoleCommand
         {
             $r->slug = $this->makeslug($r->name);
             $r->name = ucwords(strtolower($r->name));
+            
+            if(empty($r->name_clean))
+                $r->name_clean = preg_replace( '/^([^\(]+)/','$1', $r->name);
+            
             echo sprintf ( "%50s\t%50s\n", $r->name, $r->slug );
             $r->update ( [
-                    'slug','name',
+                    'slug','name','name_clean'
             ] );
         }
 
@@ -298,6 +302,14 @@ class UpdateCommand extends CConsoleCommand
         updateActionKarnataka();
     }
 
+    /**
+     * Not directly from website. Needs cleaning.
+     */
+    public function actionKonoHaryana()
+    {
+        require_once __DIR__ . '/update/updateActionHaryana.php';
+        updateActionHaryana();
+    }
 }
 
 function reducer($carry, $item)

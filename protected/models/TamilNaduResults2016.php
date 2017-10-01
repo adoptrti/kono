@@ -16,7 +16,7 @@
  * @property string $address
  * @property string $phones
  * @property string $emails
- * @property integer $ST_CODE
+ * @property integer $st_code
  * @property string $picture
  */
 class TamilNaduResults2016 extends CActiveRecord
@@ -38,12 +38,12 @@ class TamilNaduResults2016 extends CActiveRecord
 	    // will receive user inputs.
 	    return array(
 	            array('id_election,acno,id_state,name', 'required'),
-	            array('id_election, id_state, id_consti, acno, ST_CODE', 'numerical', 'integerOnly'=>true),
+	            array('id_election, id_state, id_consti, acno, st_code', 'numerical', 'integerOnly'=>true),
 	            array('acname, name, party, address, phones, emails, picture', 'length', 'max'=>255),
 	            array('gender', 'length', 'max'=>6),
 	            // The following rule is used by search().
 	            // @todo Please remove those attributes that should not be searched.
-	            array('id_result, id_election, id_state, id_consti, acname, acno, name, gender, party, address, phones, emails, ST_CODE', 'safe', 'on'=>'search'),
+	            array('id_result, id_election, id_state, id_consti, acname, acno, name, gender, party, address, phones, emails, st_code', 'safe', 'on'=>'search'),
 	    );
 	}
 

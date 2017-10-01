@@ -2,6 +2,20 @@
 
 A Geo-location app for showing administrative, emergency and political information about this place. It starts the map with your current location. Showing the information that belongs to the current location. You can move the map pointer to find local information of that place.
 
+## Background
+
+The project is for bringing technology driven awareness of the government that works for us around us all. Besides just a few politician names, the density of this information is normally totally absent from the citizens. This information is not for just increasing our knowledge (and look smarter during political arguments), but to make us act on it. Get us accurate contact details of the administrative staff that is available for us to ask help from. To help us citizens get information, distance, direction of about nearest available emergency services based on my physical location. Not just for Urban users but more importantly for Rural users. Have realtime immediate access to addresses, phones and names of Officers for various essential departments. Also know the full details of Public Information Officer for these departments and the First Appellate. 
+
+It will start as a mobile friendly web app running on browsers of desktops or mobiles. The prototype is already ready to use without the need for registrations. It also supports multiple languages, starting with English and Hindi. Some part of data is already available with GIS polygons. Some part needs to be cleaned up for use. Most data has to be fetched. This is a country-wide project.
+
+## Roadmap
+
+### First Phase
+The first phase to launch by year end (December 2017). It will include all the government elected officials in state assemblies, and lok sabha. Will have Names, Phones and Office Address of all I.A.S. District Commissioners, Health, Sanitary, Education, Election Staff. Will also have geo-mapped major government hospitals for each 700+ districts. Geo-mapped distances to nearest state and national highways.
+### Further
+
+The later phases will go deeper to map block and village level government officers. Also on reaching more language UIs. Also include rural health centers and much more data.
+
 ## What does this app do?
 
 It is supposed to bring your government to you.
