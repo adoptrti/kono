@@ -10,6 +10,7 @@
  * @property string $acname
  * @property integer $acno
  * @property string $name
+ * @property string $slug
  * @property string $gender
  * @property string $party
  * @property string $address

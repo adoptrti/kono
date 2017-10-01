@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'States'=>array('index'),
-	$model->name,
+	ucwords(strtolower( $model->name)),
 );
 
 $this->menu=array(
@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>View State #<?php echo $model->id_state; ?></h1>
+<h1><?php echo $model->name; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

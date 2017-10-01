@@ -169,7 +169,9 @@ else
         <div id="footer">
 		<?=__('Copyright &copy; {year} by Vikas Yadav.',['{year}' => date('Y')])?><br />
 		<?=__('All Rights Reserved.')?><br />
-		<?=CHtml::link(__('Disclaimer'),['site/page','view' => 'disclaimer']) ?>
+		<?=CHtml::link(__('Disclaimer'),['site/page','view' => 'disclaimer']) ?><br/>
+        <?=__('Made with {heart} in Coimbatore',['{heart}' => '<i class="fa fa-heart"></i>'])?><br/> 
+        <?=`git describe --tags --abbrev=0`?> <i class="fa fa-calendar"></i> <?=`git log --pretty="%ci" -n1 HEAD`?>
 	</div>
         <!-- footer -->
 

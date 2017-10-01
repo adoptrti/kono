@@ -12,6 +12,7 @@
  * @property string $state
  * @property integer $sno
  * @property string $name
+ * @property string $slug
  * @property string $p_address1
  * @property string $p_address2
  * @property string $COL9

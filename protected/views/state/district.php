@@ -2,8 +2,8 @@
 /* @var $this StateController */
 /* @var $model Town */
 $this->breadcrumbs = array (
-        'States' => array (
-                'index' 
+        ucfirst(strtolower($model->state->name)) => array (
+                'state/view','id' => $model->state->id_state, 
         ),
         $model->name 
 );

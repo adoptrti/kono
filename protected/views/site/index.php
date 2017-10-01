@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="/css/listing.css" type="text/css"/>
+<link rel='stylesheet' id='bizfinder_elated_google_fonts-css'  href='http://fonts.googleapis.com/css?family=Quicksand%3A300%2C400%2C500%2C600%2C700%2C800%2C900%7COpen+Sans%3A300%2C400%2C500%2C600%2C700%2C800%2C900%7COpen+Sans%3A300%2C400%2C500%2C600%2C700%2C800%2C900&#038;subset=latin-ext&#038;ver=1.0.0' type='text/css' media='all' />
+<script src="//maps.googleapis.com/maps/api/js?key=<?= Yii::app()->params['google-api-key']?>&libraries=places&language=<?=Yii::app()->language?>"></script>
 <style>
         .tools a {
             color: white;
@@ -20,24 +23,13 @@
                 display: block;
             }
         }
-    </style>
-
-<script src="//maps.googleapis.com/maps/api/js?key=<?= Yii::app()->params['google-api-key']?>&libraries=places&language=<?=Yii::app()->language?>"></script>
-<link rel="stylesheet" href="/css/listing.css" type="text/css"/>
-<link rel='stylesheet' id='bizfinder_elated_google_fonts-css'  href='http://fonts.googleapis.com/css?family=Quicksand%3A300%2C400%2C500%2C600%2C700%2C800%2C900%7COpen+Sans%3A300%2C400%2C500%2C600%2C700%2C800%2C900%7COpen+Sans%3A300%2C400%2C500%2C600%2C700%2C800%2C900&#038;subset=latin-ext&#038;ver=1.0.0' type='text/css' media='all' />
+</style>
 
 <div id="askaddress">
     <div class="box2">
         <div class="fieldbox">
             <input type="text" class="controls" id="addrbox" placeholder="<?= __('Go to an address') ?>">
         </div>
-        <?php /*<div class="buttonbox">
-            <button type="submit">
-                <span class="eltd-btn-text">
-                    SEARCH
-                </span>
-            </button>
-        </div>*/ ?>
     </div>
 </div>
 

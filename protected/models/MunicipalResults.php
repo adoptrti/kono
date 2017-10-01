@@ -7,6 +7,7 @@
  * @property string $city
  * @property integer $wardno
  * @property string $name
+ * @property string $slug
  * @property string $party
  * @property string $phone
  * @property string $address

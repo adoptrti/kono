@@ -51,8 +51,13 @@ class StateController extends Controller
 	 */
 	public function actionView($id)
 	{
+	    $state = $this->loadModel($id);
+	    if(!$state)
+	        return false;
+	        
+        $this->pageTitle = ucwords(strtolower($state->name));
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=> $state
 		));
 	}
 
@@ -62,8 +67,13 @@ class StateController extends Controller
 	 */
 	public function actionDistrict($id_state,$id)
 	{
+	    $town = Town::model()->findByPk($id);
+	    if(!$town)
+	        return false;
+	    
+        $this->pageTitle = __('{dist} District, {state}',['{dist}' => ucwords($town->name),'{state}' => ucwords(strtolower($town->state->name))]);
 	    $this->render('district',array(
-			'model'=> Town::model()->findByPk($id),
+			'model'=> $town,
 		));
 	}
 
