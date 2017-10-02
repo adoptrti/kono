@@ -45,7 +45,7 @@ class SiteController extends Controller
     {
         // renders the view file 'protected/views/site/index.php'
         // using the default layout 'protected/views/layouts/main.php'
-        if (empty ( $_POST ['address'] ))
+        if (0 && empty ( $_POST ['address'] ))
         {
             $this->layout = false;
             $this->render ( 'fetchlocation' );
@@ -81,7 +81,7 @@ class SiteController extends Controller
                     [speed] => 
                 )
              */
-            $data = [json_decode($_POST['address']),json_decode($_POST['coords'])];
+            $data = [];// [json_decode($_POST['address']),json_decode($_POST['coords'])];
             $this->render ( 'index' ,['data0' => $data]);
         }
     }
