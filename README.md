@@ -88,6 +88,8 @@ More than developing the software, we need to collect and cleanup data that we h
 1. Markets:
 
 ## Updates
+* **02-Oct-2017** - Goa and Orissa assembly data with just Names added
+* **01-Oct-2017** - Haryana (only names) data added, starte showing	content	with neat URLs and better homepage (v 0.5)
 * **28-Sep-2017** - **Multilingual** setup done, starting with Hindi. Also CRUD and **neater URLs** started (v 0.4)
 * **27-Sep-2017** - Chhattisgarh (without emails) assembly members and their **Committees** added (v 0.3)
 * **24-Sep-2017** - Himachal Pradesh, Sikkim (Names only) and Kerala (without address) assembly members with **Pictures** added (v 0.2)

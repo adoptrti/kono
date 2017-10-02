@@ -28,7 +28,7 @@ Yii::app ()->clientScript->registerCoreScript ( 'bootstrap' );
 <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
-<body>
+<body id="main">
     <!-- Global Site Tag (gtag.js) - Google Analytics -->
     <script async
         src="https://www.googletagmanager.com/gtag/js?id=<?=Yii::app()->params['google-tracking-id']?>"></script>
@@ -38,11 +38,20 @@ Yii::app ()->clientScript->registerCoreScript ( 'bootstrap' );
   gtag('js', new Date());
   gtag('config', '<?=Yii::app()->params['google-tracking-id']?>');
 </script>
+    <script async src="//platform.twitter.com/widgets.js"
+        charset="utf-8"></script>
 
     <div class="container" id="page">
 
         <div id="header">
+            <div style="float:right; margin-top: 20px;">
+                <a href="https://twitter.com/adoptrti?ref_src=twsrc%5Etfw"
+                    class="twitter-follow-button" data-show-count="false">Follow
+                    @adoptrti</a>
+            </div>
+
             <div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+
         </div>
         <!-- header -->
 
@@ -166,17 +175,21 @@ else
 
 	<div class="clear"></div>
 
-        <div id="footer">
-		<?=__('Copyright &copy; {year} by Vikas Yadav.',['{year}' => date('Y')])?><br />
-		<?=__('All Rights Reserved.')?><br />
-		<?=CHtml::link(__('Disclaimer'),['site/page','view' => 'disclaimer']) ?><br/>
-        <?=__('Made with {heart} in Coimbatore',['{heart}' => '<i class="fa fa-heart"></i>'])?><br/> 
-        <?=`git describe --tags --abbrev=0`?> <i class="fa fa-calendar"></i> <?=`git log --pretty="%ci" -n1 HEAD`?>
-	</div>
         <!-- footer -->
 
     </div>
     <!-- page -->
+
+    <div id="footer">
+        <p><?=__('Made with {heart} in Coimbatore',['{heart}' => '<i class="fa fa-heart"></i>'])?></p>
+        <p class="d"> 
+        <?=`git describe --tags --abbrev=0`?> <i class="fa fa-calendar"></i> <?=`git log --pretty="%ci" -n1 HEAD`?>
+        </p>
+        <p>
+                <?=__('Copyright &copy; {year} by Vikas Yadav.',['{year}' => date('Y')])?> <?=__('All Rights Reserved.')?> <?=CHtml::link(__('Disclaimer'),['site/page','view' => 'disclaimer']) ?><br />
+        </p>
+
+    </div>
 
 </body>
 </html>
