@@ -19,14 +19,14 @@
  * @property integer $st_code
  * @property string $picture
  */
-class TamilNaduResults2016 extends CActiveRecord
+class AssemblyResults extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'tnresults2016';
+		return 'assemblyresults';
 	}
 
 	/**
@@ -104,7 +104,7 @@ class TamilNaduResults2016 extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return TamilNaduResults2016 the static model class
+	 * @return AssemblyResults the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

@@ -62,14 +62,14 @@ class AssemblyresultsController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new TamilNaduResults2016;
+		$model=new AssemblyResults;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['TamilNaduResults2016']))
+		if(isset($_POST['AssemblyResults']))
 		{
-			$model->attributes=$_POST['TamilNaduResults2016'];
+			$model->attributes=$_POST['AssemblyResults'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id_result));
 		}
@@ -91,9 +91,9 @@ class AssemblyresultsController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['TamilNaduResults2016']))
+		if(isset($_POST['AssemblyResults']))
 		{
-			$model->attributes=$_POST['TamilNaduResults2016'];
+			$model->attributes=$_POST['AssemblyResults'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id_result));
 		}
@@ -122,7 +122,7 @@ class AssemblyresultsController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('TamilNaduResults2016');
+		$dataProvider=new CActiveDataProvider('AssemblyResults');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +133,10 @@ class AssemblyresultsController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new TamilNaduResults2016('search');
+		$model=new AssemblyResults('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['TamilNaduResults2016']))
-			$model->attributes=$_GET['TamilNaduResults2016'];
+		if(isset($_GET['AssemblyResults']))
+			$model->attributes=$_GET['AssemblyResults'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -147,12 +147,12 @@ class AssemblyresultsController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return TamilNaduResults2016 the loaded model
+	 * @return AssemblyResults the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=TamilNaduResults2016::model()->findByPk($id);
+		$model=AssemblyResults::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -160,7 +160,7 @@ class AssemblyresultsController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param TamilNaduResults2016 $model the model to be validated
+	 * @param AssemblyResults $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{

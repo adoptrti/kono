@@ -9,7 +9,7 @@
         echo CHtml::image('/images/pics/' . $data->picture,$data->name,['class' => 'picture amly']);
             
     ?>
-    <h2 class="acname"><?= CHtml::link(__('{acname} Assembly Constituency - #{acno}',['{acname}' => strtolower($poly->AC_NAME),'{acno}' => $data->acno]),['state/assembly','acno' => $data->acno,'id_state' => $poly->id_state])?></h2>
+    <h2 class="acname"><?= CHtml::link(__('{acname} Assembly Constituency - #{acno}',['{acname}' => strtolower($poly->acname),'{acno}' => $data->acno]),['state/assembly','acno' => $data->acno,'id_state' => $poly->id_state])?></h2>
 
     <?php
 

@@ -54,7 +54,7 @@ class Election extends CActiveRecord
 		return array(
 			'boothresults' => array(self::HAS_MANY, 'Boothresult', 'id_election'),
 			'electionPersonParties' => array(self::HAS_MANY, 'ElectionPersonParty', 'id_election'),
-			'assemblymembers' => array(self::HAS_MANY, 'TamilNaduResults2016', 'id_election'),
+			'assemblymembers' => array(self::HAS_MANY, 'AssemblyResults', 'id_election'),
 			'state' => array(self::BELONGS_TO, 'State', 'id_state'),
 			'results2009s' => array(self::HAS_MANY, 'Results2009', 'id_election'),
 			'sabhas' => array(self::HAS_MANY, 'Sabha', 'id_election'),

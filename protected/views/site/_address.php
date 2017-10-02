@@ -10,7 +10,7 @@
     
     $address [0]->latitude = $address [1]->latitude;
     $address [0]->longitude = $address [1]->longitude;
-    $address [0]->district = $amly_poly->DIST_NAME;
+    $address [0]->district = $amly_poly->dist_name;
     // 'amly_poly' => $data ['amly_poly'],
     
     // $address[0]->altitude= $address[1]->altitude;

@@ -66,7 +66,7 @@ function updateActionKarnataka()
             }
         }
         
-        $MLA = TamilNaduResults2016::model ()->findByAttributes ( 
+        $MLA = AssemblyResults::model ()->findByAttributes ( 
                 [ 
                         'ST_CODE' => $ST_CODE,
                         'id_election' => $id_election,
@@ -74,7 +74,7 @@ function updateActionKarnataka()
                 ] );
         
         if (! $MLA)
-            $MLA = new TamilNaduResults2016 ();
+            $MLA = new AssemblyResults ();
         
         $MLA->id_election = $id_election;
         $MLA->acname = $acno == 999 ? 'Nominated' : $consti->name;

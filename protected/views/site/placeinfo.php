@@ -24,7 +24,7 @@ foreach ( $ass2 as $ass )
     {
         $con2 = MunicipalResults::model ()->findByAttributes ( [ 
                 'wardno' => $ass->acno,
-                'city' => $ass->DIST_NAME,
+                'city' => $ass->dist_name,
         ] );
         
         if ($con2)
@@ -47,7 +47,7 @@ foreach ( $ass2 as $ass )
                 'id_state' => $ass->id_state,
         ];        
         
-        $con3 = TamilNaduResults2016::model ()->findByAttributes ( $att44 );
+        $con3 = AssemblyResults::model ()->findByAttributes ( $att44 );
         if ($con3)
         {
             $data ['assembly'] = $con3;

@@ -22,46 +22,6 @@ function acno()
     fclose ( $f );
 }
 
-function updateActionHaryanaCommittee()
-{
-    $f = fopen(__DIR__ . '/../../../docs/chattisgarh/committee2017.csv','r');
-    $lc = 0;
-    while(!feof($f))
-    {
-        $row = fgetcsv($f);
-        if(!$lc++ || count($row)<5)
-            continue;
-
-        $fc = 0;
-        $comm = new Committee();
-
-        list($comm->ctype,$comm->id_state,$comm->id_election,$comm->name) = $row;
-        if(!$comm->save())
-        {
-            print_r($comm->errors);
-            die('count not save comm:' . $comm->name);
-        }
-        $results = CHtml::listData($comm->election->assemblymembers,'acno','id_result');
-        echo $comm->name . "\n";
-        for($i=4; $i<count($row); $i++)
-        {
-            if(empty($row[$i]) || strlen(trim($row[$i]))<1)
-                continue;
-
-            echo "acno:[" . $row[$i] . "]\n";
-            $cm = new CommitteeMember();
-            $cm->id_comm = $comm->id_comm;
-            $cm->id_result = $results[$row[$i]];
-            if(!$cm->save())
-            {
-                print_r($cm->errors);
-                die('count not save comm:' . $comm->name);
-            }
-        }
-    }
-    fclose($f);
-}
-
 function updateActionHaryana()
 {
     $id_election = 17;
@@ -189,14 +149,14 @@ function updateActionHaryana()
                 } // switch
             } // foreach TDs
 
-            $MLA = TamilNaduResults2016::model ()->findByAttributes (
+            $MLA = AssemblyResults::model ()->findByAttributes (
                     [
                             'st_code' => $ST_CODE,
                             'id_election' => $id_election,
                             'acno' => $acobj->eci_ref,
                     ] );
             if (! $MLA)
-                $MLA = new TamilNaduResults2016 ();
+                $MLA = new AssemblyResults ();
 
             $MLA->id_election = $id_election;
             $MLA->acname = $acobj->name;

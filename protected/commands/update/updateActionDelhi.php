@@ -58,14 +58,14 @@ function updateActionDelhi()
             } // switch($coll)
         } // foreach
         
-        $MLA = TamilNaduResults2016::model ()->findByAttributes ( 
+        $MLA = AssemblyResults::model ()->findByAttributes ( 
                 [ 
                         'ST_CODE' => $ST_CODE,
                         'id_election' => $id_election,
                         'acno' => $acno 
                 ] );
         if (! $MLA)
-            $MLA = new TamilNaduResults2016 ();
+            $MLA = new AssemblyResults ();
         
         $attr = [ 
                 'eci_ref' => $acno,

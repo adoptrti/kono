@@ -1,4 +1,7 @@
-<h1 style="display: block;width: 100%"><?=__('Fetching your location...')?></h1>
+<html>
+<head><title><?=__('Kono is fetching your location')?></title></head>
+<body>
+<h1 style="display: block;width: 100%"><?=__('Kono is fetching your location...')?></h1>
 <script type="text/javascript" src="/node_modules/geolocator/dist/geolocator.min.js"></script>
 <script type="text/javascript">
 
@@ -41,3 +44,4 @@
 <input name="coords" type="hidden"/>
 </form>
 <div id="map-canvas" style="width:600px;height:400px"></div>
+</body>

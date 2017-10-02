@@ -113,14 +113,14 @@ function updateActionHimachal()
                     echo "Could not get file\n";
             }
             
-            $MLA = TamilNaduResults2016::model ()->findByAttributes ( 
+            $MLA = AssemblyResults::model ()->findByAttributes ( 
                     [ 
                             'ST_CODE' => $ST_CODE,
                             'id_election' => $id_election,
                             'acno' => $acno 
                     ] );
             if (! $MLA)
-                $MLA = new TamilNaduResults2016 ();
+                $MLA = new AssemblyResults ();
             
             $MLA->id_election = $id_election;
             $MLA->acname = $acname;

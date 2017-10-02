@@ -10,16 +10,16 @@
  * @property integer $id_parl_consti
  * @property string $zone
  * @property integer $wardno
- * @property string $AC_NAME
+ * @property string $acname
  * @property string $poly
- * @property integer $ST_CODE
- * @property string $ST_NAME
- * @property integer $DT_CODE
- * @property string $DIST_NAME
- * @property integer $PC_NO
+ * @property integer $st_code
+ * @property string $st_name
+ * @property integer $dt_code
+ * @property string $dist_name
+ * @property integer $pcno
  * @property string $pc_name
  * @property string $pc_name_clean
- * @property integer $PC_ID
+ * @property integer $pc_id
  * @property double $Shape_Leng
  * @property double $Shape_Area
  * @property double $MaxSimpTol
@@ -159,7 +159,7 @@ class AssemblyPolygon extends CActiveRecord
         foreach ( $rs as $r )
         {
             $row [] = [
-                    $r->DIST_NAME,
+                    $r->dist_name,
                     $r->ctr1,
                     $r->ctr2
             ];
@@ -169,15 +169,16 @@ class AssemblyPolygon extends CActiveRecord
 
     static function repACs()
     {
+        $AR_table = AssemblyResults::model()->tableName();
         $rs = AssemblyPolygon::model ()->findAll (
                 [
-                        'group' => 'id_state,ST_NAME,ST_CODE',
-                        'select' => "ST_NAME,count(*) as ctr1,
-                            (select count(name) from tnresults2016 r2 where r2.ST_CODE=t.ST_CODE) as ctr2,
-                            (select count(phones) from tnresults2016 r3 where phones<>'' and r3.id_state=t.id_state) as ctr3,
-                            (select count(emails) from tnresults2016 r4 where emails<>'' and r4.id_state=t.id_state) as ctr4,
-                            (select count(address) from tnresults2016 r5 where address<>'' and r5.id_state=t.id_state) as ctr5,
-                            (select count(picture) from tnresults2016 r6 where picture<>'' and r6.id_state=t.id_state) as ctr6,
+                        'group' => 'id_state,st_name,st_code',
+                        'select' => "st_name,count(*) as ctr1,
+                            (select count(name) from $AR_table r2 where r2.ST_CODE=t.ST_CODE) as ctr2,
+                            (select count(phones) from $AR_table r3 where phones<>'' and r3.id_state=t.id_state) as ctr3,
+                            (select count(emails) from $AR_table r4 where emails<>'' and r4.id_state=t.id_state) as ctr4,
+                            (select count(address) from $AR_table r5 where address<>'' and r5.id_state=t.id_state) as ctr5,
+                            (select count(picture) from $AR_table r6 where picture<>'' and r6.id_state=t.id_state) as ctr6,
                             (select count(distinct id_city) from municipalresults r7 join towns2011 r7t on r7t.id_place=r7.id_city and r7t.tvtype in ('mcorp','mcorp+og') where r7t.id_state=t.id_state) as ctr7,
                             (select count(*) from towns2011 r8 where r8.tvtype in ('mcorp','mcorp+og') and r8.id_state=t.id_state) as ctr8,
                             id_state",
@@ -190,7 +191,7 @@ class AssemblyPolygon extends CActiveRecord
         foreach ( $rs as $r )
         {
             $row [] = [
-                    $r->ST_NAME,
+                    $r->st_name,
                     $r->ctr1,
                     $r->ctr2,
                     $r->ctr3,

@@ -80,7 +80,7 @@ class UpdateCommand extends CConsoleCommand
             ] );
         }
         
-        $rs = TamilNaduResults2016::model ()->findAll ();
+        $rs = AssemblyResults::model ()->findAll ();
         foreach ( $rs as $r )
         {
             $r->slug = $this->makeslug($r->name);
@@ -303,12 +303,41 @@ class UpdateCommand extends CConsoleCommand
     }
 
     /**
+     * 20171001
      * Not directly from website. Needs cleaning.
      */
     public function actionKonoHaryana()
     {
         require_once __DIR__ . '/update/updateActionHaryana.php';
         updateActionHaryana();
+    }
+
+    /**
+     * #201710021448:Kovai:thevikas
+     */
+    public function actionKonoGoa()
+    {
+        require_once __DIR__ . '/update/updateActionGoa.php';
+        updateActionGoa();
+    }
+
+    /**
+     * #201710021448:Kovai:thevikas
+     * Not directly from website. Needs cleaning.
+     */
+    public function actionKonoOdisha()
+    {
+        require_once __DIR__ . '/update/updateActionOdisha.php';
+        updateActionOdisha();
+    }
+
+    /**
+     * #201710021448:Kovai:thevikas
+     */
+    public function actionKonoPuducherry()
+    {
+        require_once __DIR__ . '/update/updateActionPuducherry.php';
+        updateActionPuducherry();
     }
 }
 
