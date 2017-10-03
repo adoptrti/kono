@@ -348,6 +348,16 @@ class UpdateCommand extends CConsoleCommand
         require_once __DIR__ . '/update/updateActionWestBengal.php';
         updateActionWestBengal();
     }
+    
+    /**
+     * #201710032139:Kovai:thevikas
+     */
+    public function actionKonoAndhraPradesh()
+    {
+        require_once __DIR__ . '/update/updateActionAndhraPradesh.php';
+        updateActionAndhraPradesh();
+    }
+    
 }
 
 function reducer($carry, $item)

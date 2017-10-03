@@ -1,10 +1,10 @@
 <?php
 
-function updateActionWestBengal()
+function updateActionAndhraPradesh()
 {
-    $id_election = 29;
-    $id_state = 36;
-    $ST_CODE = 19;
+    $id_election = 30;
+    $id_state = 7;
+    $ST_CODE = 28;
     
     $stateobj = State::model ()->findByPk ( $id_state );
     $eleobj = Election::model ()->findByPk ( $id_election );
@@ -12,79 +12,81 @@ function updateActionWestBengal()
     libxml_use_internal_errors ( true );
     
     $urls = [ 
-            'http://wbassembly.gov.in/MLA_All.aspx' 
+            'http://aplegislature.org/web/legislative-assembly/member-s-information' 
     ];
     foreach ( $urls as $url )
     {
         echo "\n\nURL: $url\n";
         $doc = new DOMDocument ();
-        $doc->loadHTML ( file_get_contents ( Yii::app ()->basePath . '/../docs/westbengal/mlas.html' ) );
+        $doc->loadHTML ( file_get_contents ( Yii::app ()->basePath . '/../docs/andhrapradesh/mlas.html' ) );
         
         // since its the only table
-        $table = $doc->getElementById ( 'MainContent_gvMember' );
-        
-        $TRs = $table->getElementsByTagName ( 'tr' );
+        $xpath = new DOMXpath ( $doc );
+        $TRs = $xpath->query ( "//div[@class='data']" );
         
         if ($TRs->length == 0)
             die ( 'Assembly parsing failed. TRs not found' );
         $rctr = 0;
         foreach ( $TRs as $tr )
         {
-            // ignore the first one
-            if ($rctr ++ == 0)
-                continue;
+            $row = [ ];
+            $imgs = $tr->getElementsByTagName('img');
+            if($imgs->length !== 1)
+                die("Not found the img");
             
-            $tds = $tr->getElementsByTagName ( 'td' );
+            $img = $imgs->item(0)->getAttribute ( 'src' );
+            
+            $tds = $tr->childNodes;
             $col = 0;
             $phones = null;
-            // $picture_path = null;
+            $acobj = null;
+            
             foreach ( $tds as $td )
             {
-                echo "$col = " . $td->nodeValue . "\n";
-                switch ($col ++)
+                echo "$col\t" . $td->nodeValue . "\n";
+                switch ($col++)
                 {
-                    case 0 : // sno
-                             // ignore
-                        break;
-                    case 1 : // picture
-                        $imgs = $td->getElementsByTagName ( 'img' );
-                        if ($imgs->length < 1)
-                            die ( 'Not found img in ' . $acno );
-                        $img = 'http://wbassembly.gov.in/' .
-                                 str_replace ( '../', '', $imgs->item ( 0 )->getAttribute ( 'src' ) );
-                    case 2 : // member nane
+                    case 5 : // member nane
                         $name = trim ( $td->nodeValue );
                         break;
-                    case 3 : // acno
-                        $acno = trim ( $td->nodeValue );
-                        
-                        $acobj = Constituency::model ()->findByAttributes ( 
-                                $attr = [ 
-                                        'id_state' => $id_state,
-                                        'ctype' => 'AMLY',
-                                        'eci_ref' => $acno 
-                                ] );
-                        if (! $acobj)
-                            die ( '>> Could not find assembly [' . $acname . "]\n" . print_r ( $attr, true ) );
-                        break;
-                    case 5 : // PARTY
-                        $party = trim ( $td->nodeValue );
+                    case 7 : // constituency
+                        {
+                            $mats = [ ];
+                            if (! preg_match ( '/(?<acno>\d+)/', $td->nodeValue, $mats ))
+                                die ( "No match for [" . $td . ']' );
+                                                        
+                            $acno = intval ( $mats ['acno'] );
+                                                        
+                            $acobj = Constituency::model ()->findByAttributes ( 
+                                    $attr = [ 
+                                            'id_state' => $id_state,
+                                            'ctype' => 'AMLY',
+                                            'eci_ref' => $acno 
+                                    ] );
+                            if (! $acobj)
+                                die ( '>> Could not find assembly ' . "#$acno\n" . print_r ( $attr, true ) );
+                            break;
+                        }
+                    case 9 : // PARTY
+                        $party = trim ( str_replace ( ':', '', $td->nodeValue) );
                         break;
                 } // switch
             } // foreach TDs
-            
+            /*
             $outfile = $stateobj->slug . '_AC_' . $acobj->slug . '_' . $eleobj->year . '.jpg';
             $p1 = realpath ( Yii::app ()->basePath . '/../images/pics' ) . '/' . $stateobj->slug;
             $picture_path = $stateobj->slug . '/' . $outfile;
             if (! file_exists ( $p1 ))
                 mkdir ( $p1 );
             $p2 = $p1 . '/' . $outfile;
-            echo "Getting... " . $img . "\n";
+            echo "Getting... [" . $img . "]\n";
             $img_data = @file_get_contents ( $img );
             if ($img_data)
                 file_put_contents ( $p2, $img_data );
             else
                 echo "Could not get file\n";
+            */
+            $picture_path = null;
             
             $MLA = AssemblyResults::model ()->findByAttributes ( 
                     [ 
@@ -92,7 +94,6 @@ function updateActionWestBengal()
                             'id_election' => $id_election,
                             'acno' => $acobj->eci_ref 
                     ] );
-            
             if (! $MLA)
                 $MLA = new AssemblyResults ();
             
