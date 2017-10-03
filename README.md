@@ -88,6 +88,7 @@ More than developing the software, we need to collect and cleanup data that we h
 1. Markets:
 
 ## Updates
+* **04-Oct-2017** - Much better looking site (v 0.6)
 * **03-Oct-2017** - West Bengal and Andra Pradesh data added
 * **02-Oct-2017** - Goa and Orissa assembly data with just Names added
 * **01-Oct-2017** - Haryana (only names) data added, starte showing	content	with neat URLs and better homepage (v 0.5)

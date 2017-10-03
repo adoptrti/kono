@@ -61,7 +61,7 @@ $poly = AssemblyPolygon::model ()->findAll (
                         'dist' => $model->dt_name
                 ]
         ] );
-
+echo '<div class="view">';
 echo '<h2>' . __ ( 'Lok Sabha Parliamentary Constituency' ) . '</h2>';
 
 echo '<ol>';
@@ -79,7 +79,7 @@ foreach ( $poly as $ac )
                             'id' => $consti->id_consti
                     ] ) );
 }
-echo '</ol>';
+echo '</ol></div>';
 
 $poly = AssemblyPolygon::model ()->findAll ( 
         [ 
@@ -91,6 +91,7 @@ $poly = AssemblyPolygon::model ()->findAll (
                 ] 
         ] );
 
+echo '<div class="view">';
 echo '<h2>' . __ ( 'Legislative Assemblies' ) . '</h2>';
 
 echo '<ol>';
@@ -104,8 +105,8 @@ foreach ( $poly as $ac )
                             'id_state' => $ac->id_state 
                     ] ) );
 }
-echo '</ol>';
-
+echo '</ol></div>';
+echo '<div class="view">';
 echo '<h2>' . __ ( 'Towns' ) . '</h2>';
 $towns = Town::model ()->findAll ( 
         [ 
@@ -118,39 +119,39 @@ $towns = Town::model ()->findAll (
 $tvtypename = [ 
         "cb" => __ ( "Cantonment Board" ),
         "cmc" => __ ( "City Municipal Council" ),
-        "cmc+og" => __ ( "City Municipal Council" ),
+        "cmc+og" => __ ( "City Municipal Council Out Growth" ),
         "gp" => __ ( "Gram Panchayat" ),
-        "gp+og" => __ ( "Gram Panchayat" ),
+        "gp+og" => __ ( "Gram Panchayat Out Growth" ),
         "ina" => __ ( "Industrial Notified Area" ),
         "its" => __ ( "Industrial Township" ),
-        "its+og" => __ ( "Industrial Township" ),
+        "its+og" => __ ( "Industrial Township Out Growth" ),
         "m" => __ ( "Municipality" ),
-        "m+og" => __ ( "Municipality" ),
+        "m+og" => __ ( "Municipality Out Growth" ),
         "mb" => __ ( "Municipal Board" ),
-        "mb+og" => __ ( "Municipal Board" ),
+        "mb+og" => __ ( "Municipal Board Out Growth" ),
         "mc" => __ ( "Municipal Committee" ),
-        "mc+og" => __ ( "Municipal Committee" ),
+        "mc+og" => __ ( "Municipal Committee Out Growth" ),
         "mci" => __ ( "mci" ),
-        "mci+og" => __ ( "mci+og" ),
+        "mci+og" => __ ( "mci+og Out Growth" ),
         "mcl" => __ ( "Municipal Council" ),
-        "mcl+og" => __ ( "Municipal Council" ),
+        "mcl+og" => __ ( "Municipal Council Out Growth" ),
         'mcorp' => __ ( 'Municipal Corporation' ),
-        "mcorp+og" => __ ( 'Municipal Corporation' ),
+        "mcorp+og" => __ ( 'Municipal Corporation Out Growth' ),
         "na" => __ ( "Notified Area" ),
-        "na+og" => __ ( "Notified Area" ),
+        "na+og" => __ ( "Notified Area Out Growth" ),
         "nac" => __ ( "Notified Area Committee" ),
-        "nac+og" => __ ( "Notified Area Committee" ),
+        "nac+og" => __ ( "Notified Area Committee Out Growth" ),
         'np' => __ ( 'Nagar Parishad' ),
-        "np+og" => __ ( 'Nagar Parishad' ),
+        "np+og" => __ ( 'Nagar Parishad Out Growth' ),
         "npp" => __ ( "Nagar Palika Parishad" ),
-        "npp+og" => __ ( "Nagar Palika Parishad" ),
+        "npp+og" => __ ( "Nagar Palika Parishad Out Growth" ),
         "nt" => __ ( "Notified Town" ),
         "st" => __ ( "Small Town Committee" ),
         "tc" => __ ( "Town Committee" ),
         "tmc" => __ ( "Town Municipal Council" ),
-        "tmc+og" => __ ( "Town Municipal Council" ),
+        "tmc+og" => __ ( "Town Municipal Council Out Growth" ),
         "tp" => __ ( "Town Panchayat" ),
-        "tp+og" => __ ( "Town Panchayat" ) 
+        "tp+og" => __ ( "Town Panchayat Out Growth" ) 
 ];
 
 $tvtypegroup = [ 
@@ -193,7 +194,7 @@ $tvtypegroup = [
 asort ( $tvtypegroup );
 $tvtypegroup2 = $tvtypegroup;
 $types = [ ];
-echo '<ol>';
+
 foreach ( $towns as $town )
 {
     $types [$town->tvtype] [] = $town;
@@ -217,4 +218,4 @@ foreach ( $tvtypegroup2 as $grp => $data )
     }
     echo '</ol>';
 }
-echo '</ol>';
+echo '</div>';

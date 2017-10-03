@@ -10,6 +10,8 @@ $this->breadcrumbs = array (
 
 <h1><?=__('Data Report')?></h1>
 
+<div class="view rpt">
+<h2><?=__('Municipal Corporations')?></h2>
 <?php
 
 $dataProvider = new CArrayDataProvider ( $muni, array (
@@ -29,6 +31,7 @@ $dataProvider = new CArrayDataProvider ( $muni, array (
 $this->widget ( 'zii.widgets.grid.CGridView', 
         [ 
                 'dataProvider' => $dataProvider,
+                'template' => '{items}',
                 'columns' => [ 
                         [ 
                                 'header' => __('City'),
@@ -54,6 +57,13 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                 ] 
         ] );
 
+?>
+</div>
+
+<div class="view rpt">
+<h2><?=__('States')?></h2>
+<?php
+
 $dataProvider = new CArrayDataProvider ( $amly, array (
         'keyField' => 0,
         'sort' => array (
@@ -70,6 +80,7 @@ $dataProvider = new CArrayDataProvider ( $amly, array (
 
 $this->widget ( 'zii.widgets.grid.CGridView', 
         [ 
+                'template' => '{items}',
                 'dataProvider' => $dataProvider,
                 'columns' => [ 
                         [ 
@@ -133,3 +144,4 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                         ] 
         ] );
 ?>
+</div>

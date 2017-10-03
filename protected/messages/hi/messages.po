@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kono\n"
-"POT-Creation-Date: 2017-10-04 00:46+0530\n"
-"PO-Revision-Date: 2017-10-04 00:46+0530\n"
+"POT-Creation-Date: 2017-10-04 00:49+0530\n"
+"PO-Revision-Date: 2017-10-04 00:49+0530\n"
 "Last-Translator: Vikas Yadav <mevikas@gmail.com>\n"
 "Language-Team: Vikas\n"
 "Language: hi\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-SearchPath-2: components\n"
 "X-Poedit-SearchPath-3: controllers\n"
 
-#: controllers/StateController.php:74
+#: controllers/StateController.php:78
 msgid "{dist} District, {state}"
 msgstr "{distname} जिला, {state}"
 
@@ -172,7 +172,7 @@ msgid "Election ID"
 msgstr "चुनाव आईडी"
 
 #: models/Election.php:71 models/LokSabha2014.php:96 views/site/_address.php:49
-#: views/site/report.php:76
+#: views/site/report.php:87
 msgid "State"
 msgstr "स"
 
@@ -192,11 +192,11 @@ msgstr "चुनाव प्रकार"
 msgid "Id Mp"
 msgstr "आईडी एमपी"
 
-#: models/LokSabha2014.php:92 views/site/report.php:98
+#: models/LokSabha2014.php:92 views/site/report.php:109
 msgid "Phones"
 msgstr "फ़ोन"
 
-#: models/LokSabha2014.php:93 views/site/report.php:105
+#: models/LokSabha2014.php:93 views/site/report.php:116
 msgid "Emails"
 msgstr "ईमेल"
 
@@ -240,7 +240,7 @@ msgstr "कर्नल)"
 msgid "Delhi Address2"
 msgstr "दिल्ली का पता 2"
 
-#: models/MunicipalResults.php:62 views/site/_address.php:28 views/site/report.php:34
+#: models/MunicipalResults.php:62 views/site/_address.php:28 views/site/report.php:37
 msgid "City"
 msgstr "शहर"
 
@@ -252,7 +252,7 @@ msgstr "वार्ड नं.2,"
 msgid "Phone"
 msgstr "फ़ोन"
 
-#: models/MunicipalResults.php:67 views/site/_assembly.php:43 views/site/report.php:112
+#: models/MunicipalResults.php:67 views/site/_assembly.php:43 views/site/report.php:123
 msgid "Address"
 msgstr "पता"
 
@@ -518,23 +518,35 @@ msgstr "लॉग इन "
 msgid "Please fill out the following form with your login credentials:"
 msgstr "कृपया अपने प्रवेश प्रमाण पत्र के साथ निम्नलिखित फ़ॉर्म को भरें:"
 
-#: views/site/report.php:41 views/site/report.php:84
+#: views/site/report.php:14
+#, fuzzy
+#| msgid "Municipal Corporation"
+msgid "Municipal Corporations"
+msgstr "नगर निगम"
+
+#: views/site/report.php:44 views/site/report.php:95
 msgid "Polygons"
 msgstr "बहुभुज"
 
-#: views/site/report.php:48
+#: views/site/report.php:51
 msgid "Councillors"
 msgstr "परामर्शदाता"
 
-#: views/site/report.php:91
+#: views/site/report.php:64
+#, fuzzy
+#| msgid "State"
+msgid "States"
+msgstr "स"
+
+#: views/site/report.php:102
 msgid "MLAs"
 msgstr "विधायक"
 
-#: views/site/report.php:119
+#: views/site/report.php:130
 msgid "Picture"
 msgstr "तस्वीर"
 
-#: views/site/report.php:126
+#: views/site/report.php:137
 msgid "M Corp"
 msgstr ""
 
@@ -548,111 +560,198 @@ msgstr "{distname} जिला, {राज्य}"
 msgid "Lok Sabha Parliamentary Constituency"
 msgstr "{pcname} लोकसभा निर्वाचन क्षेत्र"
 
-#: views/state/district.php:94
+#: views/state/district.php:95
 msgid "Legislative Assemblies"
 msgstr "विधान सभाएं"
 
-#: views/state/district.php:109
+#: views/state/district.php:110
 #, fuzzy
 #| msgid "Town"
 msgid "Towns"
 msgstr "कस्बा"
 
-#: views/state/district.php:119
+#: views/state/district.php:120
 msgid "Cantonment Board"
 msgstr "छावनी बोर्ड"
 
-#: views/state/district.php:120 views/state/district.php:121
+#: views/state/district.php:121
 msgid "City Municipal Council"
 msgstr "सिटी नगर परिषद"
 
-#: views/state/district.php:122 views/state/district.php:123
+#: views/state/district.php:122
+#, fuzzy
+#| msgid "City Municipal Council"
+msgid "City Municipal Council Out Growth"
+msgstr "सिटी नगर परिषद"
+
+#: views/state/district.php:123
 msgid "Gram Panchayat"
 msgstr "ग्राम पंचायत"
 
 #: views/state/district.php:124
+#, fuzzy
+#| msgid "Gram Panchayat"
+msgid "Gram Panchayat Out Growth"
+msgstr "ग्राम पंचायत"
+
+#: views/state/district.php:125
 msgid "Industrial Notified Area"
 msgstr "औद्योगिक अधिसूचित क्षेत्र"
 
-#: views/state/district.php:125 views/state/district.php:126
+#: views/state/district.php:126
 msgid "Industrial Township"
 msgstr "औद्योगिक टाउनशिप"
 
-#: views/state/district.php:127 views/state/district.php:128
+#: views/state/district.php:127
+#, fuzzy
+#| msgid "Industrial Township"
+msgid "Industrial Township Out Growth"
+msgstr "औद्योगिक टाउनशिप"
+
+#: views/state/district.php:128
 msgid "Municipality"
 msgstr "नगरपालिका"
 
-#: views/state/district.php:129 views/state/district.php:130
+#: views/state/district.php:129
+#, fuzzy
+#| msgid "Municipality"
+msgid "Municipality Out Growth"
+msgstr "नगरपालिका"
+
+#: views/state/district.php:130
 msgid "Municipal Board"
 msgstr "नगर निगम"
 
-#: views/state/district.php:131 views/state/district.php:132
+#: views/state/district.php:131
+#, fuzzy
+#| msgid "Municipal Board"
+msgid "Municipal Board Out Growth"
+msgstr "नगर निगम"
+
+#: views/state/district.php:132
 #, fuzzy
 #| msgid "Committee"
 msgid "Municipal Committee"
 msgstr "समिति"
 
 #: views/state/district.php:133
+#, fuzzy
+#| msgid "Committee"
+msgid "Municipal Committee Out Growth"
+msgstr "समिति"
+
+#: views/state/district.php:134
 msgid "mci"
 msgstr "एमसीआई"
 
-#: views/state/district.php:134
-msgid "mci+og"
-msgstr "एमसीआई + ओग"
+#: views/state/district.php:135
+msgid "mci+og Out Growth"
+msgstr ""
 
-#: views/state/district.php:135 views/state/district.php:136
+#: views/state/district.php:136
 msgid "Municipal Council"
 msgstr "नगर पालिका परिषद"
 
-#: views/state/district.php:137 views/state/district.php:138
+#: views/state/district.php:137
+#, fuzzy
+#| msgid "Municipal Council"
+msgid "Municipal Council Out Growth"
+msgstr "नगर पालिका परिषद"
+
+#: views/state/district.php:138
 msgid "Municipal Corporation"
 msgstr "नगर निगम"
 
-#: views/state/district.php:139 views/state/district.php:140
+#: views/state/district.php:139
+#, fuzzy
+#| msgid "Municipal Corporation"
+msgid "Municipal Corporation Out Growth"
+msgstr "नगर निगम"
+
+#: views/state/district.php:140
 msgid "Notified Area"
 msgstr "अधिसूचित क्षेत्र"
 
-#: views/state/district.php:141 views/state/district.php:142
+#: views/state/district.php:141
+#, fuzzy
+#| msgid "Notified Area"
+msgid "Notified Area Out Growth"
+msgstr "अधिसूचित क्षेत्र"
+
+#: views/state/district.php:142
 msgid "Notified Area Committee"
 msgstr "अधिसूचित क्षेत्र समिति"
 
-#: views/state/district.php:143 views/state/district.php:144
+#: views/state/district.php:143
+#, fuzzy
+#| msgid "Notified Area Committee"
+msgid "Notified Area Committee Out Growth"
+msgstr "अधिसूचित क्षेत्र समिति"
+
+#: views/state/district.php:144
 msgid "Nagar Parishad"
 msgstr "नगर परिषद"
 
-#: views/state/district.php:145 views/state/district.php:146
+#: views/state/district.php:145
+#, fuzzy
+#| msgid "Nagar Parishad"
+msgid "Nagar Parishad Out Growth"
+msgstr "नगर परिषद"
+
+#: views/state/district.php:146
 msgid "Nagar Palika Parishad"
 msgstr "नगर पालिका परिषद"
 
 #: views/state/district.php:147
+#, fuzzy
+#| msgid "Nagar Palika Parishad"
+msgid "Nagar Palika Parishad Out Growth"
+msgstr "नगर पालिका परिषद"
+
+#: views/state/district.php:148
 msgid "Notified Town"
 msgstr "अधिसूचित टाउन"
 
-#: views/state/district.php:148
+#: views/state/district.php:149
 #, fuzzy
 #| msgid "Committee"
 msgid "Small Town Committee"
 msgstr "समिति"
 
-#: views/state/district.php:149
+#: views/state/district.php:150
 #, fuzzy
 #| msgid "Committee"
 msgid "Town Committee"
 msgstr "समिति"
 
-#: views/state/district.php:150 views/state/district.php:151
+#: views/state/district.php:151
 msgid "Town Municipal Council"
 msgstr "नगर नगर परिषद"
 
-#: views/state/district.php:152 views/state/district.php:153
+#: views/state/district.php:152
+#, fuzzy
+#| msgid "Town Municipal Council"
+msgid "Town Municipal Council Out Growth"
+msgstr "नगर नगर परिषद"
+
+#: views/state/district.php:153
 msgid "Town Panchayat"
 msgstr "नगर पंचायत"
 
-#: views/state/view.php:50
+#: views/state/district.php:154
+#, fuzzy
+#| msgid "Town Panchayat"
+msgid "Town Panchayat Out Growth"
+msgstr "नगर पंचायत"
+
+#: views/state/view.php:53
 #, fuzzy
 #| msgid "District"
 msgid "Districts"
 msgstr " ज़िला"
+
+#~ msgid "mci+og"
+#~ msgstr "एमसीआई + ओग"
 
 #~ msgid "Type city, zip or address here.."
 #~ msgstr "यहां शहर, ज़िप या पता टाइप करें .."

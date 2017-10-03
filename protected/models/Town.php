@@ -121,13 +121,16 @@ class Town extends CActiveRecord
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
 	 */
-	public function search()
+	public function search($crit= null)
 	{
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id_place',$this->id_place);
+	    if(empty($criteria))
+		  $criteria=new CDbCriteria;
+	    else
+	        $criteria=new CDbCriteria($crit);
+	
+        $criteria->compare('id_place',$this->id_place);
 		$criteria->compare('st_code',$this->st_code);
 		$criteria->compare('id_state',$this->id_state);
 		$criteria->compare('st_name',$this->st_name,true);
@@ -141,6 +144,9 @@ class Town extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+	        'pagination'=>array(
+	                'pageSize'=>100,
+	        ),
 		));
 	}
 

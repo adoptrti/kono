@@ -18,7 +18,7 @@ $this->menu=array(
 
 <h1><?php echo $model->name; ?></h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
+<?php /* $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id_state',
@@ -40,17 +40,54 @@ $this->menu=array(
 		'slug',
 		'mcorp_count',
 	),
-));
+)); */
 
 $districts = Town::model()->findAll([
         'condition' => 'dt_code>0 and sdt_code=0 and tv_code=0 and id_state=?',
         'select' => 'distinct name,id_place',
+        'order' => 'name',
         'params' => [$model->id_state]
 ]);
-echo '<h2>' . __('Districts') . '</h2>';
-echo '<ol>';
+
+?><div class="view items">
+<h2><?=__('Districts') ?></h2>
+<ol>
+<?php 
 foreach($districts as $district)
 {
     echo CHtml::tag('li',[],CHtml::link($district->name,['state/district','id' => $district->id_place]));
 }
-echo '</ol>';
+
+/*
+$dataProvider = Town::model ()->search ( 
+        [ 
+                'condition' => 'dt_code>0 and sdt_code=0 and tv_code=0 and id_state=?',
+                'select' => 'distinct name,id_place',
+                'params' => [ 
+                        $model->id_state 
+                ] 
+        ] );
+
+$this->widget ( 'zii.widgets.grid.CGridView', 
+        array (
+                'dataProvider' => $dataProvider,
+                'columns' => [ 
+                        [ 
+                                'header' => __ ( 'District' ),
+                                'type' => 'raw',
+                                'value' => function ($district)
+                                {
+                                    return CHtml::link ( $district->name, 
+                                            [ 
+                                                    'state/district',
+                                                    'id' => $district->id_place 
+                                            ] );
+                                } 
+                        ] 
+                ] 
+        ) );
+
+ */
+?>
+</ol>
+</div>

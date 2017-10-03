@@ -124,6 +124,7 @@ class State extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+		
 
 		$criteria->compare('id_state',$this->id_state);
 		$criteria->compare('ST_CODE',$this->ST_CODE);
@@ -142,8 +143,12 @@ class State extends CActiveRecord
 		$criteria->compare('eci_dist_count',$this->eci_dist_count);
 		$criteria->compare('eci_amly_count',$this->eci_amly_count);
 
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
+		$criteria->order = 'name';
+		return new CActiveDataProvider ( $this, array (
+                'criteria' => $criteria,
+                'pagination' => [ 
+                        'pageSize' => 100 
+                ]
 		));
 	}
 

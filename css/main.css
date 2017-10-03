@@ -239,7 +239,112 @@ img.picture
 	width: 125px;
 }
 
-div.view.amly table.detail-view
-{
+div.view.amly table.detail-view {
 	width: 50%;
+}
+
+i.fa-heart {
+	color: red;
+}
+
+div.view h3 {
+    background-color: gray;
+    color: #fff;
+	font-size: 15px;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+
+div.view h2 {
+	background-color: green;
+	color: #fff;
+	font-size: 15px;
+	margin-top: 0; font-weight : bold;
+	padding: 5px 10px;
+	font-weight: bold
+}
+
+div.view h2 a {
+	color: #fff;	
+}
+
+div.view {
+	border: 0;
+	padding: 0;
+}
+
+div.view.items ol li {
+    display: block;
+    float: left;
+    width: 180px;
+}
+
+div.view.items
+{
+	height: 250px;
+}
+
+
+address
+{
+	margin: 0;
+}
+div#footer 
+{
+	font-size: 15px;
+	color: white;
+	margin: 0;
+	border: 0;
+    background-color: #1065d5;	
+}
+
+div#footer a
+{
+	color: white;
+	border-bottom: dotted 1px white;
+}
+
+div#footer .d
+{
+	color: #1065d5;
+	margin: 0;
+	margin-top: -10px;
+	padding: 0;
+}
+
+body#main
+{
+	background-color: #1065d5;	
+}
+body#main #mainmenu
+{
+	margin-left: -15px;
+	margin-right: -15px;
+	background: none;	
+    background-color: #003a65;	
+}
+body#main #header
+{
+	color: white;
+	margin-left: -15px;
+	margin-right: -15px;
+	border: 0;
+	background-color: #1065d5;	
+}
+
+body#main #page
+{
+	border: 0;
+}
+
+.rpt div.grid-view table.items th
+{
+	background: 0;
+	background-color: gray;
+}
+
+.rpt  .grid-view table.items tr.odd
+{
+	background: 0;
+	background-color: #efefef;	
 }

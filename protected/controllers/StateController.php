@@ -51,6 +51,7 @@ class StateController extends Controller
 	 */
 	public function actionView($id)
 	{
+	    $this->layout='//layouts/main';
 	    $state = $this->loadModel($id);
 	    if(!$state)
 	        return false;
@@ -67,6 +68,9 @@ class StateController extends Controller
 	 */
 	public function actionDistrict($id_state,$id)
 	{
+	    
+	     $this->layout='//layouts/main';
+	    
 	    $town = Town::model()->findByPk($id);
 	    if(!$town)
 	        return false;
@@ -143,7 +147,8 @@ class StateController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('State');
+	    $this->layout='//layouts/main';
+	    $dataProvider=State::model()->search();
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
