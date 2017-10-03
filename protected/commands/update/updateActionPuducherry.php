@@ -3,8 +3,8 @@
 function updateActionPuducherry()
 {
     $id_election = 28;
-    $id_state = 41;
-    $ST_CODE = 34;
+    $id_state = 41; //puducherry
+    $ST_CODE = 34; //puducherry
     
     $stateobj = State::model ()->findByPk ( $id_state );
     $eleobj = Election::model ()->findByPk ( $id_election );
@@ -18,29 +18,35 @@ function updateActionPuducherry()
     {
         echo "\n\nURL: $url\n";
         $doc = new DOMDocument ();
-        $doc->loadHTML ( file_get_contents ( Yii::app ()->basePath . '/../docs/orissa/mlas.html' ) );
+        $doc->loadHTML ( file_get_contents ( Yii::app ()->basePath . '/../docs/puducherry/mlas.html' ) );
         
         // since its the only table
-        $table = $doc->getElementById ( 'ctl00_ContentPlaceHolder1_GridView1' );
+        $DIVs = $xpath->query ( "//div[@class='moduleHolder']" );                        
         
-        $TRs = $table->getElementsByTagName ( 'tr' );
-        
-        if ($TRs->length == 0)
+        if ($DIVs->length == 0)
             die ( 'Assembly parsing failed. TRs not found' );
+        
         $rctr = 0;
-        foreach ( $TRs as $tr )
+        foreach ( $DIVs as $div )
         {
-            // ignore the first one
-            if ($rctr ++ == 0)
-                continue;
+            $lis = $div->getElementsByTagName('li');
+            if ($lis->length != 1)
+                die ( 'LIs for name not found:' . $lis->length );
             
-            $tds = $tr->getElementsByTagName ( 'td' );
+            $name = $lis->item(0)->nodeValue;
+                
+            // ignore the first one
+            //if ($rctr ++ == 0)
+            //    continue;
+            
+            $tds = $div->getElementsByTagName ( 'td' );
             $col = 0;
             $phones = null;
             // $picture_path = null;
             foreach ( $tds as $td )
             {
                 echo "$col = " . $td->nodeValue . "\n";
+                continue;
                 switch ($col ++)
                 {
                     case 1 : // member nane
