@@ -151,7 +151,8 @@ class AssemblyPolygon extends CActiveRecord
                         'group' => 'dist_name',
                         'select' => 'dist_name,count(*) as ctr1,(select count(name) from municipalresults where city=dist_name) as ctr2',
                         'condition' => 'polytype=?',
-                        'params' => [
+                        'order' => 'dist_name'
+,                        'params' => [
                                 'WARD'
                         ]
                 ] );
@@ -182,8 +183,8 @@ class AssemblyPolygon extends CActiveRecord
                             (select count(distinct id_city) from municipalresults r7 join towns2011 r7t on r7t.id_place=r7.id_city and r7t.tvtype in ('mcorp','mcorp+og') where r7t.id_state=t.id_state) as ctr7,
                             (select count(*) from towns2011 r8 where r8.tvtype in ('mcorp','mcorp+og') and r8.id_state=t.id_state) as ctr8,
                             id_state",
-                        'condition' => 'polytype=?',
                         'order' => 'st_name',
+                        'condition' => 'polytype=?',
                         'params' => [
                                 'AC'
                         ]
