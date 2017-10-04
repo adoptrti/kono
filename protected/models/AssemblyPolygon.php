@@ -183,6 +183,7 @@ class AssemblyPolygon extends CActiveRecord
                             (select count(*) from towns2011 r8 where r8.tvtype in ('mcorp','mcorp+og') and r8.id_state=t.id_state) as ctr8,
                             id_state",
                         'condition' => 'polytype=?',
+                        'order' => 'st_name',
                         'params' => [
                                 'AC'
                         ]

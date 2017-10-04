@@ -3,11 +3,11 @@ Yii::app ()->clientScript->registerCoreScript ( 'bootstrap' );
 /* @var $this Controller */
 ?>
 <!DOCTYPE html>
-<html LANG="<?php echo Yii::app()->language; ?>">
+<html lang="<?php echo Yii::app()->language; ?>">
 <!-- xml:lang="<?php echo Yii::app()->language; ?>" lang="<?php echo Yii::app()->language; ?>">  -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="language" content="en">
+<meta name="language" content="<?php echo Yii::app()->language; ?>">
 
 <!-- blueprint CSS framework -->
 <link rel="stylesheet" type="text/css"
