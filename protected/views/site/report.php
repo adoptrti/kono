@@ -60,6 +60,31 @@ $this->widget ( 'zii.widgets.grid.CGridView',
 ?>
 </div>
 
+<style>
+tr.score
+{
+    background: url(/images/blue1.gif);
+    background-repeat: no-repeat;
+    background-position: bottom left;
+}
+tr.score td
+{
+    
+}
+<?php
+for($i=1; $i<=20; $i++)
+{
+    ?>
+    tr.score<?=$i?>
+    {
+        b9ackground-size: <?=$i*5?>% 2px;
+        background-size: <?=$i*5?>% 10%;
+    }
+    <?php 
+}
+?>
+</style>
+
 <div class="view rpt">
 <h2><?=__('States')?></h2>
 <?php
@@ -77,11 +102,26 @@ $dataProvider = new CArrayDataProvider ( $amly, array (
                 'pageSize' => 50 
         ) 
 ) );
-
+$css_master = [];
 $this->widget ( 'zii.widgets.grid.CGridView', 
         [ 
                 'template' => '{items}',
                 'dataProvider' => $dataProvider,
+                'rowCssClassExpression'=> function($row,$data)
+                {
+                    global $css_master;
+                    $clsname = "score score" . round(intval(100*$data[10])/5);
+                    $css_master[$clsname] = intval(100*$data[10]);
+                    return $clsname;
+                    //echo "row=$row";
+                    //if(isset($data[$row]))
+                    //    print_r($data[$row]);
+                    //die;
+                    //if(isset($data[$row]))
+                      //  echo " - " . print_r($data[$row],true);
+                      
+                    //return "score" . intval(100*$data[$row][10]);    
+                },
                 'columns' => [ 
                         [ 
                                 'header' => __('State'),
@@ -141,7 +181,16 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                                         return $data [7] . '/' . $data[8];
                                 } 
                         ],
-                        ] 
+                        /*[
+                                'header' => __('Score'),
+                                'type' => 'raw',
+                                'value' => function($data)
+                                {
+                                    return round(100*$data[10],2) . '%';
+                                }
+                        ] */
+                    ]
         ] );
+
 ?>
 </div>

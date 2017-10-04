@@ -189,10 +189,9 @@ class AssemblyPolygon extends CActiveRecord
                                 'AC'
                         ]
                 ] );
-
         foreach ( $rs as $r )
         {
-            $row [] = [
+            $data = [ 
                     $r->st_name,
                     $r->ctr1,
                     $r->ctr2,
@@ -202,8 +201,17 @@ class AssemblyPolygon extends CActiveRecord
                     $r->ctr6,
                     $r->ctr7,
                     $r->ctr8,
-                    $r->id_state,
+                    $r->id_state 
             ];
+            
+            $mx = $data [1];
+            $score = 0;
+            for($i = 2; $i < 7; $i ++)
+            {
+                $score += min ( $data [$i], $mx ) / $mx;
+            }
+            $data[] = $score/5;                                 
+            $row [] = $data;
         }
         return $row;
     }
