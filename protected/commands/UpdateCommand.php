@@ -367,6 +367,14 @@ class UpdateCommand extends CConsoleCommand
         updateActionRajasthan();
     }
     
+    /**
+     * #201710040820:Kovai:thevikas
+     */
+    public function actionKonoArunachalPradesh()
+    {
+        require_once __DIR__ . '/update/updateActionArunachalPradesh.php';
+        updateActionArunachalPradesh();
+    }
 }
 
 function reducer($carry, $item)

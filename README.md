@@ -1,12 +1,14 @@
 # About kono
 
-A Geo-location app for showing administrative, emergency and political information about this place. It starts the map with your current location. Showing the information that belongs to the current location. You can move the map pointer to find local information of that place.
+A Geo-location app for showing administrative, emergency and political information about this place. It starts the map with your current location. Showing the information that belongs to the current location. You can move the map pointer to find local information of that place. Kono is developed just for Indian citizens.
 
 ## Background
 
-The project is for bringing technology driven awareness of the government that works for us around us all. Besides just a few politician names, the density of this information is normally totally absent from the citizens. This information is not for just increasing our knowledge (and look smarter during political arguments), but to make us act on it. Get us accurate contact details of the administrative staff that is available for us to ask help from. To help us citizens get information, distance, direction of about nearest available emergency services based on my physical location. Not just for Urban users but more importantly for Rural users. Have realtime immediate access to addresses, phones and names of Officers for various essential departments. Also know the full details of Public Information Officer for these departments and the First Appellate. 
+The project is for bringing technology driven awareness of the government that works for us all around us. Besides just a few politician names, the density of this information is normally totally absent from the citizens. This information is not for just increasing our knowledge (and look smarter during political arguments), but to make us act on it. Get us accurate contact details of the administrative staff that is available for us to ask help from. To help us citizens get information, distance, direction of about nearest available emergency services based on my physical location. Not just for Urban users but more importantly for Rural users. Have realtime immediate access to addresses, phones and names of Officers for various essential departments. Also know the full details of Public Information Officer for these departments and the First Appellate. 
 
 It will start as a mobile friendly web app running on browsers of desktops or mobiles. The prototype is already ready to use without the need for registrations. It also supports multiple languages, starting with English and Hindi. Some part of data is already available with GIS polygons. Some part needs to be cleaned up for use. Most data has to be fetched. This is a country-wide project.
+
+We here tend to focus less on the political parties and their internals. We focus more on the representatives after they have been elected and taken the public office. As elected representatives, they are responsible towards all of us. We should not hesitate approaching them while they are in office, regardless of their background or our own preducises.
 
 ## Roadmap
 
@@ -88,13 +90,13 @@ More than developing the software, we need to collect and cleanup data that we h
 1. Markets:
 
 ## Updates
-* **04-Oct-2017** - Much better looking site (v 0.6), Rajasthan added
+* **04-Oct-2017** - Much better looking site (:pushpin: v 0.6), Rajasthan and Arunachal Pradesh data added
 * **03-Oct-2017** - West Bengal and Andra Pradesh data added
 * **02-Oct-2017** - Goa and Orissa assembly data with just Names added
-* **01-Oct-2017** - Haryana (only names) data added, starte showing	content	with neat URLs and better homepage (v 0.5)
-* **28-Sep-2017** - **Multilingual** setup done, starting with Hindi. Also CRUD and **neater URLs** started (v 0.4)
-* **27-Sep-2017** - Chhattisgarh (without emails) assembly members and their **Committees** added (v 0.3)
-* **24-Sep-2017** - Himachal Pradesh, Sikkim (Names only) and Kerala (without address) assembly members with **Pictures** added (v 0.2)
+* **01-Oct-2017** - Haryana (only names) data added, starte showing	content	with neat URLs and better homepage (:pushpin: v 0.5)
+* **28-Sep-2017** - **Multilingual** setup done, starting with Hindi. Also CRUD and **neater URLs** started (:pushpin: v 0.4)
+* **27-Sep-2017** - Chhattisgarh (without emails) assembly members and their **Committees** added (:pushpin: v 0.3)
+* **24-Sep-2017** - Himachal Pradesh, Sikkim (Names only) and Kerala (without address) assembly members with **Pictures** added (:pushpin: v 0.2)
 * **23-Sep-2017** - Karnataka Assembly Members with Address, Phone and Emails added
 * **16-Sep-2017** - All Delhi Assembly members added.
-* **13-Sep-2017** - Launched with all contact details and their respective geography of Loksabha MPs, Tamil Nadu Assembly members and Coimbatore Councillors. (v 0.1)
+* **13-Sep-2017** - Launched with all contact details and their respective geography of Loksabha MPs, Tamil Nadu Assembly members and Coimbatore Councillors. (:pushpin: v 0.1)
