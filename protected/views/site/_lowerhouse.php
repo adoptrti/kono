@@ -65,7 +65,7 @@ $consti = Constituency::model()->findByAttributes(['name' => strtolower($poly->p
                                             //echo "<br/>TEL: $tel<br/>";
                                             if(preg_match('/\((?<std>0\d+)?\)[^\d]*(?<phone>\d+)/',$tel,$mats))
                                             {
-                                                $rt[] = CHtml::link($tel,'tel:+91' . intval(trim($mats['std'])) . trim($mats['phone']) );
+                                                $rt[] = CHtml::link('(0' . intval($mats['std']) . ') ' . $mats['phone'],'tel:+91' . intval(trim($mats['std'])) . trim($mats['phone']) );
                                             }
                                             return implode(', ',$rt);
                                         }
