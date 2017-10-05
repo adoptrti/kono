@@ -59,8 +59,8 @@ class Constituency extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, number, castvotes, contestents, ctype, candilisthtml, updated', 'required'),
-			array('id_parl_consti, id_dist_place2, eci_ref, number, id_state, voters, pollingstns, castvotes, contestents, id_parent, id_state2', 'numerical', 'integerOnly'=>true),
+			array('name,  ctype', 'required'),
+			array('id_parl_consti, id_dist_place2, eci_ref, id_state, voters, pollingstns,  id_parent, id_state2', 'numerical', 'integerOnly'=>true),
 			array('turnout, gps_long, gps_lat, gps_ele', 'numerical'),
 			array('name,slug', 'length', 'max'=>50),
 			array('resv', 'length', 'max'=>2),

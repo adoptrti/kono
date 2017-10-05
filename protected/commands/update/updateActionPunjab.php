@@ -1,6 +1,6 @@
 <?php
 
-function updateActionPuducherry()
+function updateActionPunjab()
 {
     $id_election = 28;
     $id_state = 41; //puducherry
@@ -12,7 +12,7 @@ function updateActionPuducherry()
     libxml_use_internal_errors ( true );
     
     $urls = [ 
-            '' 
+            'http://odishaassembly.nic.in/profile_detail.aspx?x=6' 
     ];
     foreach ( $urls as $url )
     {
@@ -47,7 +47,7 @@ function updateActionPuducherry()
             foreach ( $tds as $td )
             {
                 echo "$col = " . $td->nodeValue . "\n";
-                
+                continue;
                 switch ($col ++)
                 {
                     case 1 : // member nane

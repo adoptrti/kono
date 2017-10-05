@@ -58,12 +58,12 @@ Yii::app ()->clientScript->registerCoreScript ( 'bootstrap' );
         <div id="mainmenu">
             <div style="float: right; width: auto">
                 <ul>
-                    <?php                    
+                    <?php
                     foreach ( Yii::app ()->params ['translatedLanguages'] as $code => $lang )
                     {
                         ?>
                         <li><a href="?lang=<?=$code?>"><?=$lang?></a></li>
-                        <?php 
+                        <?php
                     }
                     ?>
                 </ul>
@@ -71,91 +71,91 @@ Yii::app ()->clientScript->registerCoreScript ( 'bootstrap' );
 		<?php
 if (Yii::app ()->user->isGuest)
 {
-    $this->widget ( 'zii.widgets.CMenu', 
+    $this->widget ( 'zii.widgets.CMenu',
             array (
                     'items' => array (
                             array (
                                     'label' => __ ( 'Home' ),
                                     'url' => array (
-                                            '/site/index' 
-                                    ) 
+                                            '/site/index'
+                                    )
                             ),
                             array (
                                     'label' => __ ( 'About' ),
                                     'url' => array (
                                             '/site/page',
-                                            'view' => 'about' 
-                                    ) 
+                                            'view' => 'about'
+                                    )
                             ),
                             array (
                                     'label' => __ ( 'Data Report' ),
                                     'url' => array (
-                                            '/site/report' 
-                                    ) 
+                                            '/site/report'
+                                    )
                             ),
                             array (
                                     'label' => __ ( 'Contact' ),
                                     'url' => array (
-                                            '/site/contact' 
-                                    ) 
+                                            '/site/contact'
+                                    )
                             ),
-                            [ 
+                            [
                                     'encodeLabel' => false,
                                     'label' => "<i class='fa fa-github'></i>",
-                                    'url' => 'https://github.com/adoptrti/kono' 
-                            ] 
-                    ) 
+                                    'url' => 'https://github.com/adoptrti/kono'
+                            ]
+                    )
             ) );
 }
 else
 {
-    $this->widget ( 'zii.widgets.CMenu', 
+    $this->widget ( 'zii.widgets.CMenu',
             array (
                     'items' => array (
                             array (
                                     'label' => __ ( 'Home' ),
                                     'url' => array (
-                                            '/site/index' 
-                                    ) 
+                                            '/site/index'
+                                    )
                             ),
                             array (
                                     'label' => __ ( 'Committee' ),
                                     'url' => array (
-                                            '/committee' 
-                                    ) 
+                                            '/committee'
+                                    )
                             ),
                             array (
                                     'label' => __ ( 'Committee Members' ),
                                     'url' => array (
-                                            '/committeeMember' 
-                                    ) 
+                                            '/committeeMember'
+                                    )
                             ),
                             array (
                                     'label' => __ ( 'Assembly Results' ),
                                     'url' => array (
-                                            '/assemblyresults' 
-                                    ) 
+                                            '/assemblyresults'
+                                    )
                             ),
                             array (
                                     'label' => __ ( 'Elections' ),
                                     'url' => array (
-                                            '/election' 
-                                    ) 
+                                            '/election'
+                                    )
                             ),
                             // array('label'=>'Login',
                             // 'url'=>array('/site/login'),
                             // 'visible'=>Yii::app()->user->isGuest),
                             array (
-                                    'label' => __ ( 'Logout ({uname})', 
-                                            [ 
-                                                    '{uname}' => Yii::app ()->user->name 
+                                    'label' => __ ( 'Logout ({uname})',
+                                            [
+                                                    '{uname}' => Yii::app ()->user->name
                                             ] ),
                                     'url' => array (
-                                            '/site/logout' 
+                                            '/site/logout'
                                     ),
-                                    'visible' => ! Yii::app ()->user->isGuest 
-                            ) 
-                    ) 
+                                    'visible' => ! Yii::app ()->user->isGuest
+                            )
+                    )
             ) );
 }
 ?>
@@ -163,9 +163,9 @@ else
         <!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php
-    
+
     $this->widget ( 'zii.widgets.CBreadcrumbs', array (
-            'links' => $this->breadcrumbs 
+            'links' => $this->breadcrumbs
     ) );
     ?>
         <!-- breadcrumbs -->
@@ -181,8 +181,8 @@ else
     <!-- page -->
 
     <div id="footer">
-        <p><?=__('Made with {heart} in Coimbatore',['{heart}' => '<i class="fa fa-heart"></i>'])?></p>
-        <p class="d"> 
+        <p><?=__('Made with {heart} in {Coimbatore}',['{heart}' => '<i class="fa fa-heart"></i>','{Coimbatore}' => CHtml::link(__('Coimbatore'),'https://en.wikipedia.org/wiki/Coimbatore',['class' => 'madeinindia','target' => '_new'])])?></p>
+        <p class="d">
         <?=`git describe --tags --abbrev=0`?> <i class="fa fa-calendar"></i> <?=`git log --pretty="%ci" -n1 HEAD`?>
         </p>
         <p>

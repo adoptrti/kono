@@ -265,7 +265,7 @@ div.view h2 {
 }
 
 div.view h2 a {
-	color: #fff;	
+	color: #fff;
 }
 
 div.view {
@@ -289,13 +289,13 @@ address
 {
 	margin: 0;
 }
-div#footer 
+div#footer
 {
 	font-size: 15px;
 	color: white;
 	margin: 0;
 	border: 0;
-    background-color: #1065d5;	
+    background-color: #1065d5;
 }
 
 div#footer a
@@ -314,14 +314,14 @@ div#footer .d
 
 body#main
 {
-	background-color: #1065d5;	
+	background-color: #1065d5;
 }
 body#main #mainmenu
 {
 	margin-left: -15px;
 	margin-right: -15px;
-	background: none;	
-    background-color: #003a65;	
+	background: none;
+    background-color: #003a65;
 }
 body#main #header
 {
@@ -329,7 +329,7 @@ body#main #header
 	margin-left: -15px;
 	margin-right: -15px;
 	border: 0;
-	background-color: #1065d5;	
+	background-color: #1065d5;
 }
 
 body#main #page
@@ -346,5 +346,10 @@ body#main #page
 .rpt  .grid-view table.items tr.odd
 {
 	background: 0;
-	background-color: #efefef;	
+	background-color: #efefef;
+}
+div#footer a.madeinindia
+{
+	text-decoration: none;
+	border: 0;
 }
