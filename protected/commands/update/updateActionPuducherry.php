@@ -21,6 +21,7 @@ function updateActionPuducherry()
         $doc->loadHTML ( file_get_contents ( Yii::app ()->basePath . '/../docs/puducherry/mlas.html' ) );
         
         // since its the only table
+        $xpath = new DOMXpath ( $doc );
         $DIVs = $xpath->query ( "//div[@class='moduleHolder']" );                        
         
         if ($DIVs->length == 0)
