@@ -2,9 +2,9 @@
 
 function updateActionPunjab()
 {
-    $id_election = 28;
-    $id_state = 41; //puducherry
-    $ST_CODE = 34; //puducherry
+    $id_election = 35;
+    $id_state = 29; // punjab
+    $ST_CODE = 3; // punjab
     
     $stateobj = State::model ()->findByPk ( $id_state );
     $eleobj = Election::model ()->findByPk ( $id_election );
@@ -12,77 +12,57 @@ function updateActionPunjab()
     libxml_use_internal_errors ( true );
     
     $urls = [ 
-            'http://odishaassembly.nic.in/profile_detail.aspx?x=6' 
+            'http://punjab.gov.in/mlas' 
     ];
     foreach ( $urls as $url )
     {
         echo "\n\nURL: $url\n";
         $doc = new DOMDocument ();
-        $doc->loadHTML ( file_get_contents ( Yii::app ()->basePath . '/../docs/puducherry/mlas.html' ) );
+        $doc->loadHTML ( file_get_contents ( Yii::app ()->basePath . '/../docs/punjab/mlas.html' ) );
         
         // since its the only table
-        $xpath = new DOMXpath ( $doc );
-        $DIVs = $xpath->query ( "//div[@class='moduleHolder']" );                        
+        $TRs = $doc->getElementsByTagName ( 'tr' );
         
-        if ($DIVs->length == 0)
+        if ($TRs->length == 0)
             die ( 'Assembly parsing failed. TRs not found' );
         
         $rctr = 0;
-        foreach ( $DIVs as $div )
+        foreach ( $TRs as $tr )
         {
-            $lis = $div->getElementsByTagName('li');
-            if ($lis->length != 1)
-                die ( 'LIs for name not found:' . $lis->length );
-            
-            $name = $lis->item(0)->nodeValue;
-                
-            // ignore the first one
-            //if ($rctr ++ == 0)
-            //    continue;
-            
-            $tds = $div->getElementsByTagName ( 'td' );
+            $tds = $tr->getElementsByTagName ( 'td' );
             $col = 0;
             $phones = null;
             // $picture_path = null;
             foreach ( $tds as $td )
             {
-                echo "$col = " . $td->nodeValue . "\n";
-                continue;
                 switch ($col ++)
                 {
-                    case 1 : // member nane
+                    case 0 :
+                        $acno = intval ( $td->nodeValue );
+                        break;
+                    case 1:
+                        $acname = $td->nodeValue;
+                        $acobj = Constituency::model ()->findByAttributes (
+                                $attr = [
+                                        'id_state' => $id_state,
+                                        'ctype' => 'AMLY',
+                                        'eci_ref' => $acno
+                                ] );
+                        if (! $acobj)
+                        {
+                            echo  '>> Making not found assembly [' . $td->nodeValue. "]\n" . print_r ( $attr, true );
+                            $acobj = new Constituency();
+                            $acobj->id_state = $id_state;
+                            $acobj->ctype = 'AMLY';
+                            $acobj->eci_ref = $acno;
+                            $acobj->name = $acname;
+                            if(!$acobj->save())
+                                die("Could not save new contituency:" . print_r($acobj->errors,true));
+                        }
+                        break;
+                    case 2 : // member nane
                         $name = trim ( $td->nodeValue );
                         break;
-                    case 2 : // constituency
-                        {
-                            $mats = [ ];
-                            if (! preg_match ( '/(?<acno>\d+)?[\W]*(?<acname>\w[\s\w\.]+\w)/', $td->nodeValue, $mats ))
-                                die ( "No match for [" . $td . ']' );
-                            
-                            $acname_fixes = [                                // 'Panjim' => 'Panji',
-                            ];
-                            
-                            $find = array_keys ( $acname_fixes );
-                            $replace = array_values ( $acname_fixes );
-                            $acname = str_ireplace ( $find, $replace, $mats ['acname'] );
-                            
-                            $acno = intval ( $mats ['acno'] );
-                            
-                            if ($acname == 'Panjim')
-                            {
-                                $acno = 11;
-                            }
-                            
-                            $acobj = Constituency::model ()->findByAttributes ( 
-                                    $attr = [ 
-                                            'id_state' => $id_state,
-                                            'ctype' => 'AMLY',
-                                            'eci_ref' => $acno 
-                                    ] );
-                            if (! $acobj)
-                                die ( '>> Could not find assembly [' . $acname . "]\n" . print_r ( $attr, true ) );
-                            break;
-                        }
                     case 3 : // PARTY
                         $party = trim ( $td->nodeValue );
                         break;
@@ -116,7 +96,7 @@ function updateActionPunjab()
                 print_r ( $MLA->errors );
                 die ( 'Saving MLA failed for ' . $acobj->eci_ref );
             }
-            echo $MLA->acname . " saved!\n";
+            echo "$acno\t" . $MLA->acname . " saved!\n";
         } // foreach TRs
     } // foreach URLs
 }
