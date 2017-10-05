@@ -60,8 +60,11 @@ class Controller extends CController
         {
             $_GET ['lang'] = Yii::app ()->language = Yii::app ()->session ['lang'];
         }
-        else
+        else if(!empty(Yii::app ()->params ['defaultLanguage']))
             $_GET ['lang'] = Yii::app ()->language = Yii::app ()->params ['defaultLanguage'];
+        else 
+        #201710051333:Kovai:thevikas:#25:incase default language not specified in config file, we hardcode it to english
+            $_GET ['lang'] = Yii::app ()->language = 'en';
         
         if (empty ( Yii::app ()->session ['lang'] ) || Yii::app ()->session ['lang'] != Yii::app ()->language)
         {
