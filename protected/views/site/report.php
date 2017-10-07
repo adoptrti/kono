@@ -14,6 +14,9 @@ $this->breadcrumbs = array (
 <h2><?=__('Municipal Corporations')?></h2>
 <?php
 
+$muni[0]['rti'] = 'https://twitter.com/adoptrti/status/916205653105844224';
+$muni[2]['rti'] = 'https://twitter.com/adoptrti/status/916212513317908480';
+
 $dataProvider = new CArrayDataProvider ( $muni, array (
         'keyField' => 0,
         'sort' => array (
@@ -49,9 +52,10 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                         ],
                         [ 
                                 'header' => __('Councillors'),
+                                'type' => 'raw',
                                 'value' => function ($data)
                                 {
-                                    return $data [2];
+                                    return $data [2] . ' ' . (empty($data['rti']) ? ' ' : CHtml::link(__('RTI'),$data['rti'],['']));
                                 } 
                         ] 
                 ] 
