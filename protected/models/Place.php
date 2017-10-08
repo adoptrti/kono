@@ -48,7 +48,7 @@ class Place extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('state_code, dt_code, dt_name, sdt_code, tv_code, name, updated', 'required'),
+			array('dt_name, name', 'required'),
 			array('state_code, id_state, dt_code, sdt_code, tv_code, population, areasqkm, eci_ref, amly_count', 'numerical', 'integerOnly'=>true),
 			array('dt_name, sdt_name, name, slug', 'length', 'max'=>255),
 			array('st_code_2c, dt_code_2c', 'length', 'max'=>3),

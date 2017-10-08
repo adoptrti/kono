@@ -21,7 +21,7 @@ class Village extends CActiveRecord
                 'CTimestampBehavior' => array (
                         'class' => 'zii.behaviors.CTimestampBehavior',
                         'createAttribute' => 'created',
-                        'updateAttribute' => null, 
+                        'updateAttribute' => 'updated', 
                 ) 
         ];
     }
