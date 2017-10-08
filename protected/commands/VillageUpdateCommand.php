@@ -14,4 +14,14 @@ class VillageUpdateCommand extends CConsoleCommand
         require_once __DIR__ . '/states/TamilnaduVillages.php';
         TamilnaduVillages();
     }
+    
+    /**
+     * #201710051351:Kovai:thevikas
+     */
+    public function actionKerala()
+    {
+        require_once __DIR__ . '/states/KeralaVillages.php';
+        KeralaVillages();
+    }
+    
 }

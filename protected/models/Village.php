@@ -14,6 +14,18 @@
  */
 class Village extends CActiveRecord
 {
+
+    public function behaviors()
+    {
+        return [ 
+                'CTimestampBehavior' => array (
+                        'class' => 'zii.behaviors.CTimestampBehavior',
+                        'createAttribute' => 'created',
+                        'updateAttribute' => null, 
+                ) 
+        ];
+    }
+    
 	/**
 	 * @return string the associated database table name
 	 */
@@ -26,18 +38,34 @@ class Village extends CActiveRecord
 	 * @return array validation rules for model attributes.
 	 */
 	public function rules()
-	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-			array('id_state, id_district, block, panchayat, village, created', 'required'),
-			array('id_state, id_district', 'numerical', 'integerOnly'=>true),
-			array('block, panchayat, village', 'length', 'max'=>255),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('id_village, id_state, id_district, block, panchayat, village, created', 'safe', 'on'=>'search'),
-		);
-	}
+    {
+        // NOTE: you should only define rules for those attributes that
+        // will receive user inputs.
+        return array (
+                array (
+                        'id_state, id_district, block, panchayat, village',
+                        'required' 
+                ),
+                array (
+                        'id_state, id_district',
+                        'numerical',
+                        'integerOnly' => true 
+                ),
+                array (
+                        'block, panchayat, village, ward',
+                        'length',
+                        'max' => 50 
+                ),
+                // The following rule is used by search().
+                // @todo Please remove those attributes that should not be
+                // searched.
+                array (
+                        'id_village, id_state, id_district, block, panchayat, village, ward, created',
+                        'safe',
+                        'on' => 'search' 
+                ) 
+        );
+    }
 
 	/**
 	 * @return array relational rules.

@@ -1,21 +1,19 @@
 <?php
 
-function TamilnaduVillages()
+function KeralaVillages()
 {
-    $id_state = 32; // tamilnadu
-    $ST_CODE = 33; // tamilnadu
+    $id_state = 19;//kerala
+    $ST_CODE = 32;
     
-    //Village::model()->deleteAllByAttributes(['id_state' => $id_state]);
+    Village::model()->deleteAllByAttributes(['id_state' => $id_state]);
     
     $stateobj = State::model ()->findByPk ( $id_state );
     
     libxml_use_internal_errors ( true );
     $rctr = 0;
     
-    $outcsv = fopen(Yii::app ()->basePath . '/../docs/tamilnadu/villages.csv','w');
-    
     $doc = new DOMDocument ();
-    $doc->loadHTML ( file_get_contents ( Yii::app ()->basePath . '/../docs/tamilnadu/villages.html' ) );
+    $doc->loadHTML ( file_get_contents ( Yii::app ()->basePath . '/../docs/kerala/villages.html' ) );
     
     $TABLE = $doc->getElementById ( 'ctl00_ContentPlaceHolder_GVHabitation' );
     
@@ -42,14 +40,7 @@ function TamilnaduVillages()
         } // foreach TDs
         
         $dist_name = $row [2];
-        
-        if ($dist_name == 'KANCHIPURAM')
-            $dist_name = 'Kancheepuram';
-        else if ($dist_name == 'NILGIRIS')
-            $dist_name = 'The Nilgiris';
-        else if($dist_name = 'THOOTHUKUDI')
-            $dist_name = 'Thoothukkudi';
-        
+                
         if (empty ( $dists [$dist_name] ))
         {
             
@@ -62,13 +53,24 @@ function TamilnaduVillages()
                     ] );
             if (! $place)
             {
-                die ( 'Could not find district ' . $dist_name);
+                echo 'Could not find district ' . $dist_name . "\n";
+                $place = new Place();
+                $place->id_state = $id_state;
+                $place->sdt_code = $place->tv_code = $place->dt_code = 0;
+                $place->dt_name = $dist_name;
+                $place->name = $dist_name;
+                $place->state_code = $ST_CODE;
+                $place->updated = date('Y-m-d H:i:s');
+                $place->eci_ref = null;
+                $place->sdt_name = null;
+                if(!$place->save())
+                {
+                    die('Count not save new District:' . print_r($place->errors,true));
+                }
             }
             $id_district = $dists [$dist_name] = $place->id_place2;
         }
         
-        fputcsv($outcsv,[$id_state,$dists [$dist_name],$row [3],$row [4],$row [5],$row [6]]);
-        /*
         $vill = new Village ();
         $vill->id_state = $id_state;
         $vill->id_district = $dists [$dist_name];
@@ -81,10 +83,7 @@ function TamilnaduVillages()
         {
             print_r ( $vill->errors );
             die ( 'Saving Village failed for ' . $vill->village . ' - ' . $vill->ward );
-        }*/
-        if($rctr % 100 == 0)
-            echo sprintf("\r%06d\t%30s",$rctr,$dist_name);
+        }
+        echo "\r $rctr\t" . $vill->village . "\t" . $vill->ward;
     } // foreach TRs
-    
-    fclose($outcsv);
 }
