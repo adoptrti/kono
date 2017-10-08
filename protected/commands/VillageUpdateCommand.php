@@ -6,13 +6,89 @@
  */
 class VillageUpdateCommand extends CConsoleCommand
 {
+    var $state;
+    public function actionIndex($id_state)
+    {
+        $this->state = State::model ()->findByPk ( $id_state );
+        echo "Working for " . $this->state->name . "\n";
+        // 1:download the url
+        $data = $this->step1 ( $id_state );
+        // 2:cleanup the html file
+        $htmlfile = $this->step2 ( $id_state, $data );
+        // 3:call R script
+        $this->step3 ( $id_state, realpath ( $htmlfile ) );
+        // 4:domysql import
+        $this->step4 ( $id_state );
+        // 5:process in step3
+        $this->step5 ( $id_state );
+    }
+
+    public function step1($id_state)
+    {
+        $dirtyfile = getcwd () . '/villages.html';
+        
+        if (file_exists ( $dirtyfile ))
+        {
+            echo $dirtyfile . ' already found, continue using it? (y/n)';
+            $yn = strtolower ( trim ( fgets ( STDIN ) ) );
+            if ('y' != $yn)
+                unlink($dirtyfile);
+        }
+        
+        if (! file_exists ( $dirtyfile ))
+        {
+            echo "Please provide the url:";
+            $url = trim ( fgets ( STDIN ) );
+            print "Downloading...\n";
+            // system("wget -O $dirtyfile $url");
+            system ( "curl -o \"$dirtyfile\" \"$url\"" );
+            // $data = file_get_contents ( $url );
+            // print "Completed.\n";
+        }
+        return file_get_contents ( $dirtyfile );
+    }
+
+    public function step2($id_state, $data)
+    {
+        libxml_use_internal_errors ( true );
+        $doc = new DOMDocument ();
+        $doc->loadHTML ( $data );
+        $TABLE = $doc->getElementById ( 'ctl00_ContentPlaceHolder_GVHabitation' );
+        $data2 = $doc->saveHTML ( $TABLE );
+        
+        $htmlfile = getcwd () . '/villages.html';
+        file_put_contents ( $htmlfile, $data2 );
+        return $htmlfile;
+    }
+
+    public function step3($id_state, $htmlfile)
+    {
+        $script = fopen ( getcwd () . "/rfile.r", 'w' );
+        $csvfile = getcwd () . '/villages2011.csv';
+        
+        if (! $htmlfile)
+            die ( __DIR__ . '/villages.html not found!' );
+        fputs ( $script, "library(XML)\n" );
+        fputs ( $script, "var{$id_state} = readHTMLTable(\"$htmlfile\")\n" );
+        fputs ( $script, "write.csv(var{$id_state},file=\"$csvfile\")\n" );
+        fclose ( $script );
+        
+        system ( "Rscript \"" . getcwd () . "/rfile.r\"" );
+    }
+
+    public function step4()
+    {
+        $dbuser = Yii::app ()->params ['dbuser'];
+        system ( 
+                "mysqlimport --fields-terminated-by=, --fields-enclosed-by='\"' --fields-escaped-by='\"'  --columns='del1,del2,state_name,dist_name,block,panchayat,village,ward' --local -u $dbuser eci3 villages2011.csv" );
+    }
 
     /**
      * #201710081840:Kovai:thevikas
      */
-    public function actionIndex($id_state)
+    public function step5($id_state)
     {
-        $state = State::model ()->findByPk ( $id_state );
+        $state = $this->state;
         
         $vills = Village::model ()->findAll ( 
                 [ 
@@ -26,6 +102,8 @@ class VillageUpdateCommand extends CConsoleCommand
         echo "Total " . count ( $vills ) . " found.\n";
         if (count ( $vills ) == 0)
             return;
+        
+        $totalupdated = 0;
         
         foreach ( $vills as $dist )
         {
@@ -69,14 +147,14 @@ class VillageUpdateCommand extends CConsoleCommand
                         $place = Place::model ()->findByPk ( $id_place2 );
                     else
                     {
-                        $place = new Place();
+                        $place = new Place ();
                         $place->id_state = $id_state;
                         $place->name = $place->dt_name = $dist_name;
                         $place->state_code = $place->sdt_code = $place->tv_code = 0;
-                        if(!$place->save())
+                        if (! $place->save ())
                         {
-                            print_r($place->errors);
-                            die;
+                            print_r ( $place->errors );
+                            die ();
                         }
                     }
                     if (! $place)
@@ -105,6 +183,8 @@ class VillageUpdateCommand extends CConsoleCommand
                             $dist->dist_name 
                     ] );
             echo "$rups updated\n";
+            $totalupdated += $rups;
         }
+        echo "Total updated: $totalupdated\n";
     }
 }
