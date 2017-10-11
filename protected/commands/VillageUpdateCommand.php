@@ -7,6 +7,70 @@
 class VillageUpdateCommand extends CConsoleCommand
 {
     var $state;
+
+    public function actionRefactor()
+    {
+        //*******************
+        // identify districts
+        // create in lb_distrcts
+        // update in villages2011
+        $places = Village::model ()->findAll ( 
+                [ 
+                        'select' => 'distinct id_district',
+                        'condition' => 'id_lb_district is null' 
+                ] );
+        foreach ( $places as $district )
+        {
+            $this->refactorDistrict ( $district->id_district );
+        }
+        
+        //*******************
+        // find blocks
+        // create in lb_block
+        // update in villages2011
+        $places = Village::model ()->findAll (
+                [
+                        'select' => 'distinct id_district',
+                ] );
+        foreach ( $places as $district )
+        {
+            $this->refactorBlock ( $district->id_district );
+            // find blocks
+            // create in lb_block
+            // update in villages2011
+            // find villages
+            // create in fb_village
+            // update village2011
+            // find wards
+            // create in fb_wards
+            // update in villages2011
+        }
+        
+    }
+
+    public function refactorDistrict($id_place2)
+    {
+        $place = Place::model ()->findByPk ( $id_place2 );
+        if (! $place)
+        {
+            echo "$id_place2 Not found in place_names\n";
+        }
+        $dis = new District ();
+        $dis->name = $place->name;
+        $dis->id_state = $place->id_state;
+        if (! $dis->save ())
+        {
+            print_r ( $dis->errors );
+            die ();
+        }
+        $upctr = Village::model ()->updateAll ( [ 
+                'id_lb_district' => $dis->id_district 
+        ], 'id_district = :dis', [ 
+                ':dis' => $id_place2 
+        ] );
+        echo "{$dis->state->name} \t {$dis->name} Saved. village records updated:$upctr\n";
+    }
+
     public function actionIndex($id_state)
     {
         $this->state = State::model ()->findByPk ( $id_state );
@@ -32,7 +96,7 @@ class VillageUpdateCommand extends CConsoleCommand
             echo $dirtyfile . ' already found, continue using it? (y/n)';
             $yn = strtolower ( trim ( fgets ( STDIN ) ) );
             if ('y' != $yn)
-                unlink($dirtyfile);
+                unlink ( $dirtyfile );
         }
         
         if (! file_exists ( $dirtyfile ))
