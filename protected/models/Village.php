@@ -9,8 +9,11 @@
  * @property integer $id_district
  * @property integer $id_lb_district
  * @property string $block
+ * @property integer $id_block
  * @property string $panchayat
+ * @property integer $id_panchayat
  * @property string $village
+ * @property integer $id_lb_village
  * @property string $created
  */
 class Village extends CActiveRecord
@@ -48,7 +51,7 @@ class Village extends CActiveRecord
                         'required' 
                 ),
                 array (
-                        'id_state, id_district, id_lb_district',
+                        'id_state, id_district, id_lb_district,id_block, id_panchayat,id_lb_village,id_lb_village',
                         'numerical',
                         'integerOnly' => true 
                 ),
@@ -61,7 +64,7 @@ class Village extends CActiveRecord
                 // @todo Please remove those attributes that should not be
                 // searched.
                 array (
-                        'id_village, id_state, id_district, block, panchayat, village, ward, created, id_lb_district',
+                        'id_village, id_state, id_district, block, panchayat, village, ward, created, id_lb_district, id_block',
                         'safe',
                         'on' => 'search' 
                 ) 

@@ -10,7 +10,8 @@ class VillageUpdateCommand extends CConsoleCommand
 
     public function actionRefactor()
     {
-        //*******************
+        
+        // *******************
         // identify districts
         // create in lb_distrcts
         // update in villages2011
@@ -24,28 +25,170 @@ class VillageUpdateCommand extends CConsoleCommand
             $this->refactorDistrict ( $district->id_district );
         }
         
-        //*******************
+        // *******************
         // find blocks
         // create in lb_block
         // update in villages2011
-        $places = Village::model ()->findAll (
-                [
-                        'select' => 'distinct id_district',
+        $places = Village::model ()->findAll ( 
+                [ 
+                        'select' => 'distinct id_lb_district' 
                 ] );
         foreach ( $places as $district )
         {
-            $this->refactorBlock ( $district->id_district );
-            // find blocks
-            // create in lb_block
-            // update in villages2011
-            // find villages
-            // create in fb_village
-            // update village2011
-            // find wards
-            // create in fb_wards
-            // update in villages2011
+            $this->refactorBlock ( $district->id_lb_district );
         }
         
+        // *******************
+        // find panchayats
+        // create in lb_panchayat
+        // update village2011
+        $places = Village::model ()->findAll ( 
+                [ 
+                        'select' => 'distinct id_block' 
+                ] );
+        foreach ( $places as $block )
+        {
+            $this->refactorPanchayat ( $block->id_block );
+        }
+        
+        // *******************
+        // find villages
+        // create in lb_panchayat
+        // update village2011
+        
+        $places1 = Village::model ()->findAll ( 
+                [ 
+                        'select' => 'distinct id_block' 
+                ] );
+        foreach ( $places as $block )
+        {
+            
+            $places2 = Village::model ()->findAll ( 
+                    [ 
+                            'select' => 'distinct id_panchayat',
+                            'condition' => 'id_block = ? and id_lb_village is null',
+                            'params' => [$block->id_block]
+                    ] );
+            foreach ( $places2 as $py )
+            {
+                $this->refactorVillage ( $py->id_panchayat );
+                // find wards
+                // create in fb_wards
+                // update in villages2011
+            }
+        }
+    }
+
+    public function refactorPanchayat($id_lb_block)
+    {
+        $panchayats = Village::model ()->findAll ( 
+                [ 
+                        'select' => 'distinct panchayat',
+                        'condition' => 'id_block = ? and id_panchayat is null',
+                        'params' => [ 
+                                $id_lb_block 
+                        ] 
+                ] );
+        
+        foreach ( $panchayats as $panchayat )
+        {
+            $obj = new Panchayat ();
+            $obj->name = $panchayat->panchayat;
+            $obj->id_block = $id_lb_block;
+            if (! $obj->save ())
+            {
+                print_r ( $obj->errors );
+                die ();
+            }
+            $upctr = Village::model ()->updateAll ( 
+                    [ 
+                            'id_panchayat' => $obj->id_panchayat 
+                    ], 'id_block = :dis and panchayat=:vn', 
+                    [ 
+                            ':dis' => $id_lb_block,
+                            ':vn' => $panchayat->panchayat 
+                    ] );
+            
+            if (! $upctr)
+                die ( "id_lb_block = $id_lb_block, pname=[{$block->panchayat}] nothing found!?" );
+            
+            echo "{$obj->block->district->state->name} \t {$obj->block->district->name} \t {$obj->block->name} \t {$obj->name} Saved. village records updated:$upctr\n";
+        }
+    }
+
+    public function refactorVillage($id_lb_panchayat)
+    {
+        echo "Finding pending villages...\t$id_lb_panchayat ";
+        $villages = Village::model ()->findAll ( 
+                [ 
+                        'select' => 'distinct village',
+                        'condition' => 'id_panchayat = ? and id_lb_village is null',
+                        'params' => [ 
+                                $id_lb_panchayat 
+                        ] 
+                ] );
+        echo "Done.\n";
+        
+        foreach ( $villages as $village )
+        {
+            $obj = new LBVillage ();
+            $obj->name = $village->village;
+            $obj->id_panchayat = $id_lb_panchayat;
+            if (! $obj->save ())
+            {
+                print_r ( $obj->errors );
+                die ();
+            }
+            $upctr = Village::model ()->updateAll ( 
+                    [ 
+                            'id_lb_village' => $obj->id_village 
+                    ], 'id_panchayat = :dis and village=:vn', 
+                    [ 
+                            ':dis' => $id_lb_panchayat,
+                            ':vn' => $village->village 
+                    ] );
+            
+            if (! $upctr)
+                die ( "id_lb_block = $id_lb_block, vname=[{$village->name}] nothing found!?" );
+            
+            echo "{$obj->panchayat->block->district->state->name} \t {$obj->panchayat->block->name} \t {$obj->panchayat->name} \t {$obj->name}Saved. village records updated:$upctr\n";
+        }
+    }
+
+    public function refactorBlock($id_lb_district)
+    {
+        $blocks = Village::model ()->findAll ( 
+                [ 
+                        'select' => 'distinct block',
+                        'condition' => 'id_lb_district = ? and id_block is null',
+                        'params' => [ 
+                                $id_lb_district 
+                        ] 
+                ] );
+        
+        foreach ( $blocks as $block )
+        {
+            $obj = new Block ();
+            $obj->name = $block->block;
+            $obj->id_district = $id_lb_district;
+            if (! $obj->save ())
+            {
+                print_r ( $obj->errors );
+                die ();
+            }
+            $upctr = Village::model ()->updateAll ( [ 
+                    'id_block' => $obj->id_block 
+            ], 'id_lb_district = :dis and block=:bn', 
+                    [ 
+                            ':dis' => $id_lb_district,
+                            ':bn' => $block->block 
+                    ] );
+            
+            if (! $upctr)
+                die ( "district = $id_lb_district, name=[{$block->block}] nothing found!?" );
+            
+            echo "{$obj->district->state->name} \t {$obj->district->name} \t {$obj->name} Saved. block records updated:$upctr\n";
+        }
     }
 
     public function refactorDistrict($id_place2)

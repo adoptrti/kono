@@ -1,22 +1,25 @@
 <?php
 
 /**
- * This is the model class for table "lb_ward".
+ * This is the model class for table "lb_panchayat".
  *
- * The followings are the available columns in table 'lb_ward':
- * @property integer $id_vward
- * @property integer $id_village
+ * The followings are the available columns in table 'lb_panchayat':
+ * @property integer $id_panchayat
+ * @property integer $id_block
  * @property string $name
  * @property string $updated
+ * 
+ * @property Block $block
+ * @property LBVillage[] $villages
  */
-class LBWard extends CActiveRecord
+class Panchayat extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'lb_ward';
+		return 'lb_panchayat';
 	}
 	
 	public function behaviors()
@@ -25,16 +28,15 @@ class LBWard extends CActiveRecord
 	            'CTimestampBehavior' => array (
 	                    'class' => 'zii.behaviors.CTimestampBehavior',
 	                    'createAttribute' => null,
-	                    'updateAttribute' => 'updated'
+	                    'updateAttribute' => 'updated',
 	            ),
 	            'NameLinkBehavior' => [
 	                    'class' => 'application.behaviours.NameLinkBehavior',
-	                    'controller' => 'localgov/ward',
+	                    'controller' => 'localgov/panchayat',
 	                    'template' => '{link}'
-	            ]
-	            
+	            ]	            
 	    ];
-	}
+	}	
 
 	/**
 	 * @return array validation rules for model attributes.
@@ -44,12 +46,12 @@ class LBWard extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_village, name', 'required'),
-			array('id_village', 'numerical', 'integerOnly'=>true),
+			array('id_block, name', 'required'),
+			array('id_block', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>70),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_vward, id_village, name, updated', 'safe', 'on'=>'search'),
+			array('id_panchayat, id_block, name, updated', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,7 +63,8 @@ class LBWard extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-	        'village' => array(self::BELONGS_TO, 'LBVillage', 'id_village'),
+	        'block' => array(self::BELONGS_TO, 'Block', 'id_block'),
+	        'villages' => array(self::HAS_MANY, 'LBVillage', 'id_panchayat'),
 		);
 	}
 
@@ -71,8 +74,8 @@ class LBWard extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_vward' => 'Id Vward',
-			'id_village' => 'Id Village',
+			'id_panchayat' => 'Id Panchayat',
+			'id_block' => 'Id Block',
 			'name' => 'Name',
 			'updated' => 'Updated',
 		);
@@ -96,8 +99,8 @@ class LBWard extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_vward',$this->id_vward);
-		$criteria->compare('id_village',$this->id_village);
+		$criteria->compare('id_panchayat',$this->id_panchayat);
+		$criteria->compare('id_block',$this->id_block);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('updated',$this->updated,true);
 
@@ -110,7 +113,7 @@ class LBWard extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return LBWard the static model class
+	 * @return Panchayat the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

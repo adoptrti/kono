@@ -26,7 +26,13 @@ class District extends CActiveRecord
 	                    'class' => 'zii.behaviors.CTimestampBehavior',
 	                    'createAttribute' => null,
 	                    'updateAttribute' => 'updated',
-	            )
+	            ),
+	            'NameLinkBehavior' => [
+	                    'class' => 'application.behaviours.NameLinkBehavior',
+	                    'controller' => 'localgov/district',
+	                    'template' => '{link}'
+	            ]
+	            
 	    ];
 	}
 	

@@ -10,9 +10,11 @@
  * @property integer $id_parl_consti
  * @property string $zone
  * @property integer $wardno
- * @property string $acname
+ * @property integer $id_district
+ * @property string $name
  * @property string $poly
  * @property integer $st_code
+ * @property integer $id_state
  * @property string $st_name
  * @property integer $dt_code
  * @property string $dist_name
@@ -24,6 +26,7 @@
  * @property double $Shape_Area
  * @property double $MaxSimpTol
  * @property double $MinSimpTol
+ * @property integer $id_village Local Body Village Key
  */
 class AssemblyPolygon extends CActiveRecord
 {
@@ -46,31 +49,21 @@ class AssemblyPolygon extends CActiveRecord
     }
 
     /**
-     *
      * @return array validation rules for model attributes.
      */
     public function rules()
     {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
-        return array (
-                array (
-                        'acno, poly',
-                        'required'
-                ),
-                array (
-                        'acno',
-                        'numerical',
-                        'integerOnly' => true
-                ),
-                // The following rule is used by search().
-                // @todo Please remove those attributes that should not be
-                // searched.
-                array (
-                        'acno, poly',
-                        'safe',
-                        'on' => 'search'
-                )
+        return array(
+            array('acno, id_parl_consti, wardno, id_village, id_district, st_code, id_state, dt_code, pcno, pc_id', 'numerical', 'integerOnly'=>true),
+            array('Shape_Leng, Shape_Area, MaxSimpTol, MinSimpTol', 'numerical'),
+            array('polytype', 'length', 'max'=>7),
+            array('zone, name, st_name, dist_name, pc_name, pc_name_clean', 'length', 'max'=>255),
+            array('poly', 'safe'),
+            // The following rule is used by search().
+            // @todo Please remove those attributes that should not be searched.
+            array('id_poly, polytype, acno, id_parl_consti, zone, wardno, id_village, id_district, name, poly, st_code, id_state, st_name, dt_code, dist_name, pcno, pc_name, pc_name_clean, pc_id, Shape_Leng, Shape_Area, MaxSimpTol, MinSimpTol', 'safe', 'on'=>'search'),
         );
     }
 
@@ -83,7 +76,7 @@ class AssemblyPolygon extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array (
-                'states' => array (
+                'state' => array (
                         self::BELONGS_TO,
                         'State',
                         'id_state'

@@ -42,6 +42,22 @@ class State extends CActiveRecord
 	{
 		return 'states';
 	}
+	
+	public function behaviors()
+	{
+	    return [
+	            'CTimestampBehavior' => array (
+	                    'class' => 'zii.behaviors.CTimestampBehavior',
+	                    'createAttribute' => null,
+	                    'updateAttribute' => 'updated',
+	            ),
+	            'NameLinkBehavior' => [
+	                    'class' => 'application.behaviours.NameLinkBehavior',
+	                    'controller' => 'state',
+	                    'template' => '{link}'
+	            ]
+	    ];
+	}	
 
 	/**
 	 * @return array validation rules for model attributes.
