@@ -6,8 +6,8 @@
 // https://stackoverflow.com/questions/15662910/search-a-table-for-point-in-polygon-using-mysql
 
 $src = [ 
-        'condition' => (new CDbExpression ( "ST_Contains(poly, GeomFromText(:point))")) . ' and states.name=:statename',
-        'with' => ['states'],
+        'condition' => (new CDbExpression ( "ST_Contains(poly, GeomFromText(:point))")) . ' and state.name=:statename',
+        'with' => ['state'],
         'params' => [ 
             ':statename' => $data0[0]->state,
             ':point' => 'POINT(' . $long . ' ' . $lat . ')' 
@@ -17,9 +17,10 @@ $src = [
 $ass2 = AssemblyPolygon::model ()->findAll ( $src );
 
 $data = [ ];
-
+/* @var $ass AssemblyPolygon */
 foreach ( $ass2 as $ass )
 {    
+    error_log('GIS-found poly:' . $ass->id_poly . ' name:' . $ass->name . ' type:' . $ass->polytype . ' id_village:' . $ass->id_village);
     if ($ass->polytype == 'WARD')
     {
         $con2 = MunicipalResults::model ()->findByAttributes ( [ 
@@ -30,7 +31,7 @@ foreach ( $ass2 as $ass )
         if ($con2)
             $data ['ward'] = $con2;
     }
-    else
+    else if($ass->polytype == 'AC')
     {
         $data ['amly_poly'] = $ass;
         $con2 = LokSabha2014::model ()->findByAttributes ( [ 
@@ -53,6 +54,10 @@ foreach ( $ass2 as $ass )
             $data ['assembly'] = $con3;
         }
     }
+    else if($ass->polytype == 'VILLAGE')
+    {
+        $data['village'] = $ass;
+    }
 }
 
 $this->renderPartial ( '_address', [ 
@@ -68,6 +73,12 @@ if (! empty ( $data ['ward'] ))
             'data0' => $data0,
     ] );
 
+if (! empty ( $data ['village'] ))
+        $this->renderPartial ( '_village', [
+                'data' => $data ['village'],
+                'data0' => $data0,
+        ] );
+        
 if (! empty ( $data ['assembly'] ))
     $this->renderPartial ( '_assembly', [ 
             'data' => $data ['assembly'],

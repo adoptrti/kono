@@ -38,7 +38,9 @@ class AssemblyPolygon extends CActiveRecord
     var $ctr6;
     var $ctr7;
     var $ctr8;
-    
+    var $ctr9;
+    var $ctr10;
+
     /**
      *
      * @return string the associated database table name
@@ -80,6 +82,11 @@ class AssemblyPolygon extends CActiveRecord
                         self::BELONGS_TO,
                         'State',
                         'id_state'
+                ),
+                'village' => array (
+                        self::BELONGS_TO,
+                        'LBVillage',
+                        'id_village'
                 )
         );
     }
@@ -166,7 +173,7 @@ class AssemblyPolygon extends CActiveRecord
         $AR_table = AssemblyResults::model()->tableName();
         $rs = AssemblyPolygon::model ()->findAll (
                 [
-                        'group' => 'id_state,st_name,st_code',
+                        'group' => 't.id_state,t.st_name,t.st_code',
                         'select' => "st_name,count(*) as ctr1,
                             (select count(name) from $AR_table r2 where r2.ST_CODE=t.ST_CODE) as ctr2,
                             (select count(phones) from $AR_table r3 where phones<>'' and r3.id_state=t.id_state) as ctr3,
@@ -175,7 +182,10 @@ class AssemblyPolygon extends CActiveRecord
                             (select count(picture) from $AR_table r6 where picture<>'' and r6.id_state=t.id_state) as ctr6,
                             (select count(distinct id_city) from municipalresults r7 join towns2011 r7t on r7t.id_place=r7.id_city and r7t.tvtype in ('mcorp','mcorp+og') where r7t.id_state=t.id_state) as ctr7,
                             (select count(*) from towns2011 r8 where r8.tvtype in ('mcorp','mcorp+og') and r8.id_state=t.id_state) as ctr8,
-                            id_state",
+                            vpr.polygons as ctr9,
+                            vpr.villages as ctr10,
+                            t.id_state",
+                        'join' => 'left join `village-polygon-report` vpr on vpr.id_state=t.id_state',
                         'order' => 'st_name',
                         'condition' => 'polytype=?',
                         'params' => [
@@ -184,7 +194,7 @@ class AssemblyPolygon extends CActiveRecord
                 ] );
         foreach ( $rs as $r )
         {
-            $data = [ 
+            $data = [
                     $r->st_name,
                     $r->ctr1,
                     $r->ctr2,
@@ -194,16 +204,18 @@ class AssemblyPolygon extends CActiveRecord
                     $r->ctr6,
                     $r->ctr7,
                     $r->ctr8,
-                    $r->id_state 
+                    $r->ctr9,
+                    $r->ctr10,
+                    $r->id_state
             ];
-            
+
             $mx = $data [1];
             $score = 0;
             for($i = 2; $i < 7; $i ++)
             {
                 $score += min ( $data [$i], $mx ) / $mx;
             }
-            $data[] = $score/5;                                 
+            $data[] = $score/5;
             $row [] = $data;
         }
         return $row;

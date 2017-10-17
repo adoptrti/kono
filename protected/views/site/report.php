@@ -4,7 +4,7 @@
 /* @var $form CActiveForm */
 $this->pageTitle = Yii::app ()->name . ' - ' . __('Data Report');
 $this->breadcrumbs = array (
-        __('Data Report') 
+        __('Data Report')
 );
 ?>
 
@@ -23,42 +23,42 @@ $dataProvider = new CArrayDataProvider ( $muni, array (
                 'attributes' => array (
                         0,
                         1,
-                        2 
-                ) 
+                        2
+                )
         ),
         'pagination' => array (
-                'pageSize' => 50 
-        ) 
+                'pageSize' => 50
+        )
 ) );
 
-$this->widget ( 'zii.widgets.grid.CGridView', 
-        [ 
+$this->widget ( 'zii.widgets.grid.CGridView',
+        [
                 'dataProvider' => $dataProvider,
                 'template' => '{items}',
-                'columns' => [ 
-                        [ 
+                'columns' => [
+                        [
                                 'header' => __('City'),
                                 'value' => function ($data)
                                 {
                                     return $data [0];
-                                } 
+                                }
                         ],
-                        [ 
+                        [
                                 'header' => __('Polygons'),
                                 'value' => function ($data)
                                 {
                                     return $data [1];
-                                } 
+                                }
                         ],
-                        [ 
+                        [
                                 'header' => __('Councillors'),
                                 'type' => 'raw',
                                 'value' => function ($data)
                                 {
                                     return $data [2] . ' ' . (empty($data['rti']) ? ' ' : CHtml::link(__('RTI'),$data['rti'],['']));
-                                } 
-                        ] 
-                ] 
+                                }
+                        ]
+                ]
         ] );
 
 ?>
@@ -73,7 +73,7 @@ tr.score
 }
 tr.score td
 {
-    
+
 }
 <?php
 for($i=1; $i<=20; $i++)
@@ -84,7 +84,7 @@ for($i=1; $i<=20; $i++)
         b9ackground-size: <?=$i*5?>% 2px;
         background-size: <?=$i*5?>% 10%;
     }
-    <?php 
+    <?php
 }
 ?>
 </style>
@@ -99,16 +99,16 @@ $dataProvider = new CArrayDataProvider ( $amly, array (
                 'attributes' => array (
                         0,
                         1,
-                        2,3,4 
-                ) 
+                        2,3,4
+                )
         ),
         'pagination' => array (
-                'pageSize' => 50 
-        ) 
+                'pageSize' => 50
+        )
 ) );
 $css_master = [];
-$this->widget ( 'zii.widgets.grid.CGridView', 
-        [ 
+$this->widget ( 'zii.widgets.grid.CGridView',
+        [
                 'template' => '{items}',
                 'dataProvider' => $dataProvider,
                 'rowCssClassExpression'=> function($row,$data)
@@ -123,31 +123,31 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                     //die;
                     //if(isset($data[$row]))
                       //  echo " - " . print_r($data[$row],true);
-                      
-                    //return "score" . intval(100*$data[$row][10]);    
+
+                    //return "score" . intval(100*$data[$row][10]);
                 },
-                'columns' => [ 
-                        [ 
+                'columns' => [
+                        [
                                 'header' => __('State'),
-                                'type' => 'raw',                                 
+                                'type' => 'raw',
                                 'value' => function ($data)
                                 {
                                     return CHtml::link($data [0],['state/view','id' => $data[count($data)-1]]);
-                                } 
+                                }
                         ],
-                        [ 
-                                'header' => __('Polygons'),
+                        [
+                                'header' => __('A Poly'),
                                 'value' => function ($data)
                                 {
                                     return $data [1];
-                                } 
+                                }
                         ],
-                        [ 
+                        [
                                 'header' => __('MLAs'),
                                 'value' => function ($data)
                                 {
                                     return $data [2];
-                                } 
+                                }
                         ],
                         [
                                 'header' => __('Phones'),
@@ -177,13 +177,27 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                                     return $data [6];
                         }
                         ],
-                        [ 
+                        [
                                 'header' => __ ( 'M Corp' ),
                                 'value' => function ($data)
                                 {
                                     if(!empty($data[8]))
                                         return $data [7] . '/' . $data[8];
-                                } 
+                                }
+                        ],
+                        [
+                                'header' => __('Villages'),
+                                'value' => function ($data)
+                                {
+                                    return $data[10];
+                                }
+                        ],
+                        [
+                                'header' => __('V Poly'),
+                                'value' => function ($data)
+                                {
+                                    return $data[9];
+                                }
                         ],
                         /*[
                                 'header' => __('Score'),

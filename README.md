@@ -90,6 +90,7 @@ More than developing the software, we need to collect and cleanup data that we h
 1. Markets:
 
 ## Updates
+* **17-Oct-2017** - Local panchayat raj admins and elected reps support has started with Tamil Nadu. (:pushpin: v 0.7)
 * **05-Oct-2017** - Gujarat, Assam data added
 * **04-Oct-2017** - Much better looking site (:pushpin: v 0.6), Rajasthan and Arunachal Pradesh data added
 * **03-Oct-2017** - West Bengal and Andra Pradesh data added
