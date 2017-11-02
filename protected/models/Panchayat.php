@@ -9,6 +9,13 @@
  * @property string $name
  * @property string $updated
  * 
+ * @property string $slug
+ * @property integer $pri_code
+ * @property integer $organizationId
+ * @property string $domainName
+ * @property string $friendlyUrl
+ * @property string $nomenclatureName
+ * 
  * @property Block $block
  * @property LBVillage[] $villages
  */
@@ -49,6 +56,10 @@ class Panchayat extends CActiveRecord
 			array('id_block, name', 'required'),
 			array('id_block', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>70),
+		        
+	        array('pri_code,organizationId', 'numerical', 'integerOnly'=>true),
+	        array('slug, domainName,friendlyUrl,nomenclatureName', 'length', 'max'=>255),
+	        
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id_panchayat, id_block, name, updated', 'safe', 'on'=>'search'),

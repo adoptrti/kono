@@ -52,12 +52,22 @@ class State extends CActiveRecord
 	                    'updateAttribute' => 'updated',
 	            ),
 	            'NameLinkBehavior' => [
-	                    'class' => 'application.behaviours.NameLinkBehavior',
+	                    'class' => 'kono.behaviours.NameLinkBehavior',
 	                    'controller' => 'state',
 	                    'template' => '{link}'
 	            ]
 	    ];
-	}	
+	}
+
+    public function bycode($st_code)
+    {
+        $this->getDbCriteria ()->mergeWith ( 
+                array (
+                        'condition' => 't.ST_CODE=?',
+                        'params' => [$st_code] 
+                ) );
+        return $this;
+    }	
 
 	/**
 	 * @return array validation rules for model attributes.
@@ -91,6 +101,7 @@ class State extends CActiveRecord
 			'constituencies' => array(self::HAS_MANY, 'Constituency', 'id_state'),
 			'constituencies1' => array(self::HAS_MANY, 'Constituency', 'id_state2'),
 			'elections' => array(self::HAS_MANY, 'Elections', 'id_state'),
+	        'districts' => array(self::HAS_MANY, 'District', 'id_state','order' => 'name'),
 			'placeNames' => array(self::HAS_MANY, 'PlaceNames', 'id_state'),
 			'results2009s' => array(self::HAS_MANY, 'Results2009', 'id_state'),
 			'sabhas' => array(self::HAS_MANY, 'Sabha', 'id_state'),

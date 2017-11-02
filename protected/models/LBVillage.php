@@ -8,6 +8,14 @@
  * @property integer $id_panchayat
  * @property string $name
  * @property string $updated
+ * 
+ * @property string $slug
+ * @property integer $pri_code
+ * @property integer $organizationId
+ * @property string $domainName
+ * @property string $friendlyUrl
+ * @property string $nomenclatureName
+
  */
 class LBVillage extends CActiveRecord
 {
@@ -51,6 +59,10 @@ class LBVillage extends CActiveRecord
                         'id_panchayat, name',
                         'required' 
                 ),
+                
+                array('pri_code,organizationId', 'numerical', 'integerOnly'=>true),
+                array('slug, domainName,friendlyUrl,nomenclatureName', 'length', 'max'=>255),
+                
                 array (
                         'id_panchayat',
                         'numerical',

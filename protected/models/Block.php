@@ -9,6 +9,14 @@
  * @property string $name
  * @property string $updated
  * 
+ * @property string $slug
+ * @property integer $pri_code
+ * @property integer $organizationId
+ * @property string $domainName
+ * @property string $friendlyUrl
+ * @property string $nomenclatureName
+
+ * 
  * @property Panchayat[] $panchayats
  * @property District $district
  */
@@ -58,6 +66,10 @@ class Block extends CActiveRecord
                         'numerical',
                         'integerOnly' => true 
                 ),
+                
+                array('pri_code,organizationId', 'numerical', 'integerOnly'=>true),
+                array('slug, domainName,friendlyUrl,nomenclatureName', 'length', 'max'=>255),
+                
                 array (
                         'name',
                         'length',

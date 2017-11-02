@@ -8,6 +8,13 @@
  * @property integer $id_village
  * @property string $name
  * @property string $updated
+ * 
+ * @property string $slug
+ * @property integer $pri_code
+ * @property integer $organizationId
+ * @property string $domainName
+ * @property string $friendlyUrl
+ * @property string $nomenclatureName
  */
 class LBWard extends CActiveRecord
 {
@@ -47,6 +54,10 @@ class LBWard extends CActiveRecord
 			array('id_village, name', 'required'),
 			array('id_village', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>70),
+		        
+	        array('pri_code,organizationId', 'numerical', 'integerOnly'=>true),
+	        array('slug, domainName,friendlyUrl,nomenclatureName', 'length', 'max'=>255),
+	        
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id_vward, id_village, name, updated', 'safe', 'on'=>'search'),

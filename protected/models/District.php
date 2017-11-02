@@ -8,6 +8,17 @@
  * @property string $name
  * @property string $updated
  * @property integer $id_state
+ * 
+ * @property string $slug
+ * @property integer $pri_code
+ * @property integer $organizationId
+ * @property string $domainName
+ * @property string $friendlyUrl
+ * @property string $nomenclatureName
+ * 
+ *  @property State $state
+ *   @property Block $blocks
+ * 
  */
 class District extends CActiveRecord
 {
@@ -47,7 +58,11 @@ class District extends CActiveRecord
 		return array(
 			array('name, id_state', 'required'),
 			array('id_state', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>255),
+			
+	        array('pri_code,organizationId', 'numerical', 'integerOnly'=>true),
+	        array('slug, domainName,friendlyUrl,nomenclatureName', 'length', 'max'=>255),
+		        
+	        array('name', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id_district, name, updated, id_state', 'safe', 'on'=>'search'),
@@ -63,6 +78,7 @@ class District extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 	        'state' => array(self::BELONGS_TO, 'State', 'id_state'),
+	        'blocks' => array(self::HAS_MANY, 'Block', 'id_district','order' => 'name'),
 		);
 	}
 
