@@ -32,9 +32,11 @@ class SiteController extends Controller
             $lat = $data[1]->latitude;
             $long = $data[1]->longitude;
         }
+        #201711020955:thevikas:Kovai
+        $w3w = What3Words::fetchWords($lat, $long);
         
         $this->layout = false;
-        $this->render ( 'placeinfo' ,['lat' => $lat,'long' => $long,'data0' => $data]);
+        $this->render ( 'placeinfo' ,['lat' => $lat,'long' => $long,'data0' => $data,'w3w' => $w3w]);
     }
 
     /**
