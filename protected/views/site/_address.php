@@ -11,6 +11,7 @@
     $address [0]->latitude = $address [1]->latitude;
     $address [0]->longitude = $address [1]->longitude;
     $address [0]->district = $amly_poly->dist_name;
+    $address [0]->w3w = $w3w;
     // 'amly_poly' => $data ['amly_poly'],
     
     // $address[0]->altitude= $address[1]->altitude;
@@ -73,7 +74,16 @@
                             [ 
                                     'label' => __ ( 'Altitude' ),
                                     'name' => 'altitude' 
-                            ] 
+                            ],
+                            [
+                                    'label' => CHtml::image('/images/what3words-rhc.svg','what3words unique location coordinates',['height' => 17]),
+                                    'type' => 'raw',
+                                    'value' => function($data)
+                                    {
+                                        return CHtml::link($data->w3w->words,$data->w3w->map);
+                                    }
+                            ],
+                            
                     ] 
             ] );
     

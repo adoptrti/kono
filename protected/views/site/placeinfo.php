@@ -4,7 +4,9 @@
 // @see https://dev.mysql.com/doc/refman/5.7/en/populating-spatial-columns.html
 // @see
 // https://stackoverflow.com/questions/15662910/search-a-table-for-point-in-polygon-using-mysql
-
+#
+#
+#
 $src = [ 
         'condition' => (new CDbExpression ( "ST_Contains(poly, GeomFromText(:point))")) . ' and state.name=:statename',
         'with' => ['state'],
@@ -63,6 +65,7 @@ foreach ( $ass2 as $ass )
 $this->renderPartial ( '_address', [ 
         'address' => $data0,
         'mp_poly' => $data ['mp_poly'],
+        'w3w' => $w3w,
         'amly_poly' => $data ['amly_poly'],
         'data' => !empty($data ['ward']) ? $data ['ward'] : [],
 ] );
