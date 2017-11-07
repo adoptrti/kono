@@ -353,3 +353,13 @@ div#footer a.madeinindia
 	text-decoration: none;
 	border: 0;
 }
+table.detail-view tr.w3w td,table.detail-view tr.w3w th
+{
+	padding: 0;
+}
+table.detail-view tr.w3w td
+{
+	font-size: 1em;
+	padding-left: 0.6em;
+	padding-right: 0.6em;
+}

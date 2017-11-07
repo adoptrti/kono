@@ -7,5 +7,5 @@ return array (
         'application.components.*',
         'application.behaviours.*',
         'application.controllers.*',
-        'application.controllers.api.*'
+        'application.controllers.api.*',
 );
