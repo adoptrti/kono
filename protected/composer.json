@@ -1,0 +1,5 @@
+{
+    "require": {
+        "salavert/open-location-code": "1.*"
+    }
+}
