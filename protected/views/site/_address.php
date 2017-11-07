@@ -76,11 +76,20 @@
                                     'name' => 'altitude' 
                             ],
                             [
-                                    'label' => CHtml::image('/images/what3words-rhc.svg','what3words unique location coordinates',['height' => 17]),
-                                    'type' => 'raw',
+                                    'label' => __('Open Location Code'),
                                     'value' => function($data)
                                     {
-                                        return CHtml::link($data->w3w->words,$data->w3w->map);
+                                        $olc = new Salavert\OpenLocationCode();
+                                        return $olc->encode($data->latitude, $data->longitude);
+                                    }
+                            ],
+                            [
+                                    'label' => CHtml::image('/images/what3words-rhc.svg','what3words unique location coordinates',['height' => 17]),
+                                    'type' => 'raw',
+                                    'cssClass' => 'w3w',
+                                    'value' => function($data)
+                                    {
+                                        return CHtml::link(CHtml::image('/images/what3words-rsn.svg','what3words unique location coordinates',['height' => 17]) . ' ' . $data->w3w->words,$data->w3w->map,['class' => 'w3w']);
                                     }
                             ],
                             
