@@ -98,7 +98,7 @@ echo '<ol>';
 foreach ( $poly as $ac )
 {
     echo CHtml::tag ( 'li', [ ], 
-            CHtml::link ( $ac->acname, 
+            CHtml::link ( $ac->name, 
                     [ 
                             'state/assembly',
                             'acno' => $ac->acno,
