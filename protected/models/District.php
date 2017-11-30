@@ -30,6 +30,18 @@ class District extends CActiveRecord
 		return 'lb_district';
 	}
 	
+	public function bystate($id_state)
+	{
+	    $this->getDbCriteria ()->mergeWith (
+	            array (
+	                    'condition' => 'id_state=:sid',
+	                    'params' => array (
+	                            'sid' => $id_state
+	                    )
+	            ) );
+	    return $this;
+	}	
+	
 	public function behaviors()
 	{
 	    return [
@@ -79,6 +91,7 @@ class District extends CActiveRecord
 		return array(
 	        'state' => array(self::BELONGS_TO, 'State', 'id_state'),
 	        'blocks' => array(self::HAS_MANY, 'Block', 'id_district','order' => 'name'),
+	        'polygons' => array(self::HAS_MANY, 'AssemblyPolygon', 'id_district','order' => 'name'),
 		);
 	}
 

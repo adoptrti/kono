@@ -402,6 +402,16 @@ class UpdateCommand extends CConsoleCommand
         require_once __DIR__ . '/update/updateActionAssam.php';
         updateActionAssam();
     }
+
+    /**
+     * To parse the collectors of Deputy Commissioner of District
+     * #201711171356:Kovai:thevikas
+     */
+    public function actionKonoDCTamilNadu()
+    {
+        require_once __DIR__ . '/update/updateDCTamilNadu.php';
+        updateDCTamilNadu();
+    }
 }
 
 function reducer($carry, $item)

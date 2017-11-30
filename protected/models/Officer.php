@@ -1,46 +1,28 @@
 <?php
 
 /**
- * This is the model class for table "lb_ward".
+ * This is the model class for table "officer".
  *
- * The followings are the available columns in table 'lb_ward':
- * @property integer $id_vward
- * @property integer $id_village
+ * The followings are the available columns in table 'officer':
+ * @property integer $id_officer
  * @property string $name
+ * @property integer $fkey_place
+ * @property string $desig
  * @property string $updated
- * 
- * @property string $slug
- * @property integer $pri_code
- * @property integer $organizationId
- * @property string $domainName
- * @property string $friendlyUrl
- * @property string $nomenclatureName
+ * @property string $created
+ * @property string $phone
+ * @property string $fax
+ * @property string $email
  */
-class LBWard extends CActiveRecord
+class Officer extends CActiveRecord
 {
+    const DESIG_DISTCOLLECTOR = 'DISTCOLLECTOR';
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'lb_ward';
-	}
-	
-	public function behaviors()
-	{
-	    return [
-	            'CTimestampBehavior' => array (
-	                    'class' => 'zii.behaviors.CTimestampBehavior',
-	                    'createAttribute' => null,
-	                    'updateAttribute' => 'updated'
-	            ),
-	            'NameLinkBehavior' => [
-	                    'class' => 'application.behaviours.NameLinkBehavior',
-	                    'controller' => 'localgov/ward',
-	                    'template' => '{link}'
-	            ]
-	            
-	    ];
+		return 'officer';
 	}
 
 	/**
@@ -51,16 +33,13 @@ class LBWard extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_village, name', 'required'),
-			array('id_village', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>70),
-		        
-	        array('pri_code,organizationId', 'numerical', 'integerOnly'=>true),
-	        array('slug, domainName,friendlyUrl,nomenclatureName', 'length', 'max'=>255),
-	        
+			array('name', 'required'),
+			array('fkey_place', 'numerical', 'integerOnly'=>true),
+			array('name, phone, fax, email', 'length', 'max'=>255),
+			array('desig', 'length', 'max'=>13),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_vward, id_village, name, updated', 'safe', 'on'=>'search'),
+			array('id_officer, name, fkey_place, desig, updated, created, phone, fax, email', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,7 +51,7 @@ class LBWard extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-	        'village' => array(self::BELONGS_TO, 'LBVillage', 'id_village'),
+	        'district' => array(self::BELONGS_TO, 'District', 'fkey_place','condition' => "desig = 'DISTCOLLECTOR' "),
 		);
 	}
 
@@ -82,10 +61,15 @@ class LBWard extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_vward' => 'Id Vward',
-			'id_village' => 'Id Village',
+			'id_officer' => 'Id Officer',
 			'name' => 'Name',
+			'fkey_place' => 'Fkey Place',
+			'desig' => 'Desig',
 			'updated' => 'Updated',
+			'created' => 'Created',
+			'phone' => 'Phone',
+			'fax' => 'Fax',
+			'email' => 'Email',
 		);
 	}
 
@@ -107,10 +91,15 @@ class LBWard extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_vward',$this->id_vward);
-		$criteria->compare('id_village',$this->id_village);
+		$criteria->compare('id_officer',$this->id_officer);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('fkey_place',$this->fkey_place);
+		$criteria->compare('desig',$this->desig,true);
 		$criteria->compare('updated',$this->updated,true);
+		$criteria->compare('created',$this->created,true);
+		$criteria->compare('phone',$this->phone,true);
+		$criteria->compare('fax',$this->fax,true);
+		$criteria->compare('email',$this->email,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -121,7 +110,7 @@ class LBWard extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return LBWard the static model class
+	 * @return Officer the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

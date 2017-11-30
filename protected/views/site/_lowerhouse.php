@@ -2,7 +2,7 @@
 /* @var $this SiteController */
 /* @var $data Array */
 
-$consti = Constituency::model()->findByAttributes(['name' => strtolower($poly->pc_name_clean)]);
+$consti = $data->constituency;
 ?>
 
 <div class="view lsmp">
@@ -62,6 +62,7 @@ $consti = Constituency::model()->findByAttributes(['name' => strtolower($poly->p
                                         foreach($tels as $tel)
                                         {
                                             $mats = [];
+                                            $rt = [];
                                             //echo "<br/>TEL: $tel<br/>";
                                             if(preg_match('/\((?<std>0\d+)?\)[^\d]*(?<phone>\d+)/',$tel,$mats))
                                             {

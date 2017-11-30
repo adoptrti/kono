@@ -35,6 +35,7 @@ foreach ( $ass2 as $ass )
     }
     else if($ass->polytype == 'AC')
     {
+        $data ['assembly'] = null;
         $data ['amly_poly'] = $ass;
         $con2 = LokSabha2014::model ()->findByAttributes ( [ 
                 'pc_name_clean' => $ass->pc_name_clean 
@@ -62,6 +63,27 @@ foreach ( $ass2 as $ass )
     }
 }
 
+$dist = false;
+
+//find district collector
+if (isset ( $data ['amly_poly'] ))
+{
+    $dist = District::model ()->findByAttributes ( 
+            [ 
+                    'name' => $data ['amly_poly']->dist_name,
+                    'id_state' => $data ['amly_poly']->id_state
+            ] );
+    
+    if ($dist)
+    {
+        $data['dist_officer'] = Officer::model()->with(['district'])->together()->findByAttributes(['fkey_place' => $dist->id_district]);
+    }
+}   
+else if (isset ( $data['village']->village))
+{
+    $data['dist_officer'] = Officer::model()->with(['district'])->together()->findByAttributes(['fkey_place' => $data['village']->village->panchayat->block->id_district]);
+}
+
 $this->renderPartial ( '_address', [ 
         'address' => $data0,
         'mp_poly' => $data ['mp_poly'],
@@ -69,6 +91,13 @@ $this->renderPartial ( '_address', [
         'amly_poly' => $data ['amly_poly'],
         'data' => !empty($data ['ward']) ? $data ['ward'] : [],
 ] );
+
+if (! empty ( $data['dist_officer']))
+    $this->renderPartial ( '_district', [
+            'data' => $data ['dist_officer'],
+            'data0' => $data0,
+    ] );
+    
 
 if (! empty ( $data ['ward'] ))
     $this->renderPartial ( '_ward', [ 
@@ -82,7 +111,7 @@ if (! empty ( $data ['village'] ))
                 'data0' => $data0,
         ] );
         
-if (! empty ( $data ['assembly'] ))
+if (! empty ( $data ['assembly'] ) || ! empty ( $data ['amly_poly'] )) 
     $this->renderPartial ( '_assembly', [ 
             'data' => $data ['assembly'],
             'poly' => $data ['amly_poly'] 
