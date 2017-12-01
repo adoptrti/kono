@@ -17,7 +17,7 @@
  * @property string $slug
  * @property string $tvtype
  * 
- * @property Town $district
+ * @property Town $district2
  *
  * The followings are the available model relations:
  * @property States $idState
@@ -60,11 +60,12 @@ class Town extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'state' => array(self::BELONGS_TO, 'State', 'id_state'),	        
+			'state' => array(self::BELONGS_TO, 'State', 'id_state'),
+	        'district' => array(self::BELONGS_TO, 'District', 'id_district'),
 		);
 	}
 
-    public function getdistrict()
+    public function getdistrict2()
     {
         $attrs = [
                 'id_state' => $this->id_state,

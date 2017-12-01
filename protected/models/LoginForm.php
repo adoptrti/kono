@@ -71,6 +71,20 @@ class LoginForm extends CFormModel
 		{
 			$duration=$this->rememberMe ? 3600*24*30 : 0; // 30 days
 			Yii::app()->user->login($this->_identity,$duration);
+			
+			
+			$r = fopen(__DIR__ . "/../config/access.txt","r");
+			while(!feof($r))
+			{
+			    $d = fgetcsv($r);
+			    $users[$d[0]] = $d;
+			}
+			fclose($r);
+			
+			$auth=Yii::app()->authManager;
+			$auth->assign($users[$this->username][2],$this->username);
+			$auth->save();
+			
 			return true;
 		}
 		else

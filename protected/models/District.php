@@ -8,6 +8,8 @@
  * @property string $name
  * @property string $updated
  * @property integer $id_state
+ * @property integer $id_district_division_hq
+ * @property string $other_names
  * 
  * @property string $slug
  * @property integer $pri_code
@@ -54,8 +56,10 @@ class District extends CActiveRecord
 	                    'class' => 'application.behaviours.NameLinkBehavior',
 	                    'controller' => 'localgov/district',
 	                    'template' => '{link}'
-	            ]
-	            
+	            ],
+	            'OtherNamesBehavior' => [
+	                    'class' => 'application.behaviours.OtherNamesBehavior',
+	            ]	            
 	    ];
 	}
 	
@@ -69,15 +73,16 @@ class District extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, id_state', 'required'),
-			array('id_state', 'numerical', 'integerOnly'=>true),
+			array('id_district_division_hq, id_state', 'numerical', 'integerOnly'=>true),
 			
 	        array('pri_code,organizationId', 'numerical', 'integerOnly'=>true),
 	        array('slug, domainName,friendlyUrl,nomenclatureName', 'length', 'max'=>255),
 		        
 	        array('name', 'length', 'max'=>255),
+	        array('other_names', 'length', 'max'=>1024),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_district, name, updated, id_state', 'safe', 'on'=>'search'),
+			array('id_district, id_district_division_hq, name, updated, id_state', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -105,6 +110,7 @@ class District extends CActiveRecord
 			'name' => 'Name',
 			'updated' => 'Updated',
 			'id_state' => 'Id State',
+	        'id_district_division_hq' => __('Divisional HQ')
 		);
 	}
 

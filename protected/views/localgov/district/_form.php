@@ -37,7 +37,13 @@
 		<?php echo $form->error($model,'id_state'); ?>
 	</div>
 
-	<div class="row buttons">
+	<div class="row">
+        <?php echo $form->labelEx($model,'id_district_division_hq'); ?>
+        <?php echo $form->textField($model,'id_district_division_hq'); ?>
+        <?php echo $form->error($model,'id_district_division_hq'); ?>
+    </div>
+    
+    <div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
 

@@ -51,6 +51,15 @@ $this->menu = array (
 <h1 class="acname"><?= strtolower(__('{distname} District, {state}',['{distname}' => $model->name,'{state}' => $model->state->name])) ?></h1>
 
 <?php
+$officer = Officer::model()->findByAttributes([
+        'fkey_place' => $model->id_district,
+        'desig' => 'DISTCOLLECTOR'        
+]);
+if(isset($officer))
+{
+    echo $this->renderPartial('/site/_district',['data' => $officer]);
+}
+
 $poly = AssemblyPolygon::model ()->findAll (
         [
                 'select' => 'pcno,pc_name_clean',
@@ -219,3 +228,8 @@ foreach ( $tvtypegroup2 as $grp => $data )
     echo '</ol>';
 }
 echo '</div>';
+
+if(isset($model->district) && Yii::app()->user->checkAccess('ADD_DEPUTY_COMMISSIONER'))
+{
+    echo $this->renderPartial('_districteditor',['district' => $model->district]);        
+}

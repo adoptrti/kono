@@ -90,6 +90,7 @@ More than developing the software, we need to collect and cleanup data that we h
 1. Markets:
 
 ## Updates
+* **01-Dec-2017** - Deputy Commissioner of Districts started with Haryana and Tamil Nadu, role based ACL started (:pushpin: v 0.9)
 * **10-Nov-2017** - Panchayat Raj GIS data has been added starting with Tamil Nadu. (:pushpin: v 0.8)
 * **17-Oct-2017** - Local panchayat raj admins and elected reps support has started with Tamil Nadu. (:pushpin: v 0.7)
 * **05-Oct-2017** - Gujarat, Assam data added

@@ -1,6 +1,7 @@
 <?php
 /* @var $this StateController */
 /* @var $model State */
+/* @var $id_state integer */
 
 $this->breadcrumbs=array(
 	'States'=>array('index'),
@@ -15,4 +16,4 @@ $this->menu=array(
 
 <h1>Create State</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model,'id_state' => $id_state)); ?>

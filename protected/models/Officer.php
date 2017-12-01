@@ -17,6 +17,7 @@
 class Officer extends CActiveRecord
 {
     const DESIG_DISTCOLLECTOR = 'DISTCOLLECTOR';
+    
 	/**
 	 * @return string the associated database table name
 	 */
@@ -51,7 +52,7 @@ class Officer extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-	        'district' => array(self::BELONGS_TO, 'District', 'fkey_place','condition' => "desig = 'DISTCOLLECTOR' "),
+	        'district' => array(self::BELONGS_TO, 'District', 'fkey_place'),
 		);
 	}
 
@@ -62,14 +63,14 @@ class Officer extends CActiveRecord
 	{
 		return array(
 			'id_officer' => 'Id Officer',
-			'name' => 'Name',
-			'fkey_place' => 'Fkey Place',
-			'desig' => 'Desig',
-			'updated' => 'Updated',
-			'created' => 'Created',
-			'phone' => 'Phone',
-			'fax' => 'Fax',
-			'email' => 'Email',
+			'name' => __('Name'),
+			'fkey_place' => __('Place'),
+			'desig' => __('Designation'),
+			'updated' => __('Updated'),
+			'created' => __('Created'),
+			'phone' => __('Phone'),
+			'fax' => __('Fax'),
+			'email' => __('Email'),
 		);
 	}
 
