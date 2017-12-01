@@ -26,6 +26,15 @@ class Officer extends CActiveRecord
 		return 'officer';
 	}
 
+    public function beforeSave()
+    {
+        if ($this->desig == 'DISTCOLLECTOR')
+            if (! Yii::app ()->user->checkAccess ( 'ADD_DEPUTY_COMMISSIONER' ))
+                return false;
+            
+        return parent::beforeSave ();
+    }
+
 	/**
 	 * @return array validation rules for model attributes.
 	 */

@@ -26,6 +26,7 @@ if (! empty ( $data->picture ))
                             'party',
                             [ 
                                     'type' => 'raw',
+                                    'visible' => !empty($data->emails),
                                     'name' => 'emails',
                                     'value' => function ($data)
                                     {
@@ -45,10 +46,14 @@ if (! empty ( $data->picture ))
                                         return implode ( ' ', $rt );
                                     } 
                             ],
-                            'address',
+                            [
+                                    'name' => 'address',
+                                    'visible' => !empty($data->address),
+                            ],
                             [ 
                                     'type' => 'raw',
                                     'name' => 'phones',
+                                    'visible' => !empty($data->phones),
                                     'label' => __ ( 'Phones' ),
                                     'value' => function ($data)
                                     {
@@ -77,6 +82,7 @@ if (! empty ( $data->picture ))
                             ],
                             [ 
                                     'type' => 'raw',
+                                    'visible' => !empty($data->committees),
                                     'label' => __ ( 'Committees' ),
                                     'value' => function ($data)
                                     {
