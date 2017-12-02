@@ -56,6 +56,7 @@ class AssemblyResults extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'committees' => array(self::MANY_MANY, 'Committee', 'comm_member(id_result,id_comm)'),
+	        'constituency' => array(self::BELONGS_TO, 'Constituency', 'id_consti'),
 		);
 	}
 

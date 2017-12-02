@@ -367,13 +367,13 @@ class StateUrlRule extends CBaseUrlRule
                 $stateslug = $matches ['stateslug'];
                 $obj = Constituency::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->with ( [ 
                         'state' 
-                ] )->find ( 
+                ] )->together()->find ( 
                         [ 
-                                'condition' => 't.slug=:cc and state.slug=:scc and ctype=:ctype',
+                                'condition' => 't.slug=:amlyslug and state.slug=:stateslug and ctype=:ctype',
                                 'params' => [ 
                                         ':ctype' => 'AMLY',
-                                        ':cc' => $stateslug,
-                                        ':scc' => $amlyslug 
+                                        ':amlyslug' => $amlyslug,
+                                        ':stateslug' => $stateslug 
                                 ] 
                         ] );
                 

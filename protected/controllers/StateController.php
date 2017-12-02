@@ -28,7 +28,7 @@ class StateController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','district','loksabha'),
+				'actions'=>array('index','view','district','loksabha','assembly'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -82,7 +82,7 @@ class StateController extends Controller
 	}
 
     /**
-     *
+     * 20171202140:Gurgaan:thevikas
      * @see StateUrlRule::parse_loksabha Displays a particular model.
      * @param integer $id
      *            the ID of the model to be displayed
@@ -105,7 +105,31 @@ class StateController extends Controller
         ) );
     }
 
-	/**
+    /**
+     * 20171202140:Gurgaan:thevikas
+     * @see StateUrlRule::parse_loksabha Displays a particular model.
+     * @param integer $id
+     *            the ID of the model to be displayed
+     */
+    public function actionAssembly($id_consti)
+    {
+        $this->layout = '//layouts/main';
+        
+        $consti = Constituency::model ()->findByPk ( $id_consti );
+        if (! $consti)
+            return false;
+            
+            $this->pageTitle = __ ( '{dist} Loksabha Constituency, {state}',
+                    [
+                            '{dist}' => ucwords ( $consti->name ),
+                            '{state}' => ucwords ( strtolower ( $consti->state->name ) )
+                    ] );
+            $this->render ( 'assembly', array (
+                    'model' => $consti
+            ) );
+    }
+    
+    /**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
