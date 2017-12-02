@@ -91,6 +91,7 @@ class Constituency extends CActiveRecord
 			'results2009s' => array(self::HAS_MANY, 'Results2009', 'id_consti'),
 			'wards' => array(self::HAS_MANY, 'Ward', 'id_amly_consti'),
 			'wards1' => array(self::HAS_MANY, 'Ward', 'id_parl_consti'),
+	        'loksabha2014' => array(self::HAS_ONE, 'LokSabha2014', 'id_consti'),
 		);
 	}
 

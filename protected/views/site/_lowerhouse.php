@@ -15,7 +15,7 @@ if (! empty ( $data->picture ))
 
 ?>
 
-    <h2 class="acname"><?= CHtml::link(__('{pcname} Lok Sabha Constituency',['{pcname}' => strtolower($poly->pc_name_clean)]),['state/loksabha','id' => $consti->id_consti])?></h2>
+    <h2 class="acname"><?= CHtml::link(__('{pcname} Lok Sabha Constituency',['{pcname}' => strtolower($consti->name)]),['state/loksabha','id' => $consti->id_consti])?></h2>
 
     <?php
     $this->widget ( 'zii.widgets.CDetailView', 

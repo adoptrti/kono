@@ -28,7 +28,7 @@ class StateController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','district'),
+				'actions'=>array('index','view','district','loksabha'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -80,6 +80,30 @@ class StateController extends Controller
 			'model'=> $town,
 		));
 	}
+
+    /**
+     *
+     * @see StateUrlRule::parse_loksabha Displays a particular model.
+     * @param integer $id
+     *            the ID of the model to be displayed
+     */
+    public function actionLoksabha($id_consti)
+    {
+        $this->layout = '//layouts/main';
+        
+        $consti = Constituency::model ()->findByPk ( $id_consti );
+        if (! $consti)
+            return false;
+        
+        $this->pageTitle = __ ( '{dist} Loksabha Constituency, {state}', 
+                [ 
+                        '{dist}' => ucwords ( $consti->name ),
+                        '{state}' => ucwords ( strtolower ( $consti->state->name ) ) 
+                ] );
+        $this->render ( 'loksabha', array (
+                'model' => $consti 
+        ) );
+    }
 
 	/**
 	 * Creates a new model.

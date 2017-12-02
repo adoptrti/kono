@@ -391,6 +391,14 @@ class StateUrlRule extends CBaseUrlRule
         return false;
     }
         
+    /**
+     * @see StateController::actionLoksabha
+     * @param unknown $manager
+     * @param unknown $request
+     * @param unknown $pathInfo
+     * @param unknown $rawPathInfo
+     * @return string|boolean
+     */
     public function parse_loksabha($manager, $request, $pathInfo, $rawPathInfo)
     {
         if (preg_match ( '/^(?<lang>\w\w)\/loksabha\/(?<amlyslug>[\w-]*)\/?$/', $pathInfo, 
@@ -398,6 +406,7 @@ class StateUrlRule extends CBaseUrlRule
         {
             if ( isset ( $matches ['amlyslug'] ))
             {
+                Yii::log("$pathInfo was parsed by " . __METHOD__,'info','urlrules');
                 $amlyslug = $matches ['amlyslug'];
                 $obj = Constituency::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->find ( 
                         [ 
