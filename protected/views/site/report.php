@@ -132,7 +132,7 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                                 'type' => 'raw',
                                 'value' => function ($data)
                                 {
-                                    return CHtml::link($data [0],['state/view','id' => $data[count($data)-1]]);
+                                    return CHtml::link($data [0],['state/view','id' => $data[11]]);
                                 }
                         ],
                         [
@@ -197,6 +197,25 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                                 'value' => function ($data)
                                 {
                                     return $data[9];
+                                }
+                        ],
+                        [
+                                'header' => __('Districts'),
+                                'value' => function ($data) use ($ias)
+                                {
+                                    $id_state = $data[11];
+                                    
+                                    if(isset($ias[$id_state]['ctr1']))
+                                        return $ias[$id_state]['ctr1'];
+                                }
+                        ],
+                        [
+                                'header' => __('DC'),
+                                'value' => function ($data) use ($ias)
+                                {
+                                    $id_state = $data[11];
+                                    if(isset($ias[$id_state]['ctr2']))
+                                        return $ias[$id_state]['ctr2'];
                                 }
                         ],
                         /*[

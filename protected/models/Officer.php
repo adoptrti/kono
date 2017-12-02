@@ -126,4 +126,23 @@ class Officer extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	static function repOfficers()
+	{
+	    $rows = Yii::app()->db->createCommand("
+            SELECT s.id_state,s.name,count(d.id_district) as ctr1,count(o.id_officer) as ctr2 FROM states s 
+            left join lb_district d on d.id_state=s.id_state
+            left join officer o on d.id_district=o.fkey_place
+            group by s.id_state")->queryAll();
+	    
+	    $init = [];
+	    $rows2=array_reduce ( $rows, 
+	            function ($carry, $item)
+                {
+	        
+                    $carry[$item['id_state']] = $item;
+                    return $carry;
+                },[] );
+	    return $rows2;
+	}
 }

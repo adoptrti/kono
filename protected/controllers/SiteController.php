@@ -137,6 +137,7 @@ class SiteController extends Controller
         $this->render ( 'report', array (
                 'muni' => AssemblyPolygon::repMunicipals(),
                 'amly' => AssemblyPolygon::repACs(),
+                'ias' => Officer::repOfficers(),
         ) );
     }
 

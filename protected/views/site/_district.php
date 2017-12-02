@@ -4,7 +4,7 @@
 ?>
 
 <div class="view district">
-    <h2 class="acname"><?=__('{distname} District Commissioner',['{distname}' => strtolower($data->district->name)])?></h2>
+    <h2 class="acname"><?=__('{distname} Deputy Commissioner',['{distname}' => strtolower($data->district->name)])?></h2>
 
     <?php
     $att = [array ( // related city displayed as a link

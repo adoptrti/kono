@@ -69,96 +69,11 @@ Yii::app ()->clientScript->registerCoreScript ( 'bootstrap' );
                 </ul>
             </div>
 		<?php
-if (Yii::app ()->user->isGuest)
-{
-    $this->widget ( 'zii.widgets.CMenu',
-            array (
-                    'items' => array (
-                            array (
-                                    'label' => __ ( 'Home' ),
-                                    'url' => array (
-                                            '/site/index'
-                                    )
-                            ),
-                            array (
-                                    'label' => __ ( 'About' ),
-                                    'url' => array (
-                                            '/site/page',
-                                            'view' => 'about'
-                                    )
-                            ),
-                            array (
-                                    'label' => __ ( 'Data Report' ),
-                                    'url' => array (
-                                            '/site/report'
-                                    )
-                            ),
-                            array (
-                                    'label' => __ ( 'Contact' ),
-                                    'url' => array (
-                                            '/site/contact'
-                                    )
-                            ),
-                            [
-                                    'encodeLabel' => false,
-                                    'label' => "<i class='fa fa-github'></i>",
-                                    'url' => 'https://github.com/adoptrti/kono'
-                            ]
-                    )
-            ) );
-}
-else
-{
-    $this->widget ( 'zii.widgets.CMenu',
-            array (
-                    'items' => array (
-                            array (
-                                    'label' => __ ( 'Home' ),
-                                    'url' => array (
-                                            '/site/index'
-                                    )
-                            ),
-                            array (
-                                    'label' => __ ( 'Committee' ),
-                                    'url' => array (
-                                            '/committee'
-                                    )
-                            ),
-                            array (
-                                    'label' => __ ( 'Committee Members' ),
-                                    'url' => array (
-                                            '/committeeMember'
-                                    )
-                            ),
-                            array (
-                                    'label' => __ ( 'Assembly Results' ),
-                                    'url' => array (
-                                            '/assemblyresults'
-                                    )
-                            ),
-                            array (
-                                    'label' => __ ( 'Elections' ),
-                                    'url' => array (
-                                            '/election'
-                                    )
-                            ),
-                            // array('label'=>'Login',
-                            // 'url'=>array('/site/login'),
-                            // 'visible'=>Yii::app()->user->isGuest),
-                            array (
-                                    'label' => __ ( 'Logout ({uname})',
-                                            [
-                                                    '{uname}' => Yii::app ()->user->name
-                                            ] ),
-                                    'url' => array (
-                                            '/site/logout'
-                                    ),
-                                    'visible' => ! Yii::app ()->user->isGuest
-                            )
-                    )
-            ) );
-}
-?>
+        if (Yii::app ()->user->isGuest)
+            $this->renderPartial('//layouts/_guestmenu');
+        else
+            $this->renderPartial('//layouts/_usermenu');            
+        ?>
 	</div>
         <!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>

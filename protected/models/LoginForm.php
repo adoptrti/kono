@@ -82,7 +82,14 @@ class LoginForm extends CFormModel
 			fclose($r);
 			
 			$auth=Yii::app()->authManager;
-			$auth->assign($users[$this->username][2],$this->username);
+			try{
+    			$auth->assign($users[$this->username][2],$this->username);
+			}
+			catch(CException $e)
+			{
+			    if(!preg_match('/already been assigned to user/', $e->getMessage()))
+			        throw new Exception($e);
+			}
 			$auth->save();
 			
 			return true;
