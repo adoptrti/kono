@@ -31,6 +31,8 @@
  * @property string $COL26
  * @property string $COL29
  * @property string $COL30
+ * 
+ * @property string $picture
  */
 class LokSabha2014 extends CActiveRecord
 {
@@ -52,7 +54,7 @@ class LokSabha2014 extends CActiveRecord
 		return array(
 			array('pc_name_clean', 'required'),
 			array('sno', 'numerical', 'integerOnly'=>true),
-			array('phones, emails, pc_name, pc_name_clean, state, name, p_address1, p_address2, delhi_address1, party, delhi_address2', 'length', 'max'=>255),
+			array('picture, phones, emails, pc_name, pc_name_clean, state, name, p_address1, p_address2, delhi_address1, party, delhi_address2', 'length', 'max'=>255),
 			array('COL9', 'length', 'max'=>43),
 			array('COL11', 'length', 'max'=>22),
 			array('COL15', 'length', 'max'=>20),

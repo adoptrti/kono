@@ -239,8 +239,10 @@ img.picture
 	width: 125px;
 }
 
-div.view.amly table.detail-view {
-	width: 50%;
+div.view.pic table.detail-view,
+div.view.pic table.detail-view
+ {
+	width: 75%;
 }
 
 i.fa-heart {
@@ -275,13 +277,15 @@ div.view {
 
 div.view.items ol li {
     display: block;
-    float: left;
+    f9loat: left;
     width: 180px;
 }
 
-div.view.items
+div.view.items ol
 {
-	height: 250px;
+	columns: 5;
+  -webkit-columns: 5;
+  -moz-columns: 5;
 }
 
 

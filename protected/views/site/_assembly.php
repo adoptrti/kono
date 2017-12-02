@@ -3,7 +3,7 @@
 /* @var $data Array */
 ?>
 
-<div class="view amly">
+<div class="view amly <?=empty ( $data->picture ) ? '' : 'pic'?>">
 <?php
 if (! empty ( $data->picture ))
     echo CHtml::image ( '/images/pics/' . $data->picture, $data->name, [ 

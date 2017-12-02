@@ -57,37 +57,39 @@ foreach($districts as $district)
 {
     echo CHtml::tag('li',[],CHtml::link($district->name,['state/district','id' => $district->id_place]));
 }
+?>
+</ol>
+</div>
 
-/*
-$dataProvider = Town::model ()->search ( 
-        [ 
-                'condition' => 'dt_code>0 and sdt_code=0 and tv_code=0 and id_state=?',
-                'select' => 'distinct name,id_place',
-                'params' => [ 
-                        $model->id_state 
-                ] 
-        ] );
+<div class="view items amly">
+<h2><?=__('State Assembly Constituencies') ?></h2>
+<ol>
+<?php 
+foreach($model->amly_constituencies as $ac)
+{
+    echo CHtml::tag('li',[],CHtml::link ( $ac->eci_ref . " " . $ac->name,
+            [
+                    'state/assembly',
+                    'acno' => $ac->eci_ref,
+                    'id_state' => $model->id_state
+            ] ));
+}
+?>
+</ol>
+</div>
 
-$this->widget ( 'zii.widgets.grid.CGridView', 
-        array (
-                'dataProvider' => $dataProvider,
-                'columns' => [ 
-                        [ 
-                                'header' => __ ( 'District' ),
-                                'type' => 'raw',
-                                'value' => function ($district)
-                                {
-                                    return CHtml::link ( $district->name, 
-                                            [ 
-                                                    'state/district',
-                                                    'id' => $district->id_place 
-                                            ] );
-                                } 
-                        ] 
-                ] 
-        ) );
-
- */
+<div class="view items amly">
+<h2><?=__('Lok Sabha Constituencies') ?></h2>
+<ol>
+<?php 
+foreach($model->parl_constituencies as $pc)
+{
+    echo CHtml::tag('li',[],CHtml::link ( $pc->name,
+            [
+                    'state/loksabha',
+                    'id' => $pc->id_consti
+            ]));
+}
 ?>
 </ol>
 </div>

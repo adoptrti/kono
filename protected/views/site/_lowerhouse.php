@@ -5,7 +5,16 @@
 $consti = $data->constituency;
 ?>
 
-<div class="view lsmp">
+<div class="view lsmp <?=empty ( $data->picture ) ? '' : 'pic'?>">
+
+<?php
+if (! empty ( $data->picture ))
+    echo CHtml::image ( '/images/pics/' . $data->picture, $data->name, [ 
+            'class' => 'picture pc' 
+    ] );
+
+?>
+
     <h2 class="acname"><?= CHtml::link(__('{pcname} Lok Sabha Constituency',['{pcname}' => strtolower($poly->pc_name_clean)]),['state/loksabha','id' => $consti->id_consti])?></h2>
 
     <?php

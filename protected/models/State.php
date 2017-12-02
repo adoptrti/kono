@@ -99,6 +99,8 @@ class State extends CActiveRecord
 			'allAcDatas' => array(self::HAS_MANY, 'AllAcData', 'id_state'),
 			'allPcDatas' => array(self::HAS_MANY, 'AllPcData', 'id_state'),
 			'constituencies' => array(self::HAS_MANY, 'Constituency', 'id_state'),
+	        'amly_constituencies' => array(self::HAS_MANY, 'Constituency', 'id_state','condition' => "ctype='AMLY'",'order' => 'eci_ref'),
+	        'parl_constituencies' => array(self::HAS_MANY, 'Constituency', 'id_state','condition' => "ctype='PARL'",'order' => 'eci_ref'),
 			'constituencies1' => array(self::HAS_MANY, 'Constituency', 'id_state2'),
 			'elections' => array(self::HAS_MANY, 'Elections', 'id_state'),
 	        'districts' => array(self::HAS_MANY, 'District', 'id_state','order' => 'name'),

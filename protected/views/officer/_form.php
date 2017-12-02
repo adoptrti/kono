@@ -2,6 +2,8 @@
 /* @var $this OfficerController */
 /* @var $model Officer */
 /* @var $form CActiveForm */
+if(isset($model->id_officer))
+    $id_state=$model->district->id_state;
 ?>
 
 <div class="form">
