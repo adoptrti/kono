@@ -55,6 +55,10 @@ class UpdateCommand extends CConsoleCommand
         return $slug1;
     }
 
+    /**
+     * Slug maker for LokSabha2014, MunicipalResults, AssemblyResults, Constituency, State, Committee, Town 
+     * @throws Exception
+     */
     public function actionSlug()
     {
         
@@ -223,6 +227,7 @@ class UpdateCommand extends CConsoleCommand
     public function actionIndex()
     {
         $this->actionSlug ();
+        return;
         $methods = get_class_methods ( $this );
         foreach ( $methods as $method )
         {

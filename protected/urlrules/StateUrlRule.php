@@ -122,20 +122,27 @@ class StateUrlRule extends CBaseUrlRule
         if (! isset ( $params ['acno'] ) || ! isset ( $params ['id_state'] ))
             return false;
         
-            $acno = $params ['acno'];
-            unset ( $params ['acno'] );
-            $id_state = $params ['id_state'];
-            unset ( $params ['id_state'] );
-            
-        $obj = Constituency::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->findByAttributes([
-                'id_state' => $id_state,
-                'eci_ref' => $acno,
-                'ctype' => 'AMLY',
-        ]);
+        $acno = $params ['acno'];
+        unset ( $params ['acno'] );
+        $id_state = $params ['id_state'];
+        unset ( $params ['id_state'] );
+        
+        $obj = Constituency::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->findByAttributes ( 
+                [ 
+                        'id_state' => $id_state,
+                        'eci_ref' => $acno,
+                        'ctype' => 'AMLY' 
+                ] );
         
         if (count ( $params ))
         {
             $qs = "?" . http_build_query ( $params );
+        }
+        
+        if(empty($obj->slug))            
+        {
+            Yii::log("URL making ac:$acno state:$id_state consti:{$obj->id_consti} error:" . print_r($params,true),"error");
+            throw new Exception("URL making error");
         }
         
         if (isset ( $obj ))

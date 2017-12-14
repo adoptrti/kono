@@ -55,7 +55,7 @@ class StateController extends Controller
 	    $state = $this->loadModel($id);
 	    if(!$state)
 	        return false;
-	        
+
         $this->pageTitle = ucwords(strtolower($state->name));
 		$this->render('view',array(
 			'model'=> $state
@@ -68,13 +68,13 @@ class StateController extends Controller
 	 */
 	public function actionDistrict($id_state,$id)
 	{
-	    
+
 	     $this->layout='//layouts/main';
-	    
+
 	    $town = Town::model()->findByPk($id);
 	    if(!$town)
 	        return false;
-	    
+
         $this->pageTitle = __('{dist} District, {state}',['{dist}' => ucwords($town->name),'{state}' => ucwords(strtolower($town->state->name))]);
 	    $this->render('district',array(
 			'model'=> $town,
@@ -90,18 +90,18 @@ class StateController extends Controller
     public function actionLoksabha($id_consti)
     {
         $this->layout = '//layouts/main';
-        
+
         $consti = Constituency::model ()->findByPk ( $id_consti );
         if (! $consti)
             return false;
-        
-        $this->pageTitle = __ ( '{dist} Loksabha Constituency, {state}', 
-                [ 
+
+        $this->pageTitle = __ ( '{dist} Loksabha Constituency, {state}',
+                [
                         '{dist}' => ucwords ( $consti->name ),
-                        '{state}' => ucwords ( strtolower ( $consti->state->name ) ) 
+                        '{state}' => ucwords ( strtolower ( $consti->state->name ) )
                 ] );
         $this->render ( 'loksabha', array (
-                'model' => $consti 
+                'model' => $consti
         ) );
     }
 
@@ -114,12 +114,12 @@ class StateController extends Controller
     public function actionAssembly($id_consti)
     {
         $this->layout = '//layouts/main';
-        
+
         $consti = Constituency::model ()->findByPk ( $id_consti );
         if (! $consti)
             return false;
-            
-            $this->pageTitle = __ ( '{dist} Loksabha Constituency, {state}',
+
+            $this->pageTitle = __ ( '{dist} Assembly Constituency, {state}',
                     [
                             '{dist}' => ucwords ( $consti->name ),
                             '{state}' => ucwords ( strtolower ( $consti->state->name ) )
@@ -128,7 +128,7 @@ class StateController extends Controller
                     'model' => $consti
             ) );
     }
-    
+
     /**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.

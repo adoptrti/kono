@@ -22,5 +22,5 @@ $this->menu=array(
 
 <?php
 $ls = $model->mp;
-$this->renderPartial('//site/_assembly',['data' => $ls,'full' => true]);
+$this->renderPartial('//site/_lowerhouse',['data' => $ls,'full' => true]);
 ?>

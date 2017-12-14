@@ -21,6 +21,12 @@ $this->menu=array(
 <h1><?php echo $this->pageTitle?></h1>
 
 <?php
-$mla = $model->mla;
+if(!isset($model->mla))
+{
+    $mla = new AssemblyResults();
+    $mla->constituency = $model;
+}
+else
+    $mla = $model->mla;
 $this->renderPartial('//site/_assembly',['data' => $mla,'full' => true]);
 ?>
