@@ -366,6 +366,7 @@ class StateUrlRule extends CBaseUrlRule
     
     public function parse_assembly($manager, $request, $pathInfo, $rawPathInfo)
     {
+        $matches = [];
         if (preg_match ( '/^(?<lang>\w\w)\/(?<stateslug>[\w-]*)\/assembly\/(?<amlyslug>[\w-]*)\/?$/', $pathInfo, $matches ))
         {
             if (isset ( $matches ['stateslug'] ) && isset ( $matches ['amlyslug'] ))
@@ -387,8 +388,10 @@ class StateUrlRule extends CBaseUrlRule
                 if (isset ( $obj))
                 {
                     $_GET ['id_state'] = $obj->id_state;
-                    $_GET ['id_consti'] = $obj->id_consti;
-                    $_GET ['lang'] = $matches ['lang'];
+                    //$_GET ['id_consti'] = $obj->id_consti;
+                    $_GET ['acno'] = $obj->eci_ref;
+                    if(empty($_GET['lang']))
+                        $_GET ['lang'] = $matches ['lang'];
                     return $this->prefix2 . "state/assembly";
                 }
                 else

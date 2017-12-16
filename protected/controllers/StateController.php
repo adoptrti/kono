@@ -111,11 +111,11 @@ class StateController extends Controller
      * @param integer $id
      *            the ID of the model to be displayed
      */
-    public function actionAssembly($id_consti)
+    public function actionAssembly($acno,$id_state)
     {
         $this->layout = '//layouts/main';
 
-        $consti = Constituency::model ()->findByPk ( $id_consti );
+        $consti = Constituency::model ()->findByAttributes(['id_state' => $id_state,'eci_ref' => $acno,'ctype' => 'AMLY']);
         if (! $consti)
             return false;
 

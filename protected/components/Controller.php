@@ -48,6 +48,9 @@ class Controller extends CController
     /**
      * Inits language defaults depending on session, GET and config defaults
      * This method can overloaded by inheritence.
+     * 
+     * If the lang is not getting set properly here, you copuld also check the URL resolvers
+     * 
      * 201604261540:vikas:#454:Gurgaon
      */
     public function initLanguage()

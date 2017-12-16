@@ -21,12 +21,17 @@ $this->menu=array(
 <h1><?php echo $this->pageTitle?></h1>
 
 <?php
+
 if(!isset($model->mla))
 {
+    //WHEN MLA DATA IS NOT FOUND
     $mla = new AssemblyResults();
     $mla->constituency = $model;
 }
 else
-    $mla = $model->mla;
+{
+    $mla2 = AssemblyResults::model()->findByPk($model->mla->id_result);
+    $mla = $mla2;
+}
 $this->renderPartial('//site/_assembly',['data' => $mla,'full' => true]);
 ?>

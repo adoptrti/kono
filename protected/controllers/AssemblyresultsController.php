@@ -70,10 +70,11 @@ class AssemblyresultsController extends Controller
 		if(isset($_POST['AssemblyResults']))
 		{
 			$model->attributes=$_POST['AssemblyResults'];
+			$model->acno = $model->constituency->eci_ref;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id_result));
 		}
-
+        print_r($model->getErrors());
 		$this->render('create',array(
 			'model'=>$model,
 		));
@@ -86,7 +87,7 @@ class AssemblyresultsController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+		$model=$this->loadModel($id,true);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -150,9 +151,13 @@ class AssemblyresultsController extends Controller
 	 * @return AssemblyResults the loaded model
 	 * @throws CHttpException
 	 */
-	public function loadModel($id)
+	public function loadModel($id,$ml=false)
 	{
-		$model=AssemblyResults::model()->findByPk($id);
+	    if($ml)
+	        $model=AssemblyResults::model()->multilang()->findByPk($id);
+		else
+	        $model=AssemblyResults::model()->findByPk($id);
+		
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
