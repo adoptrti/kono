@@ -49,6 +49,9 @@ $districts = Town::model()->findAll([
         'params' => [$model->id_state]
 ]);
 
+if(isset($model->chiefminister))
+    echo $this->renderPartial('_chiefminister',['officer' => $model->chiefminister]);    
+
 ?><div class="view items">
 <h2><?=__('Districts') ?></h2>
 <ol>
@@ -93,3 +96,9 @@ foreach($model->parl_constituencies as $pc)
 ?>
 </ol>
 </div>
+<?php
+
+if(Yii::app()->user->checkAccess('ADD_CHIEF_MINISTER'))
+{
+    echo $this->renderPartial('_stateeditor',['state' => $model]);        
+}

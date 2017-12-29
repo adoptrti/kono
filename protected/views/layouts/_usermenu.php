@@ -26,6 +26,12 @@ $this->widget ( 'zii.widgets.CMenu',array (
                                     )
                             ),
                             array (
+                                    'label' => __ ( 'Officer' ),
+                                    'url' => array (
+                                            '/officer'
+                                    )
+                            ),
+                            array (
                                     'label' => __ ( 'Elections' ),
                                     'url' => array (
                                             '/election'

@@ -14,7 +14,12 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('fkey_place')); ?>:</b>
-	<?php echo $data->district->namelink; ?>
+	<?php
+	$desig = $data->desig;
+	if($desig == Officer::DESIG_CHIEFMINISTER || $desig == Officer::DESIG_DEPUTYCHIEFMINISTER || $desig == Officer::DESIG_GOVERNER)
+	    echo $data->state->namelink;
+	else
+	    echo $data->district->namelink; ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('desig')); ?>:</b>

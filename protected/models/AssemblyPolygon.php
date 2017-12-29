@@ -175,7 +175,7 @@ class AssemblyPolygon extends CActiveRecord
                 [
                         'group' => 't.id_state,t.st_name,t.st_code',
                         'select' => "st_name,count(*) as ctr1,
-                            (select count(name) from $AR_table r2 where r2.ST_CODE=t.ST_CODE) as ctr2,
+                            (select count(name) from $AR_table r2 where r2.st_code=t.st_code or r2.id_state=t.id_state) as ctr2,
                             (select count(phones) from $AR_table r3 where phones<>'' and r3.id_state=t.id_state) as ctr3,
                             (select count(emails) from $AR_table r4 where emails<>'' and r4.id_state=t.id_state) as ctr4,
                             (select count(address) from $AR_table r5 where address<>'' and r5.id_state=t.id_state) as ctr5,

@@ -18,9 +18,17 @@ return array (
 				'data' => '',
 				'children' => array (
 				        'ADD_DEPUTY_COMMISSIONER',
+				        'ADD_CHIEF_MINISTER'
 				)
-		),
-		        
+		),        
+        'ADD_CHIEF_MINISTER' => [
+                'type' => CAuthItem::TYPE_OPERATION,
+                'description' => 'To allow saving data',
+                'data' => '',
+                'bizRule' => '',
+                'children' => [
+                ]
+        ],
         'ADD_DEPUTY_COMMISSIONER' => [
                 'type' => CAuthItem::TYPE_OPERATION,
                 'description' => 'To allow saving data',

@@ -17,6 +17,10 @@
 class Officer extends CActiveRecord
 {
     const DESIG_DISTCOLLECTOR = 'DISTCOLLECTOR';
+    const DESIG_CHIEFMINISTER= 'CHIEFMINISTER';
+    const DESIG_DEPUTYCHIEFMINISTER= 'DEPUTYCHIEFMINISTER';
+    const DESIG_GOVERNER= 'GOVERNER';
+    
     
 	/**
 	 * @return string the associated database table name
@@ -62,6 +66,7 @@ class Officer extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 	        'district' => array(self::BELONGS_TO, 'District', 'fkey_place'),
+	        'state' => array(self::BELONGS_TO, 'State', 'fkey_place'),
 		);
 	}
 

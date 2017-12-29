@@ -43,4 +43,5 @@ foreach($model->committees as $comm)
 	echo CHtml::tag('li',[],CHtml::link($comm->name,['/committee/view','id' => $comm->id_comm]));
 echo'</ol>';
 
+$this->renderPartial('//site/_assembly',['data' => $model,'full' => true]);
 ?>

@@ -49,7 +49,7 @@ $form = $this->beginWidget ( 'CActiveForm',
                 Constituency::model ()->findAllByAttributes ( [ 
                         'ctype' => 'AMLY',
                         'id_state' => 34 
-                ] ), 'id_consti', 'name' );
+                ],['order' => 'eci_ref'] ), 'id_consti', function($data) {return $data->eci_ref . " " . $data->name;} );
         echo $form->dropDownList ( $model, 'id_consti', $districts )?>
         <?php echo $form->error($model,'id_consti'); ?>
     </div>

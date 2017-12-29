@@ -108,6 +108,7 @@ class State extends CActiveRecord
 			'results2009s' => array(self::HAS_MANY, 'Results2009', 'id_state'),
 			'sabhas' => array(self::HAS_MANY, 'Sabha', 'id_state'),
 			'wards' => array(self::HAS_MANY, 'Ward', 'id_state'),
+            'chiefminister' => array(self::HAS_ONE, 'Officer', 'fkey_place','condition' => 'desig=:desig1','params' => ['desig1' => Officer::DESIG_CHIEFMINISTER]),
 		);
 	}
 

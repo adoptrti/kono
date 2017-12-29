@@ -60,7 +60,7 @@ class OfficerController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate($id_state,$id_district=0)
+	public function actionCreate($id_state,$id_district=0,$desig = null)
 	{
 		$model=new Officer;
 
@@ -75,12 +75,17 @@ class OfficerController extends Controller
 		}
 		
 		if(!empty($id_district))
-		    $model->fkey_place = $id_district;
+		    $model->fkey_place = $id_district;		
+	    else if(!empty($id_state) && ($desig == Officer::DESIG_CHIEFMINISTER || $desig == Officer::DESIG_DEPUTYCHIEFMINISTER || $desig == Officer::DESIG_GOVERNER))
+            $model->fkey_place = $id_district;
+		        
+        if(!empty($desig))
+	        $model->desig = $desig;
 
 		$this->render('create',array(
 			'model'=>$model,
 	        'id_state' => $id_state,
-	        'id_district' => $id_district
+	        'id_district' => $id_district,
 		));
 	}
 

@@ -30,15 +30,28 @@ if(isset($model->id_officer))
 	<div class="row">
 		<?php echo $form->labelEx($model,'fkey_place'); ?>
 		<?php		
-		$districts = CHtml::listData(District::model()->bystate($id_state)->findAll(), 'id_district', 'name');
-		echo $form->dropDownList($model, 'fkey_place', $districts) ?>
+		switch($model->desig)
+		{
+		    case Officer::DESIG_DISTCOLLECTOR:
+		        $list= CHtml::listData(District::model()->bystate($id_state)->findAll(), 'id_district', 'name');
+		        break;
+		   case Officer::DESIG_GOVERNER:
+	       case Officer::DESIG_CHIEFMINISTER:
+	       case Officer::DESIG_DEPUTYCHIEFMINISTER:
+	           $list= CHtml::listData(State::model()->findAll(), 'id_state', 'name');
+		        break;
+		}		
+		echo $form->dropDownList($model, 'fkey_place', $list) ?>
 		<?php echo $form->error($model,'fkey_place'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'desig'); ?>
 		<?php echo $form->dropDownList($model, 'desig', [
-		     'DISTCOLLECTOR' => 'Deputy Commissioner of a District (aka Collector)',   
+		        Officer::DESIG_DISTCOLLECTOR => __('Deputy Commissioner of a District (aka Collector)'),
+		        Officer::DESIG_CHIEFMINISTER => __('Chief Minister'),
+		        Officer::DESIG_DEPUTYCHIEFMINISTER => __('Deputy Chief Minister'),
+		        Officer::DESIG_GOVERNER => __('State Governer'),
 		]) ?>
 		<?php echo $form->error($model,'desig'); ?>
 	</div>
