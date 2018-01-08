@@ -141,7 +141,7 @@ class StateUrlRule extends CBaseUrlRule
         
         if(empty($obj->slug))            
         {
-            Yii::log("URL making ac:$acno state:$id_state consti:{$obj->id_consti} error:" . print_r($params,true),"error");
+            Yii::log("URL making ac:$acno state:$id_state error:" . print_r($params,true),"error");
             throw new Exception("URL making error");
         }
         

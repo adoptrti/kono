@@ -31,6 +31,18 @@ class Block extends CActiveRecord
     {
         return 'lb_block';
     }
+    
+    public function bydistrict($id_district)
+    {
+        $this->getDbCriteria ()->mergeWith (
+                array (
+                        'condition' => 'id_district=:sid',
+                        'params' => array (
+                                'sid' => $id_district
+                        )
+                ) );
+        return $this;
+    }	
 
     public function behaviors()
     {
