@@ -12,22 +12,21 @@ function updateActionAssam()
     libxml_use_internal_errors ( true );
     $rctr = 0;
     $urls = [ 
-            'http://www.assamassembly.gov.in/mla-2016.html' 
+            'http://meghalaya.gov.in/megportal/government/mlas',
+            'http://meghalaya.gov.in/megportal/government/mlas?page=1' 
     ];
     foreach ( $urls as $url )
     {
         echo "\n\nURL: $url\n";
         
         $doc = new DOMDocument ();
-        $doc->loadHTML ( file_get_contents ( Yii::app ()->basePath . '/../docs/assam/mlas.html' ) );
-        
+        $doc->loadHTML ( file_get_contents ( Yii::app ()->basePath . '/../docs/meghalaya/mlas1.html' ) );
+        $div = $doc->getElementById('mla_custom');        
         // since its the only table
-        $TRs = $doc->getElementsByTagName ( 'tr' );
+        $TRs = $div->getElementsByTagName ( 'tr' );
         
         foreach ( $TRs as $tr )
         {
-            // echo "$rctr = " . $tr->nodeValue . "\n";
-            
             if (! $rctr ++)
                 continue;
             
@@ -36,9 +35,7 @@ function updateActionAssam()
             $phones = null;
             // $picture_path = null;
             foreach ( $tds as $td )
-            {
-                // echo "COL: $col = " . $td->nodeValue . "\n";
-                
+            {        
                 switch ($col ++)
                 {
                     case 0 : // picture

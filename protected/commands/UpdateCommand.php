@@ -409,6 +409,15 @@ class UpdateCommand extends CConsoleCommand
     }
 
     /**
+     * #201710051351:Kovai:thevikas
+     */
+    public function actionKonoMeghalaya()
+    {
+        require_once __DIR__ . '/update/updateActionMeghalaya.php';
+        updateActionMeghalaya();
+    }
+
+    /**
      * To parse the collectors of Deputy Commissioner of District
      * #201711171356:Kovai:thevikas
      */
