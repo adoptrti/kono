@@ -90,6 +90,7 @@ More than developing the software, we need to collect and cleanup data that we h
 1. Markets:
 
 ## Updates
+* **28-Mar-2018** - Meghalaya data added after recent elections.
 * **16-Dec-2017** - Hindi language data framework setup with display and CRUD (:pushpin: v 0.10)
 * **01-Dec-2017** - Deputy Commissioner of Districts started with Haryana and Tamil Nadu, role based ACL started (:pushpin: v 0.9)
 * **10-Nov-2017** - Panchayat Raj GIS data has been added starting with Tamil Nadu. (:pushpin: v 0.8)
