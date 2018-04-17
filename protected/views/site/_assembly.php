@@ -1,6 +1,9 @@
 <?php
 /* @var $this SiteController */
 /* @var $data AssemblyResult */
+
+if(!isset($data->constituency))
+        return;
 ?>
 
 <div class="view amly <?=empty ( $data->picture ) ? '' : 'pic'?>">
@@ -11,7 +14,16 @@ if (! empty ( $data->picture ))
     ] );
 
 ?>
-    <h2 class="acname"><?= CHtml::link(__('{acname} Assembly Constituency - #{acno}',['{acname}' => strtolower($data->constituency->name),'{acno}' => $data->constituency->eci_ref]),['state/assembly','acno' => $data->constituency->eci_ref,'id_state' => $data->constituency->id_state])?></h2>
+    <h2 class="acname"><?= CHtml::link(__('{acname} Assembly Constituency - #{acno}',
+            [
+                '{acname}' => strtolower($data->constituency->name),
+                '{acno}' => $data->constituency->eci_ref
+            ]),
+            [
+                'state/assembly',
+                'acno' => $data->constituency->eci_ref,
+                'id_state' => $data->constituency->id_state
+            ])?></h2>
 
     <?php
     if(!empty($data))        

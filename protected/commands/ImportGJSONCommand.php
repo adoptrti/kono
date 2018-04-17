@@ -28,7 +28,7 @@ class ImportGJSONCommand extends CConsoleCommand
         
         foreach($rs as $r)
         {
-            echo "{$r->ST_NAME}\t{$r->ctr1}\n";
+            echo "{$r->st_name}\t{$r->ctr1}\n";
         }
     }
 }
@@ -40,13 +40,16 @@ function parseplace($place,$pctr)
     insertRow ( $ExtendedData, $coords ,$pctr);
 }
 
+#modified now for importing bangalore wards
 function insertRow($ExtendedData, $many_coords,$pctr)
 {
     $poly = new AssemblyPolygon();
-    
+    #print_r($many_coords);
     $polystring = [];
-    foreach($many_coords as $coords)
+    foreach($many_coords[0] as $coords)
     {
+        #$coords is an array or array, which is reduced into 
+        #1 array of strings imploded into 1 comma seperated string.
         $polystring[] = '(' . implode(',' , array_reduce($coords,function($carry,$item) 
         {
             if(empty($item[0]))
@@ -60,18 +63,21 @@ function insertRow($ExtendedData, $many_coords,$pctr)
     
     print_r($ExtendedData);
     
-    setprops($poly, $ExtendedData,'acno', 'Ward_No');
-    setprops($poly, $ExtendedData,'zone', 'Zone_No');
-    setprops($poly, $ExtendedData,'Shape_Area', 'AREA');
-    setprops($poly, $ExtendedData,'Shape_Leng', 'PERIMETER');
+    setprops($poly, $ExtendedData,'acno', 'WARD_NO');
+    setprops($poly, $ExtendedData,'name', 'WARD_NAME');
     
+    #setprops($poly, $ExtendedData,'zone', 'Zone_No');
+    setprops($poly, $ExtendedData,'Shape_Area', 'AREA_SQ_KM');
+    #setprops($poly, $ExtendedData,'Shape_Leng', 'PERIMETER');
+
     $poly->poly = new CDbExpression("ST_PolygonFromText('POLYGON(" . implode(',',$polystring) . ")')");
     //very important
     $poly->polytype = 'WARD';
-    $poly->DIST_NAME = 'Chennai';
-    $poly->DT_CODE = 603;
-    $poly->ST_CODE = 33; //diff from id_state
-    $poly->ST_NAME = 'TAMIL NADU';
+    $poly->dist_name = 'BANGALORE URBAN';
+    $poly->dt_code = 67;
+    $poly->st_code = 29; //diff from id_state
+    $poly->id_state = 18;
+    #$poly->ST_NAME = '';
     
     if(empty($poly->acno))
     {
@@ -85,7 +91,7 @@ function insertRow($ExtendedData, $many_coords,$pctr)
         die('died saving ward:' . $poly->wardno);
     }
     
-    addWard($poly->DIST_NAME,$poly->acno,$poly->DT_CODE,$poly->ST_CODE);
+    addWard($poly->dist_name,$poly->acno,$poly->dt_code,$poly->st_code);
     
     echo $poly->acno . " (# $pctr) \n\n";
 }
@@ -98,8 +104,9 @@ function addWard($city,$wardno,$dt_code,$st_code)
         $MR = new MunicipalResults();
         $MR->wardno = $wardno;
         $MR->city = $city;
-        $MR->DT_CODE = $dt_code;
-        $MR->ST_CODE = $st_code;
+        $MR->id_city = 9819; //bangalore towns2011
+        $MR->dt_code = $dt_code;
+        $MR->st_code = $st_code;
         if(!$MR->save())
         {
             print_r($MR->errors);

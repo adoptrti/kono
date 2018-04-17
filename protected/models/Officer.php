@@ -31,8 +31,8 @@ class Officer extends CActiveRecord
 	}
 
     public function beforeSave()
-    {
-        if ($this->desig == 'DISTCOLLECTOR')
+    {		
+        if (Yii::app()->id == 'app-frontend' && $this->desig == 'DISTCOLLECTOR')
             if (! Yii::app ()->user->checkAccess ( 'ADD_DEPUTY_COMMISSIONER' ))
                 return false;
             

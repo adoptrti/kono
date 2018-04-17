@@ -271,6 +271,16 @@ class UpdateCommand extends CConsoleCommand
     }
 
     /**
+     * Kerala
+     * URL: http://www.niyamasabha.org/codes/members.htm
+     */
+    public function actionKonoKeralaDC()
+    {
+        require_once __DIR__ . '/update/updateActionKerala.php';
+        updateActionKeralaDC();
+    }
+
+    /**
      * 201909242238:Kovai:thevikas
      * Himachal
      * URL: http://hpvidhansabha.nic.in/Member/AllMembers?page=2
@@ -361,6 +371,16 @@ class UpdateCommand extends CConsoleCommand
     {
         require_once __DIR__ . '/update/updateActionAndhraPradesh.php';
         updateActionAndhraPradesh();
+    }
+    
+    
+    /**
+     * #201710032139:Kovai:thevikas
+     */
+    public function actionKonoAndhraPradeshDC()
+    {
+    	require_once __DIR__ . '/update/updateActionAndhraPradesh.php';
+    	updateActionAndhraPradeshDC();
     }
     
     /**

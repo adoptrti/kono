@@ -1,5 +1,111 @@
 <?php
 
+/**
+ * Deputy Commissioners of each district in kerala
+ */
+function updateActionKeralaDC()
+{
+    $ST_CODE = 32; // kerala
+    $id_state = 19; // kerala
+    
+    $stateobj = State::model ()->findByPk ( $id_state );
+    
+    libxml_use_internal_errors ( true );
+    
+    $urls = [ 
+            //'https://kerala.gov.in/web/guest/districts-collectors-adms-ploce-officers' 
+            YiiBase::getPathOfAlias('application') . '/kdc.html',
+    ];
+    foreach ( $urls as $url )
+    {
+        echo "\n\nURL: $url\n";
+        $doc = new DOMDocument ();
+        $doc->loadHTML ( file_get_contents ( $url ) );
+        
+        $TDs = $doc->getElementsByTagName( "td" );
+        
+        $rctr = 0;
+        $dists = [];
+        $distitem = [];
+        $colctr=0;
+        foreach ( $TDs as $td )
+        {
+            $rctr++;
+            $colctr++;
+            $mats = [];
+            $txt = $td->nodeValue;
+            if($td->getAttribute('colspan') == 2)
+            {
+                if(!empty($distitem))
+                {                    
+                    $dists[$distitem['name']] = $distitem;
+                    $distitem = [];
+                    $colctr=0;
+                }
+                #echo "**** \t";
+                $distitem['name'] = trim($txt);
+            }
+            else if(preg_match('/(?<pname>.*)District Collector/',$txt,$mats))
+            {
+                $distitem['pname'] = trim($mats['pname']);
+            }
+            else 
+            {
+                $mphones = $phones = $emails = [];
+                if(preg_match_all('/\D(?<phones>\d[-\d]+\d)/',$txt,$mats))
+                {
+                    //print_r($mats);
+                    $phones = $mats['phones'];
+                }
+                if(preg_match_all('/\D(?<mphones>\d{10})\D/',$txt,$mats))
+                {
+                    //print_r($mats);
+                    $mphones = $mats['mphones'];
+                }
+                #Email regex
+                if(preg_match_all('/(?<emails>[A-Za-z]+[\w-\s\.]+@[\w-\s\.]+)/',$txt,$mats))
+                {
+                    //print_r($mats);
+                    $emails = $mats['emails'];
+                }                
+                $distitem['col' . $colctr] = [$txt,'emails' => $emails,'phones' => $phones,'mphones' => $mphones];
+            }
+        } // foreach TDs
+
+        if(!empty($data))
+            $dists[$distitem['name']] = $distitem;
+
+        foreach($dists as $name => $distitem)
+        {
+            print_r($distitem);
+            $dobj = District::model()->findByAttributes([
+                'name' => $distitem['name'],
+                'id_state' => $id_state
+            ]);
+
+            if(!$dobj)
+                throw new Exception("dist with name " . $distitem['name'] . " not found");
+            
+            $off = new Officer();
+            $off->fkey_place = $dobj->id_district;
+            $off->name = $distitem['pname'];
+            $off->desig = 'DISTCOLLECTOR';
+            $off->phone = implode(',',$distitem['col3']['phones']);
+            $off->email = implode(',',$distitem['col3']['emails']);
+            
+            if(!$off->save())
+            {
+                print_r($off->getErrors());
+                echo "Could not save $name.\n";
+            }
+            else
+                echo "Saved for $name.\n";
+        }
+
+        #print_r($dists);
+    } // foreach URLs
+}
+
 function updateActionKerala()
 {
     $id_election = 24; // kerala

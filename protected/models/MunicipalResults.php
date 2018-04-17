@@ -31,7 +31,7 @@ class MunicipalResults extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('wardno', 'numerical', 'integerOnly'=>true),
-			array('city', 'length', 'max'=>10),
+			array('city', 'length', 'max'=>50),
 			array('name', 'length', 'max'=>31),
 			array('party', 'length', 'max'=>6),
 			array('phone', 'length', 'max'=>12),
