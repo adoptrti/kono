@@ -24,5 +24,3 @@ require_once($autoload);
 
 require_once($yii);
 Yii::createWebApplication($config)->run();
-
-phpinfo();

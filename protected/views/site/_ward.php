@@ -3,7 +3,16 @@
 /* @var $data Array */
 ?>
 
-<div class="view ward">
+<div class="view ward <?=empty ( $data->picture ) ? '' : 'pic'?>">
+
+<?php
+if (! empty ( $data->picture ))
+    echo CHtml::image ( '/images/pics/' . $data->picture, $data->name, [ 
+            'class' => 'picture pc' 
+    ] );
+
+?>
+
     <h2 class="acname"><?=__('{wardname} Municipal Ward - #{wardno}',['{wardname}' => strtolower($data0[0]->city),'{wardno}' => $data->wardno])?></h2>
 
     <?php

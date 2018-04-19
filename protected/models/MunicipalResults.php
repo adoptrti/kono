@@ -31,14 +31,13 @@ class MunicipalResults extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('wardno', 'numerical', 'integerOnly'=>true),
-			array('city', 'length', 'max'=>50),
-			array('name', 'length', 'max'=>31),
+			array('name', 'length', 'max'=>255),
 			array('party', 'length', 'max'=>6),
-			array('phone', 'length', 'max'=>12),
-			array('address', 'length', 'max'=>80),
+			array('phone', 'length', 'max'=>255),
+			array('address', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('city, wardno, name, party, phone, address', 'safe', 'on'=>'search'),
+			array(' wardno, name, party, phone, address', 'safe', 'on'=>'search'),
 		);
 	}
 

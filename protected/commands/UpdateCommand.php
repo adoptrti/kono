@@ -318,6 +318,15 @@ class UpdateCommand extends CConsoleCommand
     }
 
     /**
+     * Bangalore Municipal Corporation
+     */
+    public function actionBangaloreMC()
+    {
+        require_once __DIR__ . '/update/updateActionKarnataka.php';
+        updateActionBangaloreMC();
+    }
+
+    /**
      * 20171001
      * Not directly from website. Needs cleaning.
      */

@@ -27,7 +27,7 @@ foreach ( $ass2 as $ass )
     {
         $con2 = MunicipalResults::model ()->findByAttributes ( [ 
                 'wardno' => $ass->acno,
-                'city' => $ass->dist_name,
+                'dt_code' => $ass->dt_code,
         ] );
         
         if ($con2)

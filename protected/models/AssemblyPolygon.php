@@ -149,7 +149,8 @@ class AssemblyPolygon extends CActiveRecord
         $rs = self::model ()->findAll (
                 [
                         'group' => 'dist_name',
-                        'select' => 'dist_name,count(*) as ctr1,(select count(name) from municipalresults where city=dist_name) as ctr2',
+                        'select' => 'dist_name,count(*) as ctr1,(select count(mr.name) from municipalresults mr
+			join towns2011 tw on tw.id_place=mr.id_city where tw.name=t.dist_name) as ctr2',
                         'condition' => 'polytype=?',
                         'order' => 'dist_name'
 ,                        'params' => [
