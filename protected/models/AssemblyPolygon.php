@@ -9,6 +9,7 @@
  * @property integer $acno
  * @property integer $id_parl_consti
  * @property string $zone
+ * @property integer $id_zone
  * @property integer $wardno
  * @property integer $id_district
  * @property string $name
@@ -27,6 +28,23 @@
  * @property double $MaxSimpTol
  * @property double $MinSimpTol
  * @property integer $id_village Local Body Village Key
+ * 
+ * Report on zones:
+ * --
+ * SELECT count(name),count(acno),count(distinct id_zone),count(distinct zone),dt_code FROM `acpoly` where polytype='WARD' group by dt_code order by dt_code
+ * 
+ * Adding Municipal zones: mzone
+ * --
+ * INSERT INTO `towns2011` 
+ * 	(name,`st_code`, `id_state`, `st_name`, `dt_code`, `id_district`, `dt_name`, `tvtype`) 
+ * SELECT distinct zone,id_state,st_code,st_name, dt_code, id_district, dist_name, 'mzone' FROM `acpoly` WHERE dt_code=10229 and polytype = 'ward'
+ * 
+ * Updating IDs to zones in acpoly
+ * update `acpoly` p join towns2011 t on t.name=p.zone and t.dt_code=p.dt_code and t.tvtype='mzone' set id_zone = t.id_place
+ * 
+ * Not needed anymore
+ * --
+ * UPDATE `acpoly` set dt_code=10229 WHERE dt_code=603 and polytype='WARD'
  */
 class AssemblyPolygon extends CActiveRecord
 {
@@ -148,9 +166,12 @@ class AssemblyPolygon extends CActiveRecord
     {
         $rs = self::model ()->findAll (
                 [
-                        'group' => 'dist_name',
-                        'select' => 'dist_name,count(*) as ctr1,(select count(mr.name) from municipalresults mr
-			join towns2011 tw on tw.id_place=mr.id_city where tw.name=t.dist_name) as ctr2',
+                        'group' => 'dist_name,dt_code',
+                        'select' => "dist_name,
+								count(*) as ctr1,
+								(select count(mr.name) from municipalresults mr
+									join towns2011 tw on tw.id_place=mr.id_city where tw.tvtype='mcorp' and tw.id_place=t.dt_code) as ctr2,
+                				count(distinct id_zone) as ctr3",
                         'condition' => 'polytype=?',
                         'order' => 'dist_name'
 ,                        'params' => [
@@ -163,7 +184,8 @@ class AssemblyPolygon extends CActiveRecord
             $row [] = [
                     $r->dist_name,
                     $r->ctr1,
-                    $r->ctr2
+                    $r->ctr2,
+            		$r->ctr3,
             ];
         }
         return $row;

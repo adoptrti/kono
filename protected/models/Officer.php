@@ -11,6 +11,7 @@
  * @property string $updated
  * @property string $created
  * @property string $phone
+ * @property string $govoffice ('MCORP')
  * @property string $fax
  * @property string $email
  */

@@ -14,7 +14,13 @@ class m180418_174135_mcpic extends CDbMigration
 							ADD `updated` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `created`,
 							ADD `picture` VARCHAR(255) NULL AFTER `slug`;
 
-						ALTER TABLE `municipalresults` DROP `city`;");
+						ALTER TABLE `municipalresults` DROP `city`;
+
+						ALTER TABLE `constituency` 
+							CHANGE `ctype` `ctype` ENUM('AMLY','PARL','MWARD','MZONE') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+						
+						ALTER TABLE `officer` 
+							CHANGE `desig` `desig` ENUM('DISTCOLLECTOR','CHIEFMINISTER','GOVERNER','DEPUTYCHIEFMINISTER','JOINTCOLLECTOR','SPOLICE','IGPOLICE','CHIEFENGINEER','HEALTHOFFICER') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;");
 	}
 
 	public function down()

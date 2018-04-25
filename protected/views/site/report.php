@@ -14,8 +14,8 @@ $this->breadcrumbs = array (
 <h2><?=__('Municipal Corporations')?></h2>
 <?php
 
-$muni[0]['rti'] = 'https://twitter.com/adoptrti/status/916205653105844224';
-$muni[2]['rti'] = 'https://twitter.com/adoptrti/status/916212513317908480';
+#$muni[0]['rti'] = 'https://twitter.com/adoptrti/status/916205653105844224';
+#$muni[2]['rti'] = 'https://twitter.com/adoptrti/status/916212513317908480';
 
 $dataProvider = new CArrayDataProvider ( $muni, array (
         'keyField' => 0,
@@ -23,7 +23,8 @@ $dataProvider = new CArrayDataProvider ( $muni, array (
                 'attributes' => array (
                         0,
                         1,
-                        2
+                        2,
+                        3
                 )
         ),
         'pagination' => array (
@@ -49,6 +50,13 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                                 {
                                     return $data [1];
                                 }
+                        ],
+                        [
+                        		'header' => __('Zones'),
+                        		'value' => function ($data)
+                        		{
+                        			return $data [3];
+                        }
                         ],
                         [
                                 'header' => __('Councillors'),
