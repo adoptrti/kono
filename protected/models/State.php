@@ -160,7 +160,7 @@ class State extends CActiveRecord
 		$criteria->compare('ST_CODE',$this->ST_CODE);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('ias_short_code',$this->ias_short_code,true);
-		$criteria->compare('id_census',$this->id_census);
+		#$criteria->compare('id_census',$this->id_census);
 		$criteria->compare('eci_ref',$this->eci_ref,true);
 		$criteria->compare('session_from',$this->session_from,true);
 		$criteria->compare('session_to',$this->session_to,true);
