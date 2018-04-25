@@ -10,11 +10,8 @@ if (! empty ( $data->picture ))
     echo CHtml::image ( '/images/pics/' . $data->picture, $data->name, [ 
             'class' => 'picture pc' 
     ] );
-
 ?>
-
     <h2 class="acname"><?=__('{wardname} Municipal Ward - #{wardno}',['{wardname}' => strtolower($data0[0]->city),'{wardno}' => $data->wardno])?></h2>
-
     <?php
     $this->widget ( 'zii.widgets.CDetailView', 
             array (
@@ -27,11 +24,12 @@ if (! empty ( $data->picture ))
                                         $ward = AssemblyPolygon::model ()->findByAttributes ( 
                                                 [ 
                                                         'acno' => $data->wardno,
-                                                        'dt_code' => $data->dt_code,
+                                                        'dt_code' => $data->id_city,
                                                         'st_code' => $data->st_code 
                                                 ] );
-                                        if ($ward)
-                                            return $ward->zone;
+                                        
+                                        if (isset($ward->zone->name))
+                                            return $ward->zone->name;
                                     } 
                             ),
                             array ( // related city displayed as a link

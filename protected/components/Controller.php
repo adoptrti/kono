@@ -5,6 +5,7 @@
  */
 class Controller extends CController
 {
+	public static $dic;
     /**
      *
      * @var string the default layout for the controller view. Defaults to

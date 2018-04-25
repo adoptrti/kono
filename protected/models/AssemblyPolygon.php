@@ -96,7 +96,17 @@ class AssemblyPolygon extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array (
-                'state' => array (
+        		'town' => array (
+        				self::BELONGS_TO,
+        				'Town',
+        				'id_city'
+        		),
+        		'zone' => array (
+        				self::BELONGS_TO,
+        				'Town',
+        				'id_zone'
+        		),
+        		'state' => array (
                         self::BELONGS_TO,
                         'State',
                         'id_state'

@@ -24,14 +24,19 @@ foreach ( $ass2 as $ass )
 {    
     error_log('GIS-found poly:' . $ass->id_poly . ' name:' . $ass->name . ' type:' . $ass->polytype . ' id_village:' . $ass->id_village);
     if ($ass->polytype == 'WARD')
-    {
+    {    	
+    	$data ['wardzone'] = isset($ass->zone) ? $ass->zone : null;
+    	
         $con2 = MunicipalResults::model ()->findByAttributes ( [ 
                 'wardno' => $ass->acno,
                 'id_city' => $ass->dt_code,
         ] );
         
         if ($con2)
-            $data ['ward'] = $con2;
+        {
+            $data ['ward'] = $con2;            
+        }
+        
     }
     else if($ass->polytype == 'AC')
     {
@@ -103,6 +108,7 @@ if (! empty ( $data ['ward'] ))
     $this->renderPartial ( '_ward', [ 
             'data' => $data ['ward'],
             'data0' => $data0,
+    		'zone' => $data ['wardzone'],
     ] );
 
 if (! empty ( $data ['village'] ))
