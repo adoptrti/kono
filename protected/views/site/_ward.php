@@ -11,7 +11,7 @@ if (! empty ( $data->picture ))
             'class' => 'picture pc' 
     ] );
 ?>
-    <h2 class="acname"><?=__('{wardname} Municipal Ward - #{wardno}',['{wardname}' => strtolower($data0[0]->city),'{wardno}' => $data->wardno])?></h2>
+    <h2 class="acname"><?=__('{wardname} Municipal Ward - #{wardno}',['{wardname}' => strtolower($rawdata[0]->city),'{wardno}' => $data->wardno])?></h2>
     <?php
     $this->widget ( 'zii.widgets.CDetailView', 
             array (
@@ -74,3 +74,19 @@ if (! empty ( $data->picture ))
     ?>
 
 </div>
+
+<?php
+if (! empty ( $govdata ['ward_officers'] ))
+	$this->renderPartial ( '_wardofficers', [
+			'officers' => $govdata ['ward_officers'],
+			'rawdata' => $rawdata,
+			'govdata' => $govdata,
+			'caption' => __('Municipal Ward Staff'),
+	] );
+if (! empty ( $govdata ['zone_officers'] ))
+	$this->renderPartial ( '_wardofficers', [
+			'officers' => $govdata ['zone_officers'],
+			'rawdata' => $rawdata,
+			'govdata' => $govdata,
+			'caption' => __('Municipal Zone Staff'),
+	] );

@@ -90,6 +90,7 @@ More than developing the software, we need to collect and cleanup data that we h
 1. Markets:
 
 ## Updates
+* **26-Apr-2018** - First Coimbatore Ward and Zonal level staff details added.
 * **19-Apr-2018** - Bruhat Bengaluru Mahanagara Palike data added.
 * **28-Mar-2018** - Meghalaya data added after recent elections.
 * **16-Dec-2017** - Hindi language data framework setup with display and CRUD (:pushpin: v 0.10)

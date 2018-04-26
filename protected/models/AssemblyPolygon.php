@@ -58,7 +58,18 @@ class AssemblyPolygon extends CActiveRecord
     var $ctr8;
     var $ctr9;
     var $ctr10;
-
+    
+    public function behaviors()
+    {
+    	return array (
+    			'CTimestampBehavior' => array (
+    					'class' => 'zii.behaviors.CTimestampBehavior',
+    					'createAttribute' => null,
+    					'updateAttribute' => 'updated'
+    			),
+    		);
+    }
+    
     /**
      *
      * @return string the associated database table name
@@ -252,5 +263,128 @@ class AssemblyPolygon extends CActiveRecord
             $row [] = $data;
         }
         return $row;
+    }
+    
+    function extractDataFromGIS($state_name,$gis_lat,$gis_long)
+    {
+    	$src = [
+    			'condition' => (new CDbExpression ( "ST_Contains(poly, GeomFromText(:point))")) . ' and state.name=:statename',
+    			'with' => ['state'],
+    			'params' => [
+    					':statename' => $state_name,
+    					':point' => 'POINT(' . $gis_long. ' ' . $gis_lat. ')'
+    			]
+    	];
+    	
+    	$ass2 = AssemblyPolygon::model ()->findAll ( $src );
+    	
+    	$govdata = [ ];
+    	/* @var $ass AssemblyPolygon */
+    	foreach ( $ass2 as $ass )
+    	{
+    		error_log('GIS-found poly:' . $ass->id_poly . ' name:' . $ass->name . ' type:' . $ass->polytype . ' id_village:' . $ass->id_village);
+    		if ($ass->polytype == 'WARD')
+    			$this->extractWardData($govdata, $ass);    			
+    		else if($ass->polytype == 'AC')
+    			$this->extractACData($govdata, $ass);
+    		else if($ass->polytype == 'VILLAGE')
+    			$govdata['village'] = $ass;
+    	}
+    	return $govdata;
+    }
+    
+    function extractWardData(&$govdata,AssemblyPolygon $ass)
+    {
+    	$govdata['wardzone'] = isset($ass->zone) ? $ass->zone : null;
+    	
+    	$con2 = MunicipalResults::model ()->findByAttributes ( [
+    			'wardno' => $ass->acno,
+    			'id_city' => $ass->dt_code,
+    	] );
+    	
+    	if ($con2)
+    	{
+    		$govdata['ward'] = $con2;
+    	}
+    	
+    	//can we find ward staff?
+    	$ward_offs = Officer::model()->findAllByAttributes($params = [
+    			'fkey_place' => $ass->id_poly,
+    			'govoffice' => 'MCORP',
+    	]);
+    	
+    	if(count($ward_offs))
+    		$govdata['ward_officers'] = $ward_offs;
+    	
+    	//can we find zone staff?
+    	$zone_offs = Officer::model()->findAllByAttributes([
+    			'fkey_place' => $ass->id_zone,
+    			'govoffice' => 'MCORP',
+    	]);
+    	
+    	if(count($zone_offs))
+    		$govdata['zone_officers'] = $zone_offs;
+    		
+    	//can we find municipal commissioner?
+    	//can we find municipal mayor?
+    }
+    
+    function extractACData(&$govdata,AssemblyPolygon $ass)
+    {
+    	$govdata['assembly'] = null;
+    	$govdata['amly_poly'] = $ass;
+    	$con2 = LokSabha2014::model ()->findByAttributes ( [
+    			'pc_name_clean' => $ass->pc_name_clean
+    	] );
+    	
+    	if ($con2)
+    	{
+    		$govdata['mp'] = $con2;
+    		$govdata['mp_poly'] = $ass;
+    	}
+    	$att44 = [
+    			'acno' => $ass->acno ,
+    			'id_state' => $ass->id_state,
+    	];
+    	
+    	$con3 = AssemblyResults::model ()->findByAttributes ( $att44 );
+    	if ($con3)
+    	{
+    		$govdata['assembly'] = $con3;
+    	}
+    }
+    
+    function newOfficer($name = '',$phone = '',$desig = '',$fkey_place = '')
+    {
+    	$off = new Officer();
+    	$off->fkey_place = empty($fkey_place) ? $this->id_poly : $fkey_place;
+    	$off->govoffice = $this->polytype == 'WARD' ? 'MCORP' : null;
+    	if(Officer::model()->countByAttributes([
+    			'desig' => $desig,
+    			'fkey_place' => $off->fkey_place
+    	]))
+    	{
+    		echo "$desig already exists for ward " . $this->acno . "\n";
+    		return;
+    	}
+    	
+    	if(empty($name) || empty($desig) || empty($phone))
+    		return $off;
+    	
+    	$off->name = $name;
+    	$off->phone = $phone;
+    	$off->desig = $desig;
+    	//print_r($off);
+    	if(!$off->save())
+    	{
+    		print_r($off->getErrors());
+    		die("Count not save.");
+    	}
+    	return $off;
+    }
+    
+    function newZonalOfficer($name = '',$phone = '',$desig = '')
+    {
+    	return $this->newOfficer($name,$phone,$desig,$this->id_zone);
     }
 }

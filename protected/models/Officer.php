@@ -21,6 +21,28 @@ class Officer extends CActiveRecord
     const DESIG_CHIEFMINISTER= 'CHIEFMINISTER';
     const DESIG_DEPUTYCHIEFMINISTER= 'DEPUTYCHIEFMINISTER';
     const DESIG_GOVERNER= 'GOVERNER';
+    //ward
+    const DESIG_ASSTENGINEER = 'ASSTENGINEER';
+    const DESIG_WATERSUPPLYOFF = 'WATERSUPPLYOFF';
+    const DESIG_SANITORYINSPECTOR = 'SANITORYINSPECTOR';
+    //zone
+    const DESIG_ASSTCOMMISSIONER = 'ASSTCOMMISSIONER';
+    const DESIG_EXECENGINEER = 'EXECENGINEER';
+    const DESIG_ASSTEXECENGINEER= 'ASSTEXECENGINEER';
+    const DESIG_ASSTTOWNPLANNER = 'ASSTTOWNPLANNER';
+    const DESIG_ASSTREVENUEOFF = 'ASSTREVENUEOFF';
+    const DESIG_ZONALSANITORYOFF = 'ZONALSANITORYOFF';
+    
+    public function behaviors()
+    {
+    	return array (
+    			'CTimestampBehavior' => array (
+    					'class' => 'zii.behaviors.CTimestampBehavior',
+    					'createAttribute' => 'created',
+    					'updateAttribute' => 'updated'
+    			),
+    	);
+    }
     
     
 	/**
@@ -51,7 +73,7 @@ class Officer extends CActiveRecord
 			array('name', 'required'),
 			array('fkey_place', 'numerical', 'integerOnly'=>true),
 			array('name, phone, fax, email', 'length', 'max'=>255),
-			array('desig', 'length', 'max'=>13),
+			array('desig', 'length', 'max'=>25),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id_officer, name, fkey_place, desig, updated, created, phone, fax, email', 'safe', 'on'=>'search'),
