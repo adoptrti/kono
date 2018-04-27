@@ -21,6 +21,83 @@ class Officer extends CActiveRecord
     const DESIG_CHIEFMINISTER= 'CHIEFMINISTER';
     const DESIG_DEPUTYCHIEFMINISTER= 'DEPUTYCHIEFMINISTER';
     const DESIG_GOVERNER= 'GOVERNER';
+    //ward
+    const DESIG_ASSTENGINEER = 'ASSTENGINEER';
+    const DESIG_WATERSUPPLYOFF = 'WATERSUPPLYOFF';
+    const DESIG_SANITORYINSPECTOR = 'SANITORYINSPECTOR';
+    //zone
+    const DESIG_HEALTHOFFICER = 'HEALTHOFFICER';
+    const DESIG_DEPUTYHEALTHOFFICER = 'DEPUTYHEALTHOFFICER';
+    const DESIG_CHIEFENGINEER = 'CHIEFENGINEER';
+    const DESIG_DEPUTYCOMMISSIONER = 'DEPUTYCOMMISSIONER';
+    const DESIG_JOINTCOMMISSIONER = 'JOINTCOMMISSIONER';
+    const DESIG_ASSTCOMMISSIONER = 'ASSTCOMMISSIONER';
+    const DESIG_EXECENGINEER = 'EXECENGINEER';
+    const DESIG_ASSTEXECENGINEER= 'ASSTEXECENGINEER';
+    const DESIG_ASSTTOWNPLANNER = 'ASSTTOWNPLANNER';
+    const DESIG_ASSTREVENUEOFF = 'ASSTREVENUEOFF';
+    const DESIG_ZONALSANITORYOFF = 'ZONALSANITORYOFF';
+	/*
+     * static $designstr = [
+    		//duplicates
+    		Officer::DESIG_CHIEFENGINEER => __('Chief Engineer (I/C)'),
+    		Officer::DESIG_HEALTHOFFICER => __('Health Officer (I/C)'),
+    		Officer::DESIG_HEALTHOFFICER => __('Medical Officer of Health'),
+    		//originals
+    		Officer::DESIG_DEPUTYCOMMISSIONER => __('Deputy Commissioner'),
+    		Officer::DESIG_JOINTCOMMISSIONER => __('Joint Commissioner'),
+    		Officer::DESIG_ASSTCOMMISSIONER => __('Assisstant Commissioner'),
+    		Officer::DESIG_EXECENGINEER => __('Executive Engineer'),
+    		Officer::DESIG_CHIEFENGINEER => __('Chief Engineer'),
+    		Officer::DESIG_HEALTHOFFICER => __('Health Officer'),
+    		Officer::DESIG_DEPUTYHEALTHOFFICER => __('Deputy Health Officer'),
+    		Officer::DESIG_ASSTEXECENGINEER => __('Assistant Executive Engineer'),
+    		Officer::DESIG_ASSTTOWNPLANNER => __('Assistant Town Planning Officer'),
+    		Officer::DESIG_ASSTREVENUEOFF => __('Assistant Revenue Officer'),
+    		Officer::DESIG_ZONALSANITORYOFF => __('Zonal Sanitary Officer'),
+    		//
+    		Officer::DESIG_ASSTENGINEER => __('Assistant Engineer'),
+    		Officer::DESIG_WATERSUPPLYOFF => __('Water Supply Engineer'),
+    		Officer::DESIG_SANITORYINSPECTOR => __('Sanitory Inspector'),
+    ];*/
+    
+   	public static function designstr()
+   	{
+   		$designstr = [
+   				//duplicates
+   				__('Chief Engineer (I/C)') => Officer::DESIG_CHIEFENGINEER,
+   				__('Health Officer (I/C)') => Officer::DESIG_HEALTHOFFICER,
+   				__('Medical Officer of Health') => Officer::DESIG_HEALTHOFFICER,
+   				//originals
+   				__('Deputy Commissioner') => Officer::DESIG_DEPUTYCOMMISSIONER,
+   				__('Joint Commissioner') => Officer::DESIG_JOINTCOMMISSIONER,
+   				__('Assisstant Commissioner') => Officer::DESIG_ASSTCOMMISSIONER,
+   				__('Executive Engineer') => Officer::DESIG_EXECENGINEER,
+   				__('Chief Engineer') => Officer::DESIG_CHIEFENGINEER,
+   				__('Health Officer') => Officer::DESIG_HEALTHOFFICER,
+   				__('Deputy Health Officer') => Officer::DESIG_DEPUTYHEALTHOFFICER,
+   				__('Assistant Executive Engineer') => Officer::DESIG_ASSTEXECENGINEER,
+   				__('Assistant Town Planning Officer') => Officer::DESIG_ASSTTOWNPLANNER,
+   				__('Assistant Revenue Officer') => Officer::DESIG_ASSTREVENUEOFF,
+   				__('Zonal Sanitary Officer') => Officer::DESIG_ZONALSANITORYOFF,
+   				//
+   				__('Assistant Engineer') => Officer::DESIG_ASSTENGINEER,
+   				__('Water Supply Engineer') => Officer::DESIG_WATERSUPPLYOFF,
+   				__('Sanitory Inspector') => Officer::DESIG_SANITORYINSPECTOR,
+   		];
+   		return $designstr;
+   	}
+    
+    public function behaviors()
+    {
+    	return array (
+    			'CTimestampBehavior' => array (
+    					'class' => 'zii.behaviors.CTimestampBehavior',
+    					'createAttribute' => 'created',
+    					'updateAttribute' => 'updated'
+    			),
+    	);
+    }
     
     
 	/**
@@ -51,7 +128,7 @@ class Officer extends CActiveRecord
 			array('name', 'required'),
 			array('fkey_place', 'numerical', 'integerOnly'=>true),
 			array('name, phone, fax, email', 'length', 'max'=>255),
-			array('desig', 'length', 'max'=>13),
+			array('desig', 'length', 'max'=>25),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id_officer, name, fkey_place, desig, updated, created, phone, fax, email', 'safe', 'on'=>'search'),

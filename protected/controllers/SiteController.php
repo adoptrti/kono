@@ -25,18 +25,21 @@ class SiteController extends Controller
     
     function actionPlaceinfo($t)
     {
+    	$govdata = null;
         $this->disableWebLog();
         if($t=='json')
         {
-            $data = json_decode($_REQUEST['data']);
-            $lat = $data[1]->latitude;
-            $long = $data[1]->longitude;
+            $rawdata = json_decode($_REQUEST['data']);
+            $lat = $rawdata[1]->latitude;
+            $long = $rawdata[1]->longitude;
+            $govdata = AssemblyPolygon::model ()->extractDataFromGIS ( $rawdata[0]->state,$lat,$long);
         }
+        
         #201711020955:thevikas:Kovai
         $w3w = What3Words::fetchWords($lat, $long);
-        
+                
         $this->layout = false;
-        $this->render ( 'placeinfo' ,['lat' => $lat,'long' => $long,'data0' => $data,'w3w' => $w3w]);
+        $this->render ( 'placeinfo' ,['lat' => $lat,'long' => $long,'rawdata' => $rawdata,'w3w' => $w3w,'govdata' => $govdata]);
     }
 
     /**

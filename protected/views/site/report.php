@@ -45,17 +45,31 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                                 }
                         ],
                         [
-                                'header' => __('Polygons'),
+                                'header' => __('Wards'),
                                 'value' => function ($data)
                                 {
                                     return $data [1];
                                 }
                         ],
                         [
+                        		'header' => __('Ward Staff'),
+                        		'value' => function ($data)
+                        		{
+                        			return $data ['wstaff'];
+                        }
+                        ],
+                        [
                         		'header' => __('Zones'),
                         		'value' => function ($data)
                         		{
                         			return $data [3];
+                        }
+                        ],
+                        [
+                        		'header' => __('Zone Staff'),
+                        		'value' => function ($data)
+                        		{
+                        			return $data ['zstaff'];
                         }
                         ],
                         [

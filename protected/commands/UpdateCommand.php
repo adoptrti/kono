@@ -455,6 +455,26 @@ class UpdateCommand extends CConsoleCommand
         require_once __DIR__ . '/update/updateDCTamilNadu.php';
         updateDCTamilNadu();
     }
+    
+    /**
+     * To parse staff info for wards
+     * #201711171356:Kovai:thevikas
+     */
+    public function actionKonoCoimbatoreMC($csvfile,$dryrun = 0)
+    {
+    	require_once __DIR__ . '/update/updateCoimbatoreMC.php';
+    	updateCoimbatoreMC($csvfile,$dryrun);
+    }
+
+    /**
+     * To parse staff info for wards
+     * #201711171356:Kovai:thevikas
+     */
+    public function actionKonoCoimbatoreMCZ($csvfile,$dryrun=0)
+    {
+    	require_once __DIR__ . '/update/updateCoimbatoreMC.php';
+    	updateCoimbatoreMCZ($csvfile,$dryrun);
+    }
 }
 
 function reducer($carry, $item)
