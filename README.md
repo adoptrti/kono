@@ -90,6 +90,7 @@ More than developing the software, we need to collect and cleanup data that we h
 1. Markets:
 
 ## Updates
+* **7-May-2018** - Mapped upcoming Karnataka election 2018 to candidates list on myneta.info site. (:pushpin: v 0.12)
 * **26-Apr-2018** - First Coimbatore Ward and Zonal level staff details added. (:pushpin: v 0.11)
 * **19-Apr-2018** - Bruhat Bengaluru Mahanagara Palike data added.
 * **28-Mar-2018** - Meghalaya data added after recent elections.

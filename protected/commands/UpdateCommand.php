@@ -374,6 +374,15 @@ class UpdateCommand extends CConsoleCommand
     }
     
     /**
+     * #201804271044:Kovai:thevikas
+     */
+    public function actionKonoCalcuttaWards($csvfile,$dryrun=0)
+    {
+    	require_once __DIR__ . '/update/updateActionWestBengal.php';
+    	importCouncillorsCSV($csvfile,$dryrun);
+    }
+    
+    /**
      * #201710032139:Kovai:thevikas
      */
     public function actionKonoAndhraPradesh()

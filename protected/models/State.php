@@ -68,7 +68,7 @@ class State extends CActiveRecord
                 ) );
         return $this;
     }	
-
+        
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -101,8 +101,10 @@ class State extends CActiveRecord
 			'constituencies' => array(self::HAS_MANY, 'Constituency', 'id_state'),
 	        'amly_constituencies' => array(self::HAS_MANY, 'Constituency', 'id_state','condition' => "ctype='AMLY'",'order' => 'eci_ref'),
 	        'parl_constituencies' => array(self::HAS_MANY, 'Constituency', 'id_state','condition' => "ctype='PARL'",'order' => 'eci_ref'),
+			'mc_constituencies' => array(self::HAS_MANY, 'Town', 'id_state','condition' => "tvtype='mcorp'",'order' => 'name'),
 			'constituencies1' => array(self::HAS_MANY, 'Constituency', 'id_state2'),
-			'elections' => array(self::HAS_MANY, 'Elections', 'id_state'),
+			'elections' => array(self::HAS_MANY, 'Election', 'id_state','condition' => "type='AMLY'"),
+				'upcomingelections' => array(self::HAS_MANY, 'Election', 'id_state','condition' => "type='AMLY' and edate>now()"),
 	        'districts' => array(self::HAS_MANY, 'District', 'id_state','order' => 'name'),
 			'placeNames' => array(self::HAS_MANY, 'PlaceNames', 'id_state'),
 			'results2009s' => array(self::HAS_MANY, 'Results2009', 'id_state'),

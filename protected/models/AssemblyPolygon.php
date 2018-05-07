@@ -189,7 +189,7 @@ class AssemblyPolygon extends CActiveRecord
                 [
                         'group' => 'dist_name,dt_code',
                         'select' => "dist_name,dt_code,
-								count(*) as ctr1,
+								count(poly) as ctr1,
 								(select count(mr.name) from municipalresults mr
 									join towns2011 tw on tw.id_place=mr.id_city where tw.tvtype='mcorp' and tw.id_place=t.dt_code) as ctr2,
                 				count(distinct id_zone) as ctr3
