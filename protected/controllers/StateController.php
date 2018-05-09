@@ -28,7 +28,7 @@ class StateController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','district','loksabha','assembly'),
+				'actions'=>array('index','view','district','loksabha','assembly','election'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -45,23 +45,42 @@ class StateController extends Controller
 		);
 	}
 
+	public function actionElection($id_election)
+	{
+	    $this->layout='//layouts/main';
+	    $election = Election::model()->findByPk($id_election);
+	    $state = $election->state;
+	    if(!$state)
+	        return false;
+
+        $this->pageTitle = ucwords(__('{state} Assembly Elections {eyear} - Assembly Constituencies with Candidate details, Symbols and EVM Positions',
+	        		[
+	        				'{eyear}' => date('Y',strtotime($election->edate)),
+	        				'{state}' => $election->state->name,
+	        		]));
+		$this->render('election',array(
+			'model'=> $state,
+			'election'=> $election,
+		));
+	}
+
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
 	public function actionView($id)
 	{
-	    $this->layout='//layouts/main';
-	    $state = $this->loadModel($id);
-	    if(!$state)
-	        return false;
-
-        $this->pageTitle = ucwords(strtolower($state->name));
-		$this->render('view',array(
-			'model'=> $state
-		));
+		$this->layout='//layouts/main';
+		$state = $this->loadModel($id);
+		if(!$state)
+			return false;
+			
+			$this->pageTitle = ucwords(strtolower($state->name));
+			$this->render('view',array(
+					'model'=> $state
+			));
 	}
-
+	
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed

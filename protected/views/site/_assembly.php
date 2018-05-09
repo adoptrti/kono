@@ -116,7 +116,7 @@ $nextelections = $data->constituency->state->upcomingelections;
 if(count($nextelections)>0)
 {
 	$e = $nextelections[0];
-	echo 'Next election on: ' . date('Y-m-d',strtotime($e->edate));
+	#echo 'Next election on: ' . date('Y-m-d',strtotime($e->edate));
 	$this->renderPartial ( '_nextamlyelection', ['constituency' => $data->constituency,'election' => $e]);
 }
 ?>

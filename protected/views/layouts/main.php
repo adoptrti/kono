@@ -26,6 +26,7 @@ Yii::app ()->clientScript->registerCoreScript ( 'bootstrap' );
     href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css">
 
 <title><?php echo CHtml::encode($this->pageTitle); ?></title>
+<?php $this->renderPartial('//layouts/_hreflangs'); ?>
 </head>
 
 <body id="main">
@@ -80,7 +81,7 @@ Yii::app ()->clientScript->registerCoreScript ( 'bootstrap' );
                             $params2 = array_merge([$rt],$params);
                         }
                         ?>
-                        <li><?=CHtml::link($lang,$params2)?></li>
+                        <li><?=CHtml::link(__($lang),$params2)?></li>
                         <?php
                     }
                     ?>

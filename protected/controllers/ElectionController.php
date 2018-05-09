@@ -28,7 +28,7 @@ class ElectionController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','candidates'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -140,6 +140,41 @@ class ElectionController extends Controller
 
 		$this->render('admin',array(
 			'model'=>$model,
+		));
+	}
+
+
+	/**
+	 * Manages all models.
+	 */
+	public function actionCandidates($id_election,$eci_ref)
+	{
+		$this->layout='//layouts/main';
+		$model=new ElectionCandidates('search');
+		$model->unsetAttributes();  // clear any default values
+		$model->id_election = $id_election;
+		$model->eci_ref = $eci_ref;		
+		$consti = Constituency::model()->findByAttributes([
+				'ctype' => 'AMLY',
+				'eci_ref' => $eci_ref,
+				'id_state' => $model->election->id_state,
+		]);
+		
+		$state = $model->election->state;
+		$election= $model->election;
+		
+		$this->pageTitle = __('{consti} #{eciref} - Contesting Candidates - {state} Assembly Elections {eyear}',[
+				'{state}' => $state->name,
+				'{eyear}' => $election->year,
+				'{consti}' => $consti->name,
+				'{eciref}' => $consti->eci_ref,]);
+		
+		
+		$this->render('candidates',array(
+			'model'=>$model,
+			'constituency' => $consti,
+			'state' => $state,
+			'election' => $election,
 		));
 	}
 

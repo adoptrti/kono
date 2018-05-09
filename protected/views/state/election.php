@@ -17,21 +17,4 @@ $this->menu=array(
 
 echo CHtml::tag('h1',[],$model->name);
 
-$nextelections = $model->upcomingelections;
-if(count($nextelections)>0)
-{
-	$e = $nextelections[0];
-	$this->renderPartial ( '_nextamlyelection', ['election' => $e]);
-}
-
-if(isset($model->chiefminister))
-    echo $this->renderPartial('_chiefminister',['officer' => $model->chiefminister]);    
-
-$this->renderPartial("_view_dt",['model' => $model]);
-$this->renderPartial("_view_as",['model' => $model]);
-$this->renderPartial("_view_ls",['model' => $model]);
-$this->renderPartial("_view_mc",['model' => $model]);
-if(Yii::app()->user->checkAccess('ADD_CHIEF_MINISTER'))
-{
-    echo $this->renderPartial('_stateeditor',['state' => $model]);        
-}
+$this->renderPartial("_view_as_el",['model' => $model,'election' => $election]);

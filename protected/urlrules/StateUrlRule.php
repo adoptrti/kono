@@ -24,7 +24,7 @@ class StateUrlRule extends CBaseUrlRule
      */
     public $prefix2;
 
-    public function handle_state_view($manager, $route, $params, $ampersand)
+    public function handle_state_election($manager, $route, $params, $ampersand)
     {
         $qs = '';
         
@@ -38,32 +38,130 @@ class StateUrlRule extends CBaseUrlRule
             unset ( $params ['lang'] );
         }
         
-        if (! isset ( $params ['id'] ))
-        {
-            return $this->prefix . $lang . '/state/all';
-        }
-        else
-        {
-            $id_state = $params ['id'];
-            unset ( $params ['id'] );
-        }
+        if (! isset ( $params ['id_election'] ))
+        	throw new Exception("URL needs election");
         
-        $stateobjs = State::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->findAll ( 'id_state=:cc', 
-                array (
-                        ':cc' => $id_state 
-                ) );
+        $id_election = $params ['id_election'];
+        unset ( $params ['id_election'] );
+        
+        $election = Election::model ()->findByPk($id_election);
+        
+        $state = $election->state;
         
         if (count ( $params ))
         {
             $qs = "?" . http_build_query ( $params );
         }
         
-        if (count ( $stateobjs ) == 1)
-            $state_slug = strtolower ( $stateobjs [0]->slug );
+        if ($election && $state)
+        {
+        	$state_slug = strtolower ( $state->slug );
+        	$etype = $election->type == 'AMLY' ? __('Assembly') : __('');
+        	$e_slug = strtolower($etype  . '-election-' . $election->year);
+        	
+        }
         else
             return false;
         
-        return $this->prefix . $lang . '/' . $state_slug . '/' . $qs;
+        return $this->prefix . $lang . '/' . $state_slug . '/' . $e_slug . '/' . $qs;
+    }
+    
+    public function handle_election_candidates($manager, $route, $params, $ampersand)
+    {
+    	$qs = '';
+    	
+    	if (! isset ( $params ['lang'] ))
+    	{
+    		$lang = $this->lang;
+    	}
+    	else
+    	{
+    		$lang = $params ['lang'];
+    		unset ( $params ['lang'] );
+    	}
+    	
+    	if (! isset ( $params ['id_election'] ))
+    		throw new Exception("URL needs election");
+    	
+    		if (! isset ( $params ['eci_ref'] ))
+    			throw new Exception("URL needs eciref");
+    			
+    				
+    		$id_election = $params ['id_election'];
+    		unset ( $params ['id_election'] );
+    		
+    		$eci_ref = $params ['eci_ref'];
+    		unset ( $params ['eci_ref']);
+    		
+    		
+    		$election = Election::model ()->findByPk($id_election);
+    		$consti = Constituency::model ()->findByAttributes([
+    				'id_state' => $election->id_state,
+    				'eci_ref' => $eci_ref,
+    				'ctype' => 'AMLY',
+    		]);
+    		
+    		$state = $election->state;
+    		
+    		if (count ( $params ))
+    		{
+    			$qs = "?" . http_build_query ( $params );
+    		}
+    		
+    		if ($election && $state && $consti)
+    		{
+    			$state_slug = strtolower ( $state->slug );
+    			$etype = $election->type == 'AMLY' ? __('Assembly') : __('');
+    			$e_slug = strtolower($etype  . '-election-' . $election->year);
+    			
+    			$consti_slug = strtolower ( $consti->slug );
+    		}
+    		else
+    			return false;
+    			
+    		return $this->prefix . $lang . '/' . $state_slug . '/' . $e_slug . '/' . $consti_slug . '/' . $qs;
+    }
+    
+    public function handle_state_view($manager, $route, $params, $ampersand)
+    {
+    	$qs = '';
+    	
+    	if (! isset ( $params ['lang'] ))
+    	{
+    		$lang = $this->lang;
+    	}
+    	else
+    	{
+    		$lang = $params ['lang'];
+    		unset ( $params ['lang'] );
+    	}
+    	
+    	if (! isset ( $params ['id'] ))
+    	{
+    		return $this->prefix . $lang . '/state/all';
+    	}
+    	else
+    	{
+    		$id_state = $params ['id'];
+    		unset ( $params ['id'] );
+    	}
+    	
+    	$stateobjs = State::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->findAll ( 'id_state=:cc',
+    			array (
+    					':cc' => $id_state
+    			) );
+    	
+    	if (count ( $params ))
+    	{
+    		$qs = "?" . http_build_query ( $params );
+    	}
+    	
+    	if (count ( $stateobjs ) == 1)
+    		$state_slug = strtolower ( $stateobjs [0]->slug );
+    		else
+    			return false;
+    			
+    			return $this->prefix . $lang . '/' . $state_slug . '/' . $qs;
     }
     
     public function handle_state_district($manager, $route, $params, $ampersand)
@@ -304,6 +402,97 @@ class StateUrlRule extends CBaseUrlRule
         return false; // this rule does not apply
     }
 
+    public function parse_state_election($manager, $request, $pathInfo, $rawPathInfo)
+    {
+    	if (preg_match ( '/^(?<lang>\w\w)\/(?<stateslug>[\w-]*)\/(?<eslug>assembly-election-(?<eyear>\d{4}))\/?$/', $pathInfo, $matches ))
+    	{
+    		
+    		if (isset ( $matches ['stateslug'] ) && isset ( $matches ['eyear'] ) && isset ( $matches ['eslug'] ))
+    		{
+    			$stateslug = $matches ['stateslug'];
+    			$stateobjs = State::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->findAll (
+    					'slug=:cc',
+    					array (
+    							':cc' => $stateslug
+    					) );
+    			
+    			if (count ( $stateobjs ) > 0)
+    			{
+    				if (count ( $stateobjs ) == 1)
+    					$_GET ['id'] = $stateobjs[0]->id_state;
+    				else
+    					return false;
+    				
+    				$state = $stateobjs[0];
+    				
+    				$ele = Election::model()->findByAttributes([
+    						'id_state' => $state->id_state,
+    						'type' => 'AMLY',
+    						'year' => $matches ['eyear']
+    				]);
+    				
+    				if(!$ele)
+    					return false;
+    				
+    				$_GET ['id_election'] = $ele->id_election;
+    					
+    				$_GET ['lang'] = $matches ['lang'];
+    					
+    				return $this->prefix2 . "state/election";
+    			}
+    			else
+    				return false;
+    		}
+    	}
+    	return false;
+    }
+    
+    public function parse_election_candidates($manager, $request, $pathInfo, $rawPathInfo) {
+		if (preg_match ( '/^(?<lang>\w\w)\/(?<stateslug>[\w-]*)\/(?<eslug>assembly-election-(?<eyear>\d{4}))\/(?<amlyslug>[\w-]*)\/?$/', $pathInfo, $matches )) {
+			
+			if (isset ( $matches ['stateslug'] ) && isset ( $matches ['eyear'] ) && isset ( $matches ['eslug'] ) && isset ( $matches ['amlyslug'] )) {
+				$stateslug = $matches ['stateslug'];
+				$stateobjs = State::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->findAll ( 'slug=:cc', array (
+						':cc' => $stateslug 
+				) );
+				
+				if (count ( $stateobjs ) > 0) {
+					if (count ( $stateobjs ) == 1)
+						$_GET ['id'] = $stateobjs [0]->id_state;
+					else
+						return false;
+					
+					$state = $stateobjs [0];
+					
+					$ele = Election::model ()->findByAttributes ( [ 
+							'id_state' => $state->id_state,
+							'type' => 'AMLY',
+							'year' => $matches ['eyear'] 
+					] );
+					
+					if (! $ele)
+						return false;
+					
+					$consti = Constituency::model ()->findByAttributes ( [
+							'id_state' => $state->id_state,
+							'ctype' => 'AMLY',
+							'slug' => $matches ['amlyslug']
+					] );
+					if (! $consti)
+						return false;
+						
+					$_GET ['id_election'] = $ele->id_election;					
+					$_GET ['eci_ref'] = $consti->eci_ref;					
+					$_GET ['lang'] = $matches ['lang'];
+										
+					return $this->prefix2 . "election/candidates";
+				} else
+					return false;
+			}
+		}
+		return false;
+	}
+    
     public function parse_state($manager, $request, $pathInfo, $rawPathInfo)
     {
         if (preg_match ( '/^(?<lang>\w\w)\/(?<stateslug>[\w-]*)\/?$/', $pathInfo, $matches ))
