@@ -17,6 +17,9 @@
  * @property integer $id_election
  * @property string $created
  * @property string $updated
+ * @property string $cases
+ * @property string $assets,
+ * @property string $liabilities
  */
 class ElectionCandidates extends CActiveRecord
 {
@@ -38,7 +41,7 @@ class ElectionCandidates extends CActiveRecord
 		return array(
 			array('created, updated', 'required'),
 			array('age, button, eci_ref, id_election', 'numerical', 'integerOnly'=>true),
-			array('name, party, symbol, education', 'length', 'max'=>255),
+			array('name, party, symbol, education, cases, assets, liabilities', 'length', 'max'=>255),
 			array('gender', 'length', 'max'=>1),
 			array('category', 'length', 'max'=>2),
 			// The following rule is used by search().

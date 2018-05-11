@@ -2,4 +2,4 @@ vendor/
 *.sh
 config/
 data/auth.php
-
+data/*

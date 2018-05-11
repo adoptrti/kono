@@ -44,4 +44,35 @@ if(!isset($myneta_map[$constituency->eci_ref]))
             		"http://www.myneta.info/karnataka2018/index.php?action=show_candidates&constituency_id=" . $myneta_map[$constituency->eci_ref])?>
             </li>
             </ol>
+
+            <?php
+
+            $model=new ElectionCandidates('search');
+            $model->unsetAttributes();  // clear any default values
+            $model->id_election = $election->id_election;
+            $model->eci_ref = $constituency->eci_ref;		
+            $consti = Constituency::model()->findByAttributes([
+                    'ctype' => 'AMLY',
+                    'eci_ref' => $constituency->eci_ref,
+                    'id_state' => $election->id_state,
+            ]);
+
+            $state = $election->state;
+            $election= $election;
+
+            $this->pageTitle = __('{consti} #{eciref} - Contesting Candidates - {state} Assembly Elections {eyear}',[
+                    '{state}' => $state->name,
+                    '{eyear}' => $election->year,
+                    '{consti}' => $constituency->name,
+                    '{eciref}' => $constituency->eci_ref,]);
+
+
+            $this->renderPartial('//election/candidates',array(
+                'model'=>$model,
+                'constituency' => $constituency,
+                'state' => $state,
+                'election' => $election,
+                'small' => true,
+            ));
+            ?>
 </div>
