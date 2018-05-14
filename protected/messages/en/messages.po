@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kono\n"
-"POT-Creation-Date: 2018-05-13 17:42+0530\n"
-"PO-Revision-Date: 2018-05-13 17:42+0530\n"
+"POT-Creation-Date: 2018-05-13 17:30+0530\n"
+"PO-Revision-Date: 2018-05-13 17:41+0530\n"
 "Last-Translator: Vikas Yadav <mevikas@gmail.com>\n"
 "Language-Team: Vikas\n"
-"Language: hi\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -39,1064 +39,1015 @@ msgstr "ಕನ್ನಡ್"
 
 #: controllers/ElectionController.php:166 views/site/_nextamlyelection.php:63
 msgid "{consti} #{eciref} - Contesting Candidates - {state} Assembly Elections {eyear}"
-msgstr "{consti} #{eciref} - उम्मीदवारों की प्रतियोगिता - {state} विधानसभा चुनाव {eyear}"
+msgstr ""
 
 #: controllers/StateController.php:56
 msgid ""
-"{state} Assembly Elections {eyear} - Assembly Constituencies with Candidate details, "
-"Symbols and EVM Positions"
-msgstr "{state} विधानसभा चुनाव {eyear} - अभ्यर्थियों के विवरण, प्रतीकों और ईवीएम पदों के साथ असेंबली निर्वाचन क्षेत्र"
+"{state} Assembly Elections {eyear} - Assembly Constituencies with Candidate details, Symbols and EVM "
+"Positions"
+msgstr ""
 
 #: controllers/StateController.php:97
 msgid "{dist} District, {state}"
-msgstr "{distname} जिला, {state}"
+msgstr ""
 
 #: controllers/StateController.php:117
-#, fuzzy
 #| msgid "{pcname} Lok Sabha Constituency"
 msgid "{dist} Loksabha Constituency, {state}"
-msgstr "{pcname} लोकसभा निर्वाचन क्षेत्र, {state}"
+msgstr ""
 
 #: controllers/StateController.php:141
-#, fuzzy
 #| msgid "{acname} Assembly Constituency - #{acno}"
 msgid "{dist} Assembly Constituency, {state}"
-msgstr "{dist} विधानसभा निर्वाचन क्षेत्र, {state}"
+msgstr ""
 
 #: models/AssemblyPolygon.php:140
 msgid "Assembly Number"
-msgstr "विधानसभा संख्या"
+msgstr ""
 
 #: models/AssemblyPolygon.php:141
 msgid "Polygon"
-msgstr "बहुभुज"
+msgstr ""
 
 #: models/AssemblyResults.php:121
 msgid "State of Constituency and Election mismatch"
-msgstr "निर्वाचन क्षेत्र और चुनाव विसंगति राज्य"
+msgstr ""
 
 #: models/AssemblyResults.php:159
 msgid "Acname"
-msgstr "Acname"
+msgstr ""
 
 #: models/AssemblyResults.php:160
 msgid "Acno"
-msgstr "खाता संख्या"
+msgstr ""
 
 #: models/AssemblyResults.php:161 models/Committee.php:74 models/Constituency.php:109
 #: models/ContactForm.php:50 models/LokSabha2014.php:101 models/MunicipalResults.php:63
 #: models/Officer.php:158 models/State.php:125 views/site/_wardofficers.php:32
 msgid "Name"
-msgstr "नाम"
+msgstr ""
 
 #: models/AssemblyResults.php:162 models/LokSabha2014.php:107 models/MunicipalResults.php:64
 #: models/Results2014.php:70
 msgid "Party"
-msgstr "पार्टी"
+msgstr ""
 
 #: models/Committee.php:71 models/Constituency.php:112 models/State.php:123
 msgid "Id State"
-msgstr "आईडी स्टेट"
+msgstr ""
 
 #: models/Committee.php:72 models/Constituency.php:105
 msgid "Id Consti"
-msgstr "आईडी कॉन्स्टी"
+msgstr ""
 
 #: models/Committee.php:73
 msgid "Committee Type"
-msgstr "समिति प्रकार"
+msgstr ""
 
 #: models/Committee.php:75 models/CommitteeMember.php:60
 msgid "Id Comm"
-msgstr "आईडी कमांड"
+msgstr ""
 
 #: models/Committee.php:76
 msgid "Id Election"
-msgstr "आईडी चुनाव"
+msgstr ""
 
 #: models/CommitteeMember.php:61
 msgid "Id Result"
-msgstr "आईडी का परिणाम"
+msgstr ""
 
 #: models/CommitteeMember.php:62
 msgid "Chairman"
-msgstr "अध्यक्ष "
+msgstr ""
 
 #: models/Constituency.php:106
 msgid "Id Parl Consti"
-msgstr "आईडी पर्ल कॉन्स्टी"
+msgstr ""
 
 #: models/Constituency.php:107
 msgid "Id Dist Place2"
-msgstr "आईडी जिला प्लेस 2"
+msgstr ""
 
 #: models/Constituency.php:108
 msgid "Eci Ref"
-msgstr "ईसीआई रिफ"
+msgstr ""
 
 #: models/Constituency.php:110
 msgid "Resv"
-msgstr "RESV"
+msgstr ""
 
 #: models/Constituency.php:111
 msgid "Number"
-msgstr "संख्या"
+msgstr ""
 
 #: models/Constituency.php:113
 msgid "Voters"
-msgstr "मतदाता"
+msgstr ""
 
 #: models/Constituency.php:114
 msgid "Pollingstns"
-msgstr "Pollingstns"
+msgstr ""
 
 #: models/Constituency.php:115
 msgid "Turnout"
-msgstr "उपस्थित होना"
+msgstr ""
 
 #: models/Constituency.php:116
 msgid "Castvotes"
-msgstr "Castvotes"
+msgstr ""
 
 #: models/Constituency.php:117
 msgid "Contestents"
-msgstr "Contestents"
+msgstr ""
 
 #: models/Constituency.php:118
 msgid "Contituency Type"
-msgstr "निर्वाचन क्षेत्र का प्रकार"
+msgstr ""
 
 #: models/Constituency.php:119
 msgid "Id Parent"
-msgstr "आई आईडी जनक"
+msgstr ""
 
 #: models/Constituency.php:120
 msgid "Candilisthtml"
-msgstr "Candilisthtml"
+msgstr ""
 
 #: models/Constituency.php:121 models/Officer.php:161 models/State.php:134
 msgid "Updated"
-msgstr "अपडेट हो गया"
+msgstr ""
 
 #: models/Constituency.php:122
 msgid "Id State2"
-msgstr "आईडी स्टेट 2"
+msgstr ""
 
 #: models/Constituency.php:123
 msgid "Gps Long"
-msgstr "जीपीएस लांग"
+msgstr ""
 
 #: models/Constituency.php:124
 msgid "Gps Lat"
-msgstr "जीपीएस लाट"
+msgstr ""
 
 #: models/Constituency.php:125
 msgid "Gps Ele"
-msgstr "जीपीएस एलई"
+msgstr ""
 
 #: models/ContactForm.php:49
 msgid "Verification Code"
-msgstr "सत्यापन कोड"
+msgstr ""
 
 #: models/ContactForm.php:51 views/site/_district.php:44 views/site/_lowerhouse.php:33
 #: views/state/_chiefminister.php:50
 msgid "Email Address"
-msgstr "ईमेल पता"
+msgstr ""
 
 #: models/ContactForm.php:52
 msgid "Subject"
-msgstr "विषय"
+msgstr ""
 
 #: models/ContactForm.php:53
 msgid "Body"
-msgstr "तन"
+msgstr ""
 
 #: models/District.php:113
 msgid "Divisional HQ"
-msgstr "विभागीय मुख्यालय"
+msgstr ""
 
 #: models/Election.php:71
 msgid "Election ID"
-msgstr "चुनाव आईडी"
+msgstr ""
 
-#: models/Election.php:72 models/LokSabha2014.php:99 views/site/_address.php:50
-#: views/site/report.php:153
+#: models/Election.php:72 models/LokSabha2014.php:99 views/site/_address.php:50 views/site/report.php:153
 msgid "State"
-msgstr "स"
+msgstr ""
 
 #: models/Election.php:73
 msgid "Result Date"
-msgstr "परिणाम दिनांक"
+msgstr ""
 
 #: models/Election.php:74
 msgid "Year"
-msgstr "वर्ष"
+msgstr ""
 
 #: models/Election.php:75
 msgid "Election Type"
-msgstr "चुनाव प्रकार"
+msgstr ""
 
 #: models/LokSabha2014.php:94
 msgid "Id Mp"
-msgstr "आईडी एमपी"
+msgstr ""
 
 #: models/LokSabha2014.php:95 views/site/_assembly.php:69 views/site/report.php:175
 msgid "Phones"
-msgstr "फ़ोन"
+msgstr ""
 
 #: models/LokSabha2014.php:96 views/site/report.php:182
 msgid "Emails"
-msgstr "ईमेल"
+msgstr ""
 
 #: models/LokSabha2014.php:97
 msgid "Pc Name"
-msgstr "पॉट प्रोपर्टी CNAMडेटा"
+msgstr ""
 
 #: models/LokSabha2014.php:98
 msgid "Pc Name Clean"
-msgstr "पीसी का नाम साफ"
+msgstr ""
 
 #: models/LokSabha2014.php:100
 msgid "Sno"
-msgstr "क्रमांक"
+msgstr ""
 
 #: models/LokSabha2014.php:102
 msgid "P Address1"
-msgstr "P-एड्रेस"
+msgstr ""
 
 #: models/LokSabha2014.php:103
 msgid "P Address2"
-msgstr "P-एड्रेस"
+msgstr ""
 
 #: models/LokSabha2014.php:104
 msgid "Col9"
-msgstr "कर्नल)"
+msgstr ""
 
 #: models/LokSabha2014.php:105
 msgid "Delhi Address1"
-msgstr "दिल्ली का पता 1"
+msgstr ""
 
 #: models/LokSabha2014.php:106
 msgid "Col11"
-msgstr "कर्नल)"
+msgstr ""
 
 #: models/LokSabha2014.php:108
 msgid "Col15"
-msgstr "कर्नल)"
+msgstr ""
 
 #: models/LokSabha2014.php:109
 msgid "Delhi Address2"
-msgstr "दिल्ली का पता 2"
+msgstr ""
 
 #: models/MunicipalResults.php:61 views/site/_address.php:29 views/site/report.php:41
 msgid "City"
-msgstr "शहर"
+msgstr ""
 
 #: models/MunicipalResults.php:62
 msgid "Wardno"
-msgstr "वार्ड नं.2,"
+msgstr ""
 
 #: models/MunicipalResults.php:65 models/Officer.php:163 views/site/_district.php:19
 #: views/site/_lowerhouse.php:67 views/site/_ward.php:45 views/site/_wardofficers.php:36
 #: views/state/_chiefminister.php:27
 msgid "Phone"
-msgstr "फ़ोन"
+msgstr ""
 
 #: models/MunicipalResults.php:66 views/site/report.php:189
 msgid "Address"
-msgstr "पता"
+msgstr ""
 
 #: models/Officer.php:68
 msgid "Chief Engineer (I/C)"
-msgstr "मुख्य अभियंता (आई / सी)"
+msgstr ""
 
 #: models/Officer.php:69
 msgid "Health Officer (I/C)"
-msgstr "स्वास्थ्य अधिकारी (आई / सी)"
+msgstr ""
 
 #: models/Officer.php:70
 msgid "Medical Officer of Health"
-msgstr "स्वास्थ्य के चिकित्सा अधिकारी"
+msgstr ""
 
 #: models/Officer.php:72 views/site/_district.php:11
 msgid "Deputy Commissioner"
-msgstr "उपायुक्त"
+msgstr ""
 
 #: models/Officer.php:73
 msgid "Joint Commissioner"
-msgstr "संयुक्त आयुक्त"
+msgstr ""
 
 #: models/Officer.php:74
 msgid "Assisstant Commissioner"
-msgstr "सहायक आयुक्त"
+msgstr ""
 
 #: models/Officer.php:75
 msgid "Executive Engineer"
-msgstr "कार्यपालक अभियंता"
+msgstr ""
 
 #: models/Officer.php:76
 msgid "Chief Engineer"
-msgstr "मुख्य इंजीनियर"
+msgstr ""
 
 #: models/Officer.php:77
 msgid "Health Officer"
-msgstr "स्वास्थ्य अधिकारी"
+msgstr ""
 
 #: models/Officer.php:78
 msgid "Deputy Health Officer"
-msgstr "उप स्वास्थ्य अधिकारी"
+msgstr ""
 
 #: models/Officer.php:79
 msgid "Assistant Executive Engineer"
-msgstr "सहायक कार्यकारी अभियंता"
+msgstr ""
 
 #: models/Officer.php:80
 msgid "Assistant Town Planning Officer"
-msgstr "सहायक टाउन प्लानिंग ऑफिसर"
+msgstr ""
 
 #: models/Officer.php:81
 msgid "Assistant Revenue Officer"
-msgstr "सहायक राजस्व अधिकारी"
+msgstr ""
 
 #: models/Officer.php:82
 msgid "Zonal Sanitary Officer"
-msgstr "क्षेत्रीय स्वच्छता अधिकारी"
+msgstr ""
 
 #: models/Officer.php:84
 msgid "Assistant Engineer"
-msgstr "सहायक अभियंता"
+msgstr ""
 
 #: models/Officer.php:85
 msgid "Water Supply Engineer"
-msgstr "जल आपूर्ति अभियंता"
+msgstr ""
 
 #: models/Officer.php:86
 msgid "Sanitory Inspector"
-msgstr "स्वच्छता निरीक्षक"
+msgstr ""
 
 #: models/Officer.php:159
 msgid "Place"
-msgstr "स्थान"
+msgstr ""
 
 #: models/Officer.php:160
 msgid "Designation"
-msgstr "पद"
+msgstr ""
 
 #: models/Officer.php:162
 msgid "Created"
-msgstr "बनाया था"
+msgstr ""
 
 #: models/Officer.php:164
 msgid "Fax"
-msgstr "फैक्स"
+msgstr ""
 
 #: models/Officer.php:165
-#, fuzzy
 #| msgid "Emails"
 msgid "Email"
-msgstr "ईमेल"
+msgstr ""
 
 #: models/Results2014.php:64
 msgid "Slno"
-msgstr "Sl No"
+msgstr ""
 
 #: models/Results2014.php:65
 msgid "Statename"
-msgstr "(2) राज्य का नाम"
+msgstr ""
 
 #: models/Results2014.php:66
 msgid "Constituency"
-msgstr "निर्वाचन क्षेत्र"
+msgstr ""
 
 #: models/Results2014.php:67
 msgid "Winnername"
-msgstr "Winnername"
+msgstr ""
 
 #: models/Results2014.php:68
 msgid "Category"
-msgstr "वर्ग"
+msgstr ""
 
 #: models/Results2014.php:69
 msgid "Socialcategory"
-msgstr "Socialcategory"
+msgstr ""
 
 #: models/Results2014.php:71
 msgid "Partysymbol"
-msgstr "Partysymbol"
+msgstr ""
 
 #: models/Results2014.php:72
 msgid "Margin"
-msgstr "सीमा"
+msgstr ""
 
 #: models/State.php:124
 msgid "St Code"
-msgstr "सेंट कोड"
+msgstr ""
 
 #: models/State.php:126
 msgid "Ias Short Code"
-msgstr "आईएएस शॉर्ट कोड"
+msgstr ""
 
 #: models/State.php:127
 msgid "Id Census"
-msgstr "आईडी की जनगणना"
+msgstr ""
 
 #: models/State.php:128
 msgid "State number as per ECI"
-msgstr "ईसीआई के अनुसार राज्य संख्या"
+msgstr ""
 
 #: models/State.php:129
 msgid "Session From"
-msgstr "सत्र से"
+msgstr ""
 
 #: models/State.php:130
 msgid "Session To"
-msgstr "सत्र के लिए"
+msgstr ""
 
 #: models/State.php:131
 msgid "Lok Parl Seats"
-msgstr "लोक पार्ल सीट्स"
+msgstr ""
 
 #: models/State.php:132
 msgid "Amly Seats"
-msgstr "एमी सीट्स"
+msgstr ""
 
 #: models/State.php:133
 msgid "Raj Parl Seats"
-msgstr "राज पार्ल सीट्स"
+msgstr ""
 
 #: models/State.php:135
 msgid "Iso3166"
-msgstr "आईएसओ 9001:2015"
+msgstr ""
 
 #: models/State.php:136
 msgid "is polling station info available"
-msgstr "मतदान केंद्र की जानकारी उपलब्ध है"
+msgstr ""
 
 #: models/State.php:137
 msgid "no of dist as per ECI"
-msgstr "ईसीआई के अनुसार जिले का कोई नहीं"
+msgstr ""
 
 #: models/State.php:138
 msgid "Eci Amly Count"
-msgstr "एसी एमी गणना"
+msgstr ""
 
 #: views/election/candidates.php:9 views/election/candidates.php:31
-#, fuzzy
 #| msgid "Contestents"
 msgid "Contesting Candidates"
-msgstr "Contestents"
+msgstr ""
 
 #: views/election/candidates.php:19 views/state/_nextamlyelection.php:8
 msgid "{state} Assembly Elections {eyear}"
-msgstr "{state} विधानसभा चुनाव {eyear}"
+msgstr ""
 
 #: views/election/candidates.php:25
 msgid "{consti} #{eciref}"
-msgstr "{consti} # {eciref}"
+msgstr ""
 
 #: views/election/candidates.php:47
 msgid "EVM Button Number"
-msgstr "ईवीएम बटन संख्या"
+msgstr ""
 
 #: views/election/candidates.php:51
 msgid "Candidate"
-msgstr "उम्मीदवार"
+msgstr ""
 
 #: views/election/candidates.php:68
-#, fuzzy
 #| msgid "Election Type"
 msgid "Election Symbol"
-msgstr "चुनाव प्रकार"
+msgstr ""
 
 #: views/election/candidates.php:76
 msgid "Criminal Cases"
-msgstr "आपराधिक मुकदमा"
+msgstr ""
 
 #: views/election/candidates.php:81
 msgid "Assets"
-msgstr "संपत्तियां "
+msgstr ""
 
 #: views/election/candidates.php:86
 msgid "Liabilities"
-msgstr "दायित्व"
+msgstr ""
 
 #: views/layouts/_guestmenu.php:6 views/layouts/_usermenu.php:5
 msgid "Home"
-msgstr "घर"
+msgstr ""
 
 #: views/layouts/_guestmenu.php:12 views/site/pages/about.php:4 views/site/pages/about.php:6
 msgid "About"
-msgstr "के बारे में"
+msgstr ""
 
 #: views/layouts/_guestmenu.php:19 views/layouts/_usermenu.php:41 views/site/report.php:5
 #: views/site/report.php:7 views/site/report.php:11
 msgid "Data Report"
-msgstr "डेटा रिपोर्ट"
+msgstr ""
 
 #: views/layouts/_guestmenu.php:25 views/site/contact.php:8
 msgid "Contact"
-msgstr "संपर्क"
+msgstr ""
 
-#: views/layouts/_guestmenu.php:31 views/site/pages/credits.php:4
-#: views/site/pages/credits.php:6
+#: views/layouts/_guestmenu.php:31 views/site/pages/credits.php:4 views/site/pages/credits.php:6
 msgid "Credits"
-msgstr "क्रेडिट"
+msgstr ""
 
 #: views/layouts/_usermenu.php:11
 msgid "Committee"
-msgstr "समिति"
+msgstr ""
 
 #: views/layouts/_usermenu.php:17
 msgid "Committee Members"
-msgstr "समिति के सदस्य"
+msgstr ""
 
 #: views/layouts/_usermenu.php:23
 msgid "Assembly Results"
-msgstr "विधानसभा परिणाम"
+msgstr ""
 
 #: views/layouts/_usermenu.php:29
 msgid "Officer"
-msgstr "अधिकारी"
+msgstr ""
 
 #: views/layouts/_usermenu.php:35
 msgid "Elections"
-msgstr "चुनाव"
+msgstr ""
 
 #: views/layouts/_usermenu.php:50
 msgid "Logout ({uname})"
-msgstr "लॉगआउट ({uname})"
+msgstr ""
 
 #: views/layouts/main.php:118
 msgid "Coimbatore"
-msgstr "कोयंबत्तूर"
+msgstr ""
 
 #: views/layouts/main.php:118
 msgid "Made with {heart} in {Coimbatore}"
-msgstr "कोयंबटूर में {heart} के साथ बनाया गया"
+msgstr ""
 
 #: views/layouts/main.php:123
 msgid "Copyright &copy; {year} by Vikas Yadav."
-msgstr "कॉपीराइट और प्रतिलिपि; विकास यादव द्वारा {year}"
+msgstr ""
 
 #: views/layouts/main.php:123
 msgid "All Rights Reserved."
-msgstr "सर्वाधिकार सुरक्षित।"
+msgstr ""
 
 #: views/layouts/main.php:123
 msgid "Disclaimer"
-msgstr " अस्वीकरण"
+msgstr ""
 
 #: views/localgov/block/_view.php:32
-#, fuzzy
 #| msgid "Gram Panchayat"
 msgid "Panchayats"
-msgstr "ग्राम पंचायत"
+msgstr ""
 
 #: views/localgov/panchayat/_view.php:32 views/site/report.php:211
 msgid "Villages"
-msgstr "गांव"
+msgstr ""
 
 #: views/officer/_form.php:51
 msgid "Deputy Commissioner of a District (aka Collector)"
-msgstr "एक जिला के उप आयुक्त (उर्फ कलेक्टर)"
+msgstr ""
 
-#: views/officer/_form.php:52 views/state/_chiefminister.php:7
-#: views/state/_chiefminister.php:18
+#: views/officer/_form.php:52 views/state/_chiefminister.php:7 views/state/_chiefminister.php:18
 msgid "Chief Minister"
-msgstr "मुख्यमंत्री"
+msgstr ""
 
 #: views/officer/_form.php:53
 msgid "Deputy Chief Minister"
-msgstr "उपमुख्यमंत्री"
+msgstr ""
 
 #: views/officer/_form.php:54
-#, fuzzy
 #| msgid "Statename"
 msgid "State Governer"
-msgstr "(2) राज्य का नाम"
+msgstr ""
 
 #: views/site/_address.php:25
 msgid "Town"
-msgstr "कस्बा"
+msgstr ""
 
 #: views/site/_address.php:33
-#, fuzzy
 #| msgid "St Code"
 msgid "PIN Code"
-msgstr "सेंट कोड"
+msgstr ""
 
 #: views/site/_address.php:37
 msgid "District"
-msgstr " ज़िला"
+msgstr ""
 
 #: views/site/_address.php:63
 msgid "Country"
-msgstr "देश"
+msgstr ""
 
 #: views/site/_address.php:67
 msgid "Latitude"
-msgstr "अक्षांश"
+msgstr ""
 
 #: views/site/_address.php:71
 msgid "Longitude"
-msgstr "रेखांश"
+msgstr ""
 
 #: views/site/_address.php:75
 msgid "Altitude"
-msgstr "ऊंचाई"
+msgstr ""
 
 #: views/site/_address.php:79
-#, fuzzy
 #| msgid "Verification Code"
 msgid "Open Location Code"
-msgstr "सत्यापन कोड"
+msgstr ""
 
 #: views/site/_assembly.php:17
 msgid "{acname} Assembly Constituency - #{acno}"
-msgstr "{acname} विधानसभा निर्वाचन क्षेत्र - #{acno}"
+msgstr ""
 
 #: views/site/_assembly.php:35
 msgid "Elected MLA Name"
-msgstr "निर्वाचित विधायक का नाम"
+msgstr ""
 
 #: views/site/_assembly.php:98
 msgid "Committees"
-msgstr "समितियां"
+msgstr ""
 
 #: views/site/_district.php:7
 msgid "{distname} Deputy Commissioner"
-msgstr "{distname} डिप्टी कमिश्नर"
+msgstr ""
 
 #: views/site/_lowerhouse.php:18
 msgid "{pcname} Lok Sabha Constituency"
-msgstr "{pcname} लोकसभा निर्वाचन क्षेत्र"
+msgstr ""
 
 #: views/site/_lowerhouse.php:26
 msgid "Lok Sabha MP"
-msgstr "लोकसभा सांसद"
+msgstr ""
 
 #: views/site/_lowerhouse.php:49
 msgid "Permanent Address"
-msgstr "स्थायी पता"
+msgstr ""
 
 #: views/site/_lowerhouse.php:58
 msgid "Delhi Address"
-msgstr "दिल्ली का पता"
+msgstr ""
 
 #: views/site/_nextamlyelection.php:28
-#, fuzzy
 #| msgid "{acname} Assembly Constituency - #{acno}"
 msgid "{state} Assembly Elections {eyear} - {acname} Assembly Constituency - #{acno}"
-msgstr "{state} विधानसभा चुनाव {eyear} - {acname} विधानसभा निर्वाचन क्षेत्र - #{acno}"
+msgstr ""
 
 #: views/site/_nextamlyelection.php:43
 msgid "See list and details of all contesting candidates on myneta.info"
-msgstr "Myneta.info पर सभी प्रतिस्पर्धी उम्मीदवारों की सूची और विवरण देखें"
+msgstr ""
 
 #: views/site/_village.php:7
 msgid "{villagename} Village"
-msgstr "{villagename} गांव"
+msgstr ""
 
 #: views/site/_village.php:18
 msgid "Village"
-msgstr "गांव"
+msgstr ""
 
 #: views/site/_village.php:25
-#, fuzzy
 #| msgid "Gram Panchayat"
 msgid "Panchayat"
-msgstr "ग्राम पंचायत"
+msgstr ""
 
 #: views/site/_village.php:32
 msgid "Block"
-msgstr "खंड"
+msgstr ""
 
 #: views/site/_ward.php:14
 msgid "{wardname} Municipal Ward - #{wardno}"
-msgstr "{wardname} नगरपालिका वार्ड - #{wardno}"
+msgstr ""
 
 #: views/site/_ward.php:21
 msgid "Zone"
-msgstr "अंचल"
+msgstr ""
 
 #: views/site/_ward.php:36
-#, fuzzy
 #| msgid "Elected MLA Name"
 msgid "Elected Councillor Name"
-msgstr "निर्वाचित विधायक का नाम"
+msgstr ""
 
 #: views/site/_ward.php:84
-#, fuzzy
 #| msgid "Municipal Board"
 msgid "Municipal Ward Staff"
-msgstr "नगर निगम"
+msgstr ""
 
 #: views/site/_ward.php:91
-#, fuzzy
 #| msgid "Municipal Board"
 msgid "Municipal Zone Staff"
-msgstr "नगर निगम"
+msgstr ""
 
 #: views/site/contact.php:6 views/site/contact.php:12
 msgid "Contact Us"
-msgstr "हमसे संपर्क करें"
+msgstr ""
 
 #: views/site/contact.php:23
 msgid ""
-"If you have business inquiries or other questions, please fill out the following form to "
-"contact us. Thank you."
-msgstr "यदि आपके पास व्यावसायिक पूछताछ या अन्य प्रश्न हैं, तो कृपया हमसे संपर्क करने के लिए निम्न फ़ॉर्म भरें। धन्यवाद।"
+"If you have business inquiries or other questions, please fill out the following form to contact us. "
+"Thank you."
+msgstr ""
 
 #: views/site/contact.php:36 views/site/login.php:25
 msgid "Fields with {star} are required."
-msgstr "{star} के साथ फ़ील्ड आवश्यक हैं."
+msgstr ""
 
 #: views/site/contact.php:71
 msgid "Please enter the letters as they are shown in the image above."
-msgstr "कृपया उपरोक्त छवि में दिखाए गए पत्रों को दर्ज करें।"
+msgstr ""
 
 #: views/site/contact.php:72
 msgid "Letters are not case-sensitive."
-msgstr "वर्णाक्षरी वर्ण सवेंदनशील नहीं है।"
+msgstr ""
 
 #: views/site/contact.php:78
 msgid "Submit"
-msgstr "Submit"
+msgstr ""
 
 #: views/site/fetchlocation.php:2
-#, fuzzy
 #| msgid "Fetching your location..."
 msgid "Kono is fetching your location"
-msgstr "अपना स्थान प्राप्त कर रहा है ..."
+msgstr ""
 
 #: views/site/fetchlocation.php:4
-#, fuzzy
 #| msgid "Fetching your location..."
 msgid "Kono is fetching your location..."
-msgstr "अपना स्थान प्राप्त कर रहा है ..."
+msgstr ""
 
 #: views/site/index.php:31
 msgid "Go to an address"
-msgstr "एक पते पर जाएं"
+msgstr ""
 
-#: views/site/login.php:6 views/site/login.php:8 views/site/login.php:12
-#: views/site/login.php:46
+#: views/site/login.php:6 views/site/login.php:8 views/site/login.php:12 views/site/login.php:46
 msgid "Login"
-msgstr "लॉग इन "
+msgstr ""
 
 #: views/site/login.php:14
 msgid "Please fill out the following form with your login credentials:"
-msgstr "कृपया अपने प्रवेश प्रमाण पत्र के साथ निम्नलिखित फ़ॉर्म को भरें:"
+msgstr ""
 
 #: views/site/report.php:14
-#, fuzzy
 #| msgid "Municipal Corporation"
 msgid "Municipal Corporations"
-msgstr "नगर निगम"
+msgstr ""
 
 #: views/site/report.php:48
-#, fuzzy
 #| msgid "Wardno"
 msgid "Wards"
-msgstr "वार्ड नं.2,"
+msgstr ""
 
 #: views/site/report.php:55
 msgid "Ward Staff"
-msgstr "वार्ड स्टाफ"
+msgstr ""
 
 #: views/site/report.php:62
-#, fuzzy
 #| msgid "Zone"
 msgid "Zones"
-msgstr "अंचल"
+msgstr ""
 
 #: views/site/report.php:69
 msgid "Zone Staff"
-msgstr "जोन स्टाफ"
+msgstr ""
 
 #: views/site/report.php:76
 msgid "Councillors"
-msgstr "परामर्शदाता"
+msgstr ""
 
 #: views/site/report.php:80
 msgid "RTI"
-msgstr " सूचना का अधिकार"
+msgstr ""
 
 #: views/site/report.php:115
-#, fuzzy
 #| msgid "State"
 msgid "States"
-msgstr "स"
+msgstr ""
 
 #: views/site/report.php:161
-#, fuzzy
 #| msgid "Polygon"
 msgid "A Poly"
-msgstr "बहुभुज"
+msgstr ""
 
 #: views/site/report.php:168
 msgid "MLAs"
-msgstr "विधायक"
+msgstr ""
 
 #: views/site/report.php:196
 msgid "Picture"
-msgstr "तस्वीर"
+msgstr ""
 
 #: views/site/report.php:203
 msgid "M Corp"
-msgstr "एम कॉर्प"
+msgstr ""
 
 #: views/site/report.php:218
-#, fuzzy
 #| msgid "Polygon"
 msgid "V Poly"
-msgstr "बहुभुज"
+msgstr ""
 
 #: views/site/report.php:225 views/state/_view_dt.php:10
-#, fuzzy
 #| msgid "District"
 msgid "Districts"
-msgstr " ज़िला"
+msgstr ""
 
 #: views/site/report.php:235
 msgid "DC"
-msgstr "डीसी"
+msgstr ""
 
 #: views/state/_assemblies.php:13
 msgid "Legislative Assemblies"
-msgstr "विधान सभाएं"
+msgstr ""
 
 #: views/state/_blocks.php:3
 msgid "Blocks"
-msgstr "ब्लॉक्स"
+msgstr ""
 
 #: views/state/_districteditor.php:6 views/state/_stateeditor.php:6
-#, fuzzy
 #| msgid "Data Report"
 msgid "Data Editor"
-msgstr "डेटा रिपोर्ट"
+msgstr ""
 
 #: views/state/_districteditor.php:9
 msgid "Add Deputy Commissioner"
-msgstr "डिप्टी कमिश्नर जोड़ें"
+msgstr ""
 
 #: views/state/_stateeditor.php:9
 msgid "Add Chief Minister"
-msgstr "मुख्यमंत्री जोड़ें"
+msgstr ""
 
 #: views/state/_stateeditor.php:10
 msgid "Add Deputy Chief Minister"
-msgstr "उपमुख्यमंत्री जोड़ें"
+msgstr ""
 
 #: views/state/_stateeditor.php:11
 msgid "Add Governer"
-msgstr "गवर्नर जोड़ें"
+msgstr ""
 
 #: views/state/_towns.php:3
-#, fuzzy
 #| msgid "Town"
 msgid "Towns"
-msgstr "कस्बा"
+msgstr ""
 
 #: views/state/_towns.php:13
 msgid "Cantonment Board"
-msgstr "छावनी बोर्ड"
+msgstr ""
 
 #: views/state/_towns.php:14
 msgid "City Municipal Council"
-msgstr "सिटी नगर परिषद"
+msgstr ""
 
 #: views/state/_towns.php:15
-#, fuzzy
 #| msgid "City Municipal Council"
 msgid "City Municipal Council Out Growth"
-msgstr "सिटी नगर परिषद"
+msgstr ""
 
 #: views/state/_towns.php:16
 msgid "Gram Panchayat"
-msgstr "ग्राम पंचायत"
+msgstr ""
 
 #: views/state/_towns.php:17
-#, fuzzy
 #| msgid "Gram Panchayat"
 msgid "Gram Panchayat Out Growth"
-msgstr "ग्राम पंचायत"
+msgstr ""
 
 #: views/state/_towns.php:18
 msgid "Industrial Notified Area"
-msgstr "औद्योगिक अधिसूचित क्षेत्र"
+msgstr ""
 
 #: views/state/_towns.php:19
 msgid "Industrial Township"
-msgstr "औद्योगिक टाउनशिप"
+msgstr ""
 
 #: views/state/_towns.php:20
-#, fuzzy
 #| msgid "Industrial Township"
 msgid "Industrial Township Out Growth"
-msgstr "औद्योगिक टाउनशिप"
+msgstr ""
 
 #: views/state/_towns.php:21
 msgid "Municipality"
-msgstr "नगरपालिका"
+msgstr ""
 
 #: views/state/_towns.php:22
-#, fuzzy
 #| msgid "Municipality"
 msgid "Municipality Out Growth"
-msgstr "नगरपालिका"
+msgstr ""
 
 #: views/state/_towns.php:23
 msgid "Municipal Board"
-msgstr "नगर निगम"
+msgstr ""
 
 #: views/state/_towns.php:24
-#, fuzzy
 #| msgid "Municipal Board"
 msgid "Municipal Board Out Growth"
-msgstr "नगर निगम"
+msgstr ""
 
 #: views/state/_towns.php:25
-#, fuzzy
 #| msgid "Committee"
 msgid "Municipal Committee"
-msgstr "समिति"
+msgstr ""
 
 #: views/state/_towns.php:26
-#, fuzzy
 #| msgid "Committee"
 msgid "Municipal Committee Out Growth"
-msgstr "समिति"
+msgstr ""
 
 #: views/state/_towns.php:27
 msgid "mci"
-msgstr "एमसीआई"
+msgstr ""
 
 #: views/state/_towns.php:28
 msgid "mci+og Out Growth"
-msgstr "एमसीआई + ओजी आउट ग्रोथ"
+msgstr ""
 
 #: views/state/_towns.php:29
 msgid "Municipal Council"
-msgstr "नगर पालिका परिषद"
+msgstr ""
 
 #: views/state/_towns.php:30
-#, fuzzy
 #| msgid "Municipal Council"
 msgid "Municipal Council Out Growth"
-msgstr "नगर पालिका परिषद"
+msgstr ""
 
 #: views/state/_towns.php:31 views/state/_view_mc.php:2
 msgid "Municipal Corporation"
-msgstr "नगर निगम"
+msgstr ""
 
 #: views/state/_towns.php:32
-#, fuzzy
 #| msgid "Municipal Corporation"
 msgid "Municipal Corporation Out Growth"
-msgstr "नगर निगम"
+msgstr ""
 
 #: views/state/_towns.php:33
 msgid "Notified Area"
-msgstr "अधिसूचित क्षेत्र"
+msgstr ""
 
 #: views/state/_towns.php:34
-#, fuzzy
 #| msgid "Notified Area"
 msgid "Notified Area Out Growth"
-msgstr "अधिसूचित क्षेत्र"
+msgstr ""
 
 #: views/state/_towns.php:35
 msgid "Notified Area Committee"
-msgstr "अधिसूचित क्षेत्र समिति"
+msgstr ""
 
 #: views/state/_towns.php:36
-#, fuzzy
 #| msgid "Notified Area Committee"
 msgid "Notified Area Committee Out Growth"
-msgstr "अधिसूचित क्षेत्र समिति"
+msgstr ""
 
 #: views/state/_towns.php:37
 msgid "Nagar Parishad"
-msgstr "नगर परिषद"
+msgstr ""
 
 #: views/state/_towns.php:38
-#, fuzzy
 #| msgid "Nagar Parishad"
 msgid "Nagar Parishad Out Growth"
-msgstr "नगर परिषद"
+msgstr ""
 
 #: views/state/_towns.php:39
 msgid "Nagar Palika Parishad"
-msgstr "नगर पालिका परिषद"
+msgstr ""
 
 #: views/state/_towns.php:40
-#, fuzzy
 #| msgid "Nagar Palika Parishad"
 msgid "Nagar Palika Parishad Out Growth"
-msgstr "नगर पालिका परिषद"
+msgstr ""
 
 #: views/state/_towns.php:41
 msgid "Notified Town"
-msgstr "अधिसूचित टाउन"
+msgstr ""
 
 #: views/state/_towns.php:42
-#, fuzzy
 #| msgid "Committee"
 msgid "Small Town Committee"
-msgstr "समिति"
+msgstr ""
 
 #: views/state/_towns.php:43
-#, fuzzy
 #| msgid "Committee"
 msgid "Town Committee"
-msgstr "समिति"
+msgstr ""
 
 #: views/state/_towns.php:44
 msgid "Town Municipal Council"
-msgstr "नगर नगर परिषद"
+msgstr ""
 
 #: views/state/_towns.php:45
-#, fuzzy
 #| msgid "Town Municipal Council"
 msgid "Town Municipal Council Out Growth"
-msgstr "नगर नगर परिषद"
+msgstr ""
 
 #: views/state/_towns.php:46
 msgid "Town Panchayat"
-msgstr "नगर पंचायत"
+msgstr ""
 
 #: views/state/_towns.php:47
-#, fuzzy
 #| msgid "Town Panchayat"
 msgid "Town Panchayat Out Growth"
-msgstr "नगर पंचायत"
+msgstr ""
 
 #: views/state/_view_as.php:2
-#, fuzzy
 #| msgid "{acname} Assembly Constituency - #{acno}"
 msgid "State Assembly Constituencies"
-msgstr "{acname} विधानसभा निर्वाचन क्षेत्र - #{acno}"
+msgstr ""
 
 #: views/state/_view_as_el.php:2
 msgid "Assembly Constituencies with Candidate details, Symbols and EVM Positions"
-msgstr "उम्मीदवारों के विवरण, प्रतीकों और ईवीएम पदों के साथ विधानसभा निर्वाचन क्षेत्र"
+msgstr ""
 
 #: views/state/_view_ls.php:2
-#, fuzzy
 #| msgid "{pcname} Lok Sabha Constituency"
 msgid "Lok Sabha Constituencies"
-msgstr "{pcname} लोकसभा निर्वाचन क्षेत्र"
+msgstr ""
 
 #: views/state/district.php:51
 msgid "{distname} District, {state}"
-msgstr "{distname} जिला, {state}"
+msgstr ""
 
 #: views/state/district.php:74
-#, fuzzy
 #| msgid "{pcname} Lok Sabha Constituency"
 msgid "Lok Sabha Parliamentary Constituency"
-msgstr "{pcname} लोकसभा निर्वाचन क्षेत्र"
+msgstr ""
 
 #~ msgid "Polygons"
 #~ msgstr "बहुभुज"
@@ -1106,4 +1057,3 @@ msgstr "{pcname} लोकसभा निर्वाचन क्षेत्�
 
 #~ msgid "Type city, zip or address here.."
 #~ msgstr "यहां शहर, ज़िप या पता टाइप करें .."
-

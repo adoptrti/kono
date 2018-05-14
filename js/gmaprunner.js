@@ -80,8 +80,9 @@ function formatGeocodeResults(results, lat, lng) {
 }
 
 function geocode(position) {
-    geocoder.geocode({
-        latLng: position
+	geocoder.geocode({
+        latLng: position,
+        language: 'en'
     }, function(responses) {
         var pos = marker.getPosition();
         window.location.hash = '#' + pos.lat() + "," + pos.lng();

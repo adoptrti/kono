@@ -523,7 +523,7 @@ class StateUrlRule extends CBaseUrlRule
     
     public function parse_district($manager, $request, $pathInfo, $rawPathInfo)
     {
-        if (preg_match ( '/^(?<lang>\w\w)\/(?<stateslug>[\w-]*)\/(?<dtslug>[\w-]*)\/?$/', $pathInfo, $matches ))
+        if (preg_match ( '/^(?<lang>\w\w)\/(?<stateslug>[\w-]*)\/(?<dtslug>[\(\)\w-]*)\/?$/', $pathInfo, $matches ))
         {
             if (isset ( $matches ['stateslug'] ) && isset ( $matches ['dtslug'] ))
             {
@@ -556,7 +556,7 @@ class StateUrlRule extends CBaseUrlRule
     public function parse_assembly($manager, $request, $pathInfo, $rawPathInfo)
     {
         $matches = [];
-        if (preg_match ( '/^(?<lang>\w\w)\/(?<stateslug>[\w-]*)\/assembly\/(?<amlyslug>[\w-]*)\/?$/', $pathInfo, $matches ))
+        if (preg_match ( '/^(?<lang>\w\w)\/(?<stateslug>[\w-]*)\/assembly\/(?<amlyslug>[\(\)\w-]*)\/?$/', $pathInfo, $matches ))
         {
             if (isset ( $matches ['stateslug'] ) && isset ( $matches ['amlyslug'] ))
             {                
@@ -600,7 +600,7 @@ class StateUrlRule extends CBaseUrlRule
      */
     public function parse_loksabha($manager, $request, $pathInfo, $rawPathInfo)
     {
-        if (preg_match ( '/^(?<lang>\w\w)\/loksabha\/(?<amlyslug>[\w-]*)\/?$/', $pathInfo, 
+        if (preg_match ( '/^(?<lang>\w\w)\/loksabha\/(?<amlyslug>[\(\)\w-]*)\/?$/', $pathInfo, 
                 $matches ))
         {
             if ( isset ( $matches ['amlyslug'] ))

@@ -81,7 +81,7 @@ Yii::app ()->clientScript->registerCoreScript ( 'bootstrap' );
                             $params2 = array_merge([$rt],$params);
                         }
                         ?>
-                        <li><?=CHtml::link(__($lang),$params2)?></li>
+                        <li><?=CHtml::link(__($lang),$params2,['title' => $lang])?></li>
                         <?php
                     }
                     ?>

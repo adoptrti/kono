@@ -33,7 +33,14 @@ class AssemblyResults extends CActiveRecord
     
     public function beforeSave()
     {
-        $this->id_state = $this->constituency->id_state;
+    	
+    	if(!isset($this->constituency->id_state))
+    	{
+    		if($this->acno != 999)
+    			throw new Exception("Without a valid constituency? id={$this->id_result}");
+    	}
+        else
+        	$this->id_state = $this->constituency->id_state;
         return parent::beforeSave();
     }
 
@@ -49,7 +56,6 @@ class AssemblyResults extends CActiveRecord
                 // http://www.yiiframework.com/extension/multilingual-behavior/
                 'ml' => array (
                         'class' => 'application.behaviours.MultilingualBehavior',
-                        // 'langClassName' => 'projectLang',
                         // 'langTableName' => 'projectLang',
                         'langForeignKey' => 'id_result',
                         'langField' => 'id_lang',

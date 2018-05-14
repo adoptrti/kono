@@ -150,7 +150,8 @@ function updateActionAndhraPradesh() {
 	libxml_use_internal_errors ( true );
 	
 	$urls = [ 
-			'http://aplegislature.org/web/legislative-assembly/member-s-information' 
+			//'http://aplegislature.org/web/legislative-assembly/member-s-information'
+			'http://www.telanganalegislature.org.in/web/legislative-assembly/members-information'
 	];
 	foreach ( $urls as $url ) {
 		echo "\n\nURL: $url\n";

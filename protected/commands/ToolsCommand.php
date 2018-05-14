@@ -24,7 +24,7 @@ class ToolsCommand extends CConsoleCommand
     			'AssemblyPolygon','AssemblyResults',
     			'Block','Committee','CommitteeMember','Constituency',
     			'District','Election','LBVillage','LBWard',
-    			'LokSabha2014','Minister','Ministry',
+    			'LokSabha2014','Minister','Ministry','ElectionCandidates',
     			'MunicipalResults','Officer','State','Town'];
     	print_r($tables);
     	foreach($tables as $table)

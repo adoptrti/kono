@@ -30,7 +30,7 @@ class ImportKMLCommand extends CConsoleCommand
         
         foreach($rs as $r)
         {
-            echo "{$r->ST_NAME}\t{$r->ctr1}\n";
+            echo "{$r->st_name}\t{$r->ctr1}\n";
         }
     }
 }
@@ -76,14 +76,14 @@ function insertRow($ExtendedData, $many_coords)
     }
     print_r($ExtendedData);
     
-    setprops($poly, $ExtendedData,'DT_CODE', 'DT_CODE');
-    setprops($poly, $ExtendedData,'ST_CODE', 'ST_CODE');
-    setprops($poly, $ExtendedData,'ST_NAME', 'ST_NAME');
-    setprops($poly, $ExtendedData,'DIST_NAME', 'DIST_NAME');
-    setprops($poly, $ExtendedData,'AC_NAME', 'AC_NAME');
-    setprops($poly, $ExtendedData,'PC_NO', 'PC_NO');
-    setprops($poly, $ExtendedData,'PC_NAME', 'PC_NAME');
-    setprops($poly, $ExtendedData,'PC_ID', 'PC_ID');
+    setprops($poly, $ExtendedData,'dt_code', 'DT_CODE');
+    setprops($poly, $ExtendedData,'st_code', 'ST_CODE');
+    setprops($poly, $ExtendedData,'st_name', 'ST_NAME');
+    setprops($poly, $ExtendedData,'dist_name', 'DIST_NAME');
+    setprops($poly, $ExtendedData,'name', 'AC_NAME');
+    setprops($poly, $ExtendedData,'pcno', 'PC_NO');
+    setprops($poly, $ExtendedData,'pc_name', 'PC_NAME');
+    setprops($poly, $ExtendedData,'pc_id', 'PC_ID');
     setprops($poly, $ExtendedData,'Shape_Leng', 'Shape_Leng');
     setprops($poly, $ExtendedData,'Shape_Area', 'Shape_Area');
     setprops($poly, $ExtendedData,'MaxSimpTol', 'MaxSimpTol');

@@ -225,7 +225,7 @@ class AssemblyPolygon extends CActiveRecord
                 [
                         'group' => 't.id_state,t.st_name,t.st_code',
                         'select' => "st_name,count(*) as ctr1,
-                            (select count(name) from $AR_table r2 where r2.st_code=t.st_code or r2.id_state=t.id_state) as ctr2,
+                            (select count(name) from $AR_table r2 where r2.id_state=t.id_state) as ctr2,
                             (select count(phones) from $AR_table r3 where phones<>'' and r3.id_state=t.id_state) as ctr3,
                             (select count(emails) from $AR_table r4 where emails<>'' and r4.id_state=t.id_state) as ctr4,
                             (select count(address) from $AR_table r5 where address<>'' and r5.id_state=t.id_state) as ctr5,
@@ -282,19 +282,31 @@ class AssemblyPolygon extends CActiveRecord
     			]
     	];
     	
-    	$ass2 = AssemblyPolygon::model ()->findAll ( $src );
-    	
+        $ass2 = AssemblyPolygon::model ()->findAll ( $src );
+        if(count($ass2) == 0)
+        	Yii::log("Found no matching polygon!! $state_name",'warning');
+        
     	$govdata = [ ];
     	/* @var $ass AssemblyPolygon */
     	foreach ( $ass2 as $ass )
     	{
     		error_log('GIS-found poly:' . $ass->id_poly . ' name:' . $ass->name . ' type:' . $ass->polytype . ' id_village:' . $ass->id_village);
-    		if ($ass->polytype == 'WARD')
-    			$this->extractWardData($govdata, $ass);    			
+            if ($ass->polytype == 'WARD')
+            {
+                $this->extractWardData($govdata, $ass);    			
+                Yii::log("Found WARD for $state_name",'info');
+            }
     		else if($ass->polytype == 'AC')
+    		{
     			$this->extractACData($govdata, $ass);
+    			Yii::log("Found AC for $state_name",'info');
+    		}
     		else if($ass->polytype == 'VILLAGE')
+    		{
     			$govdata['village'] = $ass;
+    			Yii::log("Found VILLAGE for $state_name",'info');
+    		}
+    		//MP seats are part of AC polygon data, no so seperate polygons needed
     	}
     	return $govdata;
     }
@@ -339,6 +351,7 @@ class AssemblyPolygon extends CActiveRecord
     {
     	$govdata['assembly'] = null;
     	$govdata['amly_poly'] = $ass;
+    	
     	$con2 = LokSabha2014::model ()->findByAttributes ( [
     			'pc_name_clean' => $ass->pc_name_clean
     	] );

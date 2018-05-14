@@ -27,10 +27,18 @@ $this->widget ( 'zii.widgets.CMenu',
                                         '/site/contact'
                                 )
                         ),
+                        array (
+                                'label' => __ ( 'Credits' ),
+                                'url' => array (
+                                        '/site/page',
+                                        'view' => 'credits'
+                                )
+                        ),
                         [
                                 'encodeLabel' => false,
                                 'label' => "<i class='fa fa-github'></i>",
                                 'url' => 'https://github.com/adoptrti/kono'
                         ]
+
                 )
         ) );

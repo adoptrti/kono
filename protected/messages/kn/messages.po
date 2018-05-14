@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kono\n"
-"POT-Creation-Date: 2018-05-11 19:49+0530\n"
-"PO-Revision-Date: 2018-05-11 19:49+0530\n"
+"POT-Creation-Date: 2018-05-13 17:30+0530\n"
+"PO-Revision-Date: 2018-05-13 17:30+0530\n"
 "Last-Translator: Vikas Yadav <mevikas@gmail.com>\n"
 "Language-Team: Vikas\n"
 "Language: hi\n"
@@ -30,10 +30,14 @@ msgid "Hindi"
 msgstr "हिंदी"
 
 #: config/main.php:110
+msgid "Telegu"
+msgstr "తెలుగు"
+
+#: config/main.php:111
 msgid "Kannada"
 msgstr "ಕನ್ನಡ್"
 
-#: controllers/ElectionController.php:166
+#: controllers/ElectionController.php:166 views/site/_nextamlyelection.php:63
 msgid "{consti} #{eciref} - Contesting Candidates - {state} Assembly Elections {eyear}"
 msgstr "{consti} #{eciref} - ಅಭ್ಯರ್ಥಿಗಳ ಸ್ಪರ್ಧೆ - {state} ಅಸೆಂಬ್ಲಿ ಚುನಾವಣೆಗಳು {eyear}"
 
@@ -41,7 +45,9 @@ msgstr "{consti} #{eciref} - ಅಭ್ಯರ್ಥಿಗಳ ಸ್ಪರ್ಧ�
 msgid ""
 "{state} Assembly Elections {eyear} - Assembly Constituencies with Candidate details, "
 "Symbols and EVM Positions"
-msgstr "{ರಾಜ್ಯ} ಅಸೆಂಬ್ಲಿ ಚುನಾವಣೆಗಳು {eyear} - ಅಭ್ಯರ್ಥಿ ವಿವರಗಳು, ಚಿಹ್ನೆಗಳು ಮತ್ತು ಇವಿಎಂ ಸ್ಥಾನಗಳೊಂದಿಗೆ ಅಸೆಂಬ್ಲಿ ಕ್ಷೇತ್ರಗಳು"
+msgstr ""
+"{ರಾಜ್ಯ} ಅಸೆಂಬ್ಲಿ ಚುನಾವಣೆಗಳು {eyear} - ಅಭ್ಯರ್ಥಿ ವಿವರಗಳು, ಚಿಹ್ನೆಗಳು ಮತ್ತು ಇವಿಎಂ ಸ್ಥಾನಗಳೊಂದಿಗೆ "
+"ಅಸೆಂಬ್ಲಿ ಕ್ಷೇತ್ರಗಳು"
 
 #: controllers/StateController.php:97
 msgid "{dist} District, {state}"
@@ -63,25 +69,25 @@ msgstr "ಅಸೆಂಬ್ಲಿ ಸಂಖ್ಯೆ"
 msgid "Polygon"
 msgstr "ಬಹುಭುಜಾಕೃತಿ"
 
-#: models/AssemblyResults.php:115
+#: models/AssemblyResults.php:121
 msgid "State of Constituency and Election mismatch"
 msgstr "ಕ್ಷೇತ್ರ ಮತ್ತು ಚುನಾವಣಾ ಹೊಂದಾಣಿಕೆಗಳ ರಾಜ್ಯ"
 
-#: models/AssemblyResults.php:153
+#: models/AssemblyResults.php:159
 msgid "Acname"
 msgstr "ಅಕ್ನೇಮ್"
 
-#: models/AssemblyResults.php:154
+#: models/AssemblyResults.php:160
 msgid "Acno"
 msgstr "ಅಕೋನ"
 
-#: models/AssemblyResults.php:155 models/Committee.php:74 models/Constituency.php:109
+#: models/AssemblyResults.php:161 models/Committee.php:74 models/Constituency.php:109
 #: models/ContactForm.php:50 models/LokSabha2014.php:101 models/MunicipalResults.php:63
 #: models/Officer.php:158 models/State.php:125 views/site/_wardofficers.php:32
 msgid "Name"
 msgstr "ಹೆಸರು"
 
-#: models/AssemblyResults.php:156 models/LokSabha2014.php:107
+#: models/AssemblyResults.php:162 models/LokSabha2014.php:107
 #: models/MunicipalResults.php:64 models/Results2014.php:70
 msgid "Party"
 msgstr "ಪಕ್ಷ"
@@ -470,39 +476,39 @@ msgstr "ECI ಪ್ರಕಾರ ದೂರದ ಸಂಖ್ಯೆ ಇಲ್ಲ"
 msgid "Eci Amly Count"
 msgstr "ಎಸಿ ಆಮಿ ಕೌಂಟ್"
 
-#: views/election/candidates.php:8 views/election/candidates.php:30
+#: views/election/candidates.php:9 views/election/candidates.php:31
 msgid "Contesting Candidates"
 msgstr "ಅಭ್ಯರ್ಥಿಗಳ ಸ್ಪರ್ಧೆ"
 
-#: views/election/candidates.php:18 views/state/_nextamlyelection.php:8
+#: views/election/candidates.php:19 views/state/_nextamlyelection.php:8
 msgid "{state} Assembly Elections {eyear}"
 msgstr "{state} ಅಸೆಂಬ್ಲಿ ಚುನಾವಣೆಗಳು {eyear}"
 
-#: views/election/candidates.php:24
+#: views/election/candidates.php:25
 msgid "{consti} #{eciref}"
 msgstr "{consti} #{eciref}"
 
-#: views/election/candidates.php:43
+#: views/election/candidates.php:47
 msgid "EVM Button Number"
 msgstr "ಇವಿಎಮ್ ಬಟನ್ ಸಂಖ್ಯೆ"
 
-#: views/election/candidates.php:47
+#: views/election/candidates.php:51
 msgid "Candidate"
 msgstr "ಅಭ್ಯರ್ಥಿ"
 
-#: views/election/candidates.php:64
+#: views/election/candidates.php:68
 msgid "Election Symbol"
 msgstr "ಚುನಾವಣಾ ಚಿಹ್ನೆ"
 
-#: views/election/candidates.php:72
+#: views/election/candidates.php:76
 msgid "Criminal Cases"
 msgstr "ಕ್ರಿಮಿನಲ್ ಪ್ರಕರಣಗಳು"
 
-#: views/election/candidates.php:77
+#: views/election/candidates.php:81
 msgid "Assets"
 msgstr "ಆಸ್ತಿಗಳು"
 
-#: views/election/candidates.php:82
+#: views/election/candidates.php:86
 msgid "Liabilities"
 msgstr "ಬಾಧ್ಯತೆಗಳು"
 
@@ -523,6 +529,11 @@ msgstr "ಡೇಟಾ ವರದಿ"
 #: views/layouts/_guestmenu.php:25 views/site/contact.php:8
 msgid "Contact"
 msgstr "ಸಂಪರ್ಕ"
+
+#: views/layouts/_guestmenu.php:31 views/site/pages/credits.php:4
+#: views/site/pages/credits.php:6
+msgid "Credits"
+msgstr ""
 
 #: views/layouts/_usermenu.php:11
 msgid "Committee"
@@ -709,7 +720,9 @@ msgstr "ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ"
 msgid ""
 "If you have business inquiries or other questions, please fill out the following "
 "form to contact us. Thank you."
-msgstr "ನೀವು ವ್ಯವಹಾರ ವಿಚಾರಣೆ ಅಥವಾ ಇತರ ಪ್ರಶ್ನೆಗಳನ್ನು ಹೊಂದಿದ್ದರೆ, ದಯವಿಟ್ಟು ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಲು ಕೆಳಗಿನ ಫಾರ್ಮ್ ಅನ್ನು ಭರ್ತಿ ಮಾಡಿ. ಧನ್ಯವಾದ."
+msgstr ""
+"ನೀವು ವ್ಯವಹಾರ ವಿಚಾರಣೆ ಅಥವಾ ಇತರ ಪ್ರಶ್ನೆಗಳನ್ನು ಹೊಂದಿದ್ದರೆ, ದಯವಿಟ್ಟು ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಲು ಕೆಳಗಿನ "
+"ಫಾರ್ಮ್ ಅನ್ನು ಭರ್ತಿ ಮಾಡಿ. ಧನ್ಯವಾದ."
 
 #: views/site/contact.php:36 views/site/login.php:25
 msgid "Fields with {star} are required."
@@ -1005,4 +1018,3 @@ msgstr "ಲೋಕಸಭಾ ಪಾರ್ಲಿಮೆಂಟರಿ ಕ್ಷೇತ�
 
 #~ msgid "Type city, zip or address here.."
 #~ msgstr "यहां शहर, ज़िप या पता टाइप करें .."
-

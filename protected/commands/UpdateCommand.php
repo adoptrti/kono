@@ -54,6 +54,61 @@ class UpdateCommand extends CConsoleCommand
         $slug1 = preg_replace ( '/^-/', '', $slug1 );
         return $slug1;
     }
+    
+    function makename($str)
+    {
+    	$str = trim($str);
+    	$mats = [ ];
+    	$str = preg_replace( '/[^\|\"\@\'\[\]\\\+\s-;\*\:\.\/\w,\(\)&]+/', '', $str);
+    	
+    	if (preg_match_all ( '/(?<bad>[^\|\"\@\'\[\]\\\+\s-;\*\:\.\/\w,\(\)&]+)/', $str, $mats ))
+    	{
+    		print_r ( $mats );
+    		echo 'found invalid char [' . $mats ['bad'] . '] for in:' . $str;
+    		return false;
+    	}
+    	
+    	$str = str_replace("'", '',$str);
+    	
+    	
+    	$slug1 = 
+    			str_replace (
+    					[
+    							';',
+    							'*',
+    							':',
+    							'|',
+    							'"',
+    							'@',
+    							'[',
+    							']',
+    							'(',
+    							')',
+    							'\\',
+    							'/',
+    					], ' ', trim ( $str) ) ;
+    	
+    	$slug1 =
+    			str_replace (
+    					[
+    							'+',
+    							',',
+    							'.',
+    							'&'
+    					], ' ', trim ( $str ) ) ;
+    	
+    	
+    	$slug1 = preg_replace('/^\d+/', '', trim($slug1));
+    	
+    	$slug1 = trim(preg_replace( '/\s+/', ' ', $slug1));
+    	
+    	/* breakpoint if needed
+    	 * if(preg_match('/Alair/',$str) == 1)
+    	{
+    		die("before:[$str]=[$slug1]");
+    	}*/
+    	return $slug1;
+    }
 
     /**
      * Slug maker for LokSabha2014, MunicipalResults, AssemblyResults, Constituency, State, Committee, Town 
@@ -77,18 +132,19 @@ class UpdateCommand extends CConsoleCommand
         foreach ( $rs as $r )
         {
             $r->slug = $this->makeslug($r->name);
-            $r->name = ucwords(strtolower($r->name));
+            $r->name = ucwords(strtolower($this->makename($r->name)));            
             echo sprintf ( "%50s\t%50s\n", $r->name, $r->slug );
             $r->update ( [
                     'slug','name',
             ] );
+            
         }
         
         $rs = AssemblyResults::model ()->findAll ();
         foreach ( $rs as $r )
         {
             $r->slug = $this->makeslug($r->name);
-            $r->name = ucwords(strtolower($r->name));
+            $r->name = ucwords(strtolower($this->makename($r->name)));
             echo sprintf ( "%50s\t%50s\n", $r->name, $r->slug );
             try {
             $r->update ( [
@@ -391,6 +447,14 @@ class UpdateCommand extends CConsoleCommand
         updateActionAndhraPradesh();
     }
     
+    /**
+     * #201805112038:Hyderababad:thevikas
+     */
+    public function actionKonoTelangana()
+    {
+    	require_once __DIR__ . '/update/updateActionTelangana.php';
+    	updateActionTelangana();
+    }
     
     /**
      * #201710032139:Kovai:thevikas
