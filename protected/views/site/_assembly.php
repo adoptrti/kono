@@ -103,7 +103,15 @@ if (! empty ( $data->picture ))
                                             $html [] = CHtml::tag ( 'li', [ ], $comm->name );
                                         return join ( ' ', $html );
                                     } 
-                            ] 
+                            ],
+                            [
+                                    'type' => 'raw',
+                                    'label' => __ ( 'ELection Date' ),
+                                    'value' => function ($data)
+                                    {                                        
+                                        return $data->election->edate;
+                                    }
+                            ]
                     
                     ) 
             ) );

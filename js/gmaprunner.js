@@ -94,6 +94,9 @@ function geocode(position) {
                 data: JSON.stringify([rr.address, rr.coords])
             }, function(data) {
                 $("#result").html(data);
+                $("#googlemaps").height("200px");
+                $("#askaddress").hide();
+                showInfoWindow(responses[0].formatted_address);
             });
             showInfoWindow(responses[0].formatted_address);
 

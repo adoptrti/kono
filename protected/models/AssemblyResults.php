@@ -176,16 +176,25 @@ class AssemblyResults extends CActiveRecord
      * @return CActiveDataProvider the data provider that can return the models
      *         based on the search/filter conditions.
      */
-    public function search()
+    public function search($crit = false,$justReturnCriteria = false)
     {
         // @todo Please modify the following code to remove attributes that
         // should not be searched.
-        $criteria = new CDbCriteria ();
+        if (! $crit)
+            $criteria = new CDbCriteria ();
+        else
+            $criteria = $crit;
         
         $criteria->compare ( 'acname', $this->acname, true );
         $criteria->compare ( 'acno', $this->acno );
         $criteria->compare ( 'name', $this->name, true );
         $criteria->compare ( 'party', $this->party, true );
+        
+        $criteria->compare ( 'id_election', $this->party, true );
+        $criteria->compare ( 'id_consti', $this->party, true );
+        $criteria->compare ( 'id_state', $this->party, true );
+        if($justReturnCriteria)
+            return $criteria;
         
         return new CActiveDataProvider ( $this, array (
                 'criteria' => $criteria 

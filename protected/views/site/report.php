@@ -165,6 +165,14 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                                 }
                         ],
                         [
+                                'header' => __('Election'),
+                                'value' => function ($data)
+                                {
+                                    $y = date('Y',strtotime($data [12]));
+                                    if($y != 1970) return $y;
+                                }
+                        ],
+                        [
                                 'header' => __('MLAs'),
                                 'value' => function ($data)
                                 {

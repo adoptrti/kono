@@ -58,6 +58,7 @@ class AssemblyPolygon extends CActiveRecord
     var $ctr8;
     var $ctr9;
     var $ctr10;
+    var $ctr11;
     
     public function behaviors()
     {
@@ -234,8 +235,10 @@ class AssemblyPolygon extends CActiveRecord
                             (select count(*) from towns2011 r8 where r8.tvtype in ('mcorp','mcorp+og') and r8.id_state=t.id_state) as ctr8,
                             vpr.polygons as ctr9,
                             vpr.villages as ctr10,
+                            max(e.edate) as ctr11,
                             t.id_state",
-                        'join' => 'left join `village-polygon-report` vpr on vpr.id_state=t.id_state',
+                        'join' => 'left join `village-polygon-report` vpr on vpr.id_state=t.id_state
+                                    left join elections e on e.id_state=t.id_state',
                         'order' => 'st_name',
                         'condition' => 'polytype=?',
                         'params' => [
@@ -256,7 +259,8 @@ class AssemblyPolygon extends CActiveRecord
                     $r->ctr8,
                     $r->ctr9,
                     $r->ctr10,
-                    $r->id_state
+                    $r->id_state,
+                    $r->ctr11,
             ];
 
             $mx = $data [1];
@@ -366,7 +370,9 @@ class AssemblyPolygon extends CActiveRecord
     			'id_state' => $ass->id_state,
     	];
     	
-    	$con3 = AssemblyResults::model ()->findByAttributes ( $att44 );
+    	$con3 = AssemblyResults::model ()->findByAttributes ( $att44,[
+    	        'order' => 'id_election desc',
+    	] );
     	if ($con3)
     	{
     		$govdata['assembly'] = $con3;
