@@ -31,6 +31,13 @@ $this->renderPartial("_view_dt",['model' => $model]);
 $this->renderPartial("_view_as",['model' => $model]);
 $this->renderPartial("_view_ls",['model' => $model]);
 $this->renderPartial("_view_mc",['model' => $model]);
+
+if(isset($model->governer)) 
+{
+    $off = Officer::model()->localized(Yii::app()->language)->findByPk($model->governer->id_officer);
+    $this->renderPartial("//site/_governer",['data' => $off]);
+}
+
 if(Yii::app()->user->checkAccess('ADD_CHIEF_MINISTER'))
 {
     echo $this->renderPartial('_stateeditor',['state' => $model]);        

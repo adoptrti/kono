@@ -20,12 +20,27 @@ if(isset($model->id_officer))
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'name'); ?>
-	</div>
+	
+	<?php        
+    foreach ( Yii::app ()->params ['translatedLanguages'] as $l => $lang ):
+            if ($l === Yii::app ()->params ['defaultDBLanguage'])
+                $suffix = '';
+            else
+                $suffix = '_' . $l;
+            ?>
+            <fieldset>
+                <legend>
+                    <?php echo $lang; ?> (<?=$suffix?>)
+                </legend>
+        
+            	<div class="row">
+            		<?php echo $form->labelEx($model,'name'); ?>
+            		<?php echo $form->textField($model,'name'.$suffix,array('size'=>60,'maxlength'=>255)); ?>
+            		<?php echo $form->error($model,'name'.$suffix); ?>
+            	</div>
+                   
+            </fieldset>
+    <?php endforeach; ?>    	
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'fkey_place'); ?>
@@ -72,6 +87,24 @@ if(isset($model->id_officer))
 		<?php echo $form->labelEx($model,'email'); ?>
 		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'email'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'website'); ?>
+		<?php echo $form->textField($model,'website',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'website'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'address'); ?>
+		<?php echo $form->textField($model,'address',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'address'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'picture_url'); ?>
+		<?php echo CHtml::textField('picture_url','',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'picture'); ?>
 	</div>
 
 	<div class="row buttons">

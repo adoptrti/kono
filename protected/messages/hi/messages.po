@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kono\n"
-"POT-Creation-Date: 2018-05-13 17:42+0530\n"
-"PO-Revision-Date: 2018-05-13 17:42+0530\n"
+"POT-Creation-Date: 2018-05-16 18:05+0530\n"
+"PO-Revision-Date: 2018-05-16 18:13+0530\n"
 "Last-Translator: Vikas Yadav <mevikas@gmail.com>\n"
 "Language-Team: Vikas\n"
 "Language: hi\n"
@@ -41,33 +41,33 @@ msgstr "ಕನ್ನಡ್"
 msgid "{consti} #{eciref} - Contesting Candidates - {state} Assembly Elections {eyear}"
 msgstr "{consti} #{eciref} - उम्मीदवारों की प्रतियोगिता - {state} विधानसभा चुनाव {eyear}"
 
-#: controllers/StateController.php:56
+#: controllers/StateController.php:80
 msgid ""
-"{state} Assembly Elections {eyear} - Assembly Constituencies with Candidate details, "
-"Symbols and EVM Positions"
+"{state} Assembly Elections {eyear} - Assembly Constituencies with Candidate details, Symbols and EVM "
+"Positions"
 msgstr "{state} विधानसभा चुनाव {eyear} - अभ्यर्थियों के विवरण, प्रतीकों और ईवीएम पदों के साथ असेंबली निर्वाचन क्षेत्र"
 
-#: controllers/StateController.php:97
+#: controllers/StateController.php:139
 msgid "{dist} District, {state}"
 msgstr "{distname} जिला, {state}"
 
-#: controllers/StateController.php:117
+#: controllers/StateController.php:163
 #, fuzzy
 #| msgid "{pcname} Lok Sabha Constituency"
 msgid "{dist} Loksabha Constituency, {state}"
 msgstr "{pcname} लोकसभा निर्वाचन क्षेत्र, {state}"
 
-#: controllers/StateController.php:141
+#: controllers/StateController.php:191
 #, fuzzy
 #| msgid "{acname} Assembly Constituency - #{acno}"
 msgid "{dist} Assembly Constituency, {state}"
 msgstr "{dist} विधानसभा निर्वाचन क्षेत्र, {state}"
 
-#: models/AssemblyPolygon.php:140
+#: models/AssemblyPolygon.php:141
 msgid "Assembly Number"
 msgstr "विधानसभा संख्या"
 
-#: models/AssemblyPolygon.php:141
+#: models/AssemblyPolygon.php:142
 msgid "Polygon"
 msgstr "बहुभुज"
 
@@ -219,8 +219,7 @@ msgstr "विभागीय मुख्यालय"
 msgid "Election ID"
 msgstr "चुनाव आईडी"
 
-#: models/Election.php:72 models/LokSabha2014.php:99 views/site/_address.php:50
-#: views/site/report.php:153
+#: models/Election.php:72 models/LokSabha2014.php:99 views/site/_address.php:50 views/site/report.php:153
 msgid "State"
 msgstr "स"
 
@@ -240,11 +239,11 @@ msgstr "चुनाव प्रकार"
 msgid "Id Mp"
 msgstr "आईडी एमपी"
 
-#: models/LokSabha2014.php:95 views/site/_assembly.php:69 views/site/report.php:175
+#: models/LokSabha2014.php:95 views/site/_assembly.php:69 views/site/report.php:183
 msgid "Phones"
 msgstr "फ़ोन"
 
-#: models/LokSabha2014.php:96 views/site/report.php:182
+#: models/LokSabha2014.php:96 views/site/report.php:190
 msgid "Emails"
 msgstr "ईमेल"
 
@@ -302,7 +301,7 @@ msgstr "वार्ड नं.2,"
 msgid "Phone"
 msgstr "फ़ोन"
 
-#: models/MunicipalResults.php:66 views/site/report.php:189
+#: models/MunicipalResults.php:66 views/site/report.php:197
 msgid "Address"
 msgstr "पता"
 
@@ -537,8 +536,7 @@ msgstr "डेटा रिपोर्ट"
 msgid "Contact"
 msgstr "संपर्क"
 
-#: views/layouts/_guestmenu.php:31 views/site/pages/credits.php:4
-#: views/site/pages/credits.php:6
+#: views/layouts/_guestmenu.php:31 views/site/pages/credits.php:4 views/site/pages/credits.php:6
 msgid "Credits"
 msgstr "क्रेडिट"
 
@@ -592,7 +590,7 @@ msgstr " अस्वीकरण"
 msgid "Panchayats"
 msgstr "ग्राम पंचायत"
 
-#: views/localgov/panchayat/_view.php:32 views/site/report.php:211
+#: views/localgov/panchayat/_view.php:32 views/site/report.php:219
 msgid "Villages"
 msgstr "गांव"
 
@@ -600,8 +598,7 @@ msgstr "गांव"
 msgid "Deputy Commissioner of a District (aka Collector)"
 msgstr "एक जिला के उप आयुक्त (उर्फ कलेक्टर)"
 
-#: views/officer/_form.php:52 views/state/_chiefminister.php:7
-#: views/state/_chiefminister.php:18
+#: views/officer/_form.php:52 views/state/_chiefminister.php:7 views/state/_chiefminister.php:18
 msgid "Chief Minister"
 msgstr "मुख्यमंत्री"
 
@@ -662,6 +659,10 @@ msgstr "निर्वाचित विधायक का नाम"
 #: views/site/_assembly.php:98
 msgid "Committees"
 msgstr "समितियां"
+
+#: views/site/_assembly.php:109
+msgid "ELection Date"
+msgstr "चुनाव तिथि"
 
 #: views/site/_district.php:7
 msgid "{distname} Deputy Commissioner"
@@ -743,8 +744,8 @@ msgstr "हमसे संपर्क करें"
 
 #: views/site/contact.php:23
 msgid ""
-"If you have business inquiries or other questions, please fill out the following form to "
-"contact us. Thank you."
+"If you have business inquiries or other questions, please fill out the following form to contact us. "
+"Thank you."
 msgstr "यदि आपके पास व्यावसायिक पूछताछ या अन्य प्रश्न हैं, तो कृपया हमसे संपर्क करने के लिए निम्न फ़ॉर्म भरें। धन्यवाद।"
 
 #: views/site/contact.php:36 views/site/login.php:25
@@ -779,8 +780,7 @@ msgstr "अपना स्थान प्राप्त कर रहा ह�
 msgid "Go to an address"
 msgstr "एक पते पर जाएं"
 
-#: views/site/login.php:6 views/site/login.php:8 views/site/login.php:12
-#: views/site/login.php:46
+#: views/site/login.php:6 views/site/login.php:8 views/site/login.php:12 views/site/login.php:46
 msgid "Login"
 msgstr "लॉग इन "
 
@@ -835,30 +835,36 @@ msgid "A Poly"
 msgstr "बहुभुज"
 
 #: views/site/report.php:168
+#, fuzzy
+#| msgid "Elections"
+msgid "Election"
+msgstr "चुनाव"
+
+#: views/site/report.php:176
 msgid "MLAs"
 msgstr "विधायक"
 
-#: views/site/report.php:196
+#: views/site/report.php:204
 msgid "Picture"
 msgstr "तस्वीर"
 
-#: views/site/report.php:203
+#: views/site/report.php:211
 msgid "M Corp"
 msgstr "एम कॉर्प"
 
-#: views/site/report.php:218
+#: views/site/report.php:226
 #, fuzzy
 #| msgid "Polygon"
 msgid "V Poly"
 msgstr "बहुभुज"
 
-#: views/site/report.php:225 views/state/_view_dt.php:10
+#: views/site/report.php:233 views/state/_view_dt.php:10
 #, fuzzy
 #| msgid "District"
 msgid "Districts"
 msgstr " ज़िला"
 
-#: views/site/report.php:235
+#: views/site/report.php:243
 msgid "DC"
 msgstr "डीसी"
 
@@ -1106,4 +1112,3 @@ msgstr "{pcname} लोकसभा निर्वाचन क्षेत्�
 
 #~ msgid "Type city, zip or address here.."
 #~ msgstr "यहां शहर, ज़िप या पता टाइप करें .."
-

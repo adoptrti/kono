@@ -71,13 +71,18 @@ class OfficerController extends Controller
 		{
 			$model->attributes=$_POST['Officer'];
 			if($model->save())
+			{
+			    if(!empty($_POST['picture_url']))
+			        $model->savePicture($_POST['picture_url']);
+			        
 				$this->redirect(array('view','id'=>$model->id_officer));
+			}
 		}
 		
 		if(!empty($id_district))
 		    $model->fkey_place = $id_district;		
 	    else if(!empty($id_state) && ($desig == Officer::DESIG_CHIEFMINISTER || $desig == Officer::DESIG_DEPUTYCHIEFMINISTER || $desig == Officer::DESIG_GOVERNER))
-            $model->fkey_place = $id_district;
+            $model->fkey_place = $id_state;
 		        
         if(!empty($desig))
 	        $model->desig = $desig;
@@ -97,6 +102,8 @@ class OfficerController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		
+		    
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -105,7 +112,11 @@ class OfficerController extends Controller
 		{
 			$model->attributes=$_POST['Officer'];
 			if($model->save())
+			{
+			    if(!empty($_POST['picture_url']))
+			        $model->savePicture($_POST['picture_url']); 			        
 				$this->redirect(array('view','id'=>$model->id_officer));
+			}
 		}
 
 		$this->render('update',array(

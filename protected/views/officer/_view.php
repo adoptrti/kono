@@ -18,7 +18,7 @@
 	$desig = $data->desig;
 	if($desig == Officer::DESIG_CHIEFMINISTER || $desig == Officer::DESIG_DEPUTYCHIEFMINISTER || $desig == Officer::DESIG_GOVERNER)
 	    echo $data->state->namelink;
-	else
+    else if(isset($data->district->namelink))
 	    echo $data->district->namelink; ?>
 	<br />
 
@@ -38,6 +38,12 @@
 	<?php echo CHtml::encode($data->phone); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('picture')); ?>:</b>
+	<?php echo CHtml::encode($data->picture); ?>
+	<?php echo CHtml::image("/images/" . $data->picture); ?>
+	<br />
+	
+	
 	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('fax')); ?>:</b>
 	<?php echo CHtml::encode($data->fax); ?>

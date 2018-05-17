@@ -107,6 +107,7 @@ class State extends CActiveRecord
 				'upcomingelections' => array(self::HAS_MANY, 'Election', 'id_state','condition' => "type='AMLY' and edate>now()"),
 	        'districts' => array(self::HAS_MANY, 'District', 'id_state','order' => 'name'),
 			'placeNames' => array(self::HAS_MANY, 'PlaceNames', 'id_state'),
+	        'governer' => array(self::HAS_ONE, 'Officer', 'fkey_place','condition' => "desig=:desig",'params' => ['desig' =>  Officer::DESIG_GOVERNER]),
 			'results2009s' => array(self::HAS_MANY, 'Results2009', 'id_state'),
 			'sabhas' => array(self::HAS_MANY, 'Sabha', 'id_state'),
 			'wards' => array(self::HAS_MANY, 'Ward', 'id_state'),

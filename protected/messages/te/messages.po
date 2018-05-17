@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kono\n"
-"POT-Creation-Date: 2018-05-13 17:32+0530\n"
-"PO-Revision-Date: 2018-05-13 17:39+0530\n"
+"POT-Creation-Date: 2018-05-16 18:09+0530\n"
+"PO-Revision-Date: 2018-05-16 18:14+0530\n"
 "Last-Translator: Vikas Yadav <mevikas@gmail.com>\n"
 "Language-Team: Vikas\n"
 "Language: te\n"
@@ -41,27 +41,27 @@ msgstr "ಕನ್ನಡ್"
 msgid "{consti} #{eciref} - Contesting Candidates - {state} Assembly Elections {eyear}"
 msgstr "{consti} #{eciref} - అభ్యర్థులు పోటీ - {state} అసెంబ్లీ ఎన్నికలు {eyear}"
 
-#: controllers/StateController.php:56
+#: controllers/StateController.php:80
 msgid "{state} Assembly Elections {eyear} - Assembly Constituencies with Candidate details, Symbols and EVM Positions"
 msgstr "{state} అసెంబ్లీ ఎన్నికలు {eyear} - అభ్యర్థి వివరాలు, చిహ్నాలు మరియు EVM స్థానాలతో అసెంబ్లీ నియోజకవర్గాలు"
 
-#: controllers/StateController.php:97
+#: controllers/StateController.php:139
 msgid "{dist} District, {state}"
 msgstr "{దూరం} జిల్లా, {state}"
 
-#: controllers/StateController.php:117
+#: controllers/StateController.php:163
 msgid "{dist} Loksabha Constituency, {state}"
 msgstr "{దూరం} లోక్సభ నియోజకవర్గం, {state}"
 
-#: controllers/StateController.php:141
+#: controllers/StateController.php:191
 msgid "{dist} Assembly Constituency, {state}"
 msgstr "{దూరం} అసెంబ్లీ నియోజకవర్గం {state}"
 
-#: models/AssemblyPolygon.php:140
+#: models/AssemblyPolygon.php:141
 msgid "Assembly Number"
 msgstr "అసెంబ్లీ సంఖ్య"
 
-#: models/AssemblyPolygon.php:141
+#: models/AssemblyPolygon.php:142
 msgid "Polygon"
 msgstr "పాలిగన్"
 
@@ -191,7 +191,8 @@ msgstr "Gps ఎల్"
 msgid "Verification Code"
 msgstr "ధృవీకరణ కోడ్"
 
-#: models/ContactForm.php:51 views/site/_district.php:44 views/site/_lowerhouse.php:33 views/state/_chiefminister.php:50
+#: models/ContactForm.php:51 views/site/_district.php:44 views/site/_lowerhouse.php:33
+#: views/state/_chiefminister.php:50
 msgid "Email Address"
 msgstr "ఎ-మెయిల్ చిరునామ్మ"
 
@@ -231,11 +232,11 @@ msgstr "ఎన్నికల పద్ధతి"
 msgid "Id Mp"
 msgstr "Id Mp"
 
-#: models/LokSabha2014.php:95 views/site/_assembly.php:69 views/site/report.php:175
+#: models/LokSabha2014.php:95 views/site/_assembly.php:69 views/site/report.php:183
 msgid "Phones"
 msgstr "ఫోన్లు"
 
-#: models/LokSabha2014.php:96 views/site/report.php:182
+#: models/LokSabha2014.php:96 views/site/report.php:190
 msgid "Emails"
 msgstr "ఇమెయిళ్ళు"
 
@@ -292,7 +293,7 @@ msgstr "Wardno"
 msgid "Phone"
 msgstr "ఫోన్"
 
-#: models/MunicipalResults.php:66 views/site/report.php:189
+#: models/MunicipalResults.php:66 views/site/report.php:197
 msgid "Address"
 msgstr "చిరునామా"
 
@@ -573,7 +574,7 @@ msgstr "డిస్క్లైమర్"
 msgid "Panchayats"
 msgstr "పంచాయతీ"
 
-#: views/localgov/panchayat/_view.php:32 views/site/report.php:211
+#: views/localgov/panchayat/_view.php:32 views/site/report.php:219
 msgid "Villages"
 msgstr "గ్రామాలు"
 
@@ -636,6 +637,10 @@ msgstr "ఎన్నుకోబడిన MLA పేరు"
 #: views/site/_assembly.php:98
 msgid "Committees"
 msgstr "కమిటీలు"
+
+#: views/site/_assembly.php:109
+msgid "ELection Date"
+msgstr "ఎన్నికల తేదీ"
 
 #: views/site/_district.php:7
 msgid "{distname} Deputy Commissioner"
@@ -706,7 +711,8 @@ msgid "Contact Us"
 msgstr "మమ్మల్ని సంప్రదించండి:"
 
 #: views/site/contact.php:23
-msgid "If you have business inquiries or other questions, please fill out the following form to contact us. Thank you."
+msgid ""
+"If you have business inquiries or other questions, please fill out the following form to contact us. Thank you."
 msgstr "మీకు వ్యాపార విచారణలు లేదా ఇతర ప్రశ్నలు ఉంటే, మమ్మల్ని సంప్రదించడానికి క్రింది ఫారమ్ను పూరించండి. ధన్యవాదాలు."
 
 #: views/site/contact.php:36 views/site/login.php:25
@@ -782,26 +788,32 @@ msgid "A Poly"
 msgstr "ఎ పోలీ"
 
 #: views/site/report.php:168
+#, fuzzy
+#| msgid "Elections"
+msgid "Election"
+msgstr "ఎన్నికలు"
+
+#: views/site/report.php:176
 msgid "MLAs"
 msgstr "ఎమ్మెల్యేలు"
 
-#: views/site/report.php:196
+#: views/site/report.php:204
 msgid "Picture"
 msgstr "పిక్చర్"
 
-#: views/site/report.php:203
+#: views/site/report.php:211
 msgid "M Corp"
 msgstr "M కార్ప్"
 
-#: views/site/report.php:218
+#: views/site/report.php:226
 msgid "V Poly"
 msgstr "V పోలీ"
 
-#: views/site/report.php:225 views/state/_view_dt.php:10
+#: views/site/report.php:233 views/state/_view_dt.php:10
 msgid "Districts"
 msgstr "జిల్లాలు"
 
-#: views/site/report.php:235
+#: views/site/report.php:243
 msgid "DC"
 msgstr "డీసీ"
 

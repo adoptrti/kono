@@ -90,6 +90,7 @@ More than developing the software, we need to collect and cleanup data that we h
 1. Markets:
 
 ## Updates
+* **17-May-2018** - State governers with localization added (:pushpin: v 0.14)
 * **14-May-2018** - Telengana MLAs, MPs, Hyderabad MLCs, Telgu language
 * **10-May-2018** - Created election candidates listing for upcoming assembly election. Kannada language started. (:pushpin: v 0.13)
 * **7-May-2018** - Mapped upcoming Karnataka election 2018 to candidates list on myneta.info site. (:pushpin: v 0.12)

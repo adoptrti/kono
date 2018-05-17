@@ -11,9 +11,12 @@
  * @property string $updated
  * @property string $created
  * @property string $phone
+ * @property string $address
  * @property string $govoffice ('MCORP')
  * @property string $fax
  * @property string $email
+ * @property string $website
+ * @property string $picture
  */
 class Officer extends CActiveRecord
 {
@@ -92,10 +95,21 @@ class Officer extends CActiveRecord
     {
     	return array (
     			'CTimestampBehavior' => array (
-    					'class' => 'zii.behaviors.CTimestampBehavior',
-    					'createAttribute' => 'created',
-    					'updateAttribute' => 'updated'
+					'class' => 'zii.behaviors.CTimestampBehavior',
+					'createAttribute' => 'created',
+					'updateAttribute' => 'updated'
     			),
+    	        'ml' => array (
+	                'class' => 'application.behaviours.MultilingualBehavior',
+	                // 'langTableName' => 'projectLang',
+	                'langForeignKey' => 'id_officer',
+	                'langField' => 'id_lang',
+	                'localizedAttributes' => array (
+                        'name',
+	                ),
+	                'languages' => Yii::app ()->params ['translatedLanguages'],
+	                'defaultLanguage' => Yii::app ()->params ['defaultDBLanguage']
+    	        ),
     	);
     }
     
@@ -127,7 +141,7 @@ class Officer extends CActiveRecord
 		return array(
 			array('name', 'required'),
 			array('fkey_place', 'numerical', 'integerOnly'=>true),
-			array('name, phone, fax, email', 'length', 'max'=>255),
+			array('name, phone, fax, email, picture, address, website', 'length', 'max'=>255),
 			array('desig', 'length', 'max'=>25),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -163,6 +177,8 @@ class Officer extends CActiveRecord
 			'phone' => __('Phone'),
 			'fax' => __('Fax'),
 			'email' => __('Email'),
+		    'picture' => __('Picture'),
+	        'picture_url' => __('Picture URL'),
 		);
 	}
 
@@ -228,4 +244,43 @@ class Officer extends CActiveRecord
                 },[] );
 	    return $rows2;
 	}
+	
+	function savePicture($url)
+    {
+        $desig = $this->desig; 
+        if($this->desig != self::DESIG_GOVERNER)
+            throw new Exception("Have not learnt to save picture for " . $this->desig);
+        
+        $stateobj = $this->state;
+        switch($this->desig)
+        {
+            case self::DESIG_GOVERNER:
+                // make picture path
+                $outfile = strtolower($stateobj->slug . '_' . $desig . '.jpg');
+                $rp = realpath ( Yii::app ()->basePath . '/../images/pics' );
+                if(!is_writable($rp))
+                    throw new Exception("$rp is not writable");
+                
+                $p1 = $rp. '/' . $stateobj->slug;
+                $picture_path = $stateobj->slug . '/' . $outfile;
+                if (! file_exists ( $p1 ))
+                    mkdir ( $p1 );
+                $p2 = $p1 . '/' . $outfile;
+                // get url
+                echo "Getting... " . $url. "\n";
+                $img_data = @file_get_contents ( $url);
+                // save picture
+                if ($img_data)
+                {
+                    if(!file_put_contents ( $p2, $img_data ))
+                        throw new Exception("Could not write $p2");
+                }
+                else
+                    throw new Exception("Could not get $url");
+                $this->picture = $picture_path;
+                // update model
+                $this->update(['picture']);
+                break;
+        }
+    }
 }

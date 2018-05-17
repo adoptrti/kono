@@ -63,6 +63,11 @@ if (! empty ( $govdata ['assembly'] ) || ! empty ( $govdata ['amly_poly'] ))
             'poly' => $govdata ['amly_poly'] 
     ] );
 
+if (! empty ( $govdata ['governer'] ) )
+    $this->renderPartial ( '_governer', [
+            'data' => $govdata ['governer'],
+    ] );
+        
 if (! empty ( $govdata ['mp'] ))
     $this->renderPartial ( '_lowerhouse', [ 
             'data' => $govdata ['mp'],
