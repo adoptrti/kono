@@ -97,6 +97,7 @@ class District extends CActiveRecord
 	        'state' => array(self::BELONGS_TO, 'State', 'id_state'),
 	        'blocks' => array(self::HAS_MANY, 'Block', 'id_district','order' => 'name'),
 	        'polygons' => array(self::HAS_MANY, 'AssemblyPolygon', 'id_district','order' => 'name'),
+	        'division' => array(self::BELONGS_TO, 'District', 'id_district_division_hq'),
 		);
 	}
 

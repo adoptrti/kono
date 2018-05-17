@@ -18,11 +18,18 @@ if (isset ( $govdata ['amly_poly'] ))
                     'name' => $govdata ['amly_poly']->dist_name,
                     'id_state' => $govdata ['amly_poly']->id_state
             ] );
-    
+    if (!$dist)
+        $dist = District::model ()->findByAttributes (
+                [
+                        'name' => $rawdata[0]->region,
+                        'id_state' => $govdata ['amly_poly']->id_state
+                ] );
     if ($dist)
     {
-        $govdata['dist_officer'] = Officer::model()->with(['district'])->together()->findByAttributes(['fkey_place' => $dist->id_district]);
+        $govdata['dist_officer'] = Officer::model()->with(['district'])->together()->findByAttributes(['fkey_place' => $dist->id_district,'desig' => Officer::DESIG_DEPUTYCOMMISSIONER]);
     }
+    if(isset($dist->division))
+        $govdata['div_officer'] = Officer::model()->with(['district'])->together()->findByAttributes(['fkey_place' => $dist->division->id_district,'desig' => Officer::DESIG_DIVCOMMISSIONER]);
 }   
 else if (isset ( $govdata['village']->village))
 {
@@ -43,7 +50,12 @@ if (! empty ( $govdata['dist_officer']))
     		'rawdata' => $rawdata,
     ] );
     
-
+if (! empty ( $govdata['div_officer']))
+    $this->renderPartial ( '_district', [
+            'data' => $govdata ['div_officer'],
+            'rawdata' => $rawdata,
+    ] );
+        
 if (! empty ( $govdata ['ward'] ))
     $this->renderPartial ( '_ward', [ 
             'data' => $govdata ['ward'],

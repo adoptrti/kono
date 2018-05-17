@@ -1,14 +1,29 @@
 <?php
 /* @var $this SiteController */
 /* @var $data Officer */
+
+switch($data->desig)
+{
+    case Officer::DESIG_DEPUTYCOMMISSIONER:
+        $label =  __ ( 'Deputy Commissioner' );
+        $label2 = __('{distname} Deputy Commissioner',['{distname}' => strtolower($data->district->name)]);
+        break;
+    case Officer::DESIG_DIVCOMMISSIONER:
+        $label =  __ ( 'Divisional Commissioner' );
+        $label2 = __('{divname} Divisional Commissioner',['{divname}' => strtolower($data->district->division->name)]);
+        break;
+    default:
+        $label =  __ ( 'N/A' );
+        break;
+}
 ?>
 
 <div class="view district">
-    <h2 class="acname"><?=__('{distname} Deputy Commissioner',['{distname}' => strtolower($data->district->name)])?></h2>
+    <h2 class="acname"><?=$label2?></h2>
 
     <?php
     $att = [array ( // related city displayed as a link
-            'label' => __ ( 'Deputy Commissioner' ),
+            'label' => $label,
             'name' => 'name',
     )];
     

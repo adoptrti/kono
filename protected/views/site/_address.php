@@ -89,7 +89,8 @@
                                     'cssClass' => 'w3w',
                                     'value' => function($data)
                                     {
-                                        return CHtml::link(CHtml::image('/images/what3words-rsn.svg','what3words unique location coordinates',['height' => 17]) . ' ' . $data->w3w->words,$data->w3w->map,['class' => 'w3w']);
+                                        if(isset($data->w3w->words))
+                                            return CHtml::link(CHtml::image('/images/what3words-rsn.svg','what3words unique location coordinates',['height' => 17]) . ' ' . $data->w3w->words,$data->w3w->map,['class' => 'w3w']);
                                     }
                             ],
                             
