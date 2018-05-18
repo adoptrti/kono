@@ -231,7 +231,13 @@ class Officer extends CActiveRecord
 	static function repOfficers()
 	{
 	    $rows = Yii::app ()->db->createCommand ( "
-            SELECT s.id_state,s.name,count(d.id_district) as ctr1,count(o.id_officer) as ctr2,count(o2.id_officer) as ctr3 FROM states s 
+            SELECT s.id_state
+                    ,s.name
+                    ,count(d.id_district) as ctr1
+                    ,count(o.id_officer) as ctr2
+                    ,count(o2.id_officer) as ctr3
+                    ,count(distinct d. 	id_district_division_hq) as ctr4
+             FROM states s 
             left join lb_district d on d.id_state=s.id_state
             left join officer o on d.id_district=o.fkey_place and o.desig=:desig1
             left join officer o2 on d.id_district=o2.fkey_place and o2.desig=:desig2

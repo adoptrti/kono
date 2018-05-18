@@ -165,7 +165,8 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                                 }
                         ],
                         [
-                                'header' => __('Election'),
+                                'header' => __('E*'),
+                                'headerHtmlOptions' => ['title' => __('Election Year')],
                                 'value' => function ($data)
                                 {
                                     $y = date('Y',strtotime($data [12]));
@@ -180,35 +181,40 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                                 }
                         ],
                         [
-                                'header' => __('Phones'),
+                                'header' => __('P*'),
+                                'headerHtmlOptions' => ['title' => __('Phone Numbers')],
                                 'value' => function ($data)
                                 {
                                     return $data [3];
                         }
                         ],
                         [
-                                'header' => __('Emails'),
+                                'header' => __('E*'),
+                                'headerHtmlOptions' => ['title' => __('Email Address')],
                                 'value' => function ($data)
                                 {
                                     return $data [4];
                         }
                         ],
                         [
-                                'header' => __('Address'),
+                                'header' => __('A*'),
+                                'headerHtmlOptions' => ['title' => __('Office/Residence Address')],                                
                                 'value' => function ($data)
                                 {
                                     return $data [5];
                         }
                         ],
                         [
-                                'header' => __('Picture'),
+                                'header' => __('P*'),
+                                'headerHtmlOptions' => ['title' => __('Picture')],                                
                                 'value' => function ($data)
                                 {
                                     return $data [6];
                         }
                         ],
                         [
-                                'header' => __ ( 'M Corp' ),
+                                'header' => __('M*'),
+                                'headerHtmlOptions' => ['title' => __('Municipal Bodies')],
                                 'value' => function ($data)
                                 {
                                     if(!empty($data[8]))
@@ -216,7 +222,8 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                                 }
                         ],
                         [
-                                'header' => __('Villages'),
+                                'header' => __('V*'),
+                                'headerHtmlOptions' => ['title' => __('Villages')],
                                 'value' => function ($data)
                                 {
                                     return $data[10];
@@ -230,17 +237,19 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                                 }
                         ],
                         [
-                                'header' => __('Districts'),
+                                'header' => __('D*'),
+                                'headerHtmlOptions' => ['title' => __('Administrative Divisions and Districts')],
                                 'value' => function ($data) use ($ias)
                                 {
                                     $id_state = $data[11];
                                     
                                     if(isset($ias[$id_state]['ctr1']))
-                                        return $ias[$id_state]['ctr1'];
+                                        return $ias[$id_state]['ctr1'] . '/' . $ias[$id_state]['ctr4'];
                                 }
                         ],
                         [
-                                'header' => __('DC'),
+                                'header' => __('C*'),
+                                'headerHtmlOptions' => ['title' => __('Deputy Commissioners and Divisional Commissioners')],
                                 'value' => function ($data) use ($ias)
                                 {
                                     $id_state = $data[11];
