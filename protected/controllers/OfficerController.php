@@ -63,7 +63,7 @@ class OfficerController extends Controller
 	public function actionCreate($id_state,$id_district=0,$desig = null)
 	{
 		$model=new Officer;
-
+        $this->pageTitle = __('Create Officer');
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -102,7 +102,7 @@ class OfficerController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-		
+		$this->pageTitle = __('Update Officer');
 		    
 
 		// Uncomment the following line if AJAX validation is needed

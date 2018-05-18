@@ -245,7 +245,7 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                                 {
                                     $id_state = $data[11];
                                     if(isset($ias[$id_state]['ctr2']))
-                                        return $ias[$id_state]['ctr2'];
+                                        return $ias[$id_state]['ctr2'] . "/" . $ias[$id_state]['ctr3'];
                                 }
                         ],
                         /*[

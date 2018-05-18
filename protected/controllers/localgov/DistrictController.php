@@ -1,5 +1,7 @@
 <?php
 
+use Prophecy\Doubler\ClassPatch\DisableConstructorPatch;
+
 class DistrictController extends Controller
 {
 	/**
@@ -32,7 +34,7 @@ class DistrictController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','creatediv'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -80,6 +82,66 @@ class DistrictController extends Controller
 	}
 
 	/**
+	 * Creates a new model.
+	 * If creation is successful, the browser will be redirected to the 'view' page.
+	 */
+	public function actionCreatediv($id_state = 0)
+	{
+	    $model=new District;
+	    
+	    // Uncomment the following line if AJAX validation is needed
+	    // $this->performAjaxValidation($model);
+	    
+	    if(isset($_POST['District']))
+	    {
+	        $hq_id = 0;
+	        $objs = [];
+	        foreach($_POST['id_district'] as $id)
+	        {
+	            $dist = District::model()->findByPk($id);
+	            $objs[$id] = $dist;
+	            #echo "distname=" . $dist->name . " != " . $_POST['District']['name'] . "<br/>";
+	            if(strtolower(trim($dist->name)) == strtolower(trim($_POST['District']['name'])))
+	                $hq_id = $id;
+	        }
+	        
+	        
+	        if(!$hq_id)
+	        {
+	            $dist = new District();
+	            $dist->name = $_POST['District']['name'];
+	            $dist->id_state = $id_state;
+	            $dist->id_district_division_hq = $id_state;
+	            
+	            if(!$dist->save())
+	            {	                
+	                print_r($dist->getErrors());
+	                die("Could not save new HQ {$dist->name}");
+	            }
+	            $hq_id = $dist->id_district_division_hq  = $dist->id_district;
+	        }
+	        
+	        foreach($objs as $id => $dist)
+	        {
+	            $dist->id_district_division_hq = $hq_id;
+	            $dist->update(['id_district_division_hq']);
+	        }
+	        $this->redirect(array('view','id'=>$hq_id));
+	        return;
+	    }
+	    
+	    $state = 0;
+	    if($id_state)
+	        $state = State::model()->findByPk($id_state);
+	    
+	    $this->render('creatediv',array(
+	            'model'=>$model,
+	            'id_state' => $id_state,
+	            'state' => $state
+	    ));
+	}
+	
+    /**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated

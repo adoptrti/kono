@@ -38,6 +38,12 @@ $this->widget ( 'zii.widgets.CMenu',array (
                                     )
                             ),
                             array (
+                                    'label' => __ ( 'Districts' ),
+                                    'url' => array (
+                                            '/localgov/district'
+                                    )
+                            ),
+                            array (
                                     'label' => __ ( 'Data Report' ),
                                     'url' => array (
                                             '/site/report'

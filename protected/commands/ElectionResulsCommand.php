@@ -141,14 +141,15 @@ class ElectionResulsCommand extends CConsoleCommand
         }
         fclose ( $F );
     }
-    /* Template:
-     *  Sno Division/District	Name	STD	Phone	Residence	Fax
-        1	Indore	Shri P.K. Parashar 	731	"24351112335222 "	"27008882535113 "	2539552
-        	Indore	Shri Akash Tripathi	731	"2449111 2449112 "	2700111	2449114
-            Dhar	Shri C.B. Singh 	7292	234702	234701	234711
-
+    /*
+     * Template:
+     * Sno Division/District Name STD Phone Residence Fax
+     * 1 Indore Shri P.K. Parashar 731 "24351112335222 " "27008882535113 " 2539552
+     * Indore Shri Akash Tripathi 731 "2449111 2449112 " 2700111 2449114
+     * Dhar Shri C.B. Singh  7292 234702 234701 234711
+     *
      */
-    public function actionDistrictCommissioners($id_state,$csv)
+    public function actionDistrictCommissioners($id_state, $csv)
     {
         global $very_bad_global_variable_I_KNOW_doRelations;
         $very_bad_global_variable_I_KNOW_doRelations = false;
@@ -159,31 +160,31 @@ class ElectionResulsCommand extends CConsoleCommand
         if (! $state)
             die ( "State id $id_state not found!" );
         
-        $districts = [];
-        $districts_names = [];
-        $div_ids = [];
-        $div_names = [];
-        $districts_obj = [];
-        $dist_divs = [];
+        $districts = [ ];
+        $districts_names = [ ];
+        $div_ids = [ ];
+        $div_names = [ ];
+        $districts_obj = [ ];
+        $dist_divs = [ ];
         $districts1 = $state->districts;
-        foreach($districts1 as $d)
+        foreach ( $districts1 as $d )
         {
-            $districts[$d->id_district] = trim(strtolower($d->name));
-            $districts_obj[$d->id_district] = $d;
-            $districts_names[trim(strtolower($d->name))] = $d->id_district;
-            if(!empty($d->id_district_division_hq))
+            $districts [$d->id_district] = trim ( strtolower ( $d->name ) );
+            $districts_obj [$d->id_district] = $d;
+            $districts_names [trim ( strtolower ( $d->name ) )] = $d->id_district;
+            if (! empty ( $d->id_district_division_hq ))
             {
-                $div_ids[$d->id_district_division_hq][] = $d->id_district;
-                $dist_divs[$d->id_district] = $d->id_district_division_hq;
+                $div_ids [$d->id_district_division_hq] [] = $d->id_district;
+                $dist_divs [$d->id_district] = $d->id_district_division_hq;
             }
         }
         
-        foreach($div_ids as $id => $distids)
+        foreach ( $div_ids as $id => $distids )
         {
-            $div_names[ $districts[$id] ] = $distids;
+            $div_names [$districts [$id]] = $distids;
         }
         
-        print_r($districts_names);
+        print_r ( $districts_names );
         
         $lctr = 0;
         $F = fopen ( $csv, "r" );
@@ -194,63 +195,61 @@ class ElectionResulsCommand extends CConsoleCommand
             $row = fgetcsv ( $F );
             if (! $row || count ( $row ) != 7)
                 die ( "line:$lctr, Row is not seven" );
-            if ($lctr == 1)#headers
+            if ($lctr == 1) // headers
                 continue;
             
-            list ( $sno, $dt_name, $name,$std,$phone,$phone2,$fax ) = $row;
+            list ( $sno, $dt_name, $name, $std, $phone, $phone2, $fax ) = $row;
             
-            $dt_name =  trim(strtolower($dt_name));
+            $dt_name = trim ( strtolower ( $dt_name ) );
             
-            $dist_id = $districts_names[$dt_name];
+            $dist_id = $districts_names [$dt_name];
             
-            if(!empty($sno))
+            if (! empty ( $sno ))
             {
-                $current_div_id = $districts_names[$dt_name];
+                $current_div_id = $districts_names [$dt_name];
                 
-                $off = Officer::model()->findByAttributes([
+                $off = Officer::model ()->findByAttributes ( [ 
                         'fkey_place' => $dist_id,
-                        'desig' => Officer::DESIG_DIVCOMMISSIONER
-                ]);
-                if(!$off)
+                        'desig' => Officer::DESIG_DIVCOMMISSIONER 
+                ] );
+                if (! $off)
                 {
-                    $off = new Officer();
-                    $off->desig =  Officer::DESIG_DIVCOMMISSIONER;
+                    $off = new Officer ();
+                    $off->desig = Officer::DESIG_DIVCOMMISSIONER;
                     $off->fkey_place = $dist_id;
                 }
-                
-            }
-            else
+            } else
             {
-                $off = Officer::model()->findByAttributes([
+                $off = Officer::model ()->findByAttributes ( [ 
                         'fkey_place' => $dist_id,
-                        'desig' => Officer::DESIG_DEPUTYCOMMISSIONER
-                ]);
-                if(!$off)
+                        'desig' => Officer::DESIG_DEPUTYCOMMISSIONER 
+                ] );
+                if (! $off)
                 {
-                    $off = new Officer();
-                    $off->desig =  Officer::DESIG_DEPUTYCOMMISSIONER;
+                    $off = new Officer ();
+                    $off->desig = Officer::DESIG_DEPUTYCOMMISSIONER;
                     $off->fkey_place = $dist_id;
                 }
-                
             }
-            //if current dist is not saved in a div
-            if(empty($dist_divs[$dist_id]))
+            // if current dist is not saved in a div
+            if (empty ( $dist_divs [$dist_id] ))
             {
-                $dist = District::model()->updateByPk($dist_id, ['id_district_division_hq' => $current_div_id]);    
-            }
-            else if($dist_id != 714 && $dist_id != 715 && $dist_divs[$dist_id] != $current_div_id)
-                throw new Exception("dist $dist_id does not have div id as $current_div_id");
+                $dist = District::model ()->updateByPk ( $dist_id, [ 
+                        'id_district_division_hq' => $current_div_id 
+                ] );
+            } else if ($dist_id != 714 && $dist_id != 715 && $dist_divs [$dist_id] != $current_div_id)
+                throw new Exception ( "dist $dist_id does not have div id as $current_div_id" );
             
             $off->name = $name;
             $off->phone = $phone . "," . $phone2;
             $off->fax = $fax;
-            if(!$off->save())
+            if (! $off->save ())
             {
-                print_r($off->getErrors());
-                die("Could not save officer data");
+                print_r ( $off->getErrors () );
+                die ( "Could not save officer data" );
             }
-                        
         }
         fclose ( $F );
     }
+        
 }

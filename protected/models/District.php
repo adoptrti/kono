@@ -32,6 +32,16 @@ class District extends CActiveRecord
 		return 'lb_district';
 	}
 	
+	public function NoDivision()
+	{
+	    $this->getDbCriteria ()->mergeWith (
+	            array (
+	                    'condition' => 'id_district_division_hq is null or id_district_division_hq = 0',
+	            ) );
+	    return $this;
+	}
+	
+	
 	public function bystate($id_state)
 	{
 	    $this->getDbCriteria ()->mergeWith (
@@ -96,6 +106,7 @@ class District extends CActiveRecord
 		return array(
 	        'state' => array(self::BELONGS_TO, 'State', 'id_state'),
 	        'blocks' => array(self::HAS_MANY, 'Block', 'id_district','order' => 'name'),
+	        'districts' => array(self::HAS_MANY, 'District', 'id_district_division_hq','order' => 'name'),
 	        'polygons' => array(self::HAS_MANY, 'AssemblyPolygon', 'id_district','order' => 'name'),
 	        'division' => array(self::BELONGS_TO, 'District', 'id_district_division_hq'),
 		);

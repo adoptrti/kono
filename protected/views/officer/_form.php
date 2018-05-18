@@ -47,7 +47,8 @@ if(isset($model->id_officer))
 		<?php		
 		switch($model->desig)
 		{
-		    case Officer::DESIG_DISTCOLLECTOR:
+		    case Officer::DESIG_DEPUTYCOMMISSIONER:
+		    case Officer::DESIG_DIVCOMMISSIONER:
 		        $list= CHtml::listData(District::model()->bystate($id_state)->findAll(), 'id_district', 'name');
 		        break;
 		   case Officer::DESIG_GOVERNER:
@@ -63,7 +64,8 @@ if(isset($model->id_officer))
 	<div class="row">
 		<?php echo $form->labelEx($model,'desig'); ?>
 		<?php echo $form->dropDownList($model, 'desig', [
-		        Officer::DESIG_DISTCOLLECTOR => __('Deputy Commissioner of a District (aka Collector)'),
+		        Officer::DESIG_DEPUTYCOMMISSIONER => __('Deputy Commissioner of a District (aka Collector)'),
+		        Officer::DESIG_DIVCOMMISSIONER => __('Divisional Commissioner of a Division'),
 		        Officer::DESIG_CHIEFMINISTER => __('Chief Minister'),
 		        Officer::DESIG_DEPUTYCHIEFMINISTER => __('Deputy Chief Minister'),
 		        Officer::DESIG_GOVERNER => __('State Governer'),

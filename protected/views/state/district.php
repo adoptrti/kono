@@ -94,6 +94,31 @@ echo $this->renderPartial('_assemblies',['model' => $model]);
 echo $this->renderPartial('_towns',['model' => $model]);
 echo $this->renderPartial('_blocks',['model' => $model]);
 
+$dist = $model;
+$govdata ['dist_officer'] = Officer::model ()->with ( [ 
+        'district' 
+] )->together ()->findByAttributes ( [ 
+        'fkey_place' => $dist->id_district,
+        'desig' => Officer::DESIG_DEPUTYCOMMISSIONER 
+] );
+if (isset ( $dist->division ))
+    $govdata ['div_officer'] = Officer::model ()->with ( [ 
+            'district' 
+    ] )->together ()->findByAttributes ( [ 
+            'fkey_place' => $dist->division->id_district,
+            'desig' => Officer::DESIG_DIVCOMMISSIONER 
+    ] );
+if (! empty ( $govdata ['dist_officer'] ))
+    $this->renderPartial ( '//site/_district', [ 
+            'data' => $govdata ['dist_officer'], 
+    ] );
+
+if (! empty ( $govdata ['div_officer'] ))
+    $this->renderPartial ( '//site/_district', [ 
+            'data' => $govdata ['div_officer'], 
+    ] );
+            
+
 if(isset($model->district) && Yii::app()->user->checkAccess('ADD_DEPUTY_COMMISSIONER'))
 {
     echo $this->renderPartial('_districteditor',['district' => $model->district]);        

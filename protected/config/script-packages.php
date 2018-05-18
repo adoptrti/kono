@@ -35,5 +35,18 @@ return array (
                         'jquery',
                         'font-awesome'
                 ]
-        ],                
+        ],
+        'selectstate' => [
+                'baseCssUrl' => '/css',
+                'css' => [
+                        'fastselect.css'
+                ],
+                'js' => [
+                        'fastselect.standalone.js',
+                        'selectstate.js'
+                ],
+                'depends' => [
+                        'jquery',
+                ]
+        ],
 );

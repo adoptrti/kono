@@ -8,6 +8,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Create District', 'url'=>array('create')),
+    array('label'=>'Create Division', 'url'=>array('creatediv')),
 	array('label'=>'Manage District', 'url'=>array('admin')),
 );
 ?>

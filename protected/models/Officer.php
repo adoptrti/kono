@@ -19,8 +19,7 @@
  * @property string $picture
  */
 class Officer extends CActiveRecord
-{
-    const DESIG_DISTCOLLECTOR = 'DISTCOLLECTOR';
+{    
     const DESIG_CHIEFMINISTER= 'CHIEFMINISTER';
     const DESIG_DEPUTYCHIEFMINISTER= 'DEPUTYCHIEFMINISTER';
     const DESIG_GOVERNER= 'GOVERNER';
@@ -127,7 +126,7 @@ class Officer extends CActiveRecord
 
     public function beforeSave()
     {		
-        if (Yii::app()->id == 'app-frontend' && $this->desig == 'DISTCOLLECTOR')
+        if (Yii::app()->id == 'app-frontend' && $this->desig == self::DESIG_DEPUTYCOMMISSIONER)
             if (! Yii::app ()->user->checkAccess ( 'ADD_DEPUTY_COMMISSIONER' ))
                 return false;
             
@@ -231,11 +230,15 @@ class Officer extends CActiveRecord
 	
 	static function repOfficers()
 	{
-	    $rows = Yii::app()->db->createCommand("
-            SELECT s.id_state,s.name,count(d.id_district) as ctr1,count(o.id_officer) as ctr2 FROM states s 
+	    $rows = Yii::app ()->db->createCommand ( "
+            SELECT s.id_state,s.name,count(d.id_district) as ctr1,count(o.id_officer) as ctr2,count(o2.id_officer) as ctr3 FROM states s 
             left join lb_district d on d.id_state=s.id_state
-            left join officer o on d.id_district=o.fkey_place
-            group by s.id_state")->queryAll();
+            left join officer o on d.id_district=o.fkey_place and o.desig=:desig1
+            left join officer o2 on d.id_district=o2.fkey_place and o2.desig=:desig2
+            group by s.id_state" )->queryAll ( true, [ 
+                'desig1' => self::DESIG_DEPUTYCOMMISSIONER,
+                'desig2' => self::DESIG_DIVCOMMISSIONER 
+        ] );
 	    
 	    $init = [];
 	    $rows2=array_reduce ( $rows, 
