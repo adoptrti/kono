@@ -25,7 +25,14 @@ $this->menu=array(
 		'id_district',
 		'name',
 		'updated',
-		'id_state',
+		[
+		  'name' => 'id_state',
+	        'type' => 'raw',
+          'value' => function($data)
+		        {
+		            return CHtml::link($data->state->name,['/state/view','id' => $data->id_state]);
+                }
+        ],
 	),
 )); 
 
