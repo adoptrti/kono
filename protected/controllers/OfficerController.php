@@ -101,7 +101,7 @@ class OfficerController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+		$model=$this->loadModel($id,true);
 		$this->pageTitle = __('Update Officer');
 		    
 
@@ -171,9 +171,12 @@ class OfficerController extends Controller
 	 * @return Officer the loaded model
 	 * @throws CHttpException
 	 */
-	public function loadModel($id)
+	public function loadModel($id,$ml = false)
 	{
-		$model=Officer::model()->findByPk($id);
+	    if($ml)
+	        $model=Officer::model()->multilang()->findByPk($id);
+		else 
+		    $model=Officer::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

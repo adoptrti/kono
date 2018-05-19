@@ -29,7 +29,7 @@ return array (
                         'bootstrap.min.css',
                 ],
                 'js' => [
-                        'bootstrap.min.js',
+                        'bootstrap.bundle.min.js',
                 ],
                 'depends' => [
                         'jquery',

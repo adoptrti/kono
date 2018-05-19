@@ -6,8 +6,8 @@ foreach($model->mc_constituencies as $mc)
 {
     echo CHtml::tag('li',[],CHtml::link ( $mc->name,
             [
-                    'town/index',
-                    'id' => $mc->id_place
+                    'state/town',
+                    'id_place' => $mc->id_place
             ]));
 }
 ?>

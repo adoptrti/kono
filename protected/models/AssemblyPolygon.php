@@ -378,7 +378,10 @@ class AssemblyPolygon extends CActiveRecord
     		$govdata['assembly'] = $con3;
     		if(isset($con3->constituency->state->governer))
     		    $govdata['governer'] = $con3->constituency->state->governer;    		
+    	    if(isset($con3->constituency->state->chiefminister))
+    	        $govdata['chiefminister'] = $con3->constituency->state->chiefminister;
     	}
+    	
     }
     
     function newOfficer($ss,$fkey_place = '')

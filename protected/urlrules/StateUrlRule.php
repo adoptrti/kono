@@ -201,7 +201,7 @@ class StateUrlRule extends CBaseUrlRule
             return false;
                 
         return $this->prefix . $lang . '/' . $url_path. '/' . $qs;
-    }
+    }      
     
     public function handle_state_assembly($manager, $route, $params, $ampersand)
     {
@@ -547,6 +547,51 @@ class StateUrlRule extends CBaseUrlRule
                     return $this->prefix2 . "state/district";
                 }
                 else
+                    return false;
+            }
+        }
+        return false;
+    }
+    
+    public function parse_district_town($manager, $request, $pathInfo, $rawPathInfo)
+    {
+        if (preg_match ( '/^(?<lang>\w\w)\/(?<stateslug>[\w-]*)\/(?<dtslug>[\(\)\w-]*)\/(?<townslug>[\(\)\w-]*)\/?$/', $pathInfo, $matches ))
+        {
+            if (isset ( $matches ['stateslug'] ) && isset ( $matches ['dtslug'] ) && isset ( $matches ['townslug'] ))
+            {
+                $dtslug = $matches ['dtslug'];
+                $stateslug = $matches ['stateslug'];
+                $townslug = $matches ['townslug'];
+                if ($stateslug == 'loksabha')
+                    return false;
+                
+                $stateobj = State::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->find ( 'slug=:cc', array (
+                        ':cc' => $stateslug 
+                ) );
+                $dtobj = Town::model ()->findByAttributes ( [ 
+                        'id_state' => $stateobj->id_state,
+                        'slug' => $dtslug,
+                        'sdt_code' => 0,
+                        'tv_code' => 0 
+                ] );
+                
+                if (isset ( $stateobj ) && isset ( $dtobj ))
+                    $townobj = Town::model ()->findByAttributes ( [
+                        'id_state' => $stateobj->id_state,
+                        'id_district' => $dtobj->id_district,
+                        'slug' => $townslug,
+                        'sdt_code' => 0,
+                        'tv_code' => 0
+                ] );
+                
+                
+                
+                if (isset ( $stateobj ) && isset ( $dtobj ) && isset($townobj))
+                {
+                    $_GET ['id'] = $townobj->id_place;
+                    $_GET ['lang'] = $matches ['lang'];
+                    return $this->prefix2 . "state/town";
+                } else
                     return false;
             }
         }

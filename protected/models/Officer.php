@@ -19,10 +19,22 @@
  * @property string $picture
  */
 class Officer extends CActiveRecord
-{    
+{   
+    //state
+    const DESIG_GOVERNER= 'GOVERNER';
     const DESIG_CHIEFMINISTER= 'CHIEFMINISTER';
     const DESIG_DEPUTYCHIEFMINISTER= 'DEPUTYCHIEFMINISTER';
-    const DESIG_GOVERNER= 'GOVERNER';
+    //district
+    const DESIG_DEPUTYCOMMISSIONER = 'DEPUTYCOMMISSIONER';
+    const DESIG_DIVCOMMISSIONER = 'DIVCOMMISSIONER';
+    //municipal
+    const DESIG_JOINTCOMMISSIONER = 'JOINTCOMMISSIONER';
+    const DESIG_ASSTCOMMISSIONER = 'ASSTCOMMISSIONER';
+    const DESIG_EXECENGINEER = 'EXECENGINEER';
+    const DESIG_ASSTEXECENGINEER= 'ASSTEXECENGINEER';
+    const DESIG_ASSTTOWNPLANNER = 'ASSTTOWNPLANNER';
+    const DESIG_ASSTREVENUEOFF = 'ASSTREVENUEOFF';
+    const DESIG_ZONALSANITORYOFF = 'ZONALSANITORYOFF';
     //ward
     const DESIG_ASSTENGINEER = 'ASSTENGINEER';
     const DESIG_WATERSUPPLYOFF = 'WATERSUPPLYOFF';
@@ -31,18 +43,7 @@ class Officer extends CActiveRecord
     const DESIG_HEALTHOFFICER = 'HEALTHOFFICER';
     const DESIG_DEPUTYHEALTHOFFICER = 'DEPUTYHEALTHOFFICER';
     const DESIG_CHIEFENGINEER = 'CHIEFENGINEER';
-    
-    const DESIG_DEPUTYCOMMISSIONER = 'DEPUTYCOMMISSIONER';
-    const DESIG_DIVCOMMISSIONER = 'DIVCOMMISSIONER';
-    
-    const DESIG_JOINTCOMMISSIONER = 'JOINTCOMMISSIONER';
-    const DESIG_ASSTCOMMISSIONER = 'ASSTCOMMISSIONER';
-    const DESIG_EXECENGINEER = 'EXECENGINEER';
-    const DESIG_ASSTEXECENGINEER= 'ASSTEXECENGINEER';
-    const DESIG_ASSTTOWNPLANNER = 'ASSTTOWNPLANNER';
-    const DESIG_ASSTREVENUEOFF = 'ASSTREVENUEOFF';
-    const DESIG_ZONALSANITORYOFF = 'ZONALSANITORYOFF';
-	/*
+    /*
      * static $designstr = [
     		//duplicates
     		Officer::DESIG_CHIEFENGINEER => __('Chief Engineer (I/C)'),
@@ -260,39 +261,45 @@ class Officer extends CActiveRecord
 	function savePicture($url)
     {
         $desig = $this->desig; 
-        if($this->desig != self::DESIG_GOVERNER)
-            throw new Exception("Have not learnt to save picture for " . $this->desig);
         
         $stateobj = $this->state;
+        $outfile = '';
         switch($this->desig)
         {
             case self::DESIG_GOVERNER:
                 // make picture path
                 $outfile = strtolower($stateobj->slug . '_' . $desig . '.jpg');
-                $rp = realpath ( Yii::app ()->basePath . '/../images/pics' );
-                if(!is_writable($rp))
-                    throw new Exception("$rp is not writable");
-                
-                $p1 = $rp. '/' . $stateobj->slug;
-                $picture_path = $stateobj->slug . '/' . $outfile;
-                if (! file_exists ( $p1 ))
-                    mkdir ( $p1 );
-                $p2 = $p1 . '/' . $outfile;
-                // get url
-                echo "Getting... " . $url. "\n";
-                $img_data = @file_get_contents ( $url);
-                // save picture
-                if ($img_data)
-                {
-                    if(!file_put_contents ( $p2, $img_data ))
-                        throw new Exception("Could not write $p2");
-                }
-                else
-                    throw new Exception("Could not get $url");
-                $this->picture = $picture_path;
-                // update model
-                $this->update(['picture']);
+                break;  
+            case self::DESIG_CHIEFMINISTER:
+                $outfile = strtolower($stateobj->slug . '_' . $desig . '.jpg');
                 break;
         }
+        if(empty($outfile))
+            throw new Exception("Have not learnt to save picture for " . $this->desig);
+                
+        $rp = realpath ( Yii::app ()->basePath . '/../images/pics' );
+        if(!is_writable($rp))
+            throw new Exception("$rp is not writable");
+        
+        $p1 = $rp. '/' . $stateobj->slug;
+        $picture_path = $stateobj->slug . '/' . $outfile;
+        if (! file_exists ( $p1 ))
+            mkdir ( $p1 );
+        $p2 = $p1 . '/' . $outfile;
+        // get url
+        echo "Getting... " . $url. "\n";
+        $img_data = @file_get_contents ( $url);
+        // save picture
+        if ($img_data)
+        {
+            if(!file_put_contents ( $p2, $img_data ))
+                throw new Exception("Could not write $p2");
+        }
+        else
+            throw new Exception("Could not get $url");
+        $this->picture = $picture_path;
+        // update model
+        $this->update(['picture']);
+                
     }
 }

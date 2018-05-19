@@ -37,7 +37,8 @@ class StateController extends Controller
                                 'district',
                                 'loksabha',
                                 'assembly',
-                                'election' 
+                                'election' ,
+                                'town',
                         ),
                         'users' => array (
                                 '*' 
@@ -143,6 +144,30 @@ class StateController extends Controller
         $this->render ( 'district', array (
                 'model' => $town 
         ) );
+    }
+    
+    /**
+     * Displays a particular model.
+     *
+     * @param integer $id
+     *            the ID of the model to be displayed
+     */
+    public function actionTown($id)
+    {
+        $this->layout = '//layouts/main';
+        
+        $town = Town::model ()->findByPk ( $id );
+        if (! $town)
+            return false;
+            
+            $this->pageTitle = __ ( '{{0}}, {{1}} District, {{2}}', [
+                    '{{0}}' => ucwords ( $town->name ),
+                    '{{1}}' => ucwords ( $town->district->name ),
+                    '{{2}}' => ucwords ( strtolower ( $town->state->name ) )
+            ] );
+            $this->render ( 'town', array (
+                    'model' => $town
+            ) );
     }
     
     /**

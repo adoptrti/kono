@@ -1,10 +1,9 @@
 <?php
-
 function updateActionPuducherry()
 {
     $id_election = 28;
-    $id_state = 41; //puducherry
-    $ST_CODE = 34; //puducherry
+    $id_state = 41; // puducherry
+    $ST_CODE = 34; // puducherry
     
     $stateobj = State::model ()->findByPk ( $id_state );
     $eleobj = Election::model ()->findByPk ( $id_election );
@@ -14,6 +13,10 @@ function updateActionPuducherry()
     $urls = [ 
             '' 
     ];
+    
+    $stateobj = State::model()->findByPk($id_state);
+    $eleobj = Election::model()->findByPk($id_election);
+    
     foreach ( $urls as $url )
     {
         echo "\n\nURL: $url\n";
@@ -22,79 +25,107 @@ function updateActionPuducherry()
         
         // since its the only table
         $xpath = new DOMXpath ( $doc );
-        $DIVs = $xpath->query ( "//div[@class='moduleHolder']" );                        
+        $DIVs = $xpath->query ( "//div[@class='moduleHolder']" );
         
         if ($DIVs->length == 0)
             die ( 'Assembly parsing failed. TRs not found' );
         
         $rctr = 0;
+        
         foreach ( $DIVs as $div )
         {
-            $lis = $div->getElementsByTagName('li');
+            #echo $doc->saveHTML($div);
+            $h3s = $div->getElementsByTagName ( 'h3' );
+            if ($h3s->length != 1)
+                break;
+            $h3 = $h3s->item ( 0 );
+            $mats = [ ];
+            
+            $imgs = $div->getElementsByTagName ( 'img' );
+            if ($imgs->length != 1)
+                throw new Exception ( "No img found = " . $imgs->length  . " src=" . $imgs->item(0)->getAttribute('src'));
+            $imgtag = $imgs->item ( 0 );
+            $img = "https://www.py.gov.in/" . $imgtag->getAttribute('src');
+            $img = str_replace("../", "", $img);
+            
+            if (! preg_match ( "/,(?<acname>[^,]+),\s*Puducherry/", $h3->nodeValue, $mats ))
+                throw new Exception ( "H3 acname not found!? in [" . $h3->nodeValue . ']' );
+            
+            $acname = preg_replace ( "/\([^\)]+\)/", '', trim ( $mats ['acname'] ) );
+            $acname = trim ( preg_replace ( "/\s+/", ' ', $acname ) );
+            
+            $acobj = $consti = Constituency::model ()->findByAttributes ( [ 
+                    'id_state' => $id_state,
+                    'ctype' => 'AMLY' 
+            ], [ 
+                    'condition' => 'name=:name1 or other_names=:name1',
+                    'params' => [ 
+                            'name1' => $acname 
+                    ] 
+            ] );
+            if (! $consti)
+                throw new Exception ( "acname not found as constituency in [" . $acname . ']' );
+            $acno = $consti->eci_ref;
+            
+            $outfile = $stateobj->slug . '_AC_' . $acobj->slug . '_' . $eleobj->year . '.jpg';
+            $p1 = realpath ( Yii::app ()->basePath . '/../images/pics' ) . '/' . $stateobj->slug;
+            $picture_path = $stateobj->slug . '/' . $outfile;
+            if (! file_exists ( $p1 ))
+                mkdir ( $p1 );
+            $p2 = $p1 . '/' . $outfile;
+            if (! file_exists ( $p2 ) || filesize ( $p2 ) == 0)
+            {
+                echo "Getting... " . $img . "\n";
+                $img_data = @file_get_contents ( $img );
+                if ($img_data)
+                    file_put_contents ( $p2, $img_data );
+                else
+                    echo "Could not get file\n";
+            } else
+                echo "Found file $p2\n";
+            
+            $lis = $div->getElementsByTagName ( 'li' );
             if ($lis->length != 1)
                 die ( 'LIs for name not found:' . $lis->length );
             
-            $name = $lis->item(0)->nodeValue;
-                
+            $name = $lis->item ( 0 )->nodeValue;
+            
             // ignore the first one
-            //if ($rctr ++ == 0)
-            //    continue;
+            // if ($rctr ++ == 0)
+            // continue;
             
             $tds = $div->getElementsByTagName ( 'td' );
             $col = 0;
-            $phones = null;
+            $phones = [ ];
             // $picture_path = null;
-            foreach ( $tds as $td )
+            for($i = 0; $i < $tds->length; $i ++)
             {
+                $col = $i;
+                $td = $tds->item ( $i );
                 echo "$col = " . $td->nodeValue . "\n";
-                
-                switch ($col ++)
+                switch (trim ( $td->nodeValue ))
                 {
-                    case 1 : // member nane
-                        $name = trim ( $td->nodeValue );
+                    case 'Address' : // member name
+                        $address = trim ( $tds->item ( $i + 2 )->nodeValue );
                         break;
-                    case 2 : // constituency
-                        {
-                            $mats = [ ];
-                            if (! preg_match ( '/(?<acno>\d+)?[\W]*(?<acname>\w[\s\w\.]+\w)/', $td->nodeValue, $mats ))
-                                die ( "No match for [" . $td . ']' );
-                            
-                            $acname_fixes = [                                // 'Panjim' => 'Panji',
-                            ];
-                            
-                            $find = array_keys ( $acname_fixes );
-                            $replace = array_values ( $acname_fixes );
-                            $acname = str_ireplace ( $find, $replace, $mats ['acname'] );
-                            
-                            $acno = intval ( $mats ['acno'] );
-                            
-                            if ($acname == 'Panjim')
-                            {
-                                $acno = 11;
-                            }
-                            
-                            $acobj = Constituency::model ()->findByAttributes ( 
-                                    $attr = [ 
-                                            'id_state' => $id_state,
-                                            'ctype' => 'AMLY',
-                                            'eci_ref' => $acno 
-                                    ] );
-                            if (! $acobj)
-                                die ( '>> Could not find assembly [' . $acname . "]\n" . print_r ( $attr, true ) );
-                            break;
-                        }
-                    case 3 : // PARTY
-                        $party = trim ( $td->nodeValue );
+                    case 'Mobile' : // ADDRESS
+                        $phones [] = trim ( $tds->item ( $i + 2 )->nodeValue );
+                        break;
+                    case 'Residence' : // ADDRESS
+                        $phones [] = trim ( $tds->item ( $i + 2 )->nodeValue );
+                        break;
+                    case 'Email' : // ADDRESS
+                        $email = trim ( $tds->item ( $i + 2 )->nodeValue );
                         break;
                 } // switch
             } // foreach TDs
-            
-            $MLA = AssemblyResults::model ()->findByAttributes ( 
-                    [ 
-                            'st_code' => $ST_CODE,
-                            'id_election' => $id_election,
-                            'acno' => $acobj->eci_ref 
-                    ] );
+            echo "eci:$acno\nName:$name\nAddress:$address\nEmail:$email\nPhone:" . implode ( ", ", $phones ) . "\n\n";
+            continue;
+            $MLA = AssemblyResults::model ()->findByAttributes ( [ 
+                    'st_code' => $ST_CODE,
+                    'id_election' => $id_election,
+                    'acno' => $acobj->eci_ref 
+            ] );
             if (! $MLA)
                 $MLA = new AssemblyResults ();
             
