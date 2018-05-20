@@ -18,9 +18,9 @@ class ToolsCommand extends CConsoleCommand
         }
     }
     
-    public function actionDBScan()
+    public function actionDBScan($save = false)
     {
-    	$tables = [
+        $tables = [
     			'AssemblyPolygon','AssemblyResults',
     			'Block','Committee','CommitteeMember','Constituency',
     			'District','Election','LBVillage','LBWard',
@@ -102,9 +102,10 @@ class ToolsCommand extends CConsoleCommand
 		        $changedtables[$tablename] = $tablename;
 		        
 		    $cache[$tablename] = $tabledata;
-    		echo "$table\t$maxpknum\t$maxcreated\t$maxupdated\t$ctr\n";
+    		#echo "$table\t$maxpknum\t$maxcreated\t$maxupdated\t$ctr\n";
     	}
-    	file_put_contents(Yii::app()->basePath . '/runtime/dbscan.cache.json', json_encode($cache,JSON_PRETTY_PRINT));
-    	echo "mysqldump " . implode(" ",$changedtables) . "\n";
+    	if($save)
+    	   file_put_contents(Yii::app()->basePath . '/runtime/dbscan.cache.json', json_encode($cache,JSON_PRETTY_PRINT));
+    	echo implode(" ",$changedtables);
     }
 }

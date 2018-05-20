@@ -36,46 +36,77 @@ task ( 'build', function ()
 
 task ( 'ls', function ()
 {
-    $result = runLocally('ls -l');
-    writeln($result);
+    $result = runLocally ( 'ls -l' );
+    writeln ( $result );
 } );
 
 task ( 'dbscan', function ()
 {
-    $result = runLocally("~/kono.adoptrti.org/protected/yiic tools dbscan");
-    writeln($result);
+    $result = runLocally ( "~/kono.adoptrti.org/protected/yiic tools dbscan" );
+    writeln ( $result );
 } );
-
 
 task ( 'importpatch', function ()
 {
     $db = require_once 'config/database.php';
-    $mats = [];
-    if(!preg_match("/host=(?<dbhost>[^;]+);dbname=(?<dbname>\w+)/",$db['connectionString'],$mats))
-        die("dbname/host not found in !");
+    $mats = [ ];
+    if (! preg_match ( "/host=(?<dbhost>[^;]+);dbname=(?<dbname>\w+)/", $db ['connectionString'], $mats ))
+        die ( "dbname/host not found in !" );
     
-    $dbname = $mats['dbname'];
-    $dbhost = $mats['dbhost'];
+    $dbname = $mats ['dbname'];
+    $dbhost = $mats ['dbhost'];
     
-    $result = runLocally('bzcat ~/kono.adoptrti.org/protected/data/patch.sql.bz2|' .
-                         "mysql -h $dbhost -u {$db['username']} -p{$db['password']} $dbname");
-    writeln($result);
+    $result = runLocally ( 'bzcat ~/kono.adoptrti.org/protected/data/patch.sql.bz2|' . "mysql -h $dbhost -u {$db['username']} -p{$db['password']} $dbname" );
+    writeln ( $result );
+} );
+
+task ( 'exportpatch', function ()
+{
+    $db = require_once 'config/database.php';
+    $mats = [ ];
+    if (! preg_match ( "/host=(?<dbhost>[^;]+);dbname=(?<dbname>\w+)/", $db ['connectionString'], $mats ))
+        die ( "dbname/host not found in !" );
+    
+    $dbname = $mats ['dbname'];
+    $dbhost = $mats ['dbhost'];
+    
+    $tables = runLocally ( './yiic tools dbscan' );
+    $passp = empty ( $db ['password'] ) ? "" : " -p" . $db ['password'];
+    $result = runLocally ( "mysqldump --opt -h $dbhost -u {$db['username']} $passp $dbname $tables|bzip2 - >data/patch.sql.bz2" );
+    $size = filesize ( 'data/patch.sql.bz2' );
+    writeln ( "Patch file size=" . round ( $size / 1024 ) . " KB" );
 } );
 
 task ( 'patch', function ()
 {
-    upload('patch.sql.bz2', '~/kono.adoptrti.org/protected/data');
-    $result = run("cd ~/kono.adoptrti.org/protected;/usr/local/php71/bin/php vendor/bin/dep importpatch");
-    $result = run("cd ~/kono.adoptrti.org/protected;/usr/local/php71/bin/php vendor/bin/dep dbscan");
-    writeln($result);
+    upload ( 'data/patch.sql.bz2', '~/kono.adoptrti.org/protected/data' );
+    $result = run ( "cd ~/kono.adoptrti.org/protected;/usr/local/php71/bin/php vendor/bin/dep importpatch" );
+    $result = run ( "cd ~/kono.adoptrti.org/protected;/usr/local/php71/bin/php vendor/bin/dep dbscan" );
+    writeln ( $result );
 } );
 
 task ( 'checkout', function ()
 {
-    $result = run("cd ~/kono.adoptrti.org/protected;git pull");
-    writeln($result);
+    $result = run ( "cd ~/kono.adoptrti.org/protected;git pull" );
+    writeln ( $result );
 } );
+
+task ( 'deploy', [ 
+        'exportpatch',
+        'patch',
+        'checkout' 
+] );
 
 // [Optional] if deploy fails automatically unlock.
 after ( 'deploy:failed', 'deploy:unlock' );
+
+task ( 'deploy:done', function ()
+{
+    #to save the dbchanges to the cache this time, 
+    #no next deployment run does not pick it up
+    $result = runLocally ( "~/kono.adoptrti.org/protected/yiic tools dbscan --save" );    
+    write ( 'Deploy done!' );
+} );
+
+after ( 'deploy', 'deploy:done' );
 
