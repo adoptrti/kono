@@ -71,10 +71,16 @@ task ( 'exportpatch', function ()
     $dbhost = $mats ['dbhost'];
     
     $tables = runLocally ( './yiic tools dbscan' );
-    $passp = empty ( $db ['password'] ) ? "" : " -p" . $db ['password'];
-    $result = runLocally ( "mysqldump --opt -h $dbhost -u {$db['username']} $passp $dbname $tables|bzip2 - >data/patch.sql.bz2" );
-    $size = filesize ( 'data/patch.sql.bz2' );
-    writeln ( "Patch file size=" . round ( $size / 1024 ) . " KB" );
+    if(!empty(trim($tables)))
+    {
+        $passp = empty ( $db ['password'] ) ? "" : " -p" . $db ['password'];
+        $result = runLocally ( "mysqldump --opt -h $dbhost -u {$db['username']} $passp $dbname $tables|bzip2 - >data/patch.sql.bz2" );
+        $size = filesize ( 'data/patch.sql.bz2' );
+        writeln ( "Patch file size=" . round ( $size / 1024 ) . " KB" );
+        task('patch');
+    }
+    else
+        writeln ( "No data patch needed." );
 } );
 
 task ( 'patch', function ()
@@ -93,7 +99,6 @@ task ( 'checkout', function ()
 
 task ( 'deploy', [ 
         'exportpatch',
-        'patch',
         'checkout' 
 ] );
 
@@ -104,7 +109,7 @@ task ( 'deploy:done', function ()
 {
     #to save the dbchanges to the cache this time, 
     #no next deployment run does not pick it up
-    $result = runLocally ( "~/kono.adoptrti.org/protected/yiic tools dbscan --save" );    
+    $result = runLocally ( "./yiic tools dbscan --save" );    
     write ( 'Deploy done!' );
 } );
 
