@@ -26,25 +26,46 @@ class ToolsCommand extends CConsoleCommand
     			'District','Election','LBVillage','LBWard',
     			'LokSabha2014','Minister','Ministry','ElectionCandidates',
     			'MunicipalResults','Officer','State','Town'];
-    	print_r($tables);
+    	
+    	$oldcache = json_decode(file_get_contents(Yii::app()->basePath . '/runtime/dbscan.cache.json'),true);
+    	$changedtables = [];
+    	$cache = [];
+    	//save in cache, and verify in next run
+    	//prepare a mysql dump cmd with the diff
+    	//attach this to every deploy call
     	foreach($tables as $table)
     	{
     		$obj1 = new $table;
     		$obj2 = $obj1->model();
     		$pk = $obj2->tableSchema->primaryKey;
-    		$maxpk = $obj2->find([
-    				//'select' => $pk,
-    				'order' => "t.$pk desc",
-    		]);
+    		
+    		//last record count
+    		$ctr = $obj2->count();
+    		if($ctr==0) //if no records
+    		    continue;
+    		
+    		$qry = [
+    		        //'select' => $pk,
+    		        'order' => "t.$pk desc",
+    		];
+    		$maxpk = $obj2->find($qry);
+    		//last PK
     		if(!$maxpk)
-    			continue;
+    		{
+    		    print_r($qry);
+    		    throw new Exception("$table qry failed");
+    		}
+    		
+    		
     		$ur = $cr = false;
     		$dates = [];
+    		//last created
     		if(isset($maxpk->created))
     		{
     			$cr = true;
     			$dates[] = 'max(created) as created';    			
     		}
+    		//last updated
     		if(isset($maxpk->updated))
     		{
     			$ur = true;
@@ -61,11 +82,29 @@ class ToolsCommand extends CConsoleCommand
     		
     		$maxcreated = $cr ? date("Y-m-d H:i:s",strtotime($dater->created)) : false;
     		$maxupdated = $ur ? date("Y-m-d H:i:s",strtotime($dater->updated)) : false;
+    		$tablename = $obj2->tableSchema->name;
+    		$tabledata['model'] = $table;
+    		$tabledata['table'] = $tablename;    		
+    		$tabledata['maxpk'] = $maxpknum;
+    		if($tabledata['maxpk'] != $oldcache[$tablename]['maxpk'])
+    		    $changedtables[$tablename] = $tablename;
     		
-    		echo "$table\t$maxpknum\t$maxcreated\t$maxupdated\n";
+    		$tabledata['maxcreated'] = $maxcreated;
+    		if($tabledata['maxcreated'] != $oldcache[$tablename]['maxcreated'])
+    		    $changedtables[$tablename] = $tablename;
+    		    
+    		$tabledata['maxupdated'] = $maxupdated;
+    		if($tabledata['maxupdated'] != $oldcache[$tablename]['maxupdated'])
+    		    $changedtables[$tablename] = $tablename;
+    		    
+		    $tabledata['count'] = $ctr;    		
+		    if($tabledata['count'] != $oldcache[$tablename]['count'])
+		        $changedtables[$tablename] = $tablename;
+		        
+		    $cache[$tablename] = $tabledata;
+    		echo "$table\t$maxpknum\t$maxcreated\t$maxupdated\t$ctr\n";
     	}
-    	//	scans last PK
-    	//	scans max updated
-    	//	scans max created
+    	file_put_contents(Yii::app()->basePath . '/runtime/dbscan.cache.json', json_encode($cache,JSON_PRETTY_PRINT));
+    	echo "mysqldump " . implode(" ",$changedtables) . "\n";
     }
 }
