@@ -1,7 +1,8 @@
 <?php
 /* @var $this Controller */
 /* @var $officer Officer */
-$data = $officer;
+
+$data = Officer::model()->localized(Yii::app()->language)->findByPk($officer->id_officer);
 switch($data->desig)
 {
     case Officer::DESIG_CHIEFMINISTER:
