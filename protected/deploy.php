@@ -77,19 +77,19 @@ task ( 'exportpatch', function ()
         $result = runLocally ( "mysqldump --opt -h $dbhost -u {$db['username']} $passp $dbname $tables|bzip2 - >data/patch.sql.bz2" );
         $size = filesize ( 'data/patch.sql.bz2' );
         writeln ( "Patch file size=" . round ( $size / 1024 ) . " KB" );
-        task('patch');
+        dopatch();
     }
     else
         writeln ( "No data patch needed." );
 } );
 
-task ( 'patch', function ()
+function dopatch()
 {
     upload ( 'data/patch.sql.bz2', '~/kono.adoptrti.org/protected/data' );
     $result = run ( "cd ~/kono.adoptrti.org/protected;/usr/local/php71/bin/php vendor/bin/dep importpatch" );
     $result = run ( "cd ~/kono.adoptrti.org/protected;/usr/local/php71/bin/php vendor/bin/dep dbscan" );
     writeln ( $result );
-} );
+}
 
 task ( 'checkout', function ()
 {
