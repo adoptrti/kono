@@ -231,6 +231,8 @@ class StateUrlRule extends CBaseUrlRule
                         'eci_ref' => $acno,
                         'ctype' => 'AMLY' 
                 ] );
+        if(empty($obj->name))
+            return false;
         
         if (count ( $params ))
         {
@@ -446,7 +448,7 @@ class StateUrlRule extends CBaseUrlRule
     	}
     	return false;
     }
-    
+        
     public function parse_election_candidates($manager, $request, $pathInfo, $rawPathInfo) {
 		if (preg_match ( '/^(?<lang>\w\w)\/(?<stateslug>[\w-]*)\/(?<eslug>assembly-election-(?<eyear>\d{4}))\/(?<amlyslug>[\w-]*)\/?$/', $pathInfo, $matches )) {
 			

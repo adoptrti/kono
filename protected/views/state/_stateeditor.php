@@ -12,7 +12,7 @@
     else
         echo CHtml::link(__('Edit Chief Minister'),['officer/update','id' => $state->chiefminister->id_officer]);
 if(count($state->deputychiefminister)==0)
-    echo CHtml::link(__('Add Deputy Chief Minister'),['officer/create','id_state' => $state->id_state,'desig' => Officer::DESIG_DEPUTYCHIEFMINISTER]);
+    echo '<li>' . CHtml::link(__('Add Deputy Chief Minister'),['officer/create','id_state' => $state->id_state,'desig' => Officer::DESIG_DEPUTYCHIEFMINISTER]) . '</li>';
 else
 {
     foreach($state->deputychiefminister as $dcm)

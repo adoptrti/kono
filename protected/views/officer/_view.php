@@ -5,6 +5,8 @@
 
 <div class="view">
 
+	<?php if(!empty($data->picture)) echo CHtml::image("/images/pics/" . $data->picture,'',['align' => 'right']); ?>
+	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_officer')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->id_officer), array('view', 'id'=>$data->id_officer)); ?>
 	<br />
@@ -40,7 +42,6 @@
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('picture')); ?>:</b>
 	<?php echo CHtml::encode($data->picture); ?>
-	<?php echo CHtml::image("/images/" . $data->picture); ?>
 	<br />
 	
 	

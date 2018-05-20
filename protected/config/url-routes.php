@@ -11,6 +11,7 @@ return array (
                         'connectionID' => 'db'
                 ),
                 
+                '<lang:\w\w>/states' => 'state/index',
                 'site/page/<view:\w+>' => 'site/page',
                 '/' => 'site/index',
                 

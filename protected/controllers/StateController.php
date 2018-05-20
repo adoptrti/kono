@@ -302,6 +302,7 @@ class StateController extends Controller
     {
         $this->layout = '//layouts/main';
         $dataProvider = State::model ()->search ();
+        $this->pageTitle = __('Indian States, Chief Ministers and Office Phone and Email');
         $this->render ( 'index', array (
                 'dataProvider' => $dataProvider 
         ) );
