@@ -131,7 +131,10 @@ class Officer extends CActiveRecord
         if (Yii::app()->id == 'app-frontend' && $this->desig == self::DESIG_DEPUTYCOMMISSIONER)
             if (! Yii::app ()->user->checkAccess ( 'ADD_DEPUTY_COMMISSIONER' ))
                 return false;
-            
+        if($this->isNewRecord)    
+            if($this->desig != self::DESIG_DEPUTYCHIEFMINISTER)                
+                if(self::countByAttributes(['fkey_place' => $this->fkey_place,'desig' => $this->desig])>0)
+                    throw new Exception($this->fkey_place . '-' . $this->desig . ' - already exists');
         return parent::beforeSave ();
     }
 
@@ -267,10 +270,10 @@ class Officer extends CActiveRecord
         $outfile = '';
         switch($this->desig)
         {
+            case self::DESIG_DEPUTYCHIEFMINISTER:
+                $outfile = strtolower($stateobj->slug . '_' . $desig . '_' . time() . '.jpg');
+                break;
             case self::DESIG_GOVERNER:
-                // make picture path
-                $outfile = strtolower($stateobj->slug . '_' . $desig . '.jpg');
-                break;  
             case self::DESIG_CHIEFMINISTER:
                 $outfile = strtolower($stateobj->slug . '_' . $desig . '.jpg');
                 break;

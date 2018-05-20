@@ -32,6 +32,8 @@
  * @property Results2009[] $results2009s
  * @property Sabha[] $sabhas
  * @property Ward[] $wards
+ * @property Officer $chiefminister
+ * @property Officer $deputychiefminister
  */
 class State extends CActiveRecord
 {
@@ -108,11 +110,12 @@ class State extends CActiveRecord
 	        'districts' => array(self::HAS_MANY, 'District', 'id_state','order' => 'name'),
 		    'divisions' => array(self::HAS_MANY, 'District', 'id_state','order' => 'name','condition' => 'id_district_division_hq=id_district'),
 			'placeNames' => array(self::HAS_MANY, 'PlaceNames', 'id_state'),
-		        'governer' => array(self::HAS_ONE, 'Officer', 'fkey_place','condition' => "(desig=:desig1 or desig=:desig2)",'params' => ['desig1' =>  Officer::DESIG_GOVERNER,'desig2' =>  Officer::DESIG_LGOVERNER]),
+	        'governer' => array(self::HAS_ONE, 'Officer', 'fkey_place','condition' => "(desig=:desig1 or desig=:desig2)",'params' => ['desig1' =>  Officer::DESIG_GOVERNER,'desig2' =>  Officer::DESIG_LGOVERNER]),
 			'results2009s' => array(self::HAS_MANY, 'Results2009', 'id_state'),
 			'sabhas' => array(self::HAS_MANY, 'Sabha', 'id_state'),
 			'wards' => array(self::HAS_MANY, 'Ward', 'id_state'),
             'chiefminister' => array(self::HAS_ONE, 'Officer', 'fkey_place','condition' => 'desig=:desig1','params' => ['desig1' => Officer::DESIG_CHIEFMINISTER]),
+	        'deputychiefminister' => array(self::HAS_MANY, 'Officer', 'fkey_place','condition' => 'desig=:desig1','params' => ['desig1' => Officer::DESIG_DEPUTYCHIEFMINISTER]),
 		);
 	}
 

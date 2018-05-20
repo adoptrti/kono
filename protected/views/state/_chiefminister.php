@@ -2,9 +2,18 @@
 /* @var $this Controller */
 /* @var $officer Officer */
 $data = $officer;
+switch($data->desig)
+{
+    case Officer::DESIG_CHIEFMINISTER:
+        $h2title = __('Chief Minister');
+        break;
+    case Officer::DESIG_DEPUTYCHIEFMINISTER:
+        $h2title = __('Deputy Chief Minister');
+        break;
+}
 ?>
 <div class="view chmin <?=empty ( $data->picture ) ? '' : 'pic'?>">
-    <h2><?=__('Chief Minister') ?></h2>
+    <h2><?=$h2title?></h2>
 <?php 
 if (! empty ( $data->picture ))
     echo CHtml::image ( '/images/pics/' . $data->picture, $data->name, [ 
@@ -15,7 +24,7 @@ if (! empty ( $data ))
 {
     $att = [ 
             array ( // related city displayed as a link
-                    'label' => __('Chief Minister'),
+                    'label' =>$h2title,
                     'name' => 'name' 
             ) 
     ];

@@ -27,6 +27,12 @@ if(count($nextelections)>0)
 if(isset($model->chiefminister))
     echo $this->renderPartial('_chiefminister',['officer' => $model->chiefminister]);    
 
+if(isset($model->deputychiefminister))
+{
+    foreach($model->deputychiefminister as $cmin)
+        echo $this->renderPartial('_chiefminister',['officer' => $cmin]);
+}
+
 if(isset($model->governer))
 {
     $off = Officer::model()->localized(Yii::app()->language)->findByPk($model->governer->id_officer);
