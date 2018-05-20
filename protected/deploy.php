@@ -97,7 +97,13 @@ task ( 'checkout', function ()
     writeln ( $result );
 } );
 
+task( 'rsync2' , function ()
+{
+    runLocally ("rsync -a --progress ../images/pics/ dream:~/kono/images/pics/");
+});
+
 task ( 'deploy', [ 
+        'rsync2',
         'exportpatch',
         'checkout' 
 ] );
