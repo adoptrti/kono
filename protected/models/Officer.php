@@ -22,6 +22,7 @@ class Officer extends CActiveRecord
 {   
     //state
     const DESIG_GOVERNER= 'GOVERNER';
+    const DESIG_LGOVERNER= 'LGOVERNER';
     const DESIG_CHIEFMINISTER= 'CHIEFMINISTER';
     const DESIG_DEPUTYCHIEFMINISTER= 'DEPUTYCHIEFMINISTER';
     //district
