@@ -2,9 +2,9 @@
 $this->widget ( 'zii.widgets.CMenu',array (
                     'items' => array (
                             array (
-                                    'label' => __ ( 'Home' ),
+                                    'label' => __ ( 'States' ),
                                     'url' => array (
-                                            '/site/index'
+                                            '/state'
                                     )
                             ),
                             array (

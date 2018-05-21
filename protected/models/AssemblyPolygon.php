@@ -59,6 +59,8 @@ class AssemblyPolygon extends CActiveRecord
     var $ctr9;
     var $ctr10;
     var $ctr11;
+    var $cm;
+    var $gov;
     
     public function behaviors()
     {
@@ -236,6 +238,8 @@ class AssemblyPolygon extends CActiveRecord
                             vpr.polygons as ctr9,
                             vpr.villages as ctr10,
                             max(e.edate) as ctr11,
+                            (select id_officer from officer o where o.fkey_place=t.id_state and o.desig='CHIEFMINISTER' limit 0,1) as `cm`,
+                            (select id_officer from officer o where o.fkey_place=t.id_state and o.desig IN ('LGOVERNER','GOVERNER') limit 0,1) as `gov`,
                             t.id_state",
                         'join' => 'left join `village-polygon-report` vpr on vpr.id_state=t.id_state
                                     left join elections e on e.id_state=t.id_state',
@@ -261,6 +265,8 @@ class AssemblyPolygon extends CActiveRecord
                     $r->ctr10,
                     $r->id_state,
                     $r->ctr11,
+                    'cm' => $r->cm,
+                    'gov' => $r->gov,
             ];
 
             $mx = $data [1];

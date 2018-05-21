@@ -154,7 +154,9 @@ $this->widget ( 'zii.widgets.grid.CGridView',
                                 'type' => 'raw',
                                 'value' => function ($data)
                                 {
-                                    return CHtml::link($data [0],['state/view','id' => $data[11]]);
+                                    $cm2 = isset($data['cm']) ? '+1' : '+0';
+                                    $cm2 .= isset($data['gov']) ? '+1' : '+0';
+                                    return CHtml::link($data [0],['state/view','id' => $data[11]]) . $cm2;
                                 }
                         ],
                         [

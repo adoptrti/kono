@@ -1,9 +1,5 @@
-# Credits
-
-## [R-project](https://www.r-project.org/)
-For importing 100,000 row tables into csv
-
-## [Data{Meet}](http://datameet.org/)
-Most of the geolocation polygons were cleanup by the Datameet team and others. They have been given for use on [github](https://github.com/datameet).
-
-## [Association for Democratic Reforms](http://adrindia.org/)
+[![DataMeet](/images/credits/datameet.png)](http://datameet.org/ "Most of the geolocation polygons were cleanup by the Datameet team and others. They have been given for use on github")
+[![Association for Democratic Reforms](/images/credits/logo-adr.png)](http://adrindia.org/) [![ADR](/images/credits/myneta-logo.jpg)](http://myneta.info)
+[![OpenSteepMap](/images/credits/osm.jpg)](https://openstreetmap.org/)
+[![Yii Framework](/images/credits/yii.png)](https://www.yiiframework.com/)
+[![R Project](/images/credits/rlogo.png "For importing 100,000 row tables into csv")](https://www.r-project.org/)

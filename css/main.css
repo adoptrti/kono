@@ -367,3 +367,13 @@ table.detail-view tr.w3w td
 	padding-left: 0.6em;
 	padding-right: 0.6em;
 }
+
+div.chmin
+{
+	min-height: 175px;
+}
+
+div.states div.chmin img.picture
+{
+	margin-top: -35px;
+}

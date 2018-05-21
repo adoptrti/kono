@@ -25,5 +25,8 @@ else
     else
         echo CHtml::link(__('Edit Governer'),['officer/update','id' => $state->governer->id_officer]);
 ?>
+<li><?php
+echo CHtml::link(__('Add District Division'),['localgov/district/creatediv','id_state' => $state->id_state]);
+?>
 </ol>
 </div>

@@ -7,7 +7,7 @@ $this->breadcrumbs=array(
 );
 
 $text = file_get_contents(Yii::app()->basePath . '/../Credits.md');
-$md = new CMarkdown;
-echo $md->transform($text);
+$md = new Parsedown;
+echo $md->text($text);
 
 ?>

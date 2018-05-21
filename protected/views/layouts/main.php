@@ -51,7 +51,7 @@ Yii::app ()->clientScript->registerCoreScript ( 'bootstrap' );
                     @adoptrti</a>
             </div>
 
-            <div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+            <div id="logo"><?php echo CHtml::link(CHtml::encode(Yii::app()->name),['/'],['style' => 'color: white']); ?></div>
 
         </div>
         <!-- header -->
@@ -120,7 +120,10 @@ Yii::app ()->clientScript->registerCoreScript ( 'bootstrap' );
         <?=`git describe --tags --abbrev=0`?> <i class="fa fa-calendar"></i> <?=`git log --pretty="%ci" -n1 HEAD`?>
         </p>
         <p>
-                <?=__('Copyright &copy; {year} by Vikas Yadav.',['{year}' => date('Y')])?> <?=__('All Rights Reserved.')?> <?=CHtml::link(__('Disclaimer'),['site/page','view' => 'disclaimer']) ?><br />
+                <?=__('Copyright &copy; {year} by Vikas Yadav.',['{year}' => date('Y')])?> <?=__('All Rights Reserved.')?>
+                <?=CHtml::link(__('Disclaimer'),['site/page','view' => 'disclaimer']) ?>
+                <?=CHtml::link(__('Credits'),['site/page','view' => 'credits']) ?>
+                <br />
         </p>
 
     </div>

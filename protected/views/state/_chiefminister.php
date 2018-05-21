@@ -1,7 +1,7 @@
 <?php
 /* @var $this Controller */
 /* @var $officer Officer */
-
+$h3 = isset($h3) ? $h3 : false;
 $data = Officer::model()->localized(Yii::app()->language)->findByPk($officer->id_officer);
 switch($data->desig)
 {
@@ -14,8 +14,8 @@ switch($data->desig)
 }
 ?>
 <div class="view chmin <?=empty ( $data->picture ) ? '' : 'pic'?>">
-    <h2><?=$h2title?></h2>
 <?php 
+echo CHtml::tag($h3 ? 'h3' : 'h2',[],$h2title);
 if (! empty ( $data->picture ))
     echo CHtml::image ( '/images/pics/' . $data->picture, $data->name, [ 
             'class' => 'picture amly' 
