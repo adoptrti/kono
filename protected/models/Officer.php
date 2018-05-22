@@ -24,7 +24,8 @@ class Officer extends CActiveRecord
     const DESIG_GOVERNER= 'GOVERNER';
     const DESIG_LGOVERNER= 'LGOVERNER';
     const DESIG_CHIEFMINISTER= 'CHIEFMINISTER';
-    const DESIG_DEPUTYCHIEFMINISTER= 'DEPUTYCHIEFMINISTER';
+	const DESIG_DEPUTYCHIEFMINISTER= 'DEPUTYCHIEFMINISTER';
+	const DESIG_STATEINFOCOMMISSIONER = 'STATEINFOCOMMISSIONER';
     //district
     const DESIG_DEPUTYCOMMISSIONER = 'DEPUTYCOMMISSIONER';
     const DESIG_DIVCOMMISSIONER = 'DIVCOMMISSIONER';
@@ -274,7 +275,8 @@ class Officer extends CActiveRecord
                 $outfile = strtolower($stateobj->slug . '_' . $desig . '_' . time() . '.jpg');
                 break;
             case self::DESIG_GOVERNER:
-            case self::DESIG_CHIEFMINISTER:
+			case self::DESIG_CHIEFMINISTER:
+			case self::DESIG_STATEINFOCOMMISSIONER:
                 $outfile = strtolower($stateobj->slug . '_' . $desig . '.jpg');
                 break;
         }

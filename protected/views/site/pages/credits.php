@@ -6,7 +6,7 @@ $this->breadcrumbs=array(
         __('Credits'),
 );
 
-$text = file_get_contents(Yii::app()->basePath . '/../Credits.md');
+$text = file_get_contents(Yii::app()->basePath . '/../credits.md');
 $md = new Parsedown;
 echo $md->text($text);
 

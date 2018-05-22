@@ -39,6 +39,9 @@ if(isset($model->governer))
     $this->renderPartial("//site/_governer",['data' => $off]);
 }
 
+if(isset($model->stateinfocommissioner))
+	echo $this->renderPartial('_chiefminister',['officer' => $model->stateinfocommissioner]);    
+
 $this->renderPartial("_view_dt",['model' => $model]);
 $this->renderPartial("_view_as",['model' => $model]);
 $this->renderPartial("_view_ls",['model' => $model]);

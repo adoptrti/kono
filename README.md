@@ -90,6 +90,7 @@ More than developing the software, we need to collect and cleanup data that we h
 1. Markets:
 
 ## Updates
+* **22-May-2018** - State Information Commissioners are also added starting with Odisha
 * **20-May-2018** - Setup first deployment system (:pushpin: v 0.15)
 * **17-May-2018** - State governers with localization added, Divisional commissioners to Madhya Pradesh also added (:pushpin: v 0.14)
 * **14-May-2018** - Telengana MLAs, MPs, Hyderabad MLCs, Telgu language

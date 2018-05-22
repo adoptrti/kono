@@ -34,6 +34,7 @@
  * @property Ward[] $wards
  * @property Officer $chiefminister
  * @property Officer $deputychiefminister
+ * @property Officer $stateinfocommissioner
  */
 class State extends CActiveRecord
 {
@@ -115,7 +116,8 @@ class State extends CActiveRecord
 			'sabhas' => array(self::HAS_MANY, 'Sabha', 'id_state'),
 			'wards' => array(self::HAS_MANY, 'Ward', 'id_state'),
             'chiefminister' => array(self::HAS_ONE, 'Officer', 'fkey_place','condition' => 'desig=:desig1','params' => ['desig1' => Officer::DESIG_CHIEFMINISTER]),
-	        'deputychiefminister' => array(self::HAS_MANY, 'Officer', 'fkey_place','condition' => 'desig=:desig1','params' => ['desig1' => Officer::DESIG_DEPUTYCHIEFMINISTER]),
+			'deputychiefminister' => array(self::HAS_MANY, 'Officer', 'fkey_place','condition' => 'desig=:desig1','params' => ['desig1' => Officer::DESIG_DEPUTYCHIEFMINISTER]),
+			'stateinfocommissioner' => array(self::HAS_ONE, 'Officer', 'fkey_place','condition' => 'desig=:desig1','params' => ['desig1' => Officer::DESIG_STATEINFOCOMMISSIONER]),
 		);
 	}
 

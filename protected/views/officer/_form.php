@@ -54,7 +54,8 @@ if(isset($model->id_officer))
 		   case Officer::DESIG_GOVERNER:
 		   case Officer::DESIG_LGOVERNER:
 	       case Officer::DESIG_CHIEFMINISTER:
-	       case Officer::DESIG_DEPUTYCHIEFMINISTER:
+		   case Officer::DESIG_DEPUTYCHIEFMINISTER:
+		   case Officer::DESIG_STATEINFOCOMMISSIONER:		   
 	           $list= CHtml::listData(State::model()->findAll(), 'id_state', 'name');
 		        break;
 		}		
@@ -70,7 +71,9 @@ if(isset($model->id_officer))
 		        Officer::DESIG_CHIEFMINISTER => __('Chief Minister'),
 		        Officer::DESIG_DEPUTYCHIEFMINISTER => __('Deputy Chief Minister'),
 		        Officer::DESIG_GOVERNER => __('State Governer'),
-		        Officer::DESIG_LGOVERNER => __('Lieutenant Governor'),
+				Officer::DESIG_LGOVERNER => __('Lieutenant Governor'),
+				Officer::DESIG_STATEINFOCOMMISSIONER => __('State Information Commissioner'),
+				
 		]) ?>
 		<?php echo $form->error($model,'desig'); ?>
 	</div>

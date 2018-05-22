@@ -11,6 +11,9 @@ switch($data->desig)
     case Officer::DESIG_DEPUTYCHIEFMINISTER:
         $h2title = __('Deputy Chief Minister');
         break;
+    case Officer::DESIG_STATEINFOCOMMISSIONER:
+        $h2title = __('State Information Commissioner');
+        break;
 }
 ?>
 <div class="view chmin <?=empty ( $data->picture ) ? '' : 'pic'?>">
@@ -74,6 +77,17 @@ if (! empty ( $data ))
                         $rt [] = CHtml::link ( $email, 'mailto:' . $email );
                     }
                     return implode ( ' ', $rt );
+                } 
+        ];
+
+        if (! empty ( $data->website ))
+        $att [] = [ 
+                'type' => 'raw',
+                'name' => 'website',
+                'label' => __ ( 'Website' ),
+                'value' => function ($data)
+                {
+                    return CHtml::link($data->website,$data->website);
                 } 
         ];
     

@@ -3,3 +3,4 @@ vendor/
 config/
 data/auth.php
 data/*
+runtime
