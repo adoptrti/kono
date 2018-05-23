@@ -24,13 +24,28 @@
 		<?php echo $form->textField($model,'ST_CODE'); ?>
 		<?php echo $form->error($model,'ST_CODE'); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'name'); ?>
-	</div>
-
+	
+	<?php        
+    foreach ( Yii::app ()->params ['translatedLanguages'] as $l => $lang ):
+            if ($l === Yii::app ()->params ['defaultDBLanguage'])
+                $suffix = '';
+            else
+                $suffix = '_' . $l;
+            ?>
+            <fieldset>
+                <legend>
+                    <?php echo $lang; ?> (<?=$suffix?>)
+                </legend>
+        
+            	<div class="row">
+            		<?php echo $form->labelEx($model,'name'); ?>
+            		<?php echo $form->textField($model,'name'.$suffix,array('size'=>60,'maxlength'=>255)); ?>
+            		<?php echo $form->error($model,'name'.$suffix); ?>
+            	</div>
+                   
+            </fieldset>
+    <?php endforeach; 
+    /*
 	<div class="row">
 		<?php echo $form->labelEx($model,'ias_short_code'); ?>
 		<?php echo $form->textField($model,'ias_short_code',array('size'=>2,'maxlength'=>2)); ?>
@@ -119,7 +134,7 @@
 		<?php echo $form->labelEx($model,'mcorp_count'); ?>
 		<?php echo $form->textField($model,'mcorp_count'); ?>
 		<?php echo $form->error($model,'mcorp_count'); ?>
-	</div>
+	</div> */ ?>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

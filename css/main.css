@@ -378,7 +378,9 @@ div.states div.chmin img.picture
 	margin-top: -35px;
 }
 
-h2 a.editlink
+h2 a.editlink,
+h1 a.editlink
 {
 	float:right;
+	font-size: 12px;
 }

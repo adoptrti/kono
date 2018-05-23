@@ -146,7 +146,7 @@ class StateUrlRule extends CBaseUrlRule
     		unset ( $params ['id'] );
     	}
     	
-    	$stateobjs = State::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->findAll ( 'id_state=:cc',
+    	$stateobjs = State::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->findAll ( 't.id_state=:cc',
     			array (
     					':cc' => $id_state
     			) );
@@ -189,6 +189,9 @@ class StateUrlRule extends CBaseUrlRule
         }
         
         $obj = Town::model ()->cache ( Yii::app ()->params ['data_cache_duration'] )->findByPk ($id_district);
+        
+        if(!empty($params ['id_state'] ))
+            unset($params ['id_state']);
         
         if (count ( $params ))
         {

@@ -96,6 +96,10 @@ class Officer extends CActiveRecord
     	);
     }
     
+    public function defaultScope()
+    {
+        return $this->ml->localizedCriteria ();
+    }    
     
 	/**
 	 * @return string the associated database table name
@@ -274,12 +278,17 @@ class Officer extends CActiveRecord
         if (! file_exists ( $p1 ))
             mkdir ( $p1 );
         $p2 = $p1 . '/' . $outfile;
+        $p2_renamed = $p1 . '/' . time() . '_' . $outfile;
         // get url
         echo "Getting... " . $url. "\n";
         $img_data = @file_get_contents ( $url);
         // save picture
         if ($img_data)
         {
+            if(file_exists($p2))
+            {
+                rename($p2,$p2_renamed);
+            }
             if(!file_put_contents ( $p2, $img_data ))
                 throw new Exception("Could not write $p2");
         }

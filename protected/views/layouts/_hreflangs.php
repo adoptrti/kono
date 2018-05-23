@@ -6,7 +6,7 @@ foreach ( Yii::app ()->params ['translatedLanguages'] as $code => $lang ) {
 		$url = substr ( $url, 1 );
 	$backup = $_GET;
 	$_GET = [ ];
-	$rt = $su->parseUrl ( null, null, $url, null );
+	$rt = Yii::app()->controller->id . '/' . Yii::app()->controller->action->id;
 	if ($rt === false) {
 		$params2 = "?lang=$code";
 	} else {

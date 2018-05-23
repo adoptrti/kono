@@ -15,7 +15,11 @@ $this->menu=array(
 	array('label'=>'Manage State', 'url'=>array('admin')),
 );
 
-echo CHtml::tag('h1',[],$model->name);
+$edit = "";
+if(Yii::app()->user->checkAccess('ADD_DEPUTY_COMMISSIONER'))
+    $edit = ' ' . CHtml::link(__('Edit'),['/state/update','id' => $model->id_state],['class' => 'editlink']);
+
+echo CHtml::tag('h1',[],$model->name . $edit);
 
 $nextelections = $model->upcomingelections;
 if(count($nextelections)>0)

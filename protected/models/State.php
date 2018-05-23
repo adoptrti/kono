@@ -58,10 +58,26 @@ class State extends CActiveRecord
 	                    'class' => 'kono.behaviours.NameLinkBehavior',
 	                    'controller' => 'state',
 	                    'template' => '{link}'
-	            ]
+	            ],
+	            'ml' => array (
+	                    'class' => 'application.behaviours.MultilingualBehavior',
+	                    // 'langTableName' => 'projectLang',
+	                    'langForeignKey' => 'id_state',
+	                    'langField' => 'id_lang',
+	                    'localizedAttributes' => array (
+	                            'name',
+	                    ),
+	                    'languages' => Yii::app ()->params ['translatedLanguages'],
+	                    'defaultLanguage' => Yii::app ()->params ['defaultDBLanguage']
+	            ),	            
 	    ];
 	}
 
+	public function defaultScope()
+	{
+	    return $this->ml->localizedCriteria ();
+	}
+	
     public function bycode($st_code)
     {
         $this->getDbCriteria ()->mergeWith ( 
@@ -80,7 +96,7 @@ class State extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, ias_short_code, session_from, session_to, lok_parl_seats, amly_seats, raj_parl_seats, updated, iso3166, psloc, eci_dist_count, eci_amly_count', 'required'),
+			array('name' , 'required'),
 			array('ST_CODE, id_census, lok_parl_seats, amly_seats, raj_parl_seats, psloc, eci_dist_count, eci_amly_count', 'numerical', 'integerOnly'=>true),
 			array('name,slug', 'length', 'max'=>50),
 			array('ias_short_code', 'length', 'max'=>2),

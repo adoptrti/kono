@@ -228,7 +228,7 @@ class StateController extends Controller
      */
     public function actionCreate()
     {
-        $model = new State ();
+        $model = State::model()->multilang();
         
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
@@ -257,7 +257,7 @@ class StateController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->loadModel ( $id );
+        $model = $this->loadModel ( $id ,true);
         
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
@@ -332,9 +332,15 @@ class StateController extends Controller
      * @return State the loaded model
      * @throws CHttpException
      */
-    public function loadModel($id)
+    public function loadModel($id,$ml=false)
     {
-        $model = State::model ()->findByPk ( $id );
+        if($ml)
+            $model = State::model ()->multilang()->findByPk ( $id );
+        else
+        {
+            $model = State::model ()->findByPk ( $id );
+        }
+        
         if ($model === null)
             throw new CHttpException ( 404, 'The requested page does not exist.' );
         return $model;

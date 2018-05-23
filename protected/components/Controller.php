@@ -74,5 +74,9 @@ class Controller extends CController
         {
             Yii::app ()->session ['lang'] = Yii::app ()->language;
         }
+        
+        $s = State::model();
+        $s->detachBehaviors();
+        $s->attachBehaviors($s->behaviors());
     }
 }
