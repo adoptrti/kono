@@ -99,9 +99,13 @@ class ToolsCommand extends CConsoleCommand
     		    
 		    $tabledata['count'] = $ctr;    		
 		    if($tabledata['count'] != $oldcache[$tablename]['count'])
-		        $changedtables[$tablename] = $tablename;
-		        
+		        $changedtables[$tablename] = $tablename;		    
+		    
+            #201805231626:thevikas:Kovai:Patch to consider xxxLang tables too 
 		    $cache[$tablename] = $tabledata;
+		    $beh = $obj2->behaviors();
+		    if(isset($beh['ml']) && isset($changedtables[$tablename]))
+		        $changedtables[$tablename . 'Lang'] = $tablename . 'Lang';
     		#echo "$table\t$maxpknum\t$maxcreated\t$maxupdated\t$ctr\n";
     	}
     	if($save)

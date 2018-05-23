@@ -45,29 +45,7 @@ class Officer extends CActiveRecord
     const DESIG_HEALTHOFFICER = 'HEALTHOFFICER';
     const DESIG_DEPUTYHEALTHOFFICER = 'DEPUTYHEALTHOFFICER';
     const DESIG_CHIEFENGINEER = 'CHIEFENGINEER';
-    /*
-     * static $designstr = [
-    		//duplicates
-    		Officer::DESIG_CHIEFENGINEER => __('Chief Engineer (I/C)'),
-    		Officer::DESIG_HEALTHOFFICER => __('Health Officer (I/C)'),
-    		Officer::DESIG_HEALTHOFFICER => __('Medical Officer of Health'),
-    		//originals
-    		Officer::DESIG_DEPUTYCOMMISSIONER => __('Deputy Commissioner'),
-    		Officer::DESIG_JOINTCOMMISSIONER => __('Joint Commissioner'),
-    		Officer::DESIG_ASSTCOMMISSIONER => __('Assisstant Commissioner'),
-    		Officer::DESIG_EXECENGINEER => __('Executive Engineer'),
-    		Officer::DESIG_CHIEFENGINEER => __('Chief Engineer'),
-    		Officer::DESIG_HEALTHOFFICER => __('Health Officer'),
-    		Officer::DESIG_DEPUTYHEALTHOFFICER => __('Deputy Health Officer'),
-    		Officer::DESIG_ASSTEXECENGINEER => __('Assistant Executive Engineer'),
-    		Officer::DESIG_ASSTTOWNPLANNER => __('Assistant Town Planning Officer'),
-    		Officer::DESIG_ASSTREVENUEOFF => __('Assistant Revenue Officer'),
-    		Officer::DESIG_ZONALSANITORYOFF => __('Zonal Sanitary Officer'),
-    		//
-    		Officer::DESIG_ASSTENGINEER => __('Assistant Engineer'),
-    		Officer::DESIG_WATERSUPPLYOFF => __('Water Supply Engineer'),
-    		Officer::DESIG_SANITORYINSPECTOR => __('Sanitory Inspector'),
-    ];*/
+    
     
    	public static function designstr()
    	{
@@ -271,6 +249,10 @@ class Officer extends CActiveRecord
         $outfile = '';
         switch($this->desig)
         {
+            case self::DESIG_DEPUTYCOMMISSIONER:
+				$outfile = strtolower($this->district->state->slug . '_' . $this->district->slug . '_' . $desig . '.jpg');
+				$stateobj = $this->district->state;
+                break;
             case self::DESIG_DEPUTYCHIEFMINISTER:
                 $outfile = strtolower($stateobj->slug . '_' . $desig . '_' . time() . '.jpg');
                 break;

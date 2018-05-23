@@ -17,12 +17,20 @@ switch($data->desig)
         break;
 }
 ?>
+<div class="view district <?=empty ( $data->picture ) ? '' : 'pic'?>">
+<h2 class="acname"><?=$label2?><?php
+if(Yii::app()->user->checkAccess('ADD_CHIEF_MINISTER'))
+echo  ' ' . CHtml::link(__('Edit'),['/officer/update','id' => $data->id_officer],['class' => 'editlink']);
+ ?></h2>
+<?php
+if (! empty ( $data->picture ))
+    echo CHtml::image ( '/images/pics/' . $data->picture, $data->name, [ 
+            'class' => 'picture amly' 
+    ] );
 
-<div class="view district">
-    <h2 class="acname"><?=$label2?></h2>
 
-    <?php
-    $att = [array ( // related city displayed as a link
+
+$att = [array ( // related city displayed as a link
             'label' => $label,
             'name' => 'name',
     )];
@@ -69,7 +77,22 @@ switch($data->desig)
                     return implode(' ',$rt);
         }
         ];
-    
+    if (! empty ( $data->website ))
+        $att [] = [ 
+                'type' => 'raw',
+                'name' => 'website',
+                'label' => __ ( 'Website' ),
+                'value' => function ($data)
+                {
+                    return CHtml::link($data->website,$data->website);
+                } 
+        ];
+        if (! empty ( $data->address ))
+        $att [] = [ 
+                'name' => 'address',
+        ];
+
+
     $this->widget ( 'zii.widgets.CDetailView', 
             array (
                     'data' => $data,
