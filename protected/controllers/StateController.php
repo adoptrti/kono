@@ -117,7 +117,7 @@ class StateController extends Controller
         if (! $state)
             return false;
         
-        $this->pageTitle = ucwords ( strtolower ( $state->name ) );
+        $this->pageTitle = Yii::app()->language == 'en' ? ucwords ( strtolower ( $state->name ) ) : $state->name;
         $this->render ( 'view', array (
                 'model' => $state 
         ) );
