@@ -57,37 +57,8 @@ Yii::app ()->clientScript->registerCoreScript ( 'bootstrap' );
         <!-- header -->
 
         <div id="mainmenu">
-            <div style="float: right; width: auto">
-                <ul>
-                    <?php
-                    foreach ( Yii::app ()->params ['translatedLanguages'] as $code => $lang )
-                    {
-                        $su = new StateUrlRule();
-                        $url = Yii::app()->getRequest()->getUrl();
-                        if( '/' == $url[0])
-                            $url = substr($url,1);
-                        $backup = $_GET; 
-                        $_GET = [];
-                        $rt = $su->parseUrl(null, null, $url, null);
-                        if($rt === false)
-                        {
-                            $params2 = "?lang=$code";
-                        }
-                        else 
-                        {
-                            $params = $_GET;
-                            $_GET = $backup;
-                            $params['lang'] = $code;
-                            $params2 = array_merge([$rt],$params);
-                        }
-                        ?>
-                        <li><?=CHtml::link(__($lang),$params2,['title' => $lang])?></li>
-                        <?php
-                    }
-                    ?>
-                </ul>
-            </div>
 		<?php
+		echo $this->renderPartial('//layouts/_lang_options');
         if (Yii::app ()->user->isGuest)
             $this->renderPartial('//layouts/_guestmenu');
         else
