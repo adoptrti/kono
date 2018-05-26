@@ -112,4 +112,11 @@ class ToolsCommand extends CConsoleCommand
     	   file_put_contents(Yii::app()->basePath . '/runtime/dbscan.cache.json', json_encode($cache,JSON_PRETTY_PRINT));
     	echo implode(" ",$changedtables);
     }
+    
+    function actionWiki($url)
+    {
+        Yii::import('application.components.Wikipedia');
+        $w = new Wikipedia($url);
+        echo "Hindi: " . $w->hi . "\n";
+    }
 }
