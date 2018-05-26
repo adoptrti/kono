@@ -76,7 +76,7 @@ task ( 'exportpatch', function ()
         $passp = empty ( $db ['password'] ) ? "" : " -p" . $db ['password'];
         $result = runLocally ( "mysqldump --opt -h $dbhost -u {$db['username']} $passp $dbname $tables|bzip2 - >data/patch.sql.bz2" );
         $size = filesize ( 'data/patch.sql.bz2' );
-        writeln ( "Patch file size=" . round ( $size / 1024 ) . " KB" );
+        writeln ( "Patch file size=" . round ( $size / 1024 ) . " KB for tables:" . $tables);
         dopatch();
     }
     else
