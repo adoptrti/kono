@@ -34,4 +34,21 @@ else
     $mla = $mla2;
 }
 $this->renderPartial('//site/_assembly',['data' => $mla,'full' => true]);
+
+if(isset($mla->constituency->ls_constituency->mp))
+    $this->renderPartial ( '//site/_lowerhouse', [
+            'data' => $mla->constituency->ls_constituency->mp,
+            'poly' => false
+    ] );
+
+#Need to fix it, never tested. 
+if (!empty($mla->constituency->acpoly->district))
+{
+    $this->renderPartial ( '//site/_district', [
+            'data' => isset($mla->constituency->acpoly->district->officers[0]) ? $mla->constituency->acpoly->district->officers[0] : false,
+            'district' => $mla->constituency->acpoly->district,
+            //'rawdata' => $rawdata,
+        ] );
+}
+        
 ?>

@@ -93,10 +93,33 @@ class Constituency extends CActiveRecord
 			'wards1' => array(self::HAS_MANY, 'Ward', 'id_parl_consti'),
 	        'mp' => array(self::HAS_ONE, 'LokSabha2014', 'id_consti'),
 	        'mla' => array(self::HAS_ONE, 'AssemblyResults', 'id_consti'),
+	        'lsconsti' => array(self::BELONGS_TO, 'Constituency', 'id_parl_consti'),
 		);
 	}
+	
+	
+	public function getls_constituency()
+	{	    
+	    if(isset($this->acpoly))
+	    {
+	        $consti = Constituency::model()->findByAttributes([
+	                'ctype' => 'PARL',
+	                'name' => $this->acpoly->pc_name_clean
+	        ]);
+	        return $consti;
+	    }   
+	    return false;
+	}
 
-	/**
+	public function getacpoly()
+	{
+	    return AssemblyPolygon::model()->findByAttributes(['acno' => $this->eci_ref,
+	            'id_state' => $this->id_state,
+	            'polytype' => 'AC'
+	    ]);
+	}
+
+    /**
 	 * @return array customized attribute labels (name=>label)
 	 */
 	public function attributeLabels()

@@ -109,8 +109,13 @@ class District extends CActiveRecord
 	        'districts' => array(self::HAS_MANY, 'District', 'id_district_division_hq','order' => 'name'),
 	        'polygons' => array(self::HAS_MANY, 'AssemblyPolygon', 'id_district','order' => 'name'),
 	        'division' => array(self::BELONGS_TO, 'District', 'id_district_division_hq'),
+	        'officers' => array(self::HAS_MANY, 'Officer', 'fkey_place','condition' => 'desig=:d1','params' => [
+	                'd1' => Officer::DESIG_DEPUTYCOMMISSIONER
+	        ]),
 		);
 	}
+	
+	
 
 	/**
 	 * @return array customized attribute labels (name=>label)

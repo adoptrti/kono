@@ -132,6 +132,14 @@ class AssemblyPolygon extends CActiveRecord
                 )
         );
     }
+    
+    public function getdistrict()
+    {
+        return District::model()->findByAttributes([
+                'name' => $this->dist_name,
+                'id_state' => $this->id_state,
+        ]);
+    }
 
     /**
      *
