@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kono\n"
-"POT-Creation-Date: 2018-05-16 18:09+0530\n"
-"PO-Revision-Date: 2018-05-20 15:30+0530\n"
+"POT-Creation-Date: 2018-05-25 17:25+0530\n"
+"PO-Revision-Date: 2018-05-25 17:27+0530\n"
 "Last-Translator: Vikas Yadav <mevikas@gmail.com>\n"
 "Language-Team: Vikas\n"
 "Language: en\n"
@@ -21,18 +21,1154 @@ msgstr ""
 "X-Poedit-SearchPath-3: controllers\n"
 "X-Poedit-SearchPath-4: config\n"
 
-#: config/main.php:108
+#: config/console.php:42
 msgid "English"
 msgstr "English"
 
-#: config/main.php:109
+#: config/console.php:43
 msgid "Hindi"
 msgstr "हिंदी"
 
-#: config/main.php:110
+#: config/console.php:44 config/main.php:110
 msgid "Telegu"
 msgstr "తెలుగు"
 
-#: config/main.php:111
+#: config/console.php:45 config/main.php:111
 msgid "Kannada"
 msgstr "ಕನ್ನಡ್"
+
+#: config/main.php:112
+msgid "Tamil"
+msgstr "தமிழ்"
+
+#: config/main.php:113
+msgid "Malayalam"
+msgstr "മലയാളം"
+
+#: controllers/ElectionController.php:166 views/site/_nextamlyelection.php:63
+msgid ""
+"{consti} #{eciref} - Contesting Candidates - {state} Assembly Elections "
+"{eyear}"
+msgstr ""
+
+#: controllers/OfficerController.php:66
+msgid "Create Officer"
+msgstr ""
+
+#: controllers/OfficerController.php:105
+msgid "Update Officer"
+msgstr ""
+
+#: controllers/StateController.php:81
+msgid ""
+"{state} Assembly Elections {eyear} - Assembly Constituencies with Candidate "
+"details, Symbols and EVM Positions"
+msgstr ""
+
+#: controllers/StateController.php:140
+msgid "{dist} District, {state}"
+msgstr ""
+
+#: controllers/StateController.php:163
+msgid "{{0}}, {{1}} District, {{2}}"
+msgstr ""
+
+#: controllers/StateController.php:188
+msgid "{dist} Loksabha Constituency, {state}"
+msgstr ""
+
+#: controllers/StateController.php:216
+msgid "{dist} Assembly Constituency, {state}"
+msgstr ""
+
+#: controllers/StateController.php:305
+msgid "Indian States, Chief Ministers and Office Phone and Email"
+msgstr ""
+
+#: models/AssemblyPolygon.php:143
+msgid "Assembly Number"
+msgstr ""
+
+#: models/AssemblyPolygon.php:144
+msgid "Polygon"
+msgstr ""
+
+#: models/AssemblyResults.php:121
+msgid "State of Constituency and Election mismatch"
+msgstr ""
+
+#: models/AssemblyResults.php:159
+msgid "Acname"
+msgstr ""
+
+#: models/AssemblyResults.php:160
+msgid "Acno"
+msgstr ""
+
+#: models/AssemblyResults.php:161 models/Committee.php:74
+#: models/Constituency.php:109 models/ContactForm.php:50
+#: models/LokSabha2014.php:101 models/MunicipalResults.php:63
+#: models/Officer.php:162 models/State.php:148 views/site/_wardofficers.php:32
+msgid "Name"
+msgstr ""
+
+#: models/AssemblyResults.php:162 models/LokSabha2014.php:107
+#: models/MunicipalResults.php:64 models/Results2014.php:70
+msgid "Party"
+msgstr ""
+
+#: models/Committee.php:71 models/Constituency.php:112 models/State.php:146
+msgid "Id State"
+msgstr ""
+
+#: models/Committee.php:72 models/Constituency.php:105
+msgid "Id Consti"
+msgstr ""
+
+#: models/Committee.php:73
+msgid "Committee Type"
+msgstr ""
+
+#: models/Committee.php:75 models/CommitteeMember.php:60
+msgid "Id Comm"
+msgstr ""
+
+#: models/Committee.php:76
+msgid "Id Election"
+msgstr ""
+
+#: models/CommitteeMember.php:61
+msgid "Id Result"
+msgstr ""
+
+#: models/CommitteeMember.php:62
+msgid "Chairman"
+msgstr ""
+
+#: models/Constituency.php:106
+msgid "Id Parl Consti"
+msgstr ""
+
+#: models/Constituency.php:107
+msgid "Id Dist Place2"
+msgstr ""
+
+#: models/Constituency.php:108
+msgid "Eci Ref"
+msgstr ""
+
+#: models/Constituency.php:110
+msgid "Resv"
+msgstr ""
+
+#: models/Constituency.php:111
+msgid "Number"
+msgstr ""
+
+#: models/Constituency.php:113
+msgid "Voters"
+msgstr ""
+
+#: models/Constituency.php:114
+msgid "Pollingstns"
+msgstr ""
+
+#: models/Constituency.php:115
+msgid "Turnout"
+msgstr ""
+
+#: models/Constituency.php:116
+msgid "Castvotes"
+msgstr ""
+
+#: models/Constituency.php:117
+msgid "Contestents"
+msgstr ""
+
+#: models/Constituency.php:118
+msgid "Contituency Type"
+msgstr ""
+
+#: models/Constituency.php:119
+msgid "Id Parent"
+msgstr ""
+
+#: models/Constituency.php:120
+msgid "Candilisthtml"
+msgstr ""
+
+#: models/Constituency.php:121 models/Officer.php:165 models/State.php:157
+msgid "Updated"
+msgstr ""
+
+#: models/Constituency.php:122
+msgid "Id State2"
+msgstr ""
+
+#: models/Constituency.php:123
+msgid "Gps Long"
+msgstr ""
+
+#: models/Constituency.php:124
+msgid "Gps Lat"
+msgstr ""
+
+#: models/Constituency.php:125
+msgid "Gps Ele"
+msgstr ""
+
+#: models/ContactForm.php:49
+msgid "Verification Code"
+msgstr ""
+
+#: models/ContactForm.php:51 views/site/_district.php:67
+#: views/site/_governer.php:34 views/site/_lowerhouse.php:33
+#: views/site/report.php:195 views/state/_chiefminister.php:63
+msgid "Email Address"
+msgstr ""
+
+#: models/ContactForm.php:52
+msgid "Subject"
+msgstr ""
+
+#: models/ContactForm.php:53
+msgid "Body"
+msgstr ""
+
+#: models/District.php:125
+msgid "Divisional HQ"
+msgstr ""
+
+#: models/Election.php:71
+msgid "Election ID"
+msgstr ""
+
+#: models/Election.php:72 models/LokSabha2014.php:99 views/site/_address.php:50
+#: views/site/report.php:153
+msgid "State"
+msgstr ""
+
+#: models/Election.php:73
+msgid "Result Date"
+msgstr ""
+
+#: models/Election.php:74
+msgid "Year"
+msgstr ""
+
+#: models/Election.php:75
+msgid "Election Type"
+msgstr ""
+
+#: models/LokSabha2014.php:94
+msgid "Id Mp"
+msgstr ""
+
+#: models/LokSabha2014.php:95 views/site/_assembly.php:69
+msgid "Phones"
+msgstr ""
+
+#: models/LokSabha2014.php:96
+msgid "Emails"
+msgstr ""
+
+#: models/LokSabha2014.php:97
+msgid "Pc Name"
+msgstr ""
+
+#: models/LokSabha2014.php:98
+msgid "Pc Name Clean"
+msgstr ""
+
+#: models/LokSabha2014.php:100
+msgid "Sno"
+msgstr ""
+
+#: models/LokSabha2014.php:102
+msgid "P Address1"
+msgstr ""
+
+#: models/LokSabha2014.php:103
+msgid "P Address2"
+msgstr ""
+
+#: models/LokSabha2014.php:104
+msgid "Col9"
+msgstr ""
+
+#: models/LokSabha2014.php:105
+msgid "Delhi Address1"
+msgstr ""
+
+#: models/LokSabha2014.php:106
+msgid "Col11"
+msgstr ""
+
+#: models/LokSabha2014.php:108
+msgid "Col15"
+msgstr ""
+
+#: models/LokSabha2014.php:109
+msgid "Delhi Address2"
+msgstr ""
+
+#: models/MunicipalResults.php:61 views/site/_address.php:29
+#: views/site/report.php:41
+msgid "City"
+msgstr ""
+
+#: models/MunicipalResults.php:62
+msgid "Wardno"
+msgstr ""
+
+#: models/MunicipalResults.php:65 models/Officer.php:167
+#: views/site/_district.php:42 views/site/_governer.php:69
+#: views/site/_lowerhouse.php:67 views/site/_ward.php:45
+#: views/site/_wardofficers.php:36 views/state/_chiefminister.php:40
+msgid "Phone"
+msgstr ""
+
+#: models/MunicipalResults.php:66
+msgid "Address"
+msgstr ""
+
+#: models/Officer.php:54
+msgid "Chief Engineer (I/C)"
+msgstr ""
+
+#: models/Officer.php:55
+msgid "Health Officer (I/C)"
+msgstr ""
+
+#: models/Officer.php:56
+msgid "Medical Officer of Health"
+msgstr ""
+
+#: models/Officer.php:58 views/site/_district.php:8
+msgid "Deputy Commissioner"
+msgstr ""
+
+#: models/Officer.php:59
+msgid "Joint Commissioner"
+msgstr ""
+
+#: models/Officer.php:60
+msgid "Assisstant Commissioner"
+msgstr ""
+
+#: models/Officer.php:61
+msgid "Executive Engineer"
+msgstr ""
+
+#: models/Officer.php:62
+msgid "Chief Engineer"
+msgstr ""
+
+#: models/Officer.php:63
+msgid "Health Officer"
+msgstr ""
+
+#: models/Officer.php:64
+msgid "Deputy Health Officer"
+msgstr ""
+
+#: models/Officer.php:65
+msgid "Assistant Executive Engineer"
+msgstr ""
+
+#: models/Officer.php:66
+msgid "Assistant Town Planning Officer"
+msgstr ""
+
+#: models/Officer.php:67
+msgid "Assistant Revenue Officer"
+msgstr ""
+
+#: models/Officer.php:68
+msgid "Zonal Sanitary Officer"
+msgstr ""
+
+#: models/Officer.php:70
+msgid "Assistant Engineer"
+msgstr ""
+
+#: models/Officer.php:71
+msgid "Water Supply Engineer"
+msgstr ""
+
+#: models/Officer.php:72
+msgid "Sanitory Inspector"
+msgstr ""
+
+#: models/Officer.php:163
+msgid "Place"
+msgstr ""
+
+#: models/Officer.php:164
+msgid "Designation"
+msgstr ""
+
+#: models/Officer.php:166
+msgid "Created"
+msgstr ""
+
+#: models/Officer.php:168
+msgid "Fax"
+msgstr ""
+
+#: models/Officer.php:169
+msgid "Email"
+msgstr ""
+
+#: models/Officer.php:170 views/site/report.php:211
+msgid "Picture"
+msgstr ""
+
+#: models/Officer.php:171
+msgid "Picture URL"
+msgstr ""
+
+#: models/Results2014.php:64
+msgid "Slno"
+msgstr ""
+
+#: models/Results2014.php:65
+msgid "Statename"
+msgstr ""
+
+#: models/Results2014.php:66
+msgid "Constituency"
+msgstr ""
+
+#: models/Results2014.php:67
+msgid "Winnername"
+msgstr ""
+
+#: models/Results2014.php:68
+msgid "Category"
+msgstr ""
+
+#: models/Results2014.php:69
+msgid "Socialcategory"
+msgstr ""
+
+#: models/Results2014.php:71
+msgid "Partysymbol"
+msgstr ""
+
+#: models/Results2014.php:72
+msgid "Margin"
+msgstr ""
+
+#: models/State.php:147
+msgid "St Code"
+msgstr ""
+
+#: models/State.php:149
+msgid "Ias Short Code"
+msgstr ""
+
+#: models/State.php:150
+msgid "Id Census"
+msgstr ""
+
+#: models/State.php:151
+msgid "State number as per ECI"
+msgstr ""
+
+#: models/State.php:152
+msgid "Session From"
+msgstr ""
+
+#: models/State.php:153
+msgid "Session To"
+msgstr ""
+
+#: models/State.php:154
+msgid "Lok Parl Seats"
+msgstr ""
+
+#: models/State.php:155
+msgid "Amly Seats"
+msgstr ""
+
+#: models/State.php:156
+msgid "Raj Parl Seats"
+msgstr ""
+
+#: models/State.php:158
+msgid "Iso3166"
+msgstr ""
+
+#: models/State.php:159
+msgid "is polling station info available"
+msgstr ""
+
+#: models/State.php:160
+msgid "no of dist as per ECI"
+msgstr ""
+
+#: models/State.php:161
+msgid "Eci Amly Count"
+msgstr ""
+
+#: views/election/candidates.php:9 views/election/candidates.php:31
+msgid "Contesting Candidates"
+msgstr ""
+
+#: views/election/candidates.php:19 views/state/_nextamlyelection.php:8
+msgid "{state} Assembly Elections {eyear}"
+msgstr ""
+
+#: views/election/candidates.php:25
+msgid "{consti} #{eciref}"
+msgstr ""
+
+#: views/election/candidates.php:47
+msgid "EVM Button Number"
+msgstr ""
+
+#: views/election/candidates.php:51
+msgid "Candidate"
+msgstr ""
+
+#: views/election/candidates.php:68
+msgid "Election Symbol"
+msgstr ""
+
+#: views/election/candidates.php:76
+msgid "Criminal Cases"
+msgstr ""
+
+#: views/election/candidates.php:81
+msgid "Assets"
+msgstr ""
+
+#: views/election/candidates.php:86
+msgid "Liabilities"
+msgstr ""
+
+#: views/layouts/_guestmenu.php:6
+msgid "Home"
+msgstr ""
+
+#: views/layouts/_guestmenu.php:12 views/site/pages/about.php:4
+#: views/site/pages/about.php:6
+msgid "About"
+msgstr ""
+
+#: views/layouts/_guestmenu.php:19 views/layouts/_usermenu.php:47
+#: views/site/report.php:5 views/site/report.php:7 views/site/report.php:11
+msgid "Data Report"
+msgstr ""
+
+#: views/layouts/_guestmenu.php:25 views/site/contact.php:8
+msgid "Contact"
+msgstr ""
+
+#: views/layouts/_lang_options.php:11
+msgid "Languages"
+msgstr ""
+
+#: views/layouts/_usermenu.php:5 views/site/report.php:115
+msgid "States"
+msgstr ""
+
+#: views/layouts/_usermenu.php:11
+msgid "Committee"
+msgstr ""
+
+#: views/layouts/_usermenu.php:17
+msgid "Committee Members"
+msgstr ""
+
+#: views/layouts/_usermenu.php:23
+msgid "Assembly Results"
+msgstr ""
+
+#: views/layouts/_usermenu.php:29
+msgid "Officer"
+msgstr ""
+
+#: views/layouts/_usermenu.php:35
+msgid "Elections"
+msgstr ""
+
+#: views/layouts/_usermenu.php:41 views/state/_view_dt.php:2
+msgid "Districts"
+msgstr ""
+
+#: views/layouts/_usermenu.php:56
+msgid "Logout ({uname})"
+msgstr ""
+
+#: views/layouts/main.php:89
+msgid "Coimbatore"
+msgstr ""
+
+#: views/layouts/main.php:89
+msgid "Made with {heart} in {Coimbatore}"
+msgstr ""
+
+#: views/layouts/main.php:94
+msgid "Copyright &copy; {year} by Vikas Yadav."
+msgstr ""
+
+#: views/layouts/main.php:94
+msgid "All Rights Reserved."
+msgstr ""
+
+#: views/layouts/main.php:95
+msgid "Disclaimer"
+msgstr ""
+
+#: views/layouts/main.php:96 views/site/pages/credits.php:4
+#: views/site/pages/credits.php:6
+msgid "Credits"
+msgstr ""
+
+#: views/localgov/block/_view.php:32
+msgid "Panchayats"
+msgstr ""
+
+#: views/localgov/district/view.php:20
+msgid "Division"
+msgstr ""
+
+#: views/localgov/district/view.php:20 views/site/_address.php:37
+msgid "District"
+msgstr ""
+
+#: views/localgov/district/view.php:41
+msgid "Member Districts"
+msgstr ""
+
+#: views/localgov/panchayat/_view.php:32 views/site/report.php:228
+msgid "Villages"
+msgstr ""
+
+#: views/officer/_form.php:69
+msgid "Deputy Commissioner of a District (aka Collector)"
+msgstr ""
+
+#: views/officer/_form.php:70
+msgid "Divisional Commissioner of a Division"
+msgstr ""
+
+#: views/officer/_form.php:71 views/state/_chiefminister.php:9
+msgid "Chief Minister"
+msgstr ""
+
+#: views/officer/_form.php:72 views/state/_chiefminister.php:12
+msgid "Deputy Chief Minister"
+msgstr ""
+
+#: views/officer/_form.php:73
+msgid "State Governer"
+msgstr ""
+
+#: views/officer/_form.php:74
+msgid "Lieutenant Governor"
+msgstr ""
+
+#: views/officer/_form.php:75 views/state/_chiefminister.php:15
+msgid "State Information Commissioner"
+msgstr ""
+
+#: views/site/_address.php:25
+msgid "Town"
+msgstr ""
+
+#: views/site/_address.php:33
+msgid "PIN Code"
+msgstr ""
+
+#: views/site/_address.php:63
+msgid "Country"
+msgstr ""
+
+#: views/site/_address.php:67
+msgid "Latitude"
+msgstr ""
+
+#: views/site/_address.php:71
+msgid "Longitude"
+msgstr ""
+
+#: views/site/_address.php:75
+msgid "Altitude"
+msgstr ""
+
+#: views/site/_address.php:79
+msgid "Open Location Code"
+msgstr ""
+
+#: views/site/_assembly.php:17
+msgid "{acname} Assembly Constituency - #{acno}"
+msgstr ""
+
+#: views/site/_assembly.php:35
+msgid "Elected MLA Name"
+msgstr ""
+
+#: views/site/_assembly.php:98
+msgid "Committees"
+msgstr ""
+
+#: views/site/_assembly.php:109
+msgid "ELection Date"
+msgstr ""
+
+#: views/site/_district.php:9
+msgid "{distname} Deputy Commissioner"
+msgstr ""
+
+#: views/site/_district.php:12
+msgid "Divisional Commissioner"
+msgstr ""
+
+#: views/site/_district.php:13
+msgid "{divname} Divisional Commissioner"
+msgstr ""
+
+#: views/site/_district.php:16
+msgid "N/A"
+msgstr ""
+
+#: views/site/_district.php:23 views/state/view.php:20
+msgid "Edit"
+msgstr ""
+
+#: views/site/_district.php:84 views/site/_governer.php:50
+#: views/state/_chiefminister.php:87
+msgid "Website"
+msgstr ""
+
+#: views/site/_governer.php:16
+msgid "{{0}} State Governer"
+msgstr ""
+
+#: views/site/_governer.php:24
+msgid "Governer Name"
+msgstr ""
+
+#: views/site/_lowerhouse.php:18
+msgid "{pcname} Lok Sabha Constituency"
+msgstr ""
+
+#: views/site/_lowerhouse.php:26
+msgid "Lok Sabha MP"
+msgstr ""
+
+#: views/site/_lowerhouse.php:49
+msgid "Permanent Address"
+msgstr ""
+
+#: views/site/_lowerhouse.php:58
+msgid "Delhi Address"
+msgstr ""
+
+#: views/site/_nextamlyelection.php:28
+msgid ""
+"{state} Assembly Elections {eyear} - {acname} Assembly Constituency - #{acno}"
+msgstr ""
+
+#: views/site/_nextamlyelection.php:43
+msgid "See list and details of all contesting candidates on myneta.info"
+msgstr ""
+
+#: views/site/_village.php:7
+msgid "{villagename} Village"
+msgstr ""
+
+#: views/site/_village.php:18
+msgid "Village"
+msgstr ""
+
+#: views/site/_village.php:25
+msgid "Panchayat"
+msgstr ""
+
+#: views/site/_village.php:32
+msgid "Block"
+msgstr ""
+
+#: views/site/_ward.php:14
+msgid "{wardname} Municipal Ward - #{wardno}"
+msgstr ""
+
+#: views/site/_ward.php:21
+msgid "Zone"
+msgstr ""
+
+#: views/site/_ward.php:36
+msgid "Elected Councillor Name"
+msgstr ""
+
+#: views/site/_ward.php:84
+msgid "Municipal Ward Staff"
+msgstr ""
+
+#: views/site/_ward.php:91
+msgid "Municipal Zone Staff"
+msgstr ""
+
+#: views/site/contact.php:6 views/site/contact.php:12
+msgid "Contact Us"
+msgstr ""
+
+#: views/site/contact.php:23
+msgid ""
+"If you have business inquiries or other questions, please fill out the "
+"following form to contact us. Thank you."
+msgstr ""
+
+#: views/site/contact.php:36 views/site/login.php:25
+msgid "Fields with {star} are required."
+msgstr ""
+
+#: views/site/contact.php:71
+msgid "Please enter the letters as they are shown in the image above."
+msgstr ""
+
+#: views/site/contact.php:72
+msgid "Letters are not case-sensitive."
+msgstr ""
+
+#: views/site/contact.php:78
+msgid "Submit"
+msgstr ""
+
+#: views/site/fetchlocation.php:2
+msgid "Kono is fetching your location"
+msgstr ""
+
+#: views/site/fetchlocation.php:4
+msgid "Kono is fetching your location..."
+msgstr ""
+
+#: views/site/index.php:42
+msgid "Map"
+msgstr ""
+
+#: views/site/index.php:47
+msgid "Go to an address"
+msgstr ""
+
+#: views/site/login.php:6 views/site/login.php:8 views/site/login.php:12
+#: views/site/login.php:46
+msgid "Login"
+msgstr ""
+
+#: views/site/login.php:14
+msgid "Please fill out the following form with your login credentials:"
+msgstr ""
+
+#: views/site/report.php:14
+msgid "Municipal Corporations"
+msgstr ""
+
+#: views/site/report.php:48
+msgid "Wards"
+msgstr ""
+
+#: views/site/report.php:55
+msgid "Ward Staff"
+msgstr ""
+
+#: views/site/report.php:62
+msgid "Zones"
+msgstr ""
+
+#: views/site/report.php:69
+msgid "Zone Staff"
+msgstr ""
+
+#: views/site/report.php:76
+msgid "Councillors"
+msgstr ""
+
+#: views/site/report.php:80
+msgid "RTI"
+msgstr ""
+
+#: views/site/report.php:163
+msgid "A Poly"
+msgstr ""
+
+#: views/site/report.php:170 views/site/report.php:194
+msgid "E*"
+msgstr ""
+
+#: views/site/report.php:171
+msgid "Election Year"
+msgstr ""
+
+#: views/site/report.php:179
+msgid "MLAs"
+msgstr ""
+
+#: views/site/report.php:186 views/site/report.php:210
+msgid "P*"
+msgstr ""
+
+#: views/site/report.php:187
+msgid "Phone Numbers"
+msgstr ""
+
+#: views/site/report.php:202
+msgid "A*"
+msgstr ""
+
+#: views/site/report.php:203
+msgid "Office/Residence Address"
+msgstr ""
+
+#: views/site/report.php:218
+msgid "M*"
+msgstr ""
+
+#: views/site/report.php:219
+msgid "Municipal Bodies"
+msgstr ""
+
+#: views/site/report.php:227
+msgid "V*"
+msgstr ""
+
+#: views/site/report.php:235
+msgid "V Poly"
+msgstr ""
+
+#: views/site/report.php:242
+msgid "D*"
+msgstr ""
+
+#: views/site/report.php:243
+msgid "Administrative Divisions and Districts"
+msgstr ""
+
+#: views/site/report.php:253
+msgid "C*"
+msgstr ""
+
+#: views/site/report.php:254
+msgid "Deputy Commissioners and Divisional Commissioners"
+msgstr ""
+
+#: views/state/_assemblies.php:13
+msgid "Legislative Assemblies"
+msgstr ""
+
+#: views/state/_blocks.php:3
+msgid "Blocks"
+msgstr ""
+
+#: views/state/_districteditor.php:6 views/state/_stateeditor.php:6
+msgid "Data Editor"
+msgstr ""
+
+#: views/state/_districteditor.php:9
+msgid "Add Deputy Commissioner"
+msgstr ""
+
+#: views/state/_stateeditor.php:11
+msgid "Add Chief Minister"
+msgstr ""
+
+#: views/state/_stateeditor.php:13
+msgid "Edit Chief Minister"
+msgstr ""
+
+#: views/state/_stateeditor.php:15
+msgid "Add Deputy Chief Minister"
+msgstr ""
+
+#: views/state/_stateeditor.php:19
+msgid "Edit Deputy Chief Minister"
+msgstr ""
+
+#: views/state/_stateeditor.php:24
+msgid "Add Governer"
+msgstr ""
+
+#: views/state/_stateeditor.php:26
+msgid "Edit Governer"
+msgstr ""
+
+#: views/state/_stateeditor.php:29
+msgid "Add District Division"
+msgstr ""
+
+#: views/state/_towns.php:3
+msgid "Towns"
+msgstr ""
+
+#: views/state/_towns.php:13
+msgid "Cantonment Board"
+msgstr ""
+
+#: views/state/_towns.php:14
+msgid "City Municipal Council"
+msgstr ""
+
+#: views/state/_towns.php:15
+msgid "City Municipal Council Out Growth"
+msgstr ""
+
+#: views/state/_towns.php:16
+msgid "Gram Panchayat"
+msgstr ""
+
+#: views/state/_towns.php:17
+msgid "Gram Panchayat Out Growth"
+msgstr ""
+
+#: views/state/_towns.php:18
+msgid "Industrial Notified Area"
+msgstr ""
+
+#: views/state/_towns.php:19
+msgid "Industrial Township"
+msgstr ""
+
+#: views/state/_towns.php:20
+msgid "Industrial Township Out Growth"
+msgstr ""
+
+#: views/state/_towns.php:21
+msgid "Municipality"
+msgstr ""
+
+#: views/state/_towns.php:22
+msgid "Municipality Out Growth"
+msgstr ""
+
+#: views/state/_towns.php:23
+msgid "Municipal Board"
+msgstr ""
+
+#: views/state/_towns.php:24
+msgid "Municipal Board Out Growth"
+msgstr ""
+
+#: views/state/_towns.php:25
+msgid "Municipal Committee"
+msgstr ""
+
+#: views/state/_towns.php:26
+msgid "Municipal Committee Out Growth"
+msgstr ""
+
+#: views/state/_towns.php:27
+msgid "mci"
+msgstr ""
+
+#: views/state/_towns.php:28
+msgid "mci+og Out Growth"
+msgstr ""
+
+#: views/state/_towns.php:29
+msgid "Municipal Council"
+msgstr ""
+
+#: views/state/_towns.php:30
+msgid "Municipal Council Out Growth"
+msgstr ""
+
+#: views/state/_towns.php:31 views/state/_view_mc.php:2
+msgid "Municipal Corporation"
+msgstr ""
+
+#: views/state/_towns.php:32
+msgid "Municipal Corporation Out Growth"
+msgstr ""
+
+#: views/state/_towns.php:33
+msgid "Notified Area"
+msgstr ""
+
+#: views/state/_towns.php:34
+msgid "Notified Area Out Growth"
+msgstr ""
+
+#: views/state/_towns.php:35
+msgid "Notified Area Committee"
+msgstr ""
+
+#: views/state/_towns.php:36
+msgid "Notified Area Committee Out Growth"
+msgstr ""
+
+#: views/state/_towns.php:37
+msgid "Nagar Parishad"
+msgstr ""
+
+#: views/state/_towns.php:38
+msgid "Nagar Parishad Out Growth"
+msgstr ""
+
+#: views/state/_towns.php:39
+msgid "Nagar Palika Parishad"
+msgstr ""
+
+#: views/state/_towns.php:40
+msgid "Nagar Palika Parishad Out Growth"
+msgstr ""
+
+#: views/state/_towns.php:41
+msgid "Notified Town"
+msgstr ""
+
+#: views/state/_towns.php:42
+msgid "Small Town Committee"
+msgstr ""
+
+#: views/state/_towns.php:43
+msgid "Town Committee"
+msgstr ""
+
+#: views/state/_towns.php:44
+msgid "Town Municipal Council"
+msgstr ""
+
+#: views/state/_towns.php:45
+msgid "Town Municipal Council Out Growth"
+msgstr ""
+
+#: views/state/_towns.php:46
+msgid "Town Panchayat"
+msgstr ""
+
+#: views/state/_towns.php:47
+msgid "Town Panchayat Out Growth"
+msgstr ""
+
+#: views/state/_view_as.php:2
+msgid "State Assembly Constituencies"
+msgstr ""
+
+#: views/state/_view_as_el.php:2
+msgid ""
+"Assembly Constituencies with Candidate details, Symbols and EVM Positions"
+msgstr ""
+
+#: views/state/_view_dt.php:11
+msgid "{{0}} Division"
+msgstr ""
+
+#: views/state/_view_ls.php:2
+msgid "Lok Sabha Constituencies"
+msgstr ""
+
+#: views/state/district.php:51 views/state/town.php:51
+msgid "{distname} District, {state}"
+msgstr ""
+
+#: views/state/district.php:74
+msgid "Lok Sabha Parliamentary Constituency"
+msgstr ""
+
+#: views/state/town.php:74
+msgid "Municipal Wards"
+msgstr ""
