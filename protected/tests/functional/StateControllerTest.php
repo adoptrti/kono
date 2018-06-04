@@ -34,7 +34,7 @@ class StateControllerTest extends UnitTestCase
      */
     public function testIndex()
     {    	
-        Yii::app ()->runController ( 'state/view/id/18' );
+        Yii::app ()->runController ( 'state/index' );
     }
 
 }

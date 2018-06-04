@@ -18,7 +18,7 @@ class ToolsCommand extends CConsoleCommand
         }
     }
     
-    public function actionDBScan($save = false)
+    public function actionDBScan($save = false,$allcreate = false)
     {
         $tables = [
     			'AssemblyPolygon','AssemblyResults',
@@ -26,6 +26,9 @@ class ToolsCommand extends CConsoleCommand
     			'District','Election','LBVillage','LBWard',
     			'LokSabha2014','Minister','Ministry','ElectionCandidates',
     			'MunicipalResults','Officer','State','Town'];
+        
+        if($allcreate)
+            $save = false;
     	
     	$oldcache = json_decode(file_get_contents(Yii::app()->basePath . '/runtime/dbscan.cache.json'),true);
     	$changedtables = [];
@@ -54,8 +57,7 @@ class ToolsCommand extends CConsoleCommand
     		{
     		    print_r($qry);
     		    throw new Exception("$table qry failed");
-    		}
-    		
+    		}    		
     		
     		$ur = $cr = false;
     		$dates = [];
@@ -86,6 +88,11 @@ class ToolsCommand extends CConsoleCommand
     		$tabledata['model'] = $table;
     		$tabledata['table'] = $tablename;    		
     		$tabledata['maxpk'] = $maxpknum;
+    		
+    		#201806042219:thevikas:kerala:add all tables if only create statement is requested
+    		if($allcreate)
+    		    $changedtables[$tablename] = $tablename;
+    		    
     		if($tabledata['maxpk'] != $oldcache[$tablename]['maxpk'])
     		    $changedtables[$tablename] = $tablename;
     		
@@ -99,14 +106,14 @@ class ToolsCommand extends CConsoleCommand
     		    
 		    $tabledata['count'] = $ctr;    		
 		    if($tabledata['count'] != $oldcache[$tablename]['count'])
-		        $changedtables[$tablename] = $tablename;		    
+		        $changedtables[$tablename] = $tablename;		    		       
 		    
             #201805231626:thevikas:Kovai:Patch to consider xxxLang tables too 
 		    $cache[$tablename] = $tabledata;
 		    $beh = $obj2->behaviors();
 		    if(isset($beh['ml']) && isset($changedtables[$tablename]))
 		        $changedtables[$tablename . 'Lang'] = $tablename . 'Lang';
-    		#echo "$table\t$maxpknum\t$maxcreated\t$maxupdated\t$ctr\n";
+		    
     	}
     	if($save)
     	   file_put_contents(Yii::app()->basePath . '/runtime/dbscan.cache.json', json_encode($cache,JSON_PRETTY_PRINT));
