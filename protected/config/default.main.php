@@ -83,6 +83,16 @@ return array (
         // using Yii::app()->params['paramName']
         'params' => array (
                 // this is used in contact page
+                'defaultLanguage' => 'en',
+                'defaultDBLanguage' => 'en',
+                'translatedLanguages' => array (
+                        'en' => 'English',
+                        'hi' => 'Hindi',
+                        'te' => __('Telegu'),// తెలుగు
+                        'kn' => __('Kannada'),
+                        'ta' => __('Tamil'),
+                        'ml' => __('Malayalam'),
+                ),
                 'adminEmail' => 'webmaster@example.com',
                 'google-api-key' => '-add-key-here-',
                 'google-tracking-id' => '-add-key-here-' 
