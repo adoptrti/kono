@@ -1,4 +1,5 @@
 <?php
+Yii::import("application.urlrules.StateUrlRule");
 foreach ( Yii::app ()->params ['translatedLanguages'] as $code => $lang ) {
 	$su = new StateUrlRule ();
 	$url = Yii::app ()->getRequest ()->getUrl ();

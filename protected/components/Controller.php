@@ -29,6 +29,22 @@ class Controller extends CController
      *      for more details on how to specify this property.
      */
     public $breadcrumbs = array ();
+    
+    function render($view, $data = null, $return = false)
+    {
+        $out = parent::render ( $view, $data, true );
+        if (isset ( Yii::app ()->params ['runmode'] ) && Yii::app ()->params ['runmode'] == 'test')
+        {
+            global $render_output;
+            return $render_output = $out;
+        }
+        
+        if ($return)
+            return $out;
+        else
+            echo $out;
+    }
+    
 
     public function disableWebLog()
     {

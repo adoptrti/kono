@@ -37,7 +37,7 @@ Yii::app()->clientScript->registerScript( 'slider' ,$js,CClientScript::POS_READY
             }
         }
 </style>
-
+<?php $this->renderPartial('_github-corner');?>
 <div class="view" id="maptab">
     <h2 class="acname"><?=__ ( 'Map' )?></h2>
 
