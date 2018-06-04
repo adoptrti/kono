@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Kono" basedir="." description="" default="setuptest">
+	<property name="message" value="Hello World!" />
+	<target name="setuptest">
+		<copy file="config/default.main.php" tofile="config/main.php" overwrite="true" />
+		<copy file="config/default.database.php" tofile="config/database.php" overwrite="true" />
+	</target>
+</project>
