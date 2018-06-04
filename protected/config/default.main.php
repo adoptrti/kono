@@ -15,14 +15,7 @@ return array (
         ),
         
         // autoloading model and component classes
-        'import' => array (
-                'application.models.*',
-                'application.commands.*',
-                'application.components.*',
-                'application.behaviours.*',
-                'application.controllers.*',
-                'application.controllers.api.*' 
-        ),
+        'import' => include __DIR__ . '/main-imports.php',
         
         // application components
         'components' => array (
