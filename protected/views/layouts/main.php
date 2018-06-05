@@ -30,6 +30,7 @@ Yii::app ()->clientScript->registerCoreScript ( 'bootstrap' );
 </head>
 
 <body id="main">
+<?php if(!defined('DEVSITE')):?>
     <!-- Global Site Tag (gtag.js) - Google Analytics -->
     <script async
         src="https://www.googletagmanager.com/gtag/js?id=<?=Yii::app()->params['google-tracking-id']?>"></script>
@@ -39,6 +40,7 @@ Yii::app ()->clientScript->registerCoreScript ( 'bootstrap' );
   gtag('js', new Date());
   gtag('config', '<?=Yii::app()->params['google-tracking-id']?>');
 </script>
+<?php endif; ?>
     <script async src="//platform.twitter.com/widgets.js"
         charset="utf-8"></script>
 

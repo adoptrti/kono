@@ -1,5 +1,19 @@
 # About kono
 
+
+[![continuousphp](https://img.shields.io/continuousphp/git-hub/adoptrti/kono.svg)](https://github.com/adoptrti/kono)
+[![GitHub last commit](https://img.shields.io/github/last-commit/adoptrti/kono.svg)](https://github.com/adoptrti/kono)
+[![GitHub tag](https://img.shields.io/github/tag/adoptrti/kono.svg)](https://github.com/adoptrti/kono)
+[![Gitter](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/adopt-RTI/Lobby)
+[![SayThanks](https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg)](https://saythanks.io/to/thevikas)
+[![Twitter Follow](https://img.shields.io/twitter/follow/adoptrti.svg?style=social&label=Follow)](https://twitter.com/adoptrti)
+
+<p align="center">
+  <a href="#roadmap">Roadmap</a> •
+  <a href="#todo">Todo</a> •
+  <a href="#updates">Updates</a>
+</p>
+
 A Geo-location app for showing administrative, emergency and political information about this place. It starts the map with your current location. Showing the information that belongs to the current location. You can move the map pointer to find local information of that place. Kono is developed just for Indian citizens.
 
 ## Background
@@ -90,6 +104,7 @@ More than developing the software, we need to collect and cleanup data that we h
 1. Markets:
 
 ## Updates
+* **28-May-2018** - Shimla councillors added.
 * **23-May-2018** - Data localization started. States and Officer names localized. (:pushpin: v 0.16)
 * **22-May-2018** - State Information Commissioners are also added starting with Odisha
 * **20-May-2018** - Setup first deployment system (:pushpin: v 0.15)

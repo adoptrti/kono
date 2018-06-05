@@ -3,6 +3,7 @@
 /* @var $officer Officer */
 $h3 = isset($h3) ? $h3 : false;
 $data = Officer::model()->localized(Yii::app()->language)->findByPk($officer->id_officer);
+$cssclass = "chmim";
 switch($data->desig)
 {
     case Officer::DESIG_CHIEFMINISTER:
@@ -13,10 +14,11 @@ switch($data->desig)
         break;
     case Officer::DESIG_STATEINFOCOMMISSIONER:
         $h2title = __('State Information Commissioner');
+        $cssclass = "sic";
         break;
 }
 ?>
-<div class="view chmin <?=empty ( $data->picture ) ? '' : 'pic'?>">
+<div class="view <?=$cssclass . ' ' . (empty ( $data->picture ) ? '' : 'pic')?>">
 <?php 
 echo CHtml::tag($h3 ? 'h3' : 'h2',[],$h2title);
 if (! empty ( $data->picture ))
@@ -28,7 +30,7 @@ if (! empty ( $data ))
 {
     $att = [ 
             array ( // related city displayed as a link
-                    'label' =>$h2title,
+                    //'label' =>$h2title,
                     'name' => 'name' 
             ) 
     ];

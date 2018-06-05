@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array (
         'basePath' => dirname ( __FILE__ ) . DIRECTORY_SEPARATOR . '..',
-        'name' => 'My Web Application',
+        'name' => 'Kono',
         
         // preloading 'log' component
         'preload' => array (
@@ -15,14 +15,7 @@ return array (
         ),
         
         // autoloading model and component classes
-        'import' => array (
-                'application.models.*',
-                'application.commands.*',
-                'application.components.*',
-                'application.behaviours.*',
-                'application.controllers.*',
-                'application.controllers.api.*' 
-        ),
+        'import' => include __DIR__ . '/main-imports.php',
         
         // application components
         'components' => array (
@@ -90,6 +83,16 @@ return array (
         // using Yii::app()->params['paramName']
         'params' => array (
                 // this is used in contact page
+                'defaultLanguage' => 'en',
+                'defaultDBLanguage' => 'en',
+                'translatedLanguages' => array (
+                        'en' => 'English',
+                        'hi' => 'Hindi',
+                        'te' => __('Telegu'),// తెలుగు
+                        'kn' => __('Kannada'),
+                        'ta' => __('Tamil'),
+                        'ml' => __('Malayalam'),
+                ),
                 'adminEmail' => 'webmaster@example.com',
                 'google-api-key' => '-add-key-here-',
                 'google-tracking-id' => '-add-key-here-' 
