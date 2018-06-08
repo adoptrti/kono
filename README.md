@@ -1,4 +1,6 @@
 # About kono
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fadoptrti%2Fkono.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fadoptrti%2Fkono?ref=badge_shield)
+
 
 A Geo-location app for showing administrative, emergency and political information about this place. It starts the map with your current location. Showing the information that belongs to the current location. You can move the map pointer to find local information of that place. Kono is developed just for Indian citizens.
 
@@ -115,3 +117,7 @@ More than developing the software, we need to collect and cleanup data that we h
 * **23-Sep-2017** - Karnataka Assembly Members with Address, Phone and Emails added
 * **16-Sep-2017** - All Delhi Assembly members added.
 * **13-Sep-2017** - Launched with all contact details and their respective geography of Loksabha MPs, Tamil Nadu Assembly members and Coimbatore Councillors. (:pushpin: v 0.1)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fadoptrti%2Fkono.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fadoptrti%2Fkono?ref=badge_large)
