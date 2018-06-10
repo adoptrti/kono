@@ -29,8 +29,8 @@ $this->widget ( 'zii.widgets.CMenu',
                         ),
                         [
                                 'encodeLabel' => false,
-                                'label' => "<i class='fa fa-github'></i>",
-                                'url' => 'https://github.com/adoptrti/kono'
+                                'label' => "<i class='fa fa-gitlab'></i>",
+                                'url' => 'https://gitlab.com/adoptrti/kono'
                         ]
 
                 )

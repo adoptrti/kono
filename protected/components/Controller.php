@@ -95,4 +95,5 @@ class Controller extends CController
         $s->detachBehaviors();
         $s->attachBehaviors($s->behaviors());
     }
+    
 }

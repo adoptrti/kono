@@ -445,4 +445,10 @@ class AssemblyPolygon extends CActiveRecord
     {
     	return $this->newOfficer($ss,$this->id_zone);
     }
+    
+    public static function getBoundingBox($distance_meter,$pos_lat,$pos_long)
+    {
+        
+    }
+    
 }

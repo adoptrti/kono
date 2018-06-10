@@ -17,5 +17,5 @@ class SiteTest extends UnitTestCase
 	{
 	    Yii::app ()->runController ( 'site/index' );
 	}
-	
+		
 }
