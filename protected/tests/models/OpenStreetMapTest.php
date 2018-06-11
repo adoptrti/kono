@@ -125,9 +125,30 @@ class OpenStreetMapTest extends UnitTestCase
     public function testHospitals()
     {
         $this->object = new OpenStreetMap(  13.009340,   80.259038);
+        $this->assertTrue(isset($this->object->hospitals));
         $data = $this->object->hospitals;
-        echo "returned: " . $data;
-        $this->assertEquals($data,'');
+        $this->assertEquals(
+            trim(file_get_contents(__DIR__ . '/../fixtures/poi.xml')),
+            trim($this->object->dom->saveXML() ));
     }
+
+    public function testXyz()
+    {
+        $this->object = new OpenStreetMap(  13.009340,   80.259038);
+        $this->assertFalse(isset($this->object->xyz));
+
+        #echo "returned: " . $data;
+        #$this->assertEquals($data,'');
+    }
+
+    public function testParse()
+    {
+        $xml = file_get_contents(__DIR__ . '/../fixtures/poi.xml');
+        $this->object = new OpenStreetMap(  13.009340,   80.259038);
+        $this->object->setxml($xml);
+        $data = $this->object->parsePOIs();
+        $this->assertEquals("ABC",$data['ABC']['id']);
+    }
+
 
 }

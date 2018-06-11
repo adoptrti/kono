@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="Overpass API 0.7.55.3 9da5e7ae">
+  <note>The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.</note>
+  <meta osm_base=""/>
+  <node id="319489459" lat="12.9931578" lon="80.2552436"/>
+  <node id="319489474" lat="12.9931200" lon="80.2543853"/>
+  <node id="319493745" lat="12.9940730" lon="80.2561934"/>
+  <node id="319493746" lat="12.9941283" lon="80.2583655"/>
+  <node id="319493747" lat="12.9920327" lon="80.2580356"/>
+  <node id="319493748" lat="12.9922576" lon="80.2561948"/>
+  <node id="999" lat="12.9953347" lon="80.2686985">
+    <tag k="amenity" v="hospital"/>
+  </node>
+  <node id="417751169" lat="12.9953347" lon="80.2686985">
+    <tag k="amenity" v="hospital"/>
+    <tag k="name" v="Santosh Hospital"/>
+  </node>
+  <node id="1560720462" lat="13.0015307" lon="80.2552541">
+    <tag k="amenity" v="hospital"/>
+    <tag k="designation" v="Hospital"/>
+    <tag k="emergency" v="no"/>
+    <tag k="name" v="Vasan Eye Care Hospital"/>
+    <tag k="source" v="survey"/>
+  </node>
+  <node id="1812541175" lat="13.0096592" lon="80.2516133"/>
+  <node id="1812541177" lat="13.0096801" lon="80.2512538"/>
+  <node id="1812541179" lat="13.0099231" lon="80.2518311"/>
+  <node id="1812541181" lat="13.0099623" lon="80.2512646"/>
+  <node id="2218345696" lat="13.0068356" lon="80.2483031"/>
+  <node id="2218345697" lat="13.0068365" lon="80.2481032"/>
+  <node id="2218345701" lat="13.0069224" lon="80.2483636"/>
+  <node id="2218345707" lat="13.0084967" lon="80.2481892"/>
+  <node id="2218345716" lat="13.0105701" lon="80.2488270"/>
+  <node id="2218345728" lat="13.0107759" lon="80.2482768"/>
+  <node id="2218345729" lat="13.0107982" lon="80.2482789"/>
+  <node id="2218345738" lat="13.0112512" lon="80.2488859"/>
+  <node id="2218345740" lat="13.0112771" lon="80.2483251"/>
+  <node id="2270288820" lat="13.0167431" lon="80.2598155"/>
+  <node id="2270288824" lat="13.0167534" lon="80.2591789"/>
+  <node id="2270288828" lat="13.0169898" lon="80.2592164"/>
+  <node id="2270288873" lat="13.0170173" lon="80.2588263"/>
+  <node id="2270289004" lat="13.0178430" lon="80.2606142"/>
+  <node id="2270289070" lat="13.0184055" lon="80.2609755"/>
+  <node id="2270289073" lat="13.0184889" lon="80.2609830"/>
+  <node id="2270289077" lat="13.0185523" lon="80.2587927"/>
+  <node id="2270289079" lat="13.0185760" lon="80.2595564"/>
+  <node id="2270289083" lat="13.0186087" lon="80.2608675"/>
+  <node id="2274387995" lat="13.0099327" lon="80.2584966"/>
+  <node id="2274387996" lat="13.0099379" lon="80.2589520"/>
+  <node id="2274387997" lat="13.0101847" lon="80.2582756"/>
+  <node id="2274387998" lat="13.0101874" lon="80.2584804"/>
+  <node id="2274387999" lat="13.0102031" lon="80.2589520"/>
+  <node id="2274388000" lat="13.0102162" lon="80.2587337"/>
+  <node id="2274388001" lat="13.0103857" lon="80.2582716"/>
+  <node id="2274388002" lat="13.0104527" lon="80.2587334"/>
+  <node id="2587530810" lat="13.0205681" lon="80.2594702">
+    <tag k="amenity" v="hospital"/>
+    <tag k="name" v="Chennai Skin Foundation"/>
+  </node>
+  <node id="3355369094" lat="12.9943009" lon="80.2525668"/>
+  <node id="3355369095" lat="12.9943031" lon="80.2525584"/>
+  <node id="3355369096" lat="12.9942496" lon="80.2525508"/>
+  <node id="3355369097" lat="12.9942497" lon="80.2525603"/>
+  <node id="3355370329" lat="12.9943026" lon="80.2525497"/>
+  <node id="3355370330" lat="12.9942992" lon="80.2525409"/>
+  <node id="3355370331" lat="12.9942930" lon="80.2525338"/>
+  <node id="3355370332" lat="12.9942849" lon="80.2525292"/>
+  <node id="3355370333" lat="12.9942757" lon="80.2525278"/>
+  <node id="3355370334" lat="12.9942666" lon="80.2525296"/>
+  <node id="3355370335" lat="12.9942586" lon="80.2525345"/>
+  <node id="3355370336" lat="12.9942527" lon="80.2525418"/>
+  <node id="3355370337" lat="12.9942528" lon="80.2525693"/>
+  <node id="3355370338" lat="12.9942581" lon="80.2525760"/>
+  <node id="3355370339" lat="12.9942652" lon="80.2525808"/>
+  <node id="3355370340" lat="12.9942734" lon="80.2525830"/>
+  <node id="3355370341" lat="12.9942818" lon="80.2525826"/>
+  <node id="3355370342" lat="12.9942897" lon="80.2525795"/>
+  <node id="3355370343" lat="12.9942963" lon="80.2525740"/>
+  <node id="3355370344" lat="12.9942334" lon="80.2515531"/>
+  <node id="3355370345" lat="12.9941302" lon="80.2515874"/>
+  <node id="3355370346" lat="12.9941661" lon="80.2517012"/>
+  <node id="3355370347" lat="12.9942693" lon="80.2516668"/>
+  <node id="3774527657" lat="12.9977206" lon="80.2573263"/>
+  <node id="3774527658" lat="12.9976776" lon="80.2576030"/>
+  <node id="3774527659" lat="12.9978182" lon="80.2576261"/>
+  <node id="3774527660" lat="12.9978613" lon="80.2573493"/>
+  <node id="3997350948" lat="12.9934434" lon="80.2543853"/>
+  <node id="3997350949" lat="12.9934959" lon="80.2552463"/>
+  <node id="4006923518" lat="12.9920711" lon="80.2568853"/>
+  <node id="4006923523" lat="12.9922390" lon="80.2568853"/>
+  <way id="29046742">
+    <nd ref="319493745"/>
+    <nd ref="319493746"/>
+    <nd ref="319493747"/>
+    <nd ref="4006923518"/>
+    <nd ref="4006923523"/>
+    <nd ref="319493748"/>
+    <nd ref="319493745"/>
+    <tag k="amenity" v="hospital"/>
+    <tag k="name" v="IMPCOPS Traditional Hospital"/>
+  </way>
+  <way id="170104584">
+    <nd ref="1812541177"/>
+    <nd ref="1812541175"/>
+    <nd ref="1812541179"/>
+    <nd ref="1812541181"/>
+    <nd ref="1812541177"/>
+    <tag k="amenity" v="hospital"/>
+    <tag k="name" v="Global Hospitals"/>
+  </way>
+  <way id="211900029">
+    <nd ref="2218345697"/>
+    <nd ref="2218345696"/>
+    <nd ref="2218345701"/>
+    <nd ref="2218345716"/>
+    <nd ref="2218345738"/>
+    <nd ref="2218345740"/>
+    <nd ref="2218345729"/>
+    <nd ref="2218345728"/>
+    <nd ref="2218345707"/>
+    <nd ref="2218345697"/>
+    <tag k="amenity" v="hospital"/>
+    <tag k="name" v="Canceer Hospital"/>
+  </way>
+  <way id="217726810">
+    <nd ref="2270289077"/>
+    <nd ref="2270288873"/>
+    <nd ref="2270288828"/>
+    <nd ref="2270288824"/>
+    <nd ref="2270288820"/>
+    <nd ref="2270289004"/>
+    <nd ref="2270289070"/>
+    <nd ref="2270289073"/>
+    <nd ref="2270289083"/>
+    <nd ref="2270289079"/>
+    <nd ref="2270289077"/>
+    <tag k="amenity" v="hospital"/>
+    <tag k="name" v="Andhra Mahila Sabha"/>
+  </way>
+  <way id="218163938">
+    <nd ref="2274388002"/>
+    <nd ref="2274388000"/>
+    <nd ref="2274387999"/>
+    <nd ref="2274387996"/>
+    <nd ref="2274387995"/>
+    <nd ref="2274387998"/>
+    <nd ref="2274387997"/>
+    <nd ref="2274388001"/>
+    <nd ref="2274388002"/>
+    <tag k="amenity" v="hospital"/>
+    <tag k="name" v="Malar Heart Foundation"/>
+    <tag k="wikidata" v="Q5472672"/>
+    <tag k="wikipedia" v="en:Fortis Malar Hospital"/>
+  </way>
+  <way id="328706200">
+    <nd ref="3355370337"/>
+    <nd ref="3355370338"/>
+    <nd ref="3355370339"/>
+    <nd ref="3355370340"/>
+    <nd ref="3355370341"/>
+    <nd ref="3355370342"/>
+    <nd ref="3355370343"/>
+    <nd ref="3355369094"/>
+    <nd ref="3355369095"/>
+    <nd ref="3355370329"/>
+    <nd ref="3355370330"/>
+    <nd ref="3355370331"/>
+    <nd ref="3355370332"/>
+    <nd ref="3355370333"/>
+    <nd ref="3355370334"/>
+    <nd ref="3355370335"/>
+    <nd ref="3355370336"/>
+    <nd ref="3355369096"/>
+    <nd ref="3355369097"/>
+    <nd ref="3355370337"/>
+    <tag k="addr:city" v="Chennai"/>
+    <tag k="addr:postcode" v="600020"/>
+    <tag k="addr:street" v="16th Cross St"/>
+    <tag k="amenity" v="hospital"/>
+    <tag k="name" v="Kalpana Medicals"/>
+    <tag k="operator" v="Kalpana Medicals"/>
+  </way>
+  <way id="328706398">
+    <nd ref="3355370344"/>
+    <nd ref="3355370345"/>
+    <nd ref="3355370346"/>
+    <nd ref="3355370347"/>
+    <nd ref="3355370344"/>
+    <tag k="addr:city" v="Chennai"/>
+    <tag k="addr:housenumber" v="6"/>
+    <tag k="addr:postcode" v="600020"/>
+    <tag k="addr:street" v="16th Cross St"/>
+    <tag k="amenity" v="hospital"/>
+    <tag k="name" v="Chennai Clinical Centres"/>
+    <tag k="operator" v="Dr D Balakrishnan ENT Clinic"/>
+    <tag k="phone" v="+91-9841910001"/>
+  </way>
+  <way id="374048313">
+    <nd ref="3774527657"/>
+    <nd ref="3774527658"/>
+    <nd ref="3774527659"/>
+    <nd ref="3774527660"/>
+    <nd ref="3774527657"/>
+    <tag k="addr:city" v="Chennai"/>
+    <tag k="addr:housenumber" v="28"/>
+    <tag k="addr:street" v="Shastri Nagar 1st Cross St"/>
+    <tag k="amenity" v="hospital"/>
+    <tag k="emergency" v="yes"/>
+    <tag k="name" v="Shivasundar Hospital"/>
+  </way>
+  <way id="396890070">
+    <nd ref="3997350948"/>
+    <nd ref="319489474"/>
+    <nd ref="319489459"/>
+    <nd ref="3997350949"/>
+    <nd ref="3997350948"/>
+    <tag k="amenity" v="hospital"/>
+  </way>
+</osm>
+
